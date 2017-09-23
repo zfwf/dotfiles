@@ -1,5 +1,14 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
 
+" vim-plug (plugin only available after plug#end)
+call plug#begin('./plugged')
+Plug 'w0rp/ale'
+Plug 'lifepillar/vim-solarized8'
+Plug 'tpope/vim-commentary'
+Plug 'cohama/lexima.vim'
+Plug 'vim-airline/vim-airline'
+call plug#end()
+
 colorscheme solarized8_dark_high
 set termguicolors						" enable color scheme	
 
@@ -22,11 +31,3 @@ set clipboard+=unnamedplus "default to system clipboard
 " status line
 let g:airline#extensions#tabline#enabled = 1							" use powerline font in airline (statusline)
 
-" vim-plug
-call plug#begin('./plugged')
-Plug 'w0rp/ale'
-Plug 'lifepillar/vim-solarized8'
-Plug 'tpope/vim-commentary'
-Plug 'cohama/lexima.vim'
-Plug 'vim-airline/vim-airline'
-call plug#end()
