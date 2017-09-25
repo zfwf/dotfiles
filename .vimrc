@@ -1,6 +1,16 @@
 " vim: set tw=79 shiftwidth=2 tabstop=2 :
 " vimrc file, Chris Chou, chhschou@gmail.com
 
+" vim-plug
+call plug#begin('~/.vim/plugged')
+Plug 'lifepillar/vim-solarized8'
+Plug 'tpope/vim-commentary'
+Plug 'cohama/lexima.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'jszakmeister/vim-togglecursor'
+
+call plug#end()
+
 colorscheme solarized8_dark_high
 "let g:solarized_termtrans=1 " transparent background
 "let g:solarized_termcolors=16
@@ -26,14 +36,3 @@ set modelines=3			" number lines checked for modelines
 set nostartofline		" done jump to first character when paging
 set whichwrap=b,s,h,l,<,>,[,]	" move freely between files
 set clipboard+=unnamedplus	" to default to system clipboard
-
-" vim-plug
-call plug#begin('~/.vim/plugged')
-Plug 'lifepillar/vim-solarized8'
-Plug 'tpope/vim-commentary'
-Plug 'cohama/lexima.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'jszakmeister/vim-togglecursor'
-
-call plug#end()
-
