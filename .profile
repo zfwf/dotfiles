@@ -10,10 +10,10 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+	# include .bashrc if it exists
+	if [ -f "$HOME/.bashrc" ]; then
+		. "$HOME/.bashrc"
+	fi
 fi
 
 # set PATH so it includes user's private bin if it exists
@@ -23,14 +23,14 @@ fi
 
 # node version manager
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # google version manager
-[ -s "~/.gvm/scripts/gvm" ] && source "~/.gvm/scripts/gvm"
+[[ -s "~/.gvm/scripts/gvm" ]] && source "~/.gvm/scripts/gvm"
 
 # Android
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-export JRE_HOME=/usr/lib/jvm/java-8-oracle/jre``
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+export JRE_HOME=/usr/lib/jvm/java-8-openjdk/jre
 export ANDROID_HOME=$HOME/Android/Sdk
 export NDK_ROOT=$ANDROID_HOME/ndk_bundle
 export ANDROID_NDK_HOME=$NDK_ROOT
@@ -50,6 +50,6 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 export PATH="$PATH:/opt/mssql-tools/bin"
 
-# emscripten compiler
-[[ -s "$HOME/dev/env/emsdk-portable/emsdk_env.sh" ]] && source "$HOME/dev/env/emsdk-portable/emsdk_env.sh"
 
+# alias
+alias trash=gvfs-trash
