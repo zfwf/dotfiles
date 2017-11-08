@@ -124,27 +124,21 @@ esac
 pkill syndaemon
 syndaemon -i 0.5 -KRd
 
-
 # zle config
 bindkey -v # vi mode
 export KEYTIMEOUT=1 # mode change timeout = 0.1sec
 function zle-keymap-select zle-line-init
 {
-	# change cursor shape in xterm
-	case $KEYMAP in
-		vicmd)      echo -e -n "\x1b[\x32 q";;  # block cursor
-		viins|main) echo -e -n "\x1b[\x35 q";;  # blinking line cursor
-	esac
+       # change cursor shape in xterm
+       case $KEYMAP in
+               vicmd)      echo -e -n "\x1b[\x32 q";;  # block cursor
+               viins|main) echo -e -n "\x1b[\x35 q";;  # blinking line cursor
+       esac
 
-	zle reset-prompt
-	zle -R
+       zle reset-prompt
+       zle -R
 }
 
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-###-tns-completion-start-###
-if [ -f /home/cchou/.tnsrc ]; then 
-    source /home/cchou/.tnsrc 
-fi
-###-tns-completion-end-###

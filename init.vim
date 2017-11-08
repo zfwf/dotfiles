@@ -1,7 +1,7 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
 
 " vim-plug (plugin only available after plug#end)
-call plug#begin('./plugged')
+call plug#begin('~/.config/nvim/plugged')
 Plug 'w0rp/ale'
 Plug 'lifepillar/vim-solarized8'
 Plug 'tpope/vim-commentary'
@@ -18,6 +18,7 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor-blin
 
 filetype indent plugin on
 
+set inccommand=nosplit
 set number		" line number
 set ls=2
 set tabstop=2

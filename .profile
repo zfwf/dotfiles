@@ -21,16 +21,20 @@ if [ -d "$HOME/bin" ]; then
   PATH="$HOME/bin:$PATH"
 fi
 
-# node version manager
-export NVM_DIR="$HOME/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# google version manager
-[[ -s "~/.gvm/scripts/gvm" ]] && source "~/.gvm/scripts/gvm"
+###-tns-completion-start-###
+if [ -f "$HOME/.tnsrc" ]; then 
+    source "$HOME/.tnsrc"
+fi
+###-tns-completion-end-###
 
-# Android
+# google version manager
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+
+# java
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export JRE_HOME=/usr/lib/jvm/java-8-openjdk/jre
+
+# android
 export ANDROID_HOME=$HOME/Android/Sdk
 export NDK_ROOT=$ANDROID_HOME/ndk_bundle
 export ANDROID_NDK_HOME=$NDK_ROOT
@@ -39,11 +43,19 @@ PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin
 # add pip installed packages
 PATH=$PATH:~/.local/bin
 
+# node version manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# yarn installed binaries
+PATH=$PATH:$(yarn global bin)
+
 # add intellij to path
 PATH=$PATH:/opt/idea-IC/latest/bin
 
 # add cargo (rust) 
 PATH=$HOME/.cargo/bin:$PATH
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # use neovim as editor in general
 export VISUAL=nvim
@@ -53,3 +65,5 @@ export PATH="$PATH:/opt/mssql-tools/bin"
 
 # alias
 alias trash=gvfs-trash
+
+export CHROME_BIN=chromium-browser
