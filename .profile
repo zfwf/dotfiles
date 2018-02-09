@@ -27,8 +27,8 @@ if [ -f "$HOME/.tnsrc" ]; then
 fi
 ###-tns-completion-end-###
 
-# google version manager
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+# go version manager
+# [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 # java
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
@@ -38,7 +38,7 @@ export JRE_HOME=/usr/lib/jvm/java-8-openjdk/jre
 export ANDROID_HOME=$HOME/Android/Sdk
 export NDK_ROOT=$ANDROID_HOME/ndk_bundle
 export ANDROID_NDK_HOME=$NDK_ROOT
-PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin
+PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
 
 # add pip installed packages
 PATH=$PATH:~/.local/bin
@@ -65,5 +65,8 @@ export PATH="$PATH:/opt/mssql-tools/bin"
 
 # alias
 alias trash=gvfs-trash
+alias avd-16="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
+alias avd-21="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
+alias avd-25="cd ~/Android/Sdk/tools; emulator -avd Nexus_5X_API_25"
 
 export CHROME_BIN=chromium-browser

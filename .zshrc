@@ -1,7 +1,6 @@
 # command for interactive shell (load order: .zshenv, .zshrc, .zsh)
 
-
-
+export TERM='xterm-256color'
 # theme specific
 ## if using awesome font-config
 POWERLEVEL9K_MODE='awesome-fontconfig'
@@ -30,7 +29,7 @@ POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs rust_version nvm virtualenv rvm go_version time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time time)
 
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
@@ -80,9 +79,9 @@ source "${HOME}/.zgen/zgen.zsh"
 load-starter-list() {
   # specify oh-my-zsh plugins here
   zgen oh-my-zsh
-	zgen oh-my-zsh plugins/git
-	zgen oh-my-zsh plugins/python
-	zgen oh-my-zsh plugins/command-not-found
+  zgen oh-my-zsh plugins/git
+  zgen oh-my-zsh plugins/python
+  zgen oh-my-zsh plugins/command-not-found
 
   # history substring search must come after syntax highlighting
   zgen load zsh-users/zsh-syntax-highlighting
@@ -107,7 +106,6 @@ load-starter-list() {
 if ! zgen saved; then
   load-starter-list
 fi
-
 
 
 # hide user in shell prompt
