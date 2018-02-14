@@ -13,10 +13,14 @@ Plug 'mhinz/vim-startify'
 call plug#end()
 
 " enable color scheme
-colorscheme solarized8_dark_high
 set termguicolors
 syntax enable               " enable syntax highlight
 filetype indent plugin on
+let g:solarized_visibility='high'
+let g:solarized_term_italics=1
+let g:solarized_diffmode='high'
+set background=dark
+colorscheme solarized8  " colorscheme depend on aforementioned options
 
 " show whitespace characters
 set list

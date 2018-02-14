@@ -21,15 +21,6 @@ if [ -d "$HOME/bin" ]; then
   PATH="$HOME/bin:$PATH"
 fi
 
-###-tns-completion-start-###
-if [ -f "$HOME/.tnsrc" ]; then 
-    source "$HOME/.tnsrc"
-fi
-###-tns-completion-end-###
-
-# go version manager
-# [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-
 # java
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export JRE_HOME=/usr/lib/jvm/java-8-openjdk/jre
@@ -50,9 +41,6 @@ export NVM_DIR="$HOME/.nvm"
 # yarn installed binaries
 PATH=$PATH:$(yarn global bin)
 
-# add intellij to path
-PATH=$PATH:/opt/idea-IC/latest/bin
-
 # add cargo (rust) 
 PATH=$HOME/.cargo/bin:$PATH
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
@@ -60,7 +48,6 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 # use neovim as editor in general
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-export PATH="$PATH:/opt/mssql-tools/bin"
 
 
 # alias
@@ -68,5 +55,3 @@ alias trash=gvfs-trash
 alias avd-16="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
 alias avd-21="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
 alias avd-25="cd ~/Android/Sdk/tools; emulator -avd Nexus_5X_API_25"
-
-export CHROME_BIN=chromium-browser
