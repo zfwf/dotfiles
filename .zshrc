@@ -136,7 +136,15 @@ function zle-keymap-select zle-line-init
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+# node version manager
+if [ -d "$HOME/.nvm" ]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# alias
+alias trash=gvfs-trash
+alias avd-16="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
+alias avd-21="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
+alias avd-25="cd ~/Android/Sdk/tools; emulator -avd Nexus_5X_API_25"
+

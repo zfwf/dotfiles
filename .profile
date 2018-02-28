@@ -22,36 +22,33 @@ if [ -d "$HOME/bin" ]; then
 fi
 
 # java
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
-export JRE_HOME=/usr/lib/jvm/java-8-openjdk/jre
+if [ -d "/usr/lib/jvm/default-java" ]; then
+  export JAVA_HOME=/usr/lib/jvm/default-java
+  export JRE_HOME=$JAVA_HOME/jre
+fi
 
 # android
-export ANDROID_HOME=$HOME/Android/Sdk
-export NDK_ROOT=$ANDROID_HOME/ndk_bundle
-export ANDROID_NDK_HOME=$NDK_ROOT
-PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
-
-# add pip installed packages
-PATH=$PATH:~/.local/bin
-
-# node version manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+if [ -d "$HOME/Android/Sdk" ]; then
+  export ANDROID_HOME=$HOME/Android/Sdk
+  if [ -d "$ANDROID_HOME/ndk_bundle" ]; then
+    export NDK_ROOT=$ANDROID_HOME/ndk_bundle
+    export ANDROID_NDK_HOME=$NDK_ROOT
+  fi
+  PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
+fi
 
 # yarn installed binaries
-PATH=$PATH:$(yarn global bin)
+if [ -d "$HOME/.yarn/bin" ]; then
+  PATH=$PATH:$HOME/.yarn/bin
+fi
 
-# add cargo (rust) 
-PATH=$HOME/.cargo/bin:$PATH
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+# # add cargo (rust) 
+if [ -d "$HOME/.cargo/bin" ]; then
+  PATH=$HOME/.cargo/bin:$PATH
+  export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
 
 # use neovim as editor in general
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-
-# alias
-alias trash=gvfs-trash
-alias avd-16="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
-alias avd-21="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
-alias avd-25="cd ~/Android/Sdk/tools; emulator -avd Nexus_5X_API_25"
