@@ -146,5 +146,5 @@ fi
 alias trash=gvfs-trash
 alias avd-16="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
 alias avd-21="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
-alias avd-25="cd ~/Android/Sdk/tools; emulator -avd Nexus_5X_API_25"
+alias avd-23="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_23"
 
