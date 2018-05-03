@@ -3,9 +3,9 @@
 export TERM='xterm-256color'
 # theme specific
 ## if using awesome font-config
-POWERLEVEL9K_MODE='awesome-fontconfig'
+#POWERLEVEL9K_MODE='awesome-fontconfig'
 ## if using nerd font
-#POWERLEVEL9K_MODE='nerdfont-fontconfig'
+POWERLEVEL9K_MODE='nerdfont-fontconfig'
 
 # disable auto window title
 #DISABLE_AUTO_TITLE="true"
@@ -140,6 +140,7 @@ zle -N zle-keymap-select
 if [ -d "$HOME/.nvm" ]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
 # alias
