@@ -3,24 +3,33 @@
 " vim-plug (plugin only available after plug#end)
 call plug#begin('~/.config/nvim/plugged')
 Plug 'w0rp/ale'
-Plug 'lifepillar/vim-solarized8'
+Plug 'connorholyday/vim-snazzy'
 Plug 'tpope/vim-commentary'
 Plug 'cohama/lexima.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mhinz/vim-startify'
+Plug 'wellle/targets.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'prettier/vim-prettier'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " enable color scheme
 set termguicolors
 syntax enable               " enable syntax highlight
 filetype indent plugin on
-let g:solarized_visibility='high'
-let g:solarized_term_italics=1
-let g:solarized_diffmode='high'
-set background=dark
-colorscheme solarized8  " colorscheme depend on aforementioned options
+"let g:solarized_visibility='high'
+"let g:solarized_term_italics=1
+"let g:solarized_diffmode='high'
+"set background=dark
+"colorscheme solarized8  " colorscheme depend on aforementioned options
+"let g:SnazzyTransparent = 1
+colorscheme snazzy
+
 
 " show whitespace characters
 set list
@@ -64,3 +73,6 @@ xnoremap p pgvy
 
 " auto commands (see :h autocommand-events)
 au BufLeave * silent! wall
+
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow

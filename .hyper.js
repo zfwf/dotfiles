@@ -54,8 +54,9 @@ module.exports = {
     // custom CSS to embed in the terminal window
     termCSS: '',
 
-    // if you're using a Linux setup which show native menus, set to false
-    // default: `true` on Linux, `true` on Windows, ignored on macOS
+    // set to `true` (without backticks and without quotes) if you're using a
+    // Linux setup that doesn't show native menus
+    // default: `false` on Linux, `true` on Windows, ignored on macOS
     showHamburgerMenu: '',
 
     // set to `false` (without backticks and without quotes) if you want to hide the minimize, maximize and close buttons
@@ -87,23 +88,7 @@ module.exports = {
       lightCyan: '#68FDFE',
       lightWhite: '#FFFFFF',
     },
-    MaterialTheme: {
-      // Set the theme variant,
-      // OPTIONS: 'Darker', 'Palenight', ''
-      theme: 'Darker',
 
-      // [Optional] Set the rgba() app background opacity, useful when enableVibrance is true
-      // OPTIONS: From 0.1 to 1
-      backgroundOpacity: '1',
-
-      // [Optional] Set the accent color for the current active tab
-      accentColor: '#64FFDA',
-
-      // [Optional] Mac Only. Need restart. Enable the vibrance and blurred background
-      // OPTIONS: 'dark', 'ultra-dark', 'bright'
-      // NOTE: The backgroundOpacity should be between 0.1 and 0.9 to see the effect.
-      vibrancy: 'dark'
-    },
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
     //
@@ -150,7 +135,7 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: ['hyper-material-theme'],
+  plugins: ["hyper-snazzy"],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
