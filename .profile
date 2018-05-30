@@ -22,8 +22,8 @@ if [ -d "$HOME/bin" ]; then
 fi
 
 # java
-if [ -d "/usr/lib/jvm/default-java" ]; then
-  export JAVA_HOME=/usr/lib/jvm/default-java
+if [ -d "/usr/lib/jvm/java-11-openjdk-amd64" ]; then
+  export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
   export JRE_HOME=$JAVA_HOME/jre
 fi
 
