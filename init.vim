@@ -2,31 +2,32 @@
 
 " vim-plug (plugin only available after plug#end)
 call plug#begin('~/.config/nvim/plugged')
-Plug 'w0rp/ale'
+Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
+Plug 'prettier/vim-prettier'
+Plug 'tpope/vim-unimpaired'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'cohama/lexima.vim'
-Plug 'vim-airline/vim-airline'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'vim-vdebug/vdebug'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'mhinz/vim-startify'
 Plug 'wellle/targets.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'tpope/vim-unimpaired'
-Plug 'prettier/vim-prettier'
-Plug '/usr/local/opt/fzf'
+Plug '~/.brew/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-startify'
 call plug#end()
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('smart_case', v:true) " smart_case for match with capitals
 
 " enable color scheme
 set termguicolors
 syntax enable               " enable syntax highlight
 filetype indent plugin on
-"let g:solarized_visibility='high'
-"let g:solarized_term_italics=1
-"let g:solarized_diffmode='high'
-"set background=dark
-"colorscheme solarized8  " colorscheme depend on aforementioned options
 "let g:SnazzyTransparent = 1
 colorscheme snazzy
 
@@ -42,6 +43,7 @@ match ExtraWhitespace /\s\+$\| \+\ze\t/
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor-blinkwait1-blinkon15-blinkoff10,r-cr:hor20-Cursor/rCursor
 
 set inccommand=nosplit
+set showcmd                           " show cmd used (bottom right)
 set number                            " line number
 set ls=2
 set tabstop=2 shiftwidth=2 expandtab

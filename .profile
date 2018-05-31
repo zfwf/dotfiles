@@ -22,8 +22,8 @@ if [ -d "$HOME/bin" ]; then
 fi
 
 # java
-if [ -d "/usr/lib/jvm/java-11-openjdk-amd64" ]; then
-  export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+if [ -d "/usr/lib/jvm/default-java" ]; then
+  export JAVA_HOME=/usr/lib/jvm/default-java
   export JRE_HOME=$JAVA_HOME/jre
 fi
 
@@ -49,6 +49,10 @@ if [ -d "$HOME/.cargo/bin" ]; then
 fi
 
 # use neovim as editor in general
-export VISUAL=nvim
+export VISUAL=vi
 export EDITOR="$VISUAL"
 
+# brew
+PATH="$HOME/.brew/bin:$PATH"
+export MANPATH="$(brew --prefix)/share/man:$MANPATH"
+export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"

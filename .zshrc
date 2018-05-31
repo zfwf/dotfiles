@@ -142,17 +142,14 @@ if [ -d "$HOME/.nvm" ]; then
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
-#
+
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Returns whether the given command is executable or aliased.
 _has() {
   return $( whence $1 >/dev/null )
 }
-
-# fzf via Homebrew
-if [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
-  source /usr/local/opt/fzf/shell/key-bindings.zsh
-  source /usr/local/opt/fzf/shell/completion.zsh
-fi
 
 # fzf + ag configuration
 if _has fzf && _has ag; then
@@ -165,14 +162,10 @@ if _has fzf && _has ag; then
   '
 fi
 
+
 # alias
 alias trash=gvfs-trash
 alias avd-16="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
 alias avd-21="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
 alias avd-23="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_23"
-
-alias vim=nvim
-alias vi=nvim
-export VISUAL=vi
-export EDITOR=$VISUAL
 
