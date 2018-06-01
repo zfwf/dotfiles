@@ -11,18 +11,22 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'cohama/lexima.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'vim-vdebug/vdebug'
+Plug 'vim-vdebug/vdebug'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'wellle/targets.vim'
 Plug 'leafgarland/typescript-vim'
 Plug '~/.brew/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
+Plug 'szw/vim-maximizer'
 call plug#end()
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('smart_case', v:true) " smart_case for match with capitals
+
+" maximizer
+let g:maximizer_default_mapping_key = '<F3>'
 
 " enable color scheme
 set termguicolors

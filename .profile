@@ -25,6 +25,9 @@ fi
 if [ -d "/usr/lib/jvm/default-java" ]; then
   export JAVA_HOME=/usr/lib/jvm/default-java
   export JRE_HOME=$JAVA_HOME/jre
+elif [ -d "~/.brew/opt/adoptopenjdk-openjdk8" ]; then
+  export JAVA_HOME=~/.brew/opt/adoptopenjdk-openjdk8  
+  export JRE_HOME=$JAVA_HOME/jre
 fi
 
 # android
@@ -49,6 +52,7 @@ if [ -d "$HOME/.cargo/bin" ]; then
 fi
 
 # use neovim as editor in general
+alias vi=nvim
 export VISUAL=vi
 export EDITOR="$VISUAL"
 
