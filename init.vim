@@ -6,10 +6,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
 Plug 'prettier/vim-prettier'
 Plug 'tpope/vim-unimpaired'
+Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'cohama/lexima.vim'
+Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-vdebug/vdebug'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -24,6 +27,9 @@ call plug#end()
 " deoplete
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('smart_case', v:true) " smart_case for match with capitals
+" enable tab completion
+inoremap <silent><expr> <Tab>
+    \ pumvisible() ? "\<C-n>" : deoplete#manual_complete()
 
 " maximizer
 let g:maximizer_default_mapping_key = '<F3>'
@@ -45,7 +51,7 @@ match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " set cursor
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor-blinkwait1-blinkon15-blinkoff10,r-cr:hor20-Cursor/rCursor
-
+set mouse=a
 set inccommand=nosplit
 set showcmd                           " show cmd used (bottom right)
 set number                            " line number
@@ -74,8 +80,11 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll|DS_Store|dat)$',
   \ }
 
-" keymap
+" general keymap
 xnoremap p pgvy
+
+" fzf keymaps
+nnoremap <silent> <Leader><Leader> :Files <C-R>=expand('%:h')<CR><CR>
 
 " auto commands (see :h autocommand-events)
 au BufLeave * silent! wall

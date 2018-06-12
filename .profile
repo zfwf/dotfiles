@@ -60,3 +60,5 @@ export EDITOR="$VISUAL"
 PATH="$HOME/.brew/bin:$PATH"
 export MANPATH="$(brew --prefix)/share/man:$MANPATH"
 export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
+
+export PATH="$HOME/.cargo/bin:$PATH"
