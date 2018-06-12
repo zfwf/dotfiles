@@ -2,11 +2,16 @@
 
 " vim-plug (plugin only available after plug#end)
 call plug#begin('~/.config/nvim/plugged')
+" visual/info
 Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
 Plug 'prettier/vim-prettier'
 Plug 'tpope/vim-unimpaired'
 Plug 'ryanoasis/vim-devicons'
+Plug 'jreybert/vimagit'
+Plug 'airblade/vim-gitgutter'
+
+" tools
 Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
@@ -68,6 +73,7 @@ set clipboard+=unnamedplus            " default to system clipboard
 set autochdir
 set hidden
 set complete=.,w,b,u,t,i,kspell		    " `:set spell` to get completion from dictionary
+set noshowmode                        " no show --Insert--, replaced by airline
 let mapleader="\<SPACE>"
 
 " use powerline font in airline (statusline)
@@ -84,6 +90,7 @@ let g:ctrlp_custom_ignore = {
 xnoremap p pgvy
 
 " fzf keymaps
+" double <leader> to start fzf
 nnoremap <silent> <Leader><Leader> :Files <C-R>=expand('%:h')<CR><CR>
 
 " auto commands (see :h autocommand-events)
