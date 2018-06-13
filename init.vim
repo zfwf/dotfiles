@@ -12,7 +12,6 @@ Plug 'jreybert/vimagit'
 Plug 'airblade/vim-gitgutter'
 
 " tools
-Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
