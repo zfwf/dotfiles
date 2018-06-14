@@ -90,7 +90,7 @@ xnoremap p pgvy
 
 " fzf keymaps
 " double <leader> to start fzf
-nnoremap <silent> <Leader><Leader> :Files <C-R>=expand('%:h')<CR><CR>
+nnoremap <silent> <Leader><Leader> :Files $PWD<CR>
 
 " auto commands (see :h autocommand-events)
 au BufLeave * silent! wall
