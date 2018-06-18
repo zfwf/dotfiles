@@ -84,6 +84,7 @@ load-starter-list() {
   zgen oh-my-zsh plugins/command-not-found
 
   # history substring search must come after syntax highlighting
+  zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-syntax-highlighting
   zgen load zsh-users/zsh-history-substring-search
 
