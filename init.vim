@@ -28,6 +28,9 @@ Plug 'mhinz/vim-startify'
 Plug 'szw/vim-maximizer'
 call plug#end()
 
+" speed up gitgutter
+set updatetime=100 " 100ms
+
 " deoplete
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('smart_case', v:true) " smart_case for match with capitals
