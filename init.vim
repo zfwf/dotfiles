@@ -19,7 +19,6 @@ Plug 'cohama/lexima.vim'
 Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-vdebug/vdebug'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'wellle/targets.vim'
 Plug 'leafgarland/typescript-vim'
 Plug '~/.brew/opt/fzf'
@@ -81,13 +80,6 @@ let mapleader="\<SPACE>"
 " use powerline font in airline (statusline)
 let g:airline#extensions#tabline#enabled = 1
 
-" CtrlP options
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$|node_modules|log|tmp',
-  \ 'file': '\v\.(exe|so|dll|DS_Store|dat)$',
-  \ }
-
 " general keymap
 xnoremap p pgvy
 :command BufOnly %bd|e#|bd#
@@ -97,9 +89,3 @@ nnoremap <Tab>   :bnext<CR>
 " fzf keymaps
 " double <leader> to start fzf
 nnoremap <silent> <Leader><Leader> :Files $PWD<CR>
-
-" auto commands (see :h autocommand-events)
-au BufLeave * silent! wall
-
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
