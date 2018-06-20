@@ -36,7 +36,7 @@ let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('smart_case', v:true) " smart_case for match with capitals
 " enable tab completion
 inoremap <silent><expr> <Tab>
-    \ pumvisible() ? "\<C-n>" : deoplete#manual_complete()
+    \ pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " maximizer
 let g:maximizer_default_mapping_key = '<F3>'
@@ -90,6 +90,9 @@ let g:ctrlp_custom_ignore = {
 
 " general keymap
 xnoremap p pgvy
+:command BufOnly %bd|e#|bd#
+nnoremap <S-Tab> :bprevious<CR>
+nnoremap <Tab>   :bnext<CR>
 
 " fzf keymaps
 " double <leader> to start fzf
