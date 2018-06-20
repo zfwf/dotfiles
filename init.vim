@@ -6,15 +6,18 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
 Plug 'prettier/vim-prettier'
-Plug 'tpope/vim-unimpaired'
 Plug 'ryanoasis/vim-devicons'
-Plug 'jreybert/vimagit'
 Plug 'airblade/vim-gitgutter'
 
 " tools
+Plug 'mhinz/vim-startify'
+Plug 'majutsushi/tagbar'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'jreybert/vimagit'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 Plug 'cohama/lexima.vim'
 Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -23,22 +26,7 @@ Plug 'wellle/targets.vim'
 Plug 'leafgarland/typescript-vim'
 Plug '~/.brew/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'mhinz/vim-startify'
-Plug 'szw/vim-maximizer'
 call plug#end()
-
-" speed up gitgutter
-set updatetime=100 " 100ms
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('smart_case', v:true) " smart_case for match with capitals
-" enable tab completion
-inoremap <silent><expr> <Tab>
-    \ pumvisible() ? "\<C-n>" : "\<Tab>"
-
-" maximizer
-let g:maximizer_default_mapping_key = '<F3>'
 
 " enable color scheme
 set termguicolors
@@ -77,12 +65,34 @@ set complete=.,w,b,u,t,i,kspell		    " `:set spell` to get completion from dicti
 set noshowmode                        " no show --Insert--, replaced by airline
 let mapleader="\<SPACE>"
 
-" use powerline font in airline (statusline)
-let g:airline#extensions#tabline#enabled = 1
+" speed up gitgutter
+set updatetime=100 " 100ms
+
+" tags http://vim.wikia.com/wiki/Browsing_programs_with_tags
+nnoremap <silent> <F12> <C-]>
+" see http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
+" set <S-F12>=^[[24;2~
+set <S-F12>={C-V}{S-F12}
+nnoremap <silent> <S-F12> g]
+let g:gutentags_cache_dir=$HOME . '/.cache/ctags'
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('smart_case', v:true) " smart_case for match with capitals
+" enable tab completion
+inoremap <silent><expr> <Tab>
+    \ pumvisible() ? "\<C-n>" : "\<Tab>"
+
+" tree style file explorer
+let g:netrw_liststyle=3
+
+" vim-airline configs
+let g:airline#extensions#tabline#enabled = 1          " enable tabline
+let g:airline#extensions#tabline#buffer_nr_show = 1   " display buffer number
 
 " general keymap
 xnoremap p pgvy
-:command BufOnly %bd|e#|bd#
+":command BufOnly %bd|e#|bd#
 nnoremap <S-Tab> :bprevious<CR>
 nnoremap <Tab>   :bnext<CR>
 
