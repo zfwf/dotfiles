@@ -12,7 +12,7 @@ Plug 'airblade/vim-gitgutter'
 " tools
 Plug 'mhinz/vim-startify'
 Plug 'majutsushi/tagbar'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'jreybert/vimagit'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
@@ -69,7 +69,7 @@ let mapleader="\<SPACE>"
 set updatetime=100 " 100ms
 
 " tags http://vim.wikia.com/wiki/Browsing_programs_with_tags
-let g:gutentags_cache_dir=$HOME . '/.cache/ctags'
+"let g:gutentags_cache_dir=$HOME . '/.cache/ctags'
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
