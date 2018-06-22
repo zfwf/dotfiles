@@ -69,11 +69,6 @@ let mapleader="\<SPACE>"
 set updatetime=100 " 100ms
 
 " tags http://vim.wikia.com/wiki/Browsing_programs_with_tags
-nnoremap <silent> <F12> <C-]>
-" see http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
-" set <S-F12>=^[[24;2~
-set <S-F12>={C-V}{S-F12}
-nnoremap <silent> <S-F12> g]
 let g:gutentags_cache_dir=$HOME . '/.cache/ctags'
 
 " deoplete
