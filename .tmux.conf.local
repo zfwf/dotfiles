@@ -265,3 +265,17 @@ set -g mouse on
 
 # move status line to top
 #set -g status-position top
+
+
+# enable tmux-continuum
+set -g @continuum-restore 'on'
+# List of plugins
+set -g @tpm_plugins '          \
+  tmux-plugins/tpm             \
+  tmux-plugins/tmux-sensible   \
+  tmux-plugins/tmux-resurrect  \
+  tmux-plugins/tmux-continuum  \
+'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'#

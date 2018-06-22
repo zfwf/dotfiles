@@ -94,6 +94,7 @@ nnoremap <Tab>   :bnext<CR>
 " fzf keymaps
 " double <leader> to start fzf
 nnoremap <silent> <Leader><Leader> :Files $PWD<CR>
+nnoremap <silent> g] :Tags <C-R><C-W><CR>
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
