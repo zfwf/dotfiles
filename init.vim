@@ -10,7 +10,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 
 " tools
-Plug 'mhinz/vim-startify'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-obsession'
 " Plug 'ludovicchabant/vim-gutentags'
@@ -60,7 +59,6 @@ set smartcase                         " ... unless the query has capital letters
 set gdefault                          " Use 'g' flag by default with :s/foo/bar/.
 set magic                             " Use 'magic' patterns (extended regular expressions).
 set clipboard+=unnamedplus            " default to system clipboard
-set autochdir
 set hidden
 set complete=.,w,b,u,t,i,kspell		    " `:set spell` to get completion from dictionary
 set noshowmode                        " no show --Insert--, replaced by airline
@@ -88,7 +86,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1   " display buffer number
 
 " general keymap
 xnoremap p pgvy
-:command! BufOnly %bd|e#|bd#
+:command! BufOnly %bd|e#|bd#      " only the buffer being edited
 nnoremap <C-L>  :bnext<CR>        " next buffer
 nnoremap <C-H>  :bprevious<CR>    " previous buffer
 nnoremap <Tab>  :b#<CR>           " last buffer
