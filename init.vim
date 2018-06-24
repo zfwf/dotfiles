@@ -29,6 +29,8 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " enable color scheme
+set t_8b=^[[48;2;%lu;%lu;%lum
+set t_8f=^[[38;2;%lu;%lu;%lum
 set termguicolors
 syntax enable               " enable syntax highlight
 filetype indent plugin on

@@ -267,6 +267,9 @@ set -g mouse on
 #set -g status-position top
 
 
+# enable true color
+set -g default-terminal "tmux-256color"
+set -ga terminal-overrides ",*256col*:Tc"
 # enable tmux-continuum
 set -g @continuum-restore 'on'
 # enable restore nvim sessions (require tpope/vim-obsession)
