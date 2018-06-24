@@ -269,6 +269,8 @@ set -g mouse on
 
 # enable tmux-continuum
 set -g @continuum-restore 'on'
+# enable restore nvim sessions (require tpope/vim-obsession)
+set -g @resurrect-strategy-nvim 'session'
 # List of plugins
 set -g @tpm_plugins '          \
   tmux-plugins/tpm             \

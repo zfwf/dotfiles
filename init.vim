@@ -12,6 +12,7 @@ Plug 'airblade/vim-gitgutter'
 " tools
 Plug 'mhinz/vim-startify'
 Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-obsession'
 " Plug 'ludovicchabant/vim-gutentags'
 Plug 'jreybert/vimagit'
 Plug 'w0rp/ale'
@@ -87,14 +88,22 @@ let g:airline#extensions#tabline#buffer_nr_show = 1   " display buffer number
 
 " general keymap
 xnoremap p pgvy
-":command BufOnly %bd|e#|bd#
-nnoremap <S-Tab> :bprevious<CR>
-nnoremap <Tab>   :bnext<CR>
+:command! BufOnly %bd|e#|bd#
+nnoremap <C-L>  :bnext<CR>        " next buffer
+nnoremap <C-H>  :bprevious<CR>    " previous buffer
+nnoremap <Tab>  :b#<CR>           " last buffer
 
 " fzf keymaps
 " double <leader> to start fzf
 nnoremap <silent> <Leader><Leader> :Files $PWD<CR>
 nnoremap <silent> g] :Tags <C-R><C-W><CR>
+" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
