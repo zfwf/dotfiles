@@ -1,10 +1,10 @@
+"let g:airline_theme='papercolor'
 " init.vim file, Chris Chou, chhschou@gmail.com
 
 " vim-plug (plugin only available after plug#end)
 call plug#begin('~/.config/nvim/plugged')
 " visual/info
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'prettier/vim-prettier'
 Plug 'ryanoasis/vim-devicons'
@@ -48,7 +48,6 @@ syntax enable
 filetype indent plugin on
 set background=dark
 colorscheme PaperColor
-let g:airline_theme='papercolor'
 
 " show whitespace characters
 set list
