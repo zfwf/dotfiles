@@ -4,15 +4,26 @@
 call plug#begin('~/.config/nvim/plugged')
 " visual/info
 Plug 'vim-airline/vim-airline'
-Plug 'connorholyday/vim-snazzy'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'prettier/vim-prettier'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 
+" syntax
+Plug 'pangloss/vim-javascript'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'elzr/vim-json'
+Plug 'rust-lang/rust.vim'
+Plug 'jvirtanen/vim-octave'
+Plug 'hdima/python-syntax'
+Plug 'plasticboy/vim-markdown'
+Plug 'octol/vim-cpp-enhanced-highlight'
+
 " tools
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-obsession'
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'jreybert/vimagit'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
@@ -28,15 +39,16 @@ Plug '~/.brew/opt/fzf'
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
-" enable color scheme
+" enable truecolor support
 set t_8b=^[[48;2;%lu;%lu;%lum
 set t_8f=^[[38;2;%lu;%lu;%lum
 set termguicolors
-syntax enable               " enable syntax highlight
+" enable color scheme
+syntax enable
 filetype indent plugin on
-"let g:SnazzyTransparent = 1
-colorscheme snazzy
-
+set background=dark
+colorscheme PaperColor
+let g:airline_theme='papercolor'
 
 " show whitespace characters
 set list
@@ -68,9 +80,6 @@ let mapleader="\<SPACE>"
 
 " speed up gitgutter
 set updatetime=100 " 100ms
-
-" tags http://vim.wikia.com/wiki/Browsing_programs_with_tags
-"let g:gutentags_cache_dir=$HOME . '/.cache/ctags'
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
