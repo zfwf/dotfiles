@@ -153,10 +153,11 @@ alias fzfp="fzf --preview '[[ \$(file --mime {}) =~ binary ]] &&
 bindkey -s '^p' 'vi $(fzfp)^M'
 # fzf + rg configuration
 if _has fzf && _has rg; then
-  export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,vendor}/" 2>/dev/null'
+  export FZF_DEFAULT_COMMAND='fd --type file --hidden'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude ".git" --exclude "node_modules" --exclude "vendor"'
   export FZF_DEFAULT_OPTS='
+    --inline-info
     --color fg:242,bg:233,hl:65,fg+:15,bg+:234,hl+:108
     --color info:108,prompt:109,spinner:108,pointer:168,marker:168
   '
