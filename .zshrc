@@ -1,5 +1,10 @@
 # command for interactive shell (load order: .zshenv, .zshrc, .zsh)
 
+# Returns whether the given command is executable or aliased.
+_has() {
+  return $( whence $1 >/dev/null )
+}
+
 export TERM='xterm-256color'
 # theme specific
 ## if using awesome font-config
@@ -86,15 +91,6 @@ load-starter-list() {
   # history substring search must come after syntax highlighting
   zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-syntax-highlighting
-  zgen load zsh-users/zsh-history-substring-search
-
-  # Set keystrokes for substring searching
-  zmodload zsh/terminfo
-  bindkey "$terminfo[kcuu1]" history-substring-search-up
-  bindkey "$terminfo[kcud1]" history-substring-search-down
-
-  # color in dir listing
-  zgen load supercrabtree/k
 
   # theme
   zgen load bhilburn/powerlevel9k powerlevel9k
@@ -147,19 +143,22 @@ fi
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# Returns whether the given command is executable or aliased.
-_has() {
-  return $( whence $1 >/dev/null )
-}
-
-# fzf + ag configuration
-if _has fzf && _has ag; then
-  export FZF_DEFAULT_COMMAND='ag -g ""'
+alias fzfp="fzf --preview '[[ \$(file --mime {}) =~ binary ]] &&
+                  echo {} is a binary file ||
+                 (highlight -O ansi -l {} ||
+                  coderay {} ||
+                  rougify {} ||
+                  cat {}) 2>/dev/null | head -500'"
+# <c-p> to edit file from fzf in vi
+bindkey -s '^p' 'vi $(fzfp)^M'
+# fzf + rg configuration
+if _has fzf && _has rg; then
+  export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,vendor}/" 2>/dev/null'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_DEFAULT_OPTS='
-  --color fg:242,bg:236,hl:65,fg+:15,bg+:239,hl+:108
-  --color info:108,prompt:109,spinner:108,pointer:168,marker:168
+    --color fg:242,bg:233,hl:65,fg+:15,bg+:234,hl+:108
+    --color info:108,prompt:109,spinner:108,pointer:168,marker:168
   '
 fi
 
@@ -169,4 +168,7 @@ alias trash=gvfs-trash
 alias avd-16="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
 alias avd-21="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
 alias avd-23="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_23"
+
+export EDITOR=vi
+export VISUAL=$EDITOR
 
