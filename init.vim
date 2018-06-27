@@ -98,10 +98,11 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " general keymap
 xnoremap p pgvy
-:command! BufOnly %bd|e#|bd#      " only the buffer being edited
-nnoremap <C-L>  :bnext<CR>        " next buffer
-nnoremap <C-H>  :bprevious<CR>    " previous buffer
-nnoremap <Tab>  :b#<CR>           " last buffer
+:command! BufOnly %bd|e#|bd#        " only the buffer being edited
+:command! BufR    :bufdo e!         " Reload all
+nnoremap <C-L>    :bnext<CR>        " next buffer
+nnoremap <C-H>    :bprevious<CR>    " previous buffer
+nnoremap <Tab>    :b#<CR>           " last buffer
 
 " fzf keymaps
 " double <leader> to start fzf
