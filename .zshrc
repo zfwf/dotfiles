@@ -153,7 +153,7 @@ alias fzfp="fzf --preview '[[ \$(file --mime {}) =~ binary ]] &&
 bindkey -s '^p' 'vi $(fzfp)^M'
 # fzf + rg configuration
 if _has fzf && _has rg; then
-  export FZF_DEFAULT_COMMAND='fd --type file --hidden'
+  export FZF_DEFAULT_COMMAND='fd --type file --hidden --exclude ".git" --exclude "node_modules" --exclude "vendor"'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude ".git" --exclude "node_modules" --exclude "vendor"'
   export FZF_DEFAULT_OPTS='

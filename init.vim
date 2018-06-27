@@ -93,6 +93,8 @@ let g:netrw_liststyle=3
 " vim-airline configs
 let g:airline#extensions#tabline#enabled = 1          " enable tabline
 let g:airline#extensions#tabline#buffer_nr_show = 1   " display buffer number
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
 
 " general keymap
 xnoremap p pgvy
@@ -108,7 +110,7 @@ nnoremap <silent> g] :Tags <C-R><C-W><CR>
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,vendor}/" '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
