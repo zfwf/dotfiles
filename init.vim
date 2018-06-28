@@ -1,11 +1,10 @@
-"let g:airline_theme='papercolor'
 " init.vim file, Chris Chou, chhschou@gmail.com
 
 " vim-plug (plugin only available after plug#end)
 call plug#begin('~/.config/nvim/plugged')
 " visual/info
 Plug 'vim-airline/vim-airline'
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'bluz71/vim-moonfly-colors'
 Plug 'prettier/vim-prettier'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
@@ -47,7 +46,8 @@ set termguicolors
 syntax enable
 filetype indent plugin on
 set background=dark
-colorscheme PaperColor
+colorscheme moonfly
+let g:airline_theme = 'moonfly'
 
 " show whitespace characters
 set list
@@ -130,3 +130,7 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+" auto save view (code folds etc.) and load
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
