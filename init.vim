@@ -2,12 +2,6 @@
 
 " vim-plug (plugin only available after plug#end)
 call plug#begin('~/.config/nvim/plugged')
-" visual/info
-Plug 'vim-airline/vim-airline'
-Plug 'bluz71/vim-moonfly-colors'
-Plug 'prettier/vim-prettier'
-Plug 'ryanoasis/vim-devicons'
-Plug 'airblade/vim-gitgutter'
 
 " syntax
 Plug 'pangloss/vim-javascript'
@@ -18,6 +12,14 @@ Plug 'jvirtanen/vim-octave'
 Plug 'hdima/python-syntax'
 Plug 'plasticboy/vim-markdown'
 Plug 'octol/vim-cpp-enhanced-highlight'
+
+" visual/info
+Plug 'vim-airline/vim-airline'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'prettier/vim-prettier'
+Plug 'ryanoasis/vim-devicons'
+Plug 'airblade/vim-gitgutter'
+Plug 'luochen1990/rainbow'
 
 " tools
 Plug 'majutsushi/tagbar'
@@ -46,8 +48,10 @@ set termguicolors
 syntax enable
 filetype indent plugin on
 set background=dark
-colorscheme moonfly
-let g:airline_theme = 'moonfly'
+colorscheme PaperColor
+
+" rainbow parentheses
+let g:rainbow_active = 1
 
 " show whitespace characters
 set list
@@ -61,7 +65,7 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor-blin
 set mouse=a
 set inccommand=nosplit
 set showcmd                           " show cmd used (bottom right)
-set number                            " line number
+set number relativenumber             " hybrid line number
 set ls=2
 set tabstop=2 shiftwidth=2 expandtab
 set autoindent
@@ -111,7 +115,7 @@ nnoremap <silent> g] :Tags <C-R><C-W><CR>
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,vendor}/" '.shellescape(<q-args>), 1,
+  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
@@ -132,5 +136,5 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " auto save view (code folds etc.) and load
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+au BufWinLeave *.* mkview!
+au BufWinEnter *.* silent! loadview
