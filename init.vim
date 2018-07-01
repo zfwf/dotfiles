@@ -114,13 +114,14 @@ nnoremap <Tab>    :b#<CR>|          " last buffer
 
 " fzf
 " use ripgrep instead of ag:
-let s:rgIgnoreGlobs="!{.git,node_modules,vendors}/"
+let s:rgIgnoreGlobs='!{.git,node_modules,vendors}/'
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -g ' . s:rgIgnoreGlobs . ' ' .shellescape(<q-args>), 1,
+  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -g "' . s:rgIgnoreGlobs . '" ' .shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+"
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
