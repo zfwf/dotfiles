@@ -108,14 +108,11 @@ nnoremap <C-L>    :bnext<CR>        " next buffer
 nnoremap <C-H>    :bprevious<CR>    " previous buffer
 nnoremap <Tab>    :b#<CR>           " last buffer
 
-" fzf keymaps
-" double <leader> to start fzf
-nnoremap <silent> <Leader><Leader> :Files $PWD<CR>
-nnoremap <silent> g] :Tags <C-R><C-W><CR>
+" fzf
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -g "!{.git,node_modules,vendors}/" '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
@@ -134,7 +131,16 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+" fzf keymaps
+" search for files in project
+nnoremap <silent> <Leader><Leader> :Files $PWD<CR>
+" search word under cursor in tags
+nnoremap <silent> g] :Tags <C-R><C-W><CR>
+" search word under cursor in project
+nnoremap <silent> g/ :Rg <C-R><C-W><CR>
+
 
 " auto save view (code folds etc.) and load
+set viewoptions-=curdir
 au BufWinLeave *.* mkview!
 au BufWinEnter *.* silent! loadview
