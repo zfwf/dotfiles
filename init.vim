@@ -79,6 +79,7 @@ set clipboard+=unnamedplus            " default to system clipboard
 set hidden
 set complete=.,w,b,u,t,i,kspell		    " `:set spell` to get completion from dictionary
 set noshowmode                        " no show --Insert--, replaced by airline
+set foldmethod=syntax                 " fold by syntax, otherwise indent or manual (default)
 
 " leader key
 let mapleader="\<SPACE>"
