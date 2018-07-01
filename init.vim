@@ -79,6 +79,8 @@ set clipboard+=unnamedplus            " default to system clipboard
 set hidden
 set complete=.,w,b,u,t,i,kspell		    " `:set spell` to get completion from dictionary
 set noshowmode                        " no show --Insert--, replaced by airline
+
+" leader key
 let mapleader="\<SPACE>"
 
 " speed up gitgutter
@@ -95,24 +97,26 @@ inoremap <silent><expr> <Tab>
 let g:netrw_liststyle=3
 
 " vim-airline configs
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#enabled = 1          " enable tabline
 let g:airline#extensions#tabline#buffer_nr_show = 1   " display buffer number
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 
 " general keymap
-xnoremap p pgvy
-:command! BufOnly %bd|e#|bd#        " only the buffer being edited
-:command! BufR    :bufdo e!         " Reload all
-nnoremap <C-L>    :bnext<CR>        " next buffer
-nnoremap <C-H>    :bprevious<CR>    " previous buffer
-nnoremap <Tab>    :b#<CR>           " last buffer
+xnoremap p        pgvy|             " copy back to buf after paste
+nnoremap <C-L>    :bnext<CR>|       " next buffer
+nnoremap <C-H>    :bprevious<CR>|   " previous buffer
+nnoremap <Tab>    :b#<CR>|          " last buffer
+
+:command! BufOnly %bd|e#|bd#|       " only the buffer being edited
+:command! BufR    :bufdo e!|        " Reload all
 
 " fzf
-" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+" use ripgrep instead of ag:
+let s:rgIgnoreGlobs="!{.git,node_modules,vendors}/"
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -g "!{.git,node_modules,vendors}/" '.shellescape(<q-args>), 1,
+  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -g ' . s:rgIgnoreGlobs . ' ' .shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
@@ -131,7 +135,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-" fzf keymaps
 " search for files in project
 nnoremap <silent> <Leader><Leader> :Files $PWD<CR>
 " search word under cursor in tags
