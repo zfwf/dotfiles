@@ -31,7 +31,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'cohama/lexima.vim'
-Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-vdebug/vdebug'
 Plug 'wellle/targets.vim'
@@ -87,12 +91,34 @@ let mapleader="\<SPACE>"
 " speed up gitgutter
 set updatetime=100 " 100ms
 
+
+" langclient
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': ['npx', '-p', 'javascript-typescript-langserver', 'javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['pyls'],
+    \ }
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+
 " deoplete
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('smart_case', v:true) " smart_case for match with capitals
 " enable tab completion
 inoremap <silent><expr> <Tab>
     \ pumvisible() ? "\<C-n>" : "\<Tab>"
+
+" prettier
+" when running at every change you may want to disable quickfix
+let g:prettier#quickfix_enabled = 0
+
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 " tree style file explorer
 let g:netrw_liststyle=3
