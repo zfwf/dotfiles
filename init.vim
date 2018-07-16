@@ -103,8 +103,9 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F12> :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F24> :call LanguageClient#textDocument_references()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
@@ -113,12 +114,6 @@ call deoplete#custom#option('smart_case', v:true) " smart_case for match with ca
 inoremap <silent><expr> <Tab>
     \ pumvisible() ? "\<C-n>" : "\<Tab>"
 
-" prettier
-" when running at every change you may want to disable quickfix
-let g:prettier#quickfix_enabled = 0
-
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 " tree style file explorer
 let g:netrw_liststyle=3
@@ -175,5 +170,22 @@ nnoremap <silent> g/ :Rg <C-R><C-W><CR>
 
 " auto save view (code folds etc.) and load
 set viewoptions-=curdir
-au BufWinLeave *.* mkview!
-au BufWinEnter *.* silent! loadview
+augroup handle_view
+  autocmd!
+  au BufWinLeave *.* mkview!
+  au BufWinEnter *.* silent! loadview
+augroup END
+set foldnestmax=7                    " fold max nested level 7
+set foldcolumn=2                     " show fold indicator in gutter
+
+" prettier
+" when running at every change you may want to disable quickfix
+let g:prettier#quickfix_enabled = 0
+let g:prettier#autoformat = 0
+augroup prettier
+  autocmd!
+  au BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue mkview!
+  au BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+  au BufWritePost *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue silent! loadview
+augroup END
+
