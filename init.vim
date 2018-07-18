@@ -16,12 +16,12 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " visual/info
 Plug 'vim-airline/vim-airline'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'prettier/vim-prettier'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'luochen1990/rainbow'
 
 " tools
+Plug 'sbdchd/neoformat'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-obsession'
 Plug 'ludovicchabant/vim-gutentags'
@@ -72,7 +72,6 @@ set showcmd                           " show cmd used (bottom right)
 set number relativenumber             " hybrid line number
 set ls=2
 set tabstop=2 shiftwidth=2 expandtab
-set autoindent
 set ruler
 set incsearch                         " Start search before finish typing
 set ignorecase                        " Make searching case insensitive
@@ -90,6 +89,7 @@ let mapleader="\<SPACE>"
 
 " speed up gitgutter
 set updatetime=100 " 100ms
+
 
 
 " langclient
@@ -172,20 +172,16 @@ nnoremap <silent> g/ :Rg <C-R><C-W><CR>
 set viewoptions-=curdir
 augroup handle_view
   autocmd!
-  au BufWinLeave *.* mkview!
-  au BufWinEnter *.* silent! loadview
+  autocmd BufWinLeave *.* mkview!
+  autocmd BufWinEnter *.* silent! loadview
 augroup END
 set foldnestmax=7                    " fold max nested level 7
 set foldcolumn=2                     " show fold indicator in gutter
 
-" prettier
-" when running at every change you may want to disable quickfix
-let g:prettier#quickfix_enabled = 0
-let g:prettier#autoformat = 0
-augroup prettier
+" neoformat
+let g:neoformat_only_msg_on_error = 1
+nnoremap =              :Neoformat<CR>
+augroup fmt
   autocmd!
-  au BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue mkview!
-  au BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
-  au BufWritePost *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue silent! loadview
+  autocmd BufWritePre * undojoin | Neoformat
 augroup END
-
