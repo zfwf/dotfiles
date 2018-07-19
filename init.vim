@@ -21,6 +21,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'luochen1990/rainbow'
 
 " tools
+Plug 'sgur/vim-editorconfig'
 Plug 'sbdchd/neoformat'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-obsession'
@@ -99,9 +100,9 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ 'python': ['pyls'],
     \ }
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> <C-k><C-i> : LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F12> :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F24> :call LanguageClient#textDocument_references()<CR>
