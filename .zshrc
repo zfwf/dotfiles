@@ -59,13 +59,12 @@ setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt hist_verify
 
-# Share your history across all your terminal windows
-setopt share_history
-#setopt noclobber
-
-# set some more options
-setopt pushd_ignore_dups
-#setopt pushd_silent
+setopt share_history            # Share your history across all your terminal windows
+setopt pushd_ignore_dups        # ignore dup in dir stack
+unsetopt beep                   # no bell on error
+unsetopt hist_beep              # no bell on error in history
+unsetopt list_beep              # no bell on ambiguous completion
+unsetopt bg_nice                # no lower prio for background jobs
 
 # Keep a ton of history.
 HISTSIZE=100000

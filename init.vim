@@ -71,7 +71,7 @@ set mouse=a
 set inccommand=nosplit
 set showcmd                           " show cmd used (bottom right)
 set number relativenumber             " hybrid line number
-set ls=2
+set ls=2                              " always show status line
 set tabstop=2 shiftwidth=2 expandtab
 set ruler
 set incsearch                         " Start search before finish typing
@@ -170,7 +170,7 @@ nnoremap <silent> g/ :Rg <C-R><C-W><CR>
 
 
 " auto save view (code folds etc.) and load
-set viewoptions-=curdir
+set viewoptions=cursor,folds,slash,unix
 augroup handle_view
   autocmd!
   autocmd BufWinLeave *.* mkview!
