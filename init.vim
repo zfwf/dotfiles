@@ -83,7 +83,6 @@ set clipboard+=unnamedplus            " default to system clipboard
 set hidden
 set complete=.,w,b,u,t,i,kspell		    " `:set spell` to get completion from dictionary
 set noshowmode                        " no show --Insert--, replaced by airline
-set foldmethod=syntax                 " fold by syntax, otherwise indent or manual (default)
 
 " leader key
 let mapleader="\<SPACE>"
@@ -168,6 +167,10 @@ nnoremap <silent> g] :Tags <C-R><C-W><CR>
 " search word under cursor in project
 nnoremap <silent> g/ :Rg <C-R><C-W><CR>
 
+" folds
+set foldmethod=syntax                 " fold by syntax, otherwise indent or manual (default)
+set foldlevelstart=3                  " open fold up some
+set foldcolumn=2                      " show fold indicator in gutter
 
 " auto save view (code folds etc.) and load
 set viewoptions=cursor,folds,slash,unix
@@ -176,8 +179,6 @@ augroup handle_view
   autocmd BufWinLeave *.* mkview!
   autocmd BufWinEnter *.* silent! loadview
 augroup END
-set foldnestmax=7                    " fold max nested level 7
-set foldcolumn=2                     " show fold indicator in gutter
 
 " neoformat
 let g:neoformat_only_msg_on_error = 1
