@@ -185,5 +185,5 @@ let g:neoformat_only_msg_on_error = 1
 nnoremap =              :Neoformat<CR>
 augroup fmt
   autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
+  autocmd BufWritePre *.* undojoin | Neoformat
 augroup END
