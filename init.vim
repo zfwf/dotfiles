@@ -1,4 +1,6 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
+let g:python2_host_prog = $HOME . '/.brew/bin/python'
+let g:python3_host_prog = $HOME . '/.brew/bin/python3'
 
 " vim-plug (plugin only available after plug#end)
 call plug#begin('~/.config/nvim/plugged')
@@ -100,7 +102,6 @@ let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
     \ }
 " Or map each action separately
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> <C-k><C-i> : LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F12> :call LanguageClient#textDocument_definition()<CR>
