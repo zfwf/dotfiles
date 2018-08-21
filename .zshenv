@@ -34,14 +34,18 @@ if [ -d "$HOME/.cargo/bin" ]; then
 fi
 
 # use neovim as editor in general
-alias vi=nvim
-export VISUAL=vi
+export VISUAL=nvim
 export EDITOR="$VISUAL"
+alias vi=nvim
 
 # brew
 PATH="$HOME/.brew/bin:$PATH"
 export MANPATH="$(brew --prefix)/share/man:$MANPATH"
 export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
 
-export PATH="$HOME/.cargo/bin:$PATH"
+# alias
+alias trash=gvfs-trash
+alias avd-16="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
+alias avd-21="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
+alias avd-23="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_23"
 
