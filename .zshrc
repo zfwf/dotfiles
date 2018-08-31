@@ -194,7 +194,7 @@ if [ -d "$HOME/.yarn/bin" ]; then
   PATH=$PATH:$HOME/.yarn/bin
 fi
 
-# # add cargo (rust) 
+# add cargo (rust) 
 if [ -d "$HOME/.cargo/bin" ]; then
   PATH=$HOME/.cargo/bin:$PATH
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
@@ -209,6 +209,9 @@ alias vi=nvim
 PATH="$HOME/.brew/bin:$PATH"
 export MANPATH="$(brew --prefix)/share/man:$MANPATH"
 export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
+
+# python pip user install
+PATH="$PATH:$HOME/Library/Python/3.7/bin" 
 
 # alias
 alias trash=gvfs-trash

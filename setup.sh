@@ -4,7 +4,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 # symlink configs
 cd $HOME
 
-USER_CONFIG_FILES=('.profile' '.zprofile' '.zshrc' '.tmux.conf.local')
+USER_CONFIG_FILES=('.zprofile' '.zshrc' '.tmux.conf.local')
 NUM_ELEMENTS=${#USER_CONFIG_FILES[@]}
 
 for ((i=0; i < $NUM_ELEMENTS; i++)); do
