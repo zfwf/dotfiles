@@ -194,6 +194,12 @@ if [ -d "$HOME/.yarn/bin" ]; then
   PATH=$PATH:$HOME/.yarn/bin
 fi
 
+# brew
+PATH="$HOME/.brew/bin:$PATH"
+export MANPATH="$(brew --prefix)/share/man:$MANPATH"
+export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
+
+
 # add cargo (rust) 
 if [ -d "$HOME/.cargo/bin" ]; then
   PATH=$HOME/.cargo/bin:$PATH
@@ -205,10 +211,6 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 alias vi=nvim
 
-# brew
-PATH="$HOME/.brew/bin:$PATH"
-export MANPATH="$(brew --prefix)/share/man:$MANPATH"
-export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
 
 # python pip user install
 PATH="$PATH:$HOME/Library/Python/3.7/bin" 
