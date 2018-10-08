@@ -220,3 +220,12 @@ alias trash=gvfs-trash
 alias avd-16="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
 alias avd-21="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
 alias avd-23="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_23"
+case `uname` in
+  Darwin)
+    # commands for OS X go here
+    alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
+    ;;
+  Linux)
+    # commands for Linux go here
+  ;;
+esac
