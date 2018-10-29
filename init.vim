@@ -28,6 +28,7 @@ Plug 'sbdchd/neoformat'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-obsession'
 Plug 'ludovicchabant/vim-gutentags'
+au FileType gitcommit,gitrebase let g:gutentags_enabled=0
 Plug 'jreybert/vimagit'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
