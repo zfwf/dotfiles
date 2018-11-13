@@ -230,6 +230,10 @@ case `uname` in
       export JRE_HOME=$JAVA_HOME/jre
     fi
 
+    # brew
+    PATH="$HOME/.brew/bin:$PATH"
+    export MANPATH="$(brew --prefix)/share/man:$MANPATH"
+    export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
     ;;
   Linux)
     # commands for Linux go here
