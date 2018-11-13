@@ -195,10 +195,11 @@ if [ -d "$HOME/.yarn/bin" ]; then
 fi
 
 # brew
-PATH="$HOME/.brew/bin:$PATH"
-export MANPATH="$(brew --prefix)/share/man:$MANPATH"
-export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
-
+if [ -d "~/.brew" ]; then
+  PATH="$HOME/.brew/bin:$PATH"
+  export MANPATH="$(brew --prefix)/share/man:$MANPATH"
+  export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
+fi
 
 # add cargo (rust) 
 if [ -d "$HOME/.cargo/bin" ]; then
@@ -224,8 +225,18 @@ case `uname` in
   Darwin)
     # commands for OS X go here
     alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
+    if [ -d "~/.brew/opt/adoptopenjdk-openjdk8" ]; then
+      export JAVA_HOME=~/.brew/opt/adoptopenjdk-openjdk8  
+      export JRE_HOME=$JAVA_HOME/jre
+    fi
+
     ;;
   Linux)
     # commands for Linux go here
-  ;;
+    # java
+    if [ -d "/usr/lib/jvm/default-java" ]; then
+      export JAVA_HOME=/usr/lib/jvm/default-java
+      export JRE_HOME=$JAVA_HOME/jre
+    fi
+    ;;
 esac

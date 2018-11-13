@@ -1,6 +1,6 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
-let g:python2_host_prog = $HOME . '/.brew/bin/python'
-let g:python3_host_prog = $HOME . '/.brew/bin/python3'
+let g:python2_host_prog = 'python'
+let g:python3_host_prog = 'python3'
 
 " vim-plug (plugin only available after plug#end)
 call plug#begin('~/.config/nvim/plugged')
@@ -23,12 +23,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'luochen1990/rainbow'
 
 " tools
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+let g:prettier#autoformat = 0
 Plug 'sgur/vim-editorconfig'
-Plug 'sbdchd/neoformat'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-obsession'
-Plug 'ludovicchabant/vim-gutentags'
-au FileType gitcommit,gitrebase let g:gutentags_enabled=0
+Plug 'jsfaint/gen_tags.vim'
 Plug 'jreybert/vimagit'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
@@ -45,6 +45,7 @@ Plug 'vim-vdebug/vdebug'
 Plug 'wellle/targets.vim'
 Plug 'leafgarland/typescript-vim'
 Plug '~/.brew/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
@@ -174,6 +175,11 @@ set foldmethod=syntax                 " fold by syntax, otherwise indent or manu
 set foldlevelstart=3                  " open fold up some
 set foldcolumn=2                      " show fold indicator in gutter
 
+" auto reload file if modified by ext program
+set autoread
+au FocusGained * :checktime
+
+
 " auto save view (code folds etc.) and load
 set viewoptions=cursor,folds,slash,unix
 augroup handle_view
@@ -182,10 +188,7 @@ augroup handle_view
   autocmd BufWinEnter *.* silent! loadview
 augroup END
 
-" neoformat
-let g:neoformat_only_msg_on_error = 1
-nnoremap =              :Neoformat<CR>
 augroup fmt
   autocmd!
-  autocmd BufWritePre *.* undojoin | Neoformat
+  autocmd BufWritePre *.* PrettierAsync
 augroup END
