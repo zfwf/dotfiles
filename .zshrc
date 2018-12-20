@@ -47,6 +47,8 @@ POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
 
 POWERLEVEL9K_STATUS_VERBOSE=false
 
+# change dir helper
+setopt auto_cd
 
 # set some history options
 setopt append_history
