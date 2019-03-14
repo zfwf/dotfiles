@@ -172,6 +172,8 @@ if [ -d "$HOME/bin" ]; then
   PATH="$HOME/bin:$PATH"
 fi
 
+
+
 # java
 if [ -d "/usr/lib/jvm/default-java" ]; then
   export JAVA_HOME=/usr/lib/jvm/default-java
@@ -216,7 +218,7 @@ alias vi=nvim
 
 
 # python pip user install
-PATH="$PATH:$HOME/Library/Python/3.7/bin" 
+PATH="${HOME}/.local/bin:$PATH:$HOME/Library/Python/3.7/bin"
 
 # alias
 alias trash=gvfs-trash
