@@ -207,8 +207,6 @@ export EDITOR="$VISUAL"
 alias vi=nvim
 
 
-# python pip user install
-PATH="${HOME}/.local/bin:$PATH:$HOME/Library/Python/3.7/bin"
 
 # alias
 alias trash=gvfs-trash
@@ -232,13 +230,13 @@ case `uname` in
       export MANPATH="$(brew --prefix)/share/man:$MANPATH"
       export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
     fi
+
+    # python pip user install
+    if [ -d "$HOME/Library/Python/3.7" ]; then
+      PATH="$HOME/.local/bin:$PATH:$HOME/Library/Python/3.7/bin"
+    fi
     ;;
   Linux)
     # commands for Linux go here
-    # java
-    if [ -d "/usr/lib/jvm/default-java" ]; then
-      export JAVA_HOME=/usr/lib/jvm/default-java
-      export JRE_HOME=$JAVA_HOME/jre
-    fi
     ;;
 esac
