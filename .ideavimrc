@@ -1,0 +1,7 @@
+set clipboard+=unnamedplus            " default to system clipboard
+set surround
+set nonumber
+
+" vim-commentary mappings
+nnoremap gcc :action CommentByLineComment<cr>
+vnoremap gc :<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action CommentByLineComment<CR>

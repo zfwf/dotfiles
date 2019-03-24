@@ -173,16 +173,6 @@ if [ -d "$HOME/bin" ]; then
 fi
 
 
-
-# java
-if [ -d "/usr/lib/jvm/default-java" ]; then
-  export JAVA_HOME=/usr/lib/jvm/default-java
-  export JRE_HOME=$JAVA_HOME/jre
-elif [ -d "~/.brew/opt/adoptopenjdk-openjdk8" ]; then
-  export JAVA_HOME=~/.brew/opt/adoptopenjdk-openjdk8  
-  export JRE_HOME=$JAVA_HOME/jre
-fi
-
 # android
 if [ -d "$HOME/Android/Sdk" ]; then
   export ANDROID_HOME=$HOME/Android/Sdk
@@ -198,18 +188,16 @@ if [ -d "$HOME/.yarn/bin" ]; then
   PATH=$PATH:$HOME/.yarn/bin
 fi
 
-# brew
-if [ -d "~/.brew" ]; then
-  PATH="$HOME/.brew/bin:$PATH"
-  export MANPATH="$(brew --prefix)/share/man:$MANPATH"
-  export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
-fi
-
 # add cargo (rust) 
 if [ -d "$HOME/.cargo/bin" ]; then
   PATH=$HOME/.cargo/bin:$PATH
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
+
+# pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # use neovim as editor in general
 export VISUAL=nvim
@@ -231,9 +219,9 @@ case `uname` in
   Darwin)
     # commands for OS X go here
     alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
-    if [ -d "~/.brew/opt/adoptopenjdk-openjdk8" ]; then
-      export JAVA_HOME=~/.brew/opt/adoptopenjdk-openjdk8  
-      export JRE_HOME=$JAVA_HOME/jre
+    if [ -d "/Library/java" ]; then
+      export JAVA_HOME=/Library/java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home
+      export JRE_HOME=$JAVA_HOME
     fi
 
     # brew
