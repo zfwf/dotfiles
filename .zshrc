@@ -188,6 +188,13 @@ if [ -d "$HOME/.yarn/bin" ]; then
   PATH=$PATH:$HOME/.yarn/bin
 fi
 
+# pyenv
+if [ -d "~/.pyenv" ]; then
+  export PATH="~/.pyenv/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
 # add cargo (rust) 
 if [ -d "$HOME/.cargo/bin" ]; then
   PATH=$HOME/.cargo/bin:$PATH
@@ -225,9 +232,11 @@ case `uname` in
     fi
 
     # brew
-    PATH="$HOME/.brew/bin:$PATH"
-    export MANPATH="$(brew --prefix)/share/man:$MANPATH"
-    export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
+    if [ -d "~/.brew" ]; then
+      PATH="$HOME/.brew/bin:$PATH"
+      export MANPATH="$(brew --prefix)/share/man:$MANPATH"
+      export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
+    fi
     ;;
   Linux)
     # commands for Linux go here
