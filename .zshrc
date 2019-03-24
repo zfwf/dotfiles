@@ -71,7 +71,7 @@ unsetopt bg_nice                # no lower prio for background jobs
 # Keep a ton of history.
 HISTSIZE=100000
 SAVEHIST=100000
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
 # Long running processes should return time after they complete. Specified
@@ -146,7 +146,7 @@ fi
 
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 alias fzfp="fzf --preview '[[ \$(file --mime {}) =~ binary ]] &&
                   echo {} is a binary file ||
                  (highlight -O ansi -l {} ||
@@ -189,8 +189,8 @@ if [ -d "$HOME/.yarn/bin" ]; then
 fi
 
 # pyenv
-if [ -d "~/.pyenv" ]; then
-  export PATH="~/.pyenv/bin:$PATH"
+if [ -d "$HOME/.pyenv" ]; then
+  export PATH="$HOME/.pyenv/bin:$PATH"
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
 fi
@@ -200,11 +200,6 @@ if [ -d "$HOME/.cargo/bin" ]; then
   PATH=$HOME/.cargo/bin:$PATH
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
-
-# pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 # use neovim as editor in general
 export VISUAL=nvim
@@ -217,9 +212,9 @@ PATH="${HOME}/.local/bin:$PATH:$HOME/Library/Python/3.7/bin"
 
 # alias
 alias trash=gvfs-trash
-alias avd-16="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
-alias avd-21="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
-alias avd-23="cd ~/Android/Sdk/tools; emulator -avd Nexus_4_API_23"
+alias avd-16="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
+alias avd-21="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
+alias avd-23="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_23"
 alias meta="npx meta"
 alias yarn="npx yarn"
 case `uname` in
@@ -232,7 +227,7 @@ case `uname` in
     fi
 
     # brew
-    if [ -d "~/.brew" ]; then
+    if [ -d "$HOME/.brew" ]; then
       PATH="$HOME/.brew/bin:$PATH"
       export MANPATH="$(brew --prefix)/share/man:$MANPATH"
       export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
