@@ -183,11 +183,6 @@ if [ -d "$HOME/Android/Sdk" ]; then
   PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
 fi
 
-# yarn installed binaries
-if [ -d "$HOME/.yarn/bin" ]; then
-  PATH=$PATH:$HOME/.yarn/bin
-fi
-
 # pyenv
 if [ -d "$HOME/.pyenv" ]; then
   export PATH="$HOME/.pyenv/bin:$PATH"
@@ -207,9 +202,7 @@ export EDITOR="$VISUAL"
 alias vi=nvim
 
 
-
 # alias
-alias trash=gvfs-trash
 alias avd-16="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
 alias avd-21="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
 alias avd-23="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_23"
@@ -238,5 +231,7 @@ case `uname` in
     ;;
   Linux)
     # commands for Linux go here
+    alias trash=gvfs-trash
+    alias idea=intellij-idea-ultimate # from snap
     ;;
 esac
