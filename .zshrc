@@ -208,10 +208,9 @@ alias avd-21="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
 alias avd-23="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_23"
 alias meta="npx meta"
 alias yarn="npx yarn"
+
 case `uname` in
-  Darwin)
-    # commands for OS X go here
-    alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
+  Darwin) # commands for OS X go here
     if [ -d "/Library/java" ]; then
       export JAVA_HOME=/Library/java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home
       export JRE_HOME=$JAVA_HOME
@@ -228,9 +227,18 @@ case `uname` in
     if [ -d "$HOME/Library/Python/3.7" ]; then
       PATH="$HOME/.local/bin:$PATH:$HOME/Library/Python/3.7/bin"
     fi
+
+    # alias
+    alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
     ;;
-  Linux)
-    # commands for Linux go here
+  Linux) # commands for Linux go here
+    # java
+    if [ -L `which java` ]; then
+      export JAVA_HOME=${$(readlink -f `which java`)%/*/*}
+      export JRE_HOME=$JAVA_HOME
+    fi
+
+    # alias
     alias trash=gvfs-trash
     alias idea=intellij-idea-ultimate # from snap
     ;;
