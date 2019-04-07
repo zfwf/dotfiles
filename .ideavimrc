@@ -1,6 +1,18 @@
+set inccommand=nosplit
+set showcmd                           " show cmd used (bottom right)
+set number relativenumber             " hybrid line number
+set ruler
+set incsearch                         " Start search before finish typing
+set ignorecase                        " Make searching case insensitive
+set smartcase                         " ... unless the query has capital letters.
+set gdefault                          " Use 'g' flag by default with :s/foo/bar/.
+set magic                             " Use 'magic' patterns (extended regular expressions).
 set clipboard+=unnamedplus            " default to system clipboard
+set hidden
+set complete=.,w,b,u,t,i,kspell		    " `:set spell` to get completion from dictionary
+set timeoutlen=1000 ttimeoutlen=0
+
 set surround
-set nonumber
 
 " vim-commentary mappings
 nnoremap gcc :action CommentByLineComment<cr>

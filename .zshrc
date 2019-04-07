@@ -243,3 +243,5 @@ case `uname` in
     alias idea=intellij-idea-ultimate # from snap
     ;;
 esac
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
