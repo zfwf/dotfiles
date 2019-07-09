@@ -90,6 +90,8 @@ load-starter-list() {
   zgen oh-my-zsh
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/python
+  zgen oh-my-zsh plugins/docker
+  zgen oh-my-zsh plugins/docker-compose
   zgen oh-my-zsh plugins/command-not-found
 
   # history substring search must come after syntax highlighting
