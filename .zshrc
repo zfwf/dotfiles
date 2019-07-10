@@ -202,6 +202,9 @@ if [ -d "$HOME/.cargo/bin" ]; then
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
+# hide legacy docker commands
+export DOCKER_HIDE_LEGACY_COMMANDS=true
+
 # use neovim as editor in general
 export VISUAL=nvim
 export EDITOR="$VISUAL"
