@@ -178,6 +178,10 @@ if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/opt/bin" ]; then
+  PATH="$HOME/opt/bin:$PATH"
+fi
+
 
 # android
 if [ -d "$HOME/Android/Sdk" ]; then
