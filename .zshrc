@@ -193,12 +193,6 @@ if [ -d "$HOME/Android/Sdk" ]; then
   PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
 fi
 
-# pyenv
-if [ -d "$HOME/.pyenv" ]; then
-  export PATH="$HOME/.pyenv/bin:$PATH"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
 
 # add cargo (rust) 
 if [ -d "$HOME/.cargo/bin" ]; then
@@ -258,3 +252,15 @@ case `uname` in
 esac
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# pyenv
+if [ -d "$HOME/.pyenv" ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+
+  if [ -d "$(pyenv root)/plugins/pyenv-virtualenv" ]; then
+    eval "$(pyenv virtualenv-init -)"
+  fi
+fi
+
