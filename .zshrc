@@ -139,6 +139,10 @@ function zle-keymap-select zle-line-init
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+
+# install from source
+[[ ":$PATH:" != *":/usr/local/bin:"* ]] && PATH="/usr/local/bin:${PATH}"
+
 # node version manager
 if [ -d "$HOME/.nvm" ]; then
   export NVM_DIR="$HOME/.nvm"
@@ -169,19 +173,11 @@ if _has fzf && _has rg; then
   '
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ]; then
-  PATH="$HOME/bin:$PATH"
+# fnm
+if [ -d "$HOME/.fnm" ]; then
+  export PATH=/home/cchou/.fnm:$PATH
+  eval "`fnm env --multi`"
 fi
-
-if [ -d "$HOME/.local/bin" ]; then
-  PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ -d "$HOME/opt/bin" ]; then
-  PATH="$HOME/opt/bin:$PATH"
-fi
-
 
 # android
 if [ -d "$HOME/Android/Sdk" ]; then
@@ -194,11 +190,29 @@ if [ -d "$HOME/Android/Sdk" ]; then
 fi
 
 
-# add cargo (rust) 
+# add cargo (rust)
 if [ -d "$HOME/.cargo/bin" ]; then
   PATH=$HOME/.cargo/bin:$PATH
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
+
+# pyenv
+if [ -d "$HOME/.pyenv" ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+
+  if [ -d "$(pyenv root)/plugins/pyenv-virtualenv" ]; then
+    eval "$(pyenv virtualenv-init -)"
+  fi
+fi
+
+
+# set PATH so it includes user's private bin if it exists
+[[ ":$PATH:" != *":$HOME/bin:"* ]] && PATH="/path/to/add:${PATH}"
+[[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && PATH="/path/to/add:${PATH}"
+[[ ":$PATH:" != *":$HOME/opt/bin:"* ]] && PATH="/path/to/add:${PATH}"
+
 
 # hide legacy docker commands
 export DOCKER_HIDE_LEGACY_COMMANDS=true
@@ -240,8 +254,8 @@ case `uname` in
     ;;
   Linux) # commands for Linux go here
     # java
-    if [ -L `which java` ]; then
-      export JAVA_HOME=${$(readlink -f `which java`)%/*/*}
+    if [ type java &> /dev/null ]; then
+      export JAVA_HOME=${$(readlink -f `type -p java`)%/*/*}
       export JRE_HOME=$JAVA_HOME
     fi
 
@@ -253,14 +267,4 @@ esac
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# pyenv
-if [ -d "$HOME/.pyenv" ]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-
-  if [ -d "$(pyenv root)/plugins/pyenv-virtualenv" ]; then
-    eval "$(pyenv virtualenv-init -)"
-  fi
-fi
 

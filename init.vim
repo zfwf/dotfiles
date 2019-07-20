@@ -1,6 +1,6 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
-let g:python2_host_prog = 'python'
-let g:python3_host_prog = 'python3'
+let g:python_host_prog = "/home/cchou/.pyenv/versions/neovim2/bin/python"
+let g:python3_host_prog = "/home/cchou/.pyenv/versions/neovim3/bin/python"
 
 " vim-plug (plugin only available after plug#end)
 call plug#begin('~/.config/nvim/plugged')
