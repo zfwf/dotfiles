@@ -1,0 +1,13 @@
+[user]
+	name = Chris Chou
+	email = chhschou@gmail.com
+
+[includeIf "gitdir:~/vizexplorer/"]
+  path = ~/vizexplorer/.gitconfig
+
+[core]
+  excludesfile = /home/cchou/.gitignore
+  editor = nvim
+
+[color]
+	ui = auto
