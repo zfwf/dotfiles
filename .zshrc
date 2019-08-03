@@ -207,11 +207,14 @@ if [ -d "$HOME/.pyenv" ]; then
   fi
 fi
 
+# work with snapd
+[[ ":$PATH:" != *":/snap/bin:"* ]] && PATH="/snap/bin:${PATH}"
 
 # set PATH so it includes user's private bin if it exists
-[[ ":$PATH:" != *":$HOME/bin:"* ]] && PATH="/path/to/add:${PATH}"
-[[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && PATH="/path/to/add:${PATH}"
-[[ ":$PATH:" != *":$HOME/opt/bin:"* ]] && PATH="/path/to/add:${PATH}"
+[[ ":$PATH:" != *":$HOME/bin:"* ]] && PATH="$HOME/bin:${PATH}"
+[[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && PATH="$HOME/.local/bin:${PATH}"
+[[ ":$PATH:" != *":$HOME/opt/bin:"* ]] && PATH="$HOME/opt/bin:${PATH}"
+
 
 
 # hide legacy docker commands
@@ -246,7 +249,7 @@ case `uname` in
 
     # python pip user install
     if [ -d "$HOME/Library/Python/3.7" ]; then
-      PATH="$HOME/.local/bin:$PATH:$HOME/Library/Python/3.7/bin"
+      PATH="$PATH:$HOME/Library/Python/3.7/bin"
     fi
 
     # alias
