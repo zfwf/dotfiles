@@ -1,6 +1,6 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
-let g:python_host_prog = "/home/cchou/.pyenv/versions/neovim2/bin/python"
-let g:python3_host_prog = "/home/cchou/.pyenv/versions/neovim3/bin/python"
+let g:python_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
+let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
 
 " vim-plug (plugin only available after plug#end)
 call plug#begin('~/.config/nvim/plugged')
@@ -17,7 +17,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 " visual/info
 Plug 'vim-airline/vim-airline'
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'hzchirs/vim-material'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'luochen1990/rainbow'
@@ -58,7 +58,7 @@ set termguicolors
 syntax enable
 filetype indent plugin on
 set background=dark
-colorscheme PaperColor
+colorscheme vim-material
 
 " rainbow parentheses
 let g:rainbow_active = 1
@@ -98,11 +98,12 @@ set updatetime=100 " 100ms
 
 
 " langclient
+let s:pyls_path=fnamemodify(g:python3_host_prog, ':h') . '/' . 'pyls'
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'javascript': ['npx', '-p', 'javascript-typescript-langserver', 'javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['pyls'],
+    \ 'python': [s:pyls_path],
     \ }
 " Or map each action separately
 nnoremap <silent> <C-k><C-i> : LanguageClient#textDocument_hover()<CR>
@@ -123,6 +124,7 @@ inoremap <silent><expr> <Tab>
 let g:netrw_liststyle=3
 
 " vim-airline configs
+let g:airline_theme = 'material'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#enabled = 1          " enable tabline
 let g:airline#extensions#tabline#buffer_nr_show = 1   " display buffer number
