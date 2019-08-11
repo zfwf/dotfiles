@@ -140,7 +140,7 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # fzf
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+[ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
 alias fzfp="fzf --preview '[[ \$(file --mime {}) =~ binary ]] &&
                   echo {} is a binary file ||
                  (highlight -O ansi -l {} ||
@@ -176,6 +176,7 @@ alias avd-21="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
 alias avd-23="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_23"
 alias meta="npx meta"
 alias yarn="npx yarn"
+alias top="npx gtop"
 
 case `uname` in
   Darwin) # commands for OS X go here
@@ -188,3 +189,5 @@ case `uname` in
     alias idea=intellij-idea-ultimate # from snap
     ;;
 esac
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
