@@ -2,66 +2,153 @@
 let g:python_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
 let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
 
+" leader key
+let mapleader="\<SPACE>"
+
+" speed up diagnostics/gitgutter
+set updatetime=100 " 100ms
+
 " vim-plug (plugin only available after plug#end)
 call plug#begin('~/.config/nvim/plugged')
 
-" syntax
-Plug 'pangloss/vim-javascript'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'elzr/vim-json'
-Plug 'rust-lang/rust.vim'
-Plug 'jvirtanen/vim-octave'
-Plug 'hdima/python-syntax'
-Plug 'plasticboy/vim-markdown'
-Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'takac/vim-hardtime'   " no rep
 
-" visual/info
-Plug 'vim-airline/vim-airline'
+" completion, extensions
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+nnoremap <silent> <C-k><C-i>  :call CocAction('doHover')
+nnoremap <silent> gy          <Plug>(coc-type-definition)
+nnoremap <silent> gi          <Plug>(coc-implementation)
+nnoremap <silent> gd          <Plug>(coc-definition)
+nnoremap <silent> <F12>       <Plug>(coc-definition)
+nnoremap <silent> <F24>       <Plug>(coc-references)
+nnoremap <silent> <F2>        <Plug>(coc-rename)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup jph
+  autocmd!
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+augroup fmt
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json,rust,python setl formatexpr=CocAction('formatSelected')
+augroup END
+
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Using CocList
+" search for files in project
+nnoremap <silent> <leader><leader>  :<C-u>CocList mru<CR>
+" Show all diagnostics
+nnoremap <silent> <leader>a         :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <leader>e         :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <leader>c         :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <leader>o         :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <leader>s         :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <leader>j         :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <leader>k         :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <leader>p         :<C-u>CocListResume<CR>
+
+" #visual/info
+
 Plug 'hzchirs/vim-material'
+
+Plug 'vim-airline/vim-airline'
+let g:airline_theme = 'material'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#enabled = 1          " enable tabline
+let g:airline#extensions#tabline#buffer_nr_show = 1   " display buffer number
+
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
+" colored parentheses
 Plug 'luochen1990/rainbow'
+let g:rainbow_active = 1
 
-" tools
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-let g:prettier#autoformat = 0
-Plug 'sgur/vim-editorconfig'
-Plug 'majutsushi/tagbar'
-Plug 'tpope/vim-obsession'
-Plug 'jsfaint/gen_tags.vim'
+" #tools:VCS
 Plug 'jreybert/vimagit'
-Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
+
+" #tools:misc
+" auto save sessions
+Plug 'tpope/vim-obsession'
+" `gc` comments
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+" auto close/surround text
 Plug 'cohama/lexima.vim'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'vim-vdebug/vdebug'
+" additional text obj
 Plug 'wellle/targets.vim'
-Plug 'leafgarland/typescript-vim'
-Plug '~/.brew/opt/fzf'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 call plug#end()
-
 
 " enable truecolor support
 set t_8b=^[[48;2;%lu;%lu;%lum
 set t_8f=^[[38;2;%lu;%lu;%lum
 set termguicolors
-" enable color scheme
+
+" enable colorscheme (cannot be place w plug)
 syntax enable
 filetype indent plugin on
 set background=dark
 colorscheme vim-material
 
-" rainbow parentheses
-let g:rainbow_active = 1
 
 " show whitespace characters
 set list
@@ -88,90 +175,25 @@ set clipboard+=unnamedplus            " default to system clipboard
 set hidden
 set complete=.,w,b,u,t,i,kspell		    " `:set spell` to get completion from dictionary
 set noshowmode                        " no show --Insert--, replaced by airline
-
-" leader key
-let mapleader="\<SPACE>"
-
-" speed up gitgutter
-set updatetime=100 " 100ms
-
-
-
-" langclient
-let s:pyls_path=fnamemodify(g:python3_host_prog, ':h') . '/' . 'pyls'
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'javascript': ['npx', '-p', 'javascript-typescript-langserver', 'javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': [s:pyls_path],
-    \ }
-" Or map each action separately
-nnoremap <silent> <C-k><C-i> : LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F12> :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F24> :call LanguageClient#textDocument_references()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('smart_case', v:true) " smart_case for match with capitals
-" enable tab completion
-inoremap <silent><expr> <Tab>
-    \ pumvisible() ? "\<C-n>" : "\<Tab>"
+set cot+=preview                      " floating preview window
 
 
 " tree style file explorer
 let g:netrw_liststyle=3
 
-" vim-airline configs
-let g:airline_theme = 'material'
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#tabline#enabled = 1          " enable tabline
-let g:airline#extensions#tabline#buffer_nr_show = 1   " display buffer number
 
 
 " general keymap
 xnoremap p              pgvy|                 " copy back to buf after paste
 nnoremap <C-L>          :bnext<CR>|           " next buffer
 nnoremap <C-H>          :bprevious<CR>|       " previous buffer
-nnoremap <Tab><Tab>     :b#<CR>|              " last buffer
+nnoremap <Tab><Tab>     <C-^>|              " last buffer
 nnoremap <Tab>          :bn<CR>|              " next buffer
 nnoremap <S-Tab>        :bp<CR>|              " prev buffer
 
 :command! BufOnly %bd|e#|bd#|       " only the buffer being edited
 :command! BufR    :bufdo e!|        " Reload all
 
-" fzf
-" use ripgrep instead of ag:
-let s:rgIgnoreGlobs='!{.git,node_modules,vendors}/'
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -g "' . s:rgIgnoreGlobs . '" ' .shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-"
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-" search for files in project
-nnoremap <silent> <Leader><Leader> :Files $PWD<CR>
-" search word under cursor in tags
-nnoremap <silent> g] :Tags <C-R><C-W><CR>
-" search word under cursor in project
-nnoremap <silent> g/ :Rg <C-R><C-W><CR>
 
 " folds
 set foldmethod=syntax                 " fold by syntax, otherwise indent or manual (default)
@@ -191,7 +213,3 @@ augroup handle_view
   autocmd BufWinEnter *.* silent! loadview
 augroup END
 
-augroup fmt
-  autocmd!
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-augroup END

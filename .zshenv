@@ -1,6 +1,3 @@
-
-
-
 # fnm
 if [ -d "$HOME/.fnm" ]; then
   export PATH="$HOME/.fnm":$PATH
@@ -48,33 +45,19 @@ case `uname` in
       export MANPATH="$(brew --prefix)/share/man:$MANPATH"
       export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
     fi
-
-    # python pip user install
-    if [ -d "$HOME/Library/Python/3.7" ]; then
-      PATH="$PATH:$HOME/Library/Python/3.7/bin"
-    fi
-
     ;;
   Linux) # commands for Linux go here
     # java
-    if [ type java &> /dev/null ]; then
-      export JAVA_HOME=${$(readlink -f `type -p java`)%/*/*}
+    if command -v java &> /dev/null; then
+      export JAVA_HOME=${$(readlink -f `command -v java`)%/*/*}
       export JRE_HOME=$JAVA_HOME
     fi
     ;;
 esac
 
 
-# work with snapd
-[[ ":$PATH:" != *":/snap/bin:"* ]] && PATH="/snap/bin:${PATH}"
-
-
-# install from source
-[[ ":$PATH:" != *":/usr/local/bin:"* ]] && PATH="/usr/local/bin:${PATH}"
-
 # set PATH so it includes user's private bin if it exists
 [[ ":$PATH:" != *":$HOME/bin:"* ]] && PATH="$HOME/bin:${PATH}"
-[[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && PATH="$HOME/.local/bin:${PATH}"
-[[ ":$PATH:" != *":$HOME/opt/bin:"* ]] && PATH="$HOME/opt/bin:${PATH}"
-
+[[ ":$PATH:" != *_":$HOME/.local/bin:"_* ]] && PATH="$HOME/.local/bin:${PATH}"
+[[ ":$PATH:" != *_":$HOME/opt/bin:"_* ]] && PATH="$HOME/opt/bin:${PATH}"
 
