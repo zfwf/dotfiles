@@ -20,16 +20,23 @@ if [ -d "$HOME/.cargo/bin" ]; then
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
+# python
 # pyenv
-if [ -d "$HOME/.pyenv" ]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
 
-  if [ -d "$(pyenv root)/plugins/pyenv-virtualenv" ]; then
-    eval "$(pyenv virtualenv-init -)"
+if [ ! $POETRY_ACTIVE ]; then
+  if [ -d "$HOME/.pyenv" ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+
+    if [ -d "$(pyenv root)/plugins/pyenv-virtualenv" ]; then
+      eval "$(pyenv virtualenv-init -)"
+    fi
   fi
 fi
+
+# poetry
+[[ -d "$HOME/.poetry/bin" ]] && PATH="$HOME/.poetry/bin:${PATH}"
 
 
 case `uname` in

@@ -2,6 +2,9 @@
   "list.source.files.defaultOptions": [
     "--number-select"
   ],
+  "list.source.files.excludePatterns": [
+    "**/.git/**"
+  ],
   "list.source.mru.defaultOptions": [
     "--number-select"
   ],
@@ -20,4 +23,5 @@
     "json",
     "jsonc"
   ],
+  "python.jediEnabled": false,
 }
