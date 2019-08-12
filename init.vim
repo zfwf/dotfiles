@@ -29,16 +29,12 @@ function! s:check_back_space() abort
 endfunction
 
 nnoremap <silent> <C-k><C-i>  :call CocAction('doHover')
-nnoremap <silent> gy          <Plug>(coc-type-definition)
-nnoremap <silent> gi          <Plug>(coc-implementation)
+nnoremap <silent> g]          <Plug>(coc-implementation)
+nnoremap <silent> gY          <Plug>(coc-type-definition)
 nnoremap <silent> gd          <Plug>(coc-definition)
 nnoremap <silent> <F12>       <Plug>(coc-definition)
 nnoremap <silent> <F24>       <Plug>(coc-references)
 nnoremap <silent> <F2>        <Plug>(coc-rename)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -87,8 +83,8 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Using CocList
-" search for files in project
-nnoremap <silent> <leader><leader>  :<C-u>CocList mru<CR>
+" mru in project
+nnoremap <silent> <C-p>             :<C-u>CocList files<CR>
 " Show all diagnostics
 nnoremap <silent> <leader>a         :<C-u>CocList diagnostics<cr>
 " Manage extensions
@@ -106,8 +102,28 @@ nnoremap <silent> <leader>k         :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <leader>p         :<C-u>CocListResume<CR>
 
-" #visual/info
+" more coclist goodness
+vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
+nnoremap g@ :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 
+function! s:GrepFromSelected(type)
+  let saved_unnamed_register = @@
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
+  let word = substitute(@@, '\n$', '', 'g')
+  let word = escape(word, '| ')
+  let @@ = saved_unnamed_register
+  execute 'CocList grep '.word
+endfunction
+
+set statusline^=%{coc#status()}
+
+" #visual/info
 Plug 'hzchirs/vim-material'
 
 Plug 'vim-airline/vim-airline'
@@ -177,17 +193,14 @@ set complete=.,w,b,u,t,i,kspell		    " `:set spell` to get completion from dicti
 set noshowmode                        " no show --Insert--, replaced by airline
 set cot+=preview                      " floating preview window
 
-
 " tree style file explorer
 let g:netrw_liststyle=3
-
-
 
 " general keymap
 xnoremap p              pgvy|                 " copy back to buf after paste
 nnoremap <C-L>          :bnext<CR>|           " next buffer
 nnoremap <C-H>          :bprevious<CR>|       " previous buffer
-nnoremap <Tab><Tab>     <C-^>|              " last buffer
+nnoremap <Tab><Tab>     <C-^>|                " last buffer
 nnoremap <Tab>          :bn<CR>|              " next buffer
 nnoremap <S-Tab>        :bp<CR>|              " prev buffer
 
