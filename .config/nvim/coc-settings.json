@@ -1,1 +1,27 @@
-/home/cchou/Documents/dotfiles/coc-settings.json
+{
+  "list.source.files.defaultOptions": [
+    "--number-select"
+  ],
+  "list.source.files.excludePatterns": [
+    "**/.git/**"
+  ],
+  "list.source.mru.defaultOptions": [
+    "--number-select"
+  ],
+  "coc.source.omni.filetypes": [
+    "rust",
+    "typescript",
+    "python",
+    "json",
+    "jsonc"
+  ],
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "rust",
+    "python",
+    "typescript",
+    "json",
+    "jsonc"
+  ],
+  "python.jediEnabled": false,
+}
