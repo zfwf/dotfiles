@@ -189,4 +189,4 @@ case `uname` in
     alias idea=intellij-idea-ultimate # from snap
     ;;
 esac
-alias config='/usr/bin/git --git-dir=/home/cchou/.cfg/ --work-tree=/home/cchou'
+alias config='git --git-dir=/home/cchou/.cfg/ --work-tree=/home/cchou'
