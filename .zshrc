@@ -86,17 +86,18 @@ ZSH_DISABLE_COMPFIX=true
 source "${HOME}/.zgen/zgen.zsh"
 
 load-starter-list() {
-  # specify oh-my-zsh plugins here
+  # plugins
   zgen oh-my-zsh
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/python
   zgen oh-my-zsh plugins/docker
   zgen oh-my-zsh plugins/docker-compose
   zgen oh-my-zsh plugins/command-not-found
-
-  # history substring search must come after syntax highlighting
   zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-syntax-highlighting
+
+  # completions
+  zgen load zsh-users/zsh-completions src
 
   # theme
   zgen load bhilburn/powerlevel9k powerlevel9k
@@ -139,7 +140,7 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # fzf
-[ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 alias fzfp="fzf --preview '[[ \$(file --mime {}) =~ binary ]] &&
                   echo {} is a binary file ||
                  (highlight -O ansi -l {} ||
@@ -190,3 +191,4 @@ case `uname` in
     ;;
 esac
 alias config='git --git-dir=/home/cchou/.cfg/ --work-tree=/home/cchou'
+

@@ -22,7 +22,6 @@ fi
 
 # python
 # pyenv
-
 if [ ! $POETRY_ACTIVE ]; then
   if [ -d "$HOME/.pyenv" ]; then
     export PYENV_ROOT="$HOME/.pyenv"
