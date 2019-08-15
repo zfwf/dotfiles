@@ -24,4 +24,6 @@
     "jsonc"
   ],
   "python.jediEnabled": false,
+  "diagnostic.messageTarget": "float",
+  "coc.preferences.hoverTarget": "preview"
 }
