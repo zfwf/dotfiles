@@ -1,4 +1,10 @@
 tags
-*
-*/
-!.gitignore
+.*
+
+vizexplorer/
+Desktop/
+Documents/
+Downloads/
+cxdb/
+opt/
+snap/

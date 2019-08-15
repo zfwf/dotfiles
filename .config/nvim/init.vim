@@ -20,10 +20,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'hzchirs/vim-material'
 
 Plug 'vim-airline/vim-airline'
-let g:airline_theme = 'material'
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#tabline#enabled = 1          " enable tabline
-let g:airline#extensions#tabline#buffer_nr_show = 1   " display buffer number
 
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
@@ -52,11 +48,12 @@ set t_8b=^[[48;2;%lu;%lu;%lum
 set t_8f=^[[38;2;%lu;%lu;%lum
 set termguicolors
 
-" enable colorscheme (cannot be place w plug)
+" enable colorscheme
 syntax enable
 filetype indent plugin on
 set background=dark
 colorscheme vim-material
+let g:airline_theme = 'material' " airline theme
 
 
 " show whitespace characters
