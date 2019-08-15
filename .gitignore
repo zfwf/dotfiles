@@ -1,6 +1,8 @@
 tags
-.*
+# all dot files and dot dirs
+.* 
 
+# dirs that we don't want in bare repo
 vizexplorer/
 Desktop/
 Documents/

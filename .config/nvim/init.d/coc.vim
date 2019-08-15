@@ -1,6 +1,6 @@
 " coc configs
 
-let g:coc_global_extensions = [
+let b:coc_extensions = [
   \ 'coc-json',
   \ 'coc-tsserver',
   \ 'coc-html',
@@ -16,14 +16,17 @@ let g:coc_global_extensions = [
   \ 'coc-tabnine',
   \ 'coc-eslint',
   \ 'coc-prettier',
-  \ 'coc-sources',
-  \ 'coc-dictionary',
+  \]
+
+let b:coc_sources = [
   \ 'coc-tag',
   \ 'coc-word',
   \ 'coc-emoji',
   \ 'coc-omni',
   \ 'coc-syntax',
-  \ ]
+  \]
+
+let g:coc_global_extensions = b:coc_extensions + b:coc_sources
 
 
 
@@ -40,7 +43,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-nnoremap <silent> <C-k><C-i>  :call CocAction('doHover')
+nnoremap <silent> <C-k><C-i>  :CocAction('doHover')
 nnoremap <silent> g]          <Plug>(coc-implementation)
 nnoremap <silent> gY          <Plug>(coc-type-definition)
 nnoremap <silent> gd          <Plug>(coc-definition)
@@ -95,7 +98,9 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Using CocList
-" mru in project
+" mru
+nnoremap <silent> <leader><leader>  :<C-u>CocList mru<CR>
+" files in project
 nnoremap <silent> <C-p>             :<C-u>CocList files<CR>
 " Show all diagnostics
 nnoremap <silent> <leader>a         :<C-u>CocList diagnostics<cr>
@@ -114,7 +119,7 @@ nnoremap <silent> <leader>k         :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <leader>p         :<C-u>CocListResume<CR>
 
-" more coclist goodness
+" grep by motion
 vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
 nnoremap g@ :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 
@@ -134,17 +139,17 @@ function! s:GrepFromSelected(type)
 endfunction
 
 
-  set cmdheight=2
-  " set completeopt=noinsert,noselect,menuone
-  set signcolumn=yes
+set cmdheight=2
+" set completeopt=noinsert,noselect,menuone
+set signcolumn=yes
 
-  let g:coc_auto_open = 0 " do not open quickfix automatically
+let g:coc_auto_open = 0 " do not open quickfix automatically
 
-  " Use `:Format` for format current buffer
-  command! -nargs=0 Format :call CocAction('format')
+" Use `:Format` for format current buffer
+command! -nargs=0 Format :call CocAction('format')
 
-  " Use `:Fold` for fold current buffer
-  command! -nargs=? Fold :call CocAction('fold', <f-args>)
+" Use `:Fold` for fold current buffer
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 function! s:isPreviewWindowOpen()
   for nr in range(1, winnr('$'))
@@ -173,6 +178,7 @@ endfunction
 
 nnoremap <silent> <C-W>z :call <SID>closePreview()<cr>
 
+" grep word under cursor
 command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList -A grep '.<q-args>
 
 function! s:GrepArgs(...)
@@ -183,4 +189,3 @@ endfunction
 
 " coc-settings.json uses jsonc, which adds comment syntax
 autocmd FileType json syntax match Comment +\/\/.\+$+"
-

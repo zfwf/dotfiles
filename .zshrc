@@ -122,8 +122,7 @@ case $TERM in
 esac
 
 # zle config
-bindkey -v # vi mode
-export KEYTIMEOUT=1 # mode change timeout = 0.1sec
+bindkey -v # vi mode, bind alt/opt to escape for easy transition to insert mode 
 function zle-keymap-select zle-line-init
 {
        # change cursor shape in xterm
