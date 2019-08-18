@@ -63,18 +63,6 @@ autoload -Uz _zplugin
   zplugin ice from"gh-r" as"program" mv"docker* -> docker-compose"
   zplugin light docker/compose
 
-  # fnm
-  zplugin ice from"gh-r" as"program" mv"fnm*/fnm -> ./fnm" \
-    atclone"./fnm env --multi > zfnm.zsh" atpull"%atclone" \
-    src'zfnm.zsh'
-  zplugin light Schniz/fnm
-
-  # cargo (via rustup)
-  zplugin ice atclone"./rustup-init.sh; rustup completions zsh > _rustup" atpull"%atclone" \
-    as"completion" src'_rustup' \
-    atload'PATH="$HOME/.cargo/bin:$PATH"; export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"'
-  zplugin light rust-lang/rustup.rs
-
 
   # pyenv + pyenv-viftualenv
   zplugin ice atclone"./libexec/pyenv init - > zpyenv.zsh; \
@@ -89,6 +77,19 @@ autoload -Uz _zplugin
     $HOME/.poetry/bin/poetry completions zsh > _poetry" \
     atpull"%atclone" atload'PATH="$HOME/.poetry/bin:$PATH"'
   zplugin light sdispater/poetry
+
+  # fnm
+  zplugin ice from"gh-r" as"program" mv"fnm*/fnm -> ./fnm" \
+    atclone"./fnm env --multi > zfnm.zsh" atpull"%atclone" \
+    src'zfnm.zsh'
+  zplugin light Schniz/fnm
+
+  # cargo (via rustup)
+  zplugin ice atclone"./rustup-init.sh; rustup completions zsh > _rustup" atpull"%atclone" \
+    as"completion" src'_rustup' \
+    atload'PATH="$HOME/.cargo/bin:$PATH"; export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"'
+  zplugin light rust-lang/rustup.rs
+
 
   # OMZ lib
   zplugin ice wait lucid
