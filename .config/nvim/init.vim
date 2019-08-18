@@ -1,6 +1,5 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
-let g:python_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
-let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
+let g:python3_host_prog = expand('~/.zplugin/plugins/pyenv---pyenv/versions/3.7.4/bin/python')
 
 " leader key
 let mapleader="\<SPACE>"
