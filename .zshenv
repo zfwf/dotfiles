@@ -1,8 +1,127 @@
-# fnm
-if [ -d "$HOME/.fnm" ]; then
-  export PATH="$HOME/.fnm":$PATH
-  eval "`fnm env --multi`"
-fi
+module_path+=("$HOME/.zplugin/bin/zmodules/Src")
+zmodload zdharma/zplugin
+
+# theme specific
+_config_powerline() {
+  ## if using awesome font-config
+  #POWERLEVEL9K_MODE='awesome-fontconfig'
+  ## if using nerd font
+  POWERLEVEL9K_MODE='nerdfont-fontconfig'
+
+  # disable auto window title
+  #DISABLE_AUTO_TITLE="true"
+
+  # Disable dir/git icons
+  POWERLEVEL9K_HOME_ICON=''
+  POWERLEVEL9K_HOME_SUB_ICON=''
+  POWERLEVEL9K_FOLDER_ICON=''
+  POWERLEVEL9K_VCS_GIT_ICON=''
+  POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
+  POWERLEVEL9K_VCS_GIT_BITBUCKET_ICON=''
+  POWERLEVEL9K_VCS_GIT_GITLAB_ICON=''
+
+  POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
+  POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
+  POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
+  POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
+  POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
+
+  POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
+  POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
+
+  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time time)
+
+  POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+  POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+
+  #python format: http://strftime.org/
+  POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
+
+  # = 0 to always print
+  POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
+
+  POWERLEVEL9K_STATUS_VERBOSE=false
+}
+
+# zplugin
+source '/home/cchou/.zplugin/bin/zplugin.zsh'
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+# Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
+  # theme
+  zplugin ice atinit"_config_powerline"; zplugin light romkatv/powerlevel10k
+
+  # programs
+  # fzy
+  zplugin ice wait"1" lucid as"program" make"!PREFIX=$ZPFX install" \
+    atclone"cp contrib/fzy-* $ZPFX/bin/" \
+    pick"$ZPFX/bin/fzy*"
+  zplugin light jhawthorn/fzy
+
+  # docker-compose
+  zplugin ice from"gh-r" as"program" mv"docker* -> docker-compose"
+  zplugin light docker/compose
+
+  # fnm
+  zplugin ice from"gh-r" as"program" mv"fnm*/fnm -> ./fnm" \
+    atclone"./fnm env --multi > zfnm.zsh" atpull"%atclone" \
+    src'zfnm.zsh'
+  zplugin light Schniz/fnm
+
+  # cargo (via rustup)
+  zplugin ice atclone"./rustup-init.sh; rustup completions zsh > _rustup" atpull"%atclone" \
+    as"completion" src'_rustup' \
+    atload'PATH="$HOME/.cargo/bin:$PATH"; export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"'
+  zplugin light rust-lang/rustup.rs
+
+
+  # pyenv + pyenv-viftualenv
+  zplugin ice atclone"./libexec/pyenv init - > zpyenv.zsh; \
+    git clone https://github.com/pyenv/pyenv-virtualenv.git ./plugins/pyenv-virtualenv; \
+    ./libexec/pyenv virtualenv-init - > zpyenv-virtualenv.zsh; " \
+    atinit'export PYENV_ROOT="$PWD"' atpull"%atclone" \
+    as'command' pick'bin/pyenv' multisrc'{zpyenv,zpyenv-virtualenv}.zsh'
+  zplugin light pyenv/pyenv
+
+  # poetry
+  zplugin ice as"completion" atclone"python ./get-poetry.py; \
+    $HOME/.poetry/bin/poetry completions zsh > _poetry" \
+    atpull"%atclone" atload'PATH="$HOME/.poetry/bin:$PATH"'
+  zplugin light sdispater/poetry
+
+  # OMZ lib
+  zplugin ice wait lucid
+  zplugin snippet OMZ::lib/git.zsh
+
+  zplugin ice lucid atinit'ZSH_CACHE_DIR="$HOME/.zcompcache"'
+  zplugin snippet OMZ::lib/history.zsh
+
+  zplugin ice wait"1" lucid # `ls` colors
+  zplugin snippet OMZ::lib/theme-and-appearance.zsh
+
+  zplugin ice wait lucid
+  zplugin snippet OMZ::lib/completion.zsh
+
+  # OMZ plugin
+  zplugin ice wait lucid atload"unalias grv g"
+  zplugin snippet OMZ::plugins/git/git.plugin.zsh
+
+  zplugin ice wait lucid as"completion"
+  zplugin snippet OMZ::plugins/docker/_docker
+
+  zplugin ice wait lucid
+  zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+
+  # plugins
+  zplugin ice wait blockf lucid
+  zplugin light zsh-users/zsh-completions
+
+  zplugin ice wait silent atload:_zsh_autosuggest_start
+  zplugin light zsh-users/zsh-autosuggestions
+
+  zplugin ice wait atinit"zpcompinit" lucid
+  zplugin light zdharma/fast-syntax-highlighting
 
 # android
 if [ -d "$HOME/Android/Sdk" ]; then
@@ -13,30 +132,6 @@ if [ -d "$HOME/Android/Sdk" ]; then
   fi
   PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
 fi
-
-# add cargo (rust)
-if [ -d "$HOME/.cargo/bin" ]; then
-  PATH=$HOME/.cargo/bin:$PATH
-  export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-fi
-
-# python
-# pyenv
-if [ ! $POETRY_ACTIVE ]; then
-  if [ -d "$HOME/.pyenv" ]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
-
-    if [ -d "$(pyenv root)/plugins/pyenv-virtualenv" ]; then
-      eval "$(pyenv virtualenv-init -)"
-    fi
-  fi
-fi
-
-# poetry
-[[ -d "$HOME/.poetry/bin" ]] && PATH="$HOME/.poetry/bin:${PATH}"
-
 
 case `uname` in
   Darwin) # commands for OS X go here
