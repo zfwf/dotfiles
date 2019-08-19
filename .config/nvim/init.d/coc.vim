@@ -121,7 +121,7 @@ nnoremap <silent> <leader>p         :<C-u>CocListResume<CR>
 
 " grep by motion
 vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
-nnoremap g@ :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 
 function! s:GrepFromSelected(type)
   let saved_unnamed_register = @@
@@ -138,6 +138,17 @@ function! s:GrepFromSelected(type)
   execute 'CocList grep '.word
 endfunction
 
+" grep word under cursor
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList -A grep '.<q-args>
+
+function! s:GrepArgs(...)
+  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
+  return join(list, "\n")
+endfunction
+
+" Keymapping for grep word under cursor with interactive mode
+nnoremap <silent> <Leader>cf :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
 set cmdheight=2
 " set completeopt=noinsert,noselect,menuone
@@ -178,14 +189,6 @@ endfunction
 
 nnoremap <silent> <C-W>z :call <SID>closePreview()<cr>
 
-" grep word under cursor
-command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList -A grep '.<q-args>
-
-function! s:GrepArgs(...)
-  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
-        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
-  return join(list, "\n")
-endfunction
 
 " coc-settings.json uses jsonc, which adds comment syntax
 autocmd FileType json syntax match Comment +\/\/.\+$+"
