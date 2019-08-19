@@ -45,7 +45,7 @@ _config_powerline() {
 }
 
 # zplugin
-source '/home/cchou/.zplugin/bin/zplugin.zsh'
+source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 # Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
@@ -65,9 +65,8 @@ autoload -Uz _zplugin
 
 
   # pyenv + pyenv-viftualenv
-  zplugin ice atclone"./libexec/pyenv init - > zpyenv.zsh; \
-    git clone https://github.com/pyenv/pyenv-virtualenv.git ./plugins/pyenv-virtualenv; \
-    ./libexec/pyenv virtualenv-init - > zpyenv-virtualenv.zsh; " \
+  zplugin ice atclone"git clone https://github.com/pyenv/pyenv-virtualenv.git ./plugins/pyenv-virtualenv; ./libexec/pyenv init - > zpyenv.zsh; \
+    ./libexec/pyenv virtualenv-init - > zpyenv-virtualenv.zsh; which pyenv" \
     atinit'export PYENV_ROOT="$PWD"' atpull"%atclone" \
     as'command' pick'bin/pyenv' multisrc'{zpyenv,zpyenv-virtualenv}.zsh'
   zplugin light pyenv/pyenv

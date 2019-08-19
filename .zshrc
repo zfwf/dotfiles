@@ -66,7 +66,7 @@ export DOCKER_HIDE_LEGACY_COMMANDS=true
 
 # use neovim as editor in general
 # export VISUAL=nvim
-export VISUAL=nvim-dev
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 alias vi="$VISUAL"
 
