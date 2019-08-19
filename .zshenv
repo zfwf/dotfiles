@@ -45,14 +45,29 @@ _config_powerline() {
 }
 
 # zplugin
-source "$HOME/.zplugin/bin/zplugin.zsh"
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
+local -A ZPLGM
+ZPLGM[HOME_DIR]=~/.zplugin
+ZPLGM[BIN_DIR]=$ZPLGM[HOME_DIR]/bin
+if [[ ! -d $ZPLGM[HOME_DIR] ]]; then
+  mkdir -p ZPLGM[HOME_DIR]
+  git clone https://github.com/zdharma/zplugin.git $ZPLGM[BIN_DIR]
+  source "$ZPLGM[BIN_DIR]/zplugin.zsh"
+  zplugin self-update
+else 
+  source "$ZPLGM[BIN_DIR]/zplugin.zsh"
+fi
+ZPLGM[MUTE_WARNINGS]=1
+
 # Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
   # theme
   zplugin ice atinit"_config_powerline"; zplugin light romkatv/powerlevel10k
 
   # programs
+
+  # neovim
+  zplugin ice from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" pick"nvim"
+  zplugin light neovim/neovim
+
   # fzy
   zplugin ice wait"1" lucid as"program" make"!PREFIX=$ZPFX install" \
     atclone"cp contrib/fzy-* $ZPFX/bin/" \
@@ -65,8 +80,9 @@ autoload -Uz _zplugin
 
 
   # pyenv + pyenv-viftualenv
-  zplugin ice atclone"git clone https://github.com/pyenv/pyenv-virtualenv.git ./plugins/pyenv-virtualenv; ./libexec/pyenv init - > zpyenv.zsh; \
-    ./libexec/pyenv virtualenv-init - > zpyenv-virtualenv.zsh; which pyenv" \
+  zplugin ice atclone"git clone https://github.com/pyenv/pyenv-virtualenv.git ./plugins/pyenv-virtualenv; \
+    ./libexec/pyenv init - > zpyenv.zsh; ./libexec/pyenv virtualenv-init - > zpyenv-virtualenv.zsh;  \
+    pyenv install 3.7.4; pyenv global 3.7.4; pip install pynvim" \
     atinit'export PYENV_ROOT="$PWD"' atpull"%atclone" \
     as'command' pick'bin/pyenv' multisrc'{zpyenv,zpyenv-virtualenv}.zsh'
   zplugin light pyenv/pyenv
