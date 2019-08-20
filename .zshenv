@@ -74,6 +74,17 @@ ZPLGM[MUTE_WARNINGS]=1
     pick"$ZPFX/bin/fzy*"
   zplugin light jhawthorn/fzy
 
+  # tmux + oh-my-tmux (gh-254 branch) + tmux plugin manager
+  zplugin ice lucid as"program" atclone"sh autogen.sh; ./configure --prefix=$ZPFX" \
+    make"install" pick"$ZPFX/bin/tmux"
+  zplugin light tmux/tmux
+
+  zplugin ice lucid id-as"gpakosz/tmux" ver"gh-254" cp".tmux.conf -> $HOME/" nocompile
+  zplugin light gpakosz/.tmux
+
+  zplugin ice lucid nocompile
+  zplugin light tmux-plugins/tpm
+
   # docker-compose
   zplugin ice from"gh-r" as"program" mv"docker* -> docker-compose"
   zplugin light docker/compose
@@ -125,6 +136,9 @@ ZPLGM[MUTE_WARNINGS]=1
 
   zplugin ice wait lucid as"completion"
   zplugin snippet OMZ::plugins/docker/_docker
+
+  zplugin ice wait lucid as"completion"
+  zplugin snippet OMZ::plugins/docker-compose/_docker-compose
 
   zplugin ice wait lucid
   zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
