@@ -2,12 +2,10 @@
 	name = Chris Chou
 	email = chhschou@gmail.com
 
-[includeIf "gitdir:~/vizexplorer/"]
-  path = ~/vizexplorer/.gitconfig
-
 [core]
   excludesfile = /home/cchou/.gitignore
   editor = nvim
+  pager = diff-so-fancy | less -FXRi
 
 [color]
 	ui = auto
