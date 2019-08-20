@@ -64,6 +64,14 @@ ZPLGM[MUTE_WARNINGS]=1
 
   # programs
 
+  # gitkraken
+  zplugin ice as"program" atclone"mkdir gitkraken-amd64; tar -C gitkraken-amd64 -xzf gitkraken*.tar.gz; ln -s gitkraken-amd64/gitkraken/gitkraken" pick"gitkraken"
+  zplugin snippet https://release.gitkraken.com/linux/gitkraken-amd64.tar.gz
+
+  # station
+  zplugin ice from"gh-r" as"program" bpick"*appimage*" mv"browserX* -> station" pick"station"
+  zplugin light getstation/desktop-app-releases
+
   # neovim
   zplugin ice from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" pick"nvim"
   zplugin light neovim/neovim
@@ -150,6 +158,9 @@ ZPLGM[MUTE_WARNINGS]=1
   zplugin ice wait silent atload:_zsh_autosuggest_start
   zplugin light zsh-users/zsh-autosuggestions
 
+  zplugin ice as"program" pick"bin/git-dsf"
+  zplugin light zdharma/zsh-diff-so-fancy
+
   zplugin ice wait atinit"zpcompinit" lucid
   zplugin light zdharma/fast-syntax-highlighting
 
@@ -185,10 +196,3 @@ case `uname` in
     fi
     ;;
 esac
-
-
-# set PATH so it includes user's private bin if it exists
-[[ ":$PATH:" != *":$HOME/bin:"* ]] && PATH="$HOME/bin:${PATH}"
-[[ ":$PATH:" != *_":$HOME/.local/bin:"_* ]] && PATH="$HOME/.local/bin:${PATH}"
-[[ ":$PATH:" != *_":$HOME/opt/bin:"_* ]] && PATH="$HOME/opt/bin:${PATH}"
-
