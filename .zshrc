@@ -76,7 +76,6 @@ alias avd-16="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
 alias avd-21="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
 alias avd-23="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_23"
 alias meta="npx meta"
-alias yarn="npx yarn"
 alias top="npx gtop"
 
 case `uname` in
