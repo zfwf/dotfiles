@@ -58,6 +58,11 @@ else
 fi
 ZPLGM[MUTE_WARNINGS]=1
 
+_create_and_link_desktop_file() {
+  echo "[Desktop Entry]\nName=$1\nExec=$2 %U\nIcon=$3\nType=Application\nStartupNotify=true" > $1.desktop
+  ln -s "$(readlink -f $1.desktop)" ~/.local/share/applications/$1.desktop
+}
+
 # Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
   # theme
   zplugin ice atinit"_config_powerline"; zplugin light romkatv/powerlevel10k
@@ -65,7 +70,11 @@ ZPLGM[MUTE_WARNINGS]=1
   # programs
 
   # gitkraken
-  zplugin ice as"program" atclone"mkdir gitkraken-amd64; tar -C gitkraken-amd64 -xzf gitkraken*.tar.gzt; ln -s gitkraken-amd64/gitkraken/gitkraken" pick"gitkraken"
+  zplugin ice as"program" atclone'mkdir gitkraken-amd64; \
+    tar -C gitkraken-amd64 -xzf gitkraken*.tar.gz; \
+    ln -s gitkraken-amd64/gitkraken/gitkraken; \
+    _create_and_link_desktop_file GitKraken "$(readlink -f gitkraken)" gitkraken' \
+    as'program' pick"gitkraken"
   zplugin snippet https://release.gitkraken.com/linux/gitkraken-amd64.tar.gz
 
   # station
@@ -112,9 +121,14 @@ ZPLGM[MUTE_WARNINGS]=1
     atpull"%atclone" atload'PATH="$HOME/.poetry/bin:$PATH"'
   zplugin light sdispater/poetry
 
-  # nvm
-  zplugin ice atinit'export NVM_AUTO_USE=true'
-  zplugin light lukechilds/zsh-nvm
+  # fnm
+  zplugin ice from"gh-r" as"program" mv"fnm*/fnm -> ./fnm" \
+    atclone"./fnm env --multi > zfnm.zsh" atpull"%atclone" src'zfnm.zsh'
+  zplugin light Schniz/fnm
+
+  # # nvm
+  # zplugin ice atinit'export NVM_AUTO_USE=true'
+  # zplugin light lukechilds/zsh-nvm
 
   # cargo (via rustup)
   zplugin ice atclone"./rustup-init.sh; rustup completions zsh > _rustup" atpull"%atclone" \
@@ -153,7 +167,7 @@ ZPLGM[MUTE_WARNINGS]=1
   zplugin ice wait blockf lucid
   zplugin light zsh-users/zsh-completions
 
-  zplugin ice wait silent atload'export ZSH_AUTOSUGGEST_USE_ASYNC=true'
+  zplugin ice wait silent atload'export ZSH_AUTOSUGGEST_USE_ASYNC=true; _zsh_autosuggest_start'
   zplugin light zsh-users/zsh-autosuggestions
 
   zplugin ice as"program" pick"bin/git-dsf"
