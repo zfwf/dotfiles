@@ -1,5 +1,5 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
-let g:python3_host_prog = trim(system("echo $(pyenv root)/versions/3.7.4/bin/python"))
+let g:python3_host_prog = trim(system("echo $(pyenv which python)"))
 
 " leader key
 let mapleader="\<SPACE>"
@@ -16,10 +16,9 @@ Plug 'takac/vim-hardtime'   " no rep
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " #visual/info
-Plug 'hzchirs/vim-material'
-
-Plug 'vim-airline/vim-airline'
-
+Plug 'kaicataldo/material.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'taohexxx/lightline-buffer'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 " colored parentheses
@@ -51,8 +50,9 @@ set termguicolors
 syntax enable
 filetype indent plugin on
 set background=dark
-colorscheme vim-material
-let g:airline_theme = 'material' " airline theme
+colorscheme material
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'darker'
 
 
 " show whitespace characters

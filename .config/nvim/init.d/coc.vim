@@ -1,13 +1,18 @@
 " coc configs
 
-let b:coc_extensions = [
-  \ 'coc-json',
+let b:coc_languages = [
+  \ 'coc-rls',
+  \ 'coc-java',
   \ 'coc-tsserver',
+  \ 'coc-json',
   \ 'coc-html',
   \ 'coc-css',
-  \ 'coc-rls',
   \ 'coc-yaml',
   \ 'coc-python',
+  \]
+
+
+let b:coc_extensions = [
   \ 'coc-highlight',
   \ 'coc-emmet',
   \ 'coc-snippets',
@@ -26,7 +31,7 @@ let b:coc_sources = [
   \ 'coc-syntax',
   \]
 
-let g:coc_global_extensions = b:coc_extensions + b:coc_sources
+let g:coc_global_extensions = b:coc_languages + b:coc_extensions + b:coc_sources
 
 
 
