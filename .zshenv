@@ -1,3 +1,16 @@
+# zplugin
+local -A ZPLGM
+ZPLGM[HOME_DIR]=~/.zplugin
+ZPLGM[BIN_DIR]=$ZPLGM[HOME_DIR]/bin
+if [[ ! -d $ZPLGM[HOME_DIR] ]]; then
+  mkdir -p ZPLGM[HOME_DIR]
+  git clone https://github.com/zdharma/zplugin.git $ZPLGM[BIN_DIR]
+  source "$ZPLGM[BIN_DIR]/zplugin.zsh"
+  zplugin self-update
+else
+  source "$ZPLGM[BIN_DIR]/zplugin.zsh"
+fi
+ZPLGM[MUTE_WARNINGS]=1
 module_path+=("$HOME/.zplugin/bin/zmodules/Src")
 zmodload zdharma/zplugin
 
@@ -44,33 +57,22 @@ _config_powerline() {
   POWERLEVEL9K_STATUS_VERBOSE=false
 }
 
-# zplugin
-local -A ZPLGM
-ZPLGM[HOME_DIR]=~/.zplugin
-ZPLGM[BIN_DIR]=$ZPLGM[HOME_DIR]/bin
-if [[ ! -d $ZPLGM[HOME_DIR] ]]; then
-  mkdir -p ZPLGM[HOME_DIR]
-  git clone https://github.com/zdharma/zplugin.git $ZPLGM[BIN_DIR]
-  source "$ZPLGM[BIN_DIR]/zplugin.zsh"
-  zplugin self-update
-else
-  source "$ZPLGM[BIN_DIR]/zplugin.zsh"
-fi
-ZPLGM[MUTE_WARNINGS]=1
 
 _create_and_link_desktop_file() {
   echo "[Desktop Entry]\nName=$1\nExec=$2 %U\nIcon=$3\nType=Application\nStartupNotify=true" > $1.desktop
   ln -s "$(readlink -f $1.desktop)" ~/.local/share/applications/$1.desktop
 }
 
-# Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
-  # theme
-  zplugin ice atinit"_config_powerline"; zplugin light romkatv/powerlevel10k
 
-  # programs
+
+# Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
+
+  # ff dev edition
+  # zplugin as'program' pick"firefox"
+  # zplugin snippet https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US
 
   # gitkraken
-  zplugin ice as"program" atclone'mkdir gitkraken-amd64; \
+  zplugin ice atclone'mkdir gitkraken-amd64; \
     tar -C gitkraken-amd64 -xzf gitkraken*.tar.gz; \
     ln -s gitkraken-amd64/gitkraken/gitkraken; \
     _create_and_link_desktop_file GitKraken "$(readlink -f gitkraken)" gitkraken' \
@@ -84,6 +86,10 @@ _create_and_link_desktop_file() {
   # neovim
   zplugin ice from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" pick"nvim"
   zplugin light neovim/neovim
+
+
+  # theme
+  zplugin ice atinit"_config_powerline"; zplugin light romkatv/powerlevel10k
 
   # fzy
   zplugin ice wait"1" lucid as"program" make"!PREFIX=$ZPFX install" \
@@ -106,7 +112,6 @@ _create_and_link_desktop_file() {
   zplugin ice from"gh-r" as"program" mv"docker* -> docker-compose"
   zplugin light docker/compose
 
-
   # pyenv + pyenv-viftualenv
   zplugin ice atclone"git clone https://github.com/pyenv/pyenv-virtualenv.git ./plugins/pyenv-virtualenv; \
     ./libexec/pyenv init - > zpyenv.zsh; ./libexec/pyenv virtualenv-init - > zpyenv-virtualenv.zsh;  \
@@ -126,16 +131,19 @@ _create_and_link_desktop_file() {
     atclone"./fnm env --multi > zfnm.zsh" atpull"%atclone" src'zfnm.zsh'
   zplugin light Schniz/fnm
 
-  # # nvm
-  # zplugin ice atinit'export NVM_AUTO_USE=true'
-  # zplugin light lukechilds/zsh-nvm
-
   # cargo (via rustup)
   zplugin ice atclone"./rustup-init.sh; rustup completions zsh > _rustup" atpull"%atclone" \
     as"completion" src'_rustup' \
     atload'PATH="$HOME/.cargo/bin:$PATH"; export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"'
   zplugin light rust-lang/rustup.rs
 
+  # autosuggestions
+  zplugin ice wait silent atload'export ZSH_AUTOSUGGEST_USE_ASYNC=true; _zsh_autosuggest_start'
+  zplugin light zsh-users/zsh-autosuggestions
+
+  # git diff
+  zplugin ice as"program" pick"bin/git-dsf"
+  zplugin light zdharma/zsh-diff-so-fancy
 
   # OMZ lib
   zplugin ice wait lucid
@@ -163,15 +171,9 @@ _create_and_link_desktop_file() {
   zplugin ice wait lucid
   zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
 
-  # plugins
+  # more completions
   zplugin ice wait blockf lucid
   zplugin light zsh-users/zsh-completions
-
-  zplugin ice wait silent atload'export ZSH_AUTOSUGGEST_USE_ASYNC=true; _zsh_autosuggest_start'
-  zplugin light zsh-users/zsh-autosuggestions
-
-  zplugin ice as"program" pick"bin/git-dsf"
-  zplugin light zdharma/zsh-diff-so-fancy
 
   zplugin ice wait lucid
   zplugin light zdharma/fast-syntax-highlighting
@@ -191,25 +193,8 @@ if [ -d "$HOME/Android/Sdk" ]; then
   PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
 fi
 
-case `uname` in
-  Darwin) # commands for OS X go here
-    if [ -d "/Library/java" ]; then
-      export JAVA_HOME=/Library/java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home
-      export JRE_HOME=$JAVA_HOME
-    fi
-
-    # brew
-    if [ -d "$HOME/.brew" ]; then
-      PATH="$HOME/.brew/bin:$PATH"
-      export MANPATH="$(brew --prefix)/share/man:$MANPATH"
-      export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
-    fi
-    ;;
-  Linux) # commands for Linux go here
-    # java
-    if command -v java &> /dev/null; then
-      export JAVA_HOME=${$(readlink -f `command -v java`)%/*/*}
-      export JRE_HOME=$JAVA_HOME
-    fi
-    ;;
-esac
+# java
+if command -v java &> /dev/null; then
+  export JAVA_HOME=${$(readlink -f `command -v java`)%/*/*}
+  export JRE_HOME=$JAVA_HOME
+fi
