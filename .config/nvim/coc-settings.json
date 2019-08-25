@@ -1,13 +1,7 @@
 {
-  "list.source.files.defaultOptions": [
-    "--number-select"
-  ],
-  "list.source.files.excludePatterns": [
-    "**/.git/**"
-  ],
-  "list.source.mru.defaultOptions": [
-    "--number-select"
-  ],
+  "list.source.files.defaultOptions": ["--number-select"],
+  "list.source.files.excludePatterns": ["**/.git/**"],
+  "list.source.mru.defaultOptions": ["--number-select"],
   "coc.source.omni.filetypes": [
     "rust",
     "typescript",
@@ -25,5 +19,16 @@
   ],
   "python.jediEnabled": false,
   "diagnostic.messageTarget": "float",
-  "coc.preferences.hoverTarget": "preview"
+  "coc.preferences.hoverTarget": "preview",
+  "languageserver": {
+    "clojure-lsp": {
+      "command": "bash",
+      "args": ["-c", "clojure-lsp"],
+      "filetypes": ["clojure"],
+      "rootPatterns": ["project.clj"],
+      "additionalSchemes": ["jar", "zipfile"],
+      "trace.server": "verbose",
+      "initializationOptions": {}
+    }
+  }
 }
