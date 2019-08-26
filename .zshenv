@@ -67,6 +67,15 @@ _create_and_link_desktop_file() {
 
 # Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
 
+
+  # theme
+  zplugin ice atinit'_config_powerline'; zplugin light romkatv/powerlevel10k
+
+  # nnn
+  zplugin ice wait"1" lucid as"program" make"PREFIX=$ZPFX strip install" \
+    pick"$ZPFX/bin/nnn"
+  zplugin light jarun/nnn
+
   # ff dev edition
   # zplugin as'program' pick"firefox"
   # zplugin snippet https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US
@@ -87,9 +96,6 @@ _create_and_link_desktop_file() {
   zplugin ice from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" pick"nvim"
   zplugin light neovim/neovim
 
-
-  # theme
-  zplugin ice atinit"_config_powerline"; zplugin light romkatv/powerlevel10k
 
   # fzy
   zplugin ice wait"1" lucid as"program" make"!PREFIX=$ZPFX install" \

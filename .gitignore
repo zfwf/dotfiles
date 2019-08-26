@@ -2,11 +2,11 @@ tags
 # all dot files and dot dirs
 .* 
 
-# dirs that we don't want in bare repo
-vizexplorer/
+# dirs we don't want in bare repo
 Desktop/
 Documents/
 Downloads/
+Videos/
 cxdb/
 opt/
 snap/
