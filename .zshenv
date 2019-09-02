@@ -7,6 +7,7 @@ if [[ ! -d $ZPLGM[HOME_DIR] ]]; then
   git clone https://github.com/zdharma/zplugin.git $ZPLGM[BIN_DIR]
   source "$ZPLGM[BIN_DIR]/zplugin.zsh"
   zplugin self-update
+  zplugin module build  # zplugin module for auto compile sourced scripts
 else
   source "$ZPLGM[BIN_DIR]/zplugin.zsh"
 fi
@@ -71,10 +72,30 @@ _create_and_link_desktop_file() {
   # theme
   zplugin ice atinit'_config_powerline'; zplugin light romkatv/powerlevel10k
 
-  # nnn
-  zplugin ice wait"1" lucid as"program" make"PREFIX=$ZPFX strip install" \
-    pick"$ZPFX/bin/nnn"
-  zplugin light jarun/nnn
+  # spack
+  zplugin ice as'program' pick'bin/spack' \
+    atclone'./bin/spack install zlib coreutils automake autoconf openssl \
+            libyaml readline libxslt libtool unixodbc \
+            unzip curl libevent' \
+    atload'source share/spack/setup-env.sh'
+  zplugin light spack/spack
+
+  # asdf
+  zplugin ice lucid wait \
+    atclone'source $PWD/asdf.sh;
+      asdf plugin-add nodejs; \
+      asdf plugin-add python; \
+      asdf plugin-add rust; \
+      asdf plugin-add java; \
+      asdf plugin-add gradle; \
+      cd; asdf install; \
+      ' \
+    as"completion" src'$PWD/completions/asdf.bash' \
+    atload'export NODEJS_CHECK_SIGNATURES=no; \
+      source $PWD/asdf.sh; \
+      export JAVA_HOME=$(asdf where java); '
+  zplugin light asdf-vm/asdf
+
 
   # ff dev edition
   # zplugin as'program' pick"firefox"
@@ -92,10 +113,15 @@ _create_and_link_desktop_file() {
   zplugin ice from"gh-r" as"program" bpick"*appimage*" mv"browserX* -> station" pick"station"
   zplugin light getstation/desktop-app-releases
 
-  # neovim
-  zplugin ice from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" pick"nvim"
+  # neovim + vim-plug
+  zplugin ice from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" pick"nvim" \
+    atclone'pip install neovim'
   zplugin light neovim/neovim
 
+  zplugin ice lucid \
+    atclone'mkdir -p ~/.local/share/nvim/site/autoload; \
+    ln -s "$PWD/plug.vim" ~/.local/share/nvim/site/autoload/plug.vim'
+  zplugin light junegunn/vim-plug
 
   # fzy
   zplugin ice wait"1" lucid as"program" make"!PREFIX=$ZPFX install" \
@@ -118,30 +144,12 @@ _create_and_link_desktop_file() {
   zplugin ice from"gh-r" as"program" mv"docker* -> docker-compose"
   zplugin light docker/compose
 
-  # pyenv + pyenv-viftualenv
-  zplugin ice atclone"git clone https://github.com/pyenv/pyenv-virtualenv.git ./plugins/pyenv-virtualenv; \
-    ./libexec/pyenv init - > zpyenv.zsh; ./libexec/pyenv virtualenv-init - > zpyenv-virtualenv.zsh;  \
-    pyenv install 3.7.4; pyenv global 3.7.4; pip install pynvim" \
-    atinit'export PYENV_ROOT="$PWD"' atpull"%atclone" \
-    as'command' pick'bin/pyenv' multisrc'{zpyenv,zpyenv-virtualenv}.zsh'
-  zplugin light pyenv/pyenv
-
   # poetry
   zplugin ice as"completion" atclone"python ./get-poetry.py; \
     $HOME/.poetry/bin/poetry completions zsh > _poetry" \
     atpull"%atclone" atload'PATH="$HOME/.poetry/bin:$PATH"'
   zplugin light sdispater/poetry
 
-  # fnm
-  zplugin ice from"gh-r" as"program" mv"fnm*/fnm -> ./fnm" \
-    atclone"./fnm env --multi > zfnm.zsh" atpull"%atclone" src'zfnm.zsh'
-  zplugin light Schniz/fnm
-
-  # cargo (via rustup)
-  zplugin ice atclone"./rustup-init.sh; rustup completions zsh > _rustup" atpull"%atclone" \
-    as"completion" src'_rustup' \
-    atload'PATH="$HOME/.cargo/bin:$PATH"; export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"'
-  zplugin light rust-lang/rustup.rs
 
   # autosuggestions
   zplugin ice wait silent atload'export ZSH_AUTOSUGGEST_USE_ASYNC=true; _zsh_autosuggest_start'
@@ -197,10 +205,4 @@ if [ -d "$HOME/Android/Sdk" ]; then
     export ANDROID_NDK_HOME=$NDK_ROOT
   fi
   PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
-fi
-
-# java
-if command -v java &> /dev/null; then
-  export JAVA_HOME=${$(readlink -f `command -v java`)%/*/*}
-  export JRE_HOME=$JAVA_HOME
 fi

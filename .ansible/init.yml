@@ -8,18 +8,18 @@
       dconf:
         key: /org/gnome/settings-daemon/plugins/color/night-light-temperature
         value: uint32 5500
-    - name: Install libuv
+    - name: Install git
       become: yes
       package:
-        name: libuv
+        name: git
+        state: present
+    - name: Install zsh
+      become: yes
+      package:
+        name: git
         state: present
     - name: Install xsel
       become: yes
       package:
         name: xsel
-        state: present
-    - name: Install libevent-devel
-      become: yes
-      package:
-        name: libevent-devel
         state: present
