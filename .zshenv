@@ -89,7 +89,8 @@ _create_and_link_desktop_file() {
       asdf plugin-add rust; \
       asdf plugin-add java; \
       asdf plugin-add gradle; \
-      cd $HOME; asdf install; \
+      export NODEJS_CHECK_SIGNATURES=no; \
+      cd $HOME; asdf install; asdf reshim; \
       ' \
     as"completion" src'completions/asdf.bash' \
     atload'export NODEJS_CHECK_SIGNATURES=no; \
