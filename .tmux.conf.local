@@ -314,6 +314,7 @@ set -g @tpm_plugins '          \
   tmux-plugins/tmux-sensible   \
   tmux-plugins/tmux-resurrect  \
   tmux-plugins/tmux-continuum  \
+  jbnicolai/tmux-fpp           \
 '
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)

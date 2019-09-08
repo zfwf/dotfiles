@@ -75,24 +75,25 @@ _create_and_link_desktop_file() {
   # spack
   zplugin ice as'program' pick'bin/spack' \
     atclone'./bin/spack install zlib coreutils automake autoconf openssl \
-            libyaml readline libxslt libtool unixodbc \
-            unzip curl libevent' \
+            libyaml readline libxslt libtool unixodbc unzip curl libevent \
+            tig jq mosh axel \
+           ' \
     atload'source share/spack/setup-env.sh'
   zplugin light spack/spack
 
   # asdf
   zplugin ice lucid wait \
-    atclone'source $PWD/asdf.sh;
+    atclone'source asdf.sh;
       asdf plugin-add nodejs; \
       asdf plugin-add python; \
       asdf plugin-add rust; \
       asdf plugin-add java; \
       asdf plugin-add gradle; \
-      cd; asdf install; \
+      cd $HOME; asdf install; \
       ' \
-    as"completion" src'$PWD/completions/asdf.bash' \
+    as"completion" src'completions/asdf.bash' \
     atload'export NODEJS_CHECK_SIGNATURES=no; \
-      source $PWD/asdf.sh; \
+      source asdf.sh; \
       export JAVA_HOME=$(asdf where java); '
   zplugin light asdf-vm/asdf
 
@@ -117,6 +118,9 @@ _create_and_link_desktop_file() {
   zplugin ice from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" pick"nvim" \
     atclone'pip install neovim'
   zplugin light neovim/neovim
+
+  zplugin ice as'program' pick'./fpp'
+  zplugin light facebook/PathPicker
 
   zplugin ice lucid \
     atclone'mkdir -p ~/.local/share/nvim/site/autoload; \

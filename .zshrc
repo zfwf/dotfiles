@@ -72,11 +72,7 @@ alias vi="$VISUAL"
 
 
 # alias
-alias avd-16="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_16"
-alias avd-21="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_21"
-alias avd-23="cd $HOME/Android/Sdk/tools; emulator -avd Nexus_4_API_23"
-alias meta="npx meta"
-alias top="npx gtop"
+alias top="glances"
 
 case `uname` in
   Darwin) # commands for OS X go here
@@ -89,5 +85,7 @@ case `uname` in
     alias idea=intellij-idea-ultimate # from snap
     ;;
 esac
-alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+
+# dotfiles bare repo
+alias cfg="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
