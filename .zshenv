@@ -148,12 +148,6 @@ _create_and_link_desktop_file() {
   zplugin ice from"gh-r" as"program" mv"docker* -> docker-compose"
   zplugin light docker/compose
 
-  # poetry
-  zplugin ice as"completion" atclone"python ./get-poetry.py; \
-    $HOME/.poetry/bin/poetry completions zsh > _poetry" \
-    atpull"%atclone" atload'PATH="$HOME/.poetry/bin:$PATH"'
-  zplugin light sdispater/poetry
-
 
   # autosuggestions
   zplugin ice wait silent atload'export ZSH_AUTOSUGGEST_USE_ASYNC=true; _zsh_autosuggest_start'
