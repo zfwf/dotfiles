@@ -74,16 +74,16 @@ _create_and_link_desktop_file() {
 
   # spack
   zplugin ice as'program' pick'bin/spack' \
-    atclone'./bin/spack install zlib coreutils automake autoconf openssl \
+    atclone'./bin/spack install zlib automake autoconf openssl \
             libyaml readline libxslt libtool unixodbc unzip curl libevent \
             tig jq mosh axel \
            ' \
-    atload'source share/spack/setup-env.sh'
+    atload'source $PWD/share/spack/setup-env.sh;'
   zplugin light spack/spack
 
   # asdf
   zplugin ice lucid wait \
-    atclone'source asdf.sh;
+    atclone'source $PWD/asdf.sh;
       asdf plugin-add nodejs; \
       asdf plugin-add python; \
       asdf plugin-add rust; \
@@ -94,14 +94,14 @@ _create_and_link_desktop_file() {
       ' \
     as"completion" src'completions/asdf.bash' \
     atload'export NODEJS_CHECK_SIGNATURES=no; \
-      source asdf.sh; \
+      source $PWD/asdf.sh; \
       export JAVA_HOME=$(asdf where java); '
   zplugin light asdf-vm/asdf
 
 
   # ff dev edition
-  # zplugin as'program' pick"firefox"
-  # zplugin snippet https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US
+  # zplugin as'program' pick'firefox'
+  # zplugin snippet https://download-installer.cdn.mozilla.net/pub/devedition/releases/70.0b4/linux-x86_64/en-US/firefox-70.0b4.tar.bz2
 
   # gitkraken
   zplugin ice atclone'mkdir gitkraken-amd64; \
