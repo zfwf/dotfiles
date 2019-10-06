@@ -61,7 +61,7 @@ _config_powerline() {
 
 _create_and_link_desktop_file() {
   echo "[Desktop Entry]\nName=$1\nExec=$2 %U\nIcon=$3\nType=Application\nStartupNotify=true" > $1.desktop
-  ln -s "$(readlink -f $1.desktop)" ~/.local/share/applications/$1.desktop
+  ln -sf "$(readlink -f $1.desktop)" ~/.local/share/applications/$1.desktop
 }
 
 
@@ -100,20 +100,18 @@ _create_and_link_desktop_file() {
 
 
   # ff dev edition
-  # zplugin as'program' pick'firefox'
-  # zplugin snippet https://download-installer.cdn.mozilla.net/pub/devedition/releases/70.0b4/linux-x86_64/en-US/firefox-70.0b4.tar.bz2
+  zplugin ice atclone'mkdir ff; \
+    tar -C ff -xjf firefox*.tar.bz2; \
+    ln -s ./ff/firefox/firefox; \
+    _create_and_link_desktop_file firefox "$(readlink -f firefox)" firefox' \
+   as'program' pick'./firefox'
+  zplugin snippet https://download-installer.cdn.mozilla.net/pub/devedition/releases/70.0b4/linux-x86_64/en-US/firefox-70.0b4.tar.bz2
 
-  # gitkraken
-  zplugin ice atclone'mkdir gitkraken-amd64; \
-    tar -C gitkraken-amd64 -xzf gitkraken*.tar.gz; \
-    ln -s gitkraken-amd64/gitkraken/gitkraken; \
-    _create_and_link_desktop_file GitKraken "$(readlink -f gitkraken)" gitkraken' \
-    as'program' pick"gitkraken"
-  zplugin snippet https://release.gitkraken.com/linux/gitkraken-amd64.tar.gz
-
-  # station
-  zplugin ice from"gh-r" as"program" bpick"*appimage*" mv"browserX* -> station" pick"station"
-  zplugin light getstation/desktop-app-releases
+  # gitahead
+  zplugin ice from"gh-r" as"program" bpick"*sh"  \
+    atclone'./GitAhead*.sh; ln -s $PWD/GitAhead/GitAhead $PWD/gitahead;' \
+    pick'./gitahead'
+  zplugin light gitahead/gitahead
 
   # neovim + vim-plug
   zplugin ice from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" pick"nvim" \
