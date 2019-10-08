@@ -68,6 +68,8 @@ _create_and_link_desktop_file() {
 
 # Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
 
+  # shim tool https://github.com/zplugin/z-a-bin-gem-node
+  # zplugin light zplugin/z-a-bin-gem-node
 
   # theme
   zplugin ice atinit'_config_powerline'; zplugin light romkatv/powerlevel10k
@@ -100,12 +102,14 @@ _create_and_link_desktop_file() {
 
 
   # ff dev edition
-  zplugin ice atclone'mkdir ff; \
-    tar -C ff -xjf firefox*.tar.bz2; \
-    ln -s ./ff/firefox/firefox; \
-    _create_and_link_desktop_file firefox "$(readlink -f firefox)" firefox' \
-   as'program' pick'./firefox'
+  zplugin ice as'program' pick'firefox/firefox' atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "$(readlink -f firefox/firefox)" firefox;' atpull'%atclone'
   zplugin snippet https://download-installer.cdn.mozilla.net/pub/devedition/releases/70.0b4/linux-x86_64/en-US/firefox-70.0b4.tar.bz2
+  # zplugin ice atclone'mkdir ff; \
+  #   tar -C ff -xjf firefox*.tar.bz2; \
+  #   ln -s ./ff/firefox/firefox; \
+  #   _create_and_link_desktop_file firefox "$(readlink -f firefox)" firefox' \
+  #  as'program' pick'./firefox'
+  # zplugin snippet https://download-installer.cdn.mozilla.net/pub/devedition/releases/70.0b4/linux-x86_64/en-US/firefox-70.0b4.tar.bz2
 
   # gitahead
   zplugin ice from"gh-r" as"program" bpick"*sh"  \
