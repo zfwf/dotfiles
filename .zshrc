@@ -91,7 +91,6 @@ esac
 UNSHIMMED_GIT=$(which git)
 git() {
   if [[ "$PWD" == "$HOME" ]]; then
-    echo "in home"
     "$UNSHIMMED_GIT" --git-dir="$HOME"/.cfg/ --work-tree="$HOME" "$@"
   else
     "$UNSHIMMED_GIT" "$@"
