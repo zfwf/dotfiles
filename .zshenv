@@ -3,16 +3,15 @@ local -A ZPLGM
 ZPLGM[HOME_DIR]=~/.zplugin
 ZPLGM[BIN_DIR]=$ZPLGM[HOME_DIR]/bin
 if [[ ! -d $ZPLGM[HOME_DIR] ]]; then
-  mkdir -p ZPLGM[HOME_DIR]
+  mkdir -p $ZPLGM[HOME_DIR]
   git clone https://github.com/zdharma/zplugin.git $ZPLGM[BIN_DIR]
-  source "$ZPLGM[BIN_DIR]/zplugin.zsh"
-  zplugin self-update
-  zplugin module build  # zplugin module for auto compile sourced scripts
+  . "$ZPLGM[BIN_DIR]/zplugin.zsh"
+  zplugin module build
 else
-  source "$ZPLGM[BIN_DIR]/zplugin.zsh"
+  . "$ZPLGM[BIN_DIR]/zplugin.zsh"
 fi
 ZPLGM[MUTE_WARNINGS]=1
-module_path+=("$HOME/.zplugin/bin/zmodules/Src")
+module_path+=$ZPLGM[BIN_DIR]/zmodules/Src
 zmodload zdharma/zplugin
 
 # theme specific
@@ -58,140 +57,146 @@ _config_powerline() {
   POWERLEVEL9K_STATUS_VERBOSE=false
 }
 
-
 _create_and_link_desktop_file() {
   echo "[Desktop Entry]\nName=$1\nExec=$2 %U\nIcon=$3\nType=Application\nStartupNotify=true" > $1.desktop
   ln -sf "$(readlink -f $1.desktop)" ~/.local/share/applications/$1.desktop
 }
 
-
-
 # Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
 
-  # shim tool https://github.com/zplugin/z-a-bin-gem-node
-  # zplugin light zplugin/z-a-bin-gem-node
+# shim tool https://github.com/zplugin/z-a-bin-gem-node
+zplugin light zplugin/z-a-bin-gem-node
 
-  # theme
-  zplugin ice atinit'_config_powerline'; zplugin light romkatv/powerlevel10k
+# theme
+zplugin ice atinit'_config_powerline'; zplugin light romkatv/powerlevel10k
 
-  # spack
-  zplugin ice as'program' pick'bin/spack' \
-    atclone'./bin/spack install zlib automake autoconf openssl \
-            libyaml readline libxslt libtool unixodbc unzip curl libevent \
-            tig jq mosh axel \
-           ' \
-    atload'source $PWD/share/spack/setup-env.sh;'
-  zplugin light spack/spack
+# if [ $(expr $ZPLGM[INIT_STAGE] + 0) -ge 0 ]; then
+#   # spack
+#   zplugin ice wait lucid as'program' pick'bin/spack' \
+#     atclone'./bin/spack bootstrap; \
+#             ./bin/spack install lmod coreutils automake autoconf openssl \
+#             libyaml readline libxslt libtool unixodbc unzip curl libevent jq \
+#             tig mosh axel; \
+#             _inc_and_save_init_stage; \ # move to next stage
+#            ' \
+#     atpull'%atclone' \
+#     atload'. $PWD/share/spack/setup-env.sh'
+#   zplugin light spack/spack
 
-  # asdf
-  zplugin ice lucid wait \
-    atclone'source $PWD/asdf.sh;
-      asdf plugin-add nodejs; \
-      asdf plugin-add python; \
-      asdf plugin-add rust; \
-      asdf plugin-add java; \
-      asdf plugin-add gradle; \
-      export NODEJS_CHECK_SIGNATURES=no; \
-      cd $HOME; asdf install; asdf reshim; \
-      ' \
-    as"completion" src'completions/asdf.bash' \
-    atload'export NODEJS_CHECK_SIGNATURES=no; \
-      source $PWD/asdf.sh; \
-      export JAVA_HOME=$(asdf where java); '
-  zplugin light asdf-vm/asdf
+# fi
 
-
-  # ff dev edition
-  zplugin ice as'program' pick'firefox/firefox' atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "$(readlink -f firefox/firefox)" firefox;' atpull'%atclone'
-  zplugin snippet https://download-installer.cdn.mozilla.net/pub/devedition/releases/70.0b4/linux-x86_64/en-US/firefox-70.0b4.tar.bz2
-  # zplugin ice atclone'mkdir ff; \
-  #   tar -C ff -xjf firefox*.tar.bz2; \
-  #   ln -s ./ff/firefox/firefox; \
-  #   _create_and_link_desktop_file firefox "$(readlink -f firefox)" firefox' \
-  #  as'program' pick'./firefox'
-  # zplugin snippet https://download-installer.cdn.mozilla.net/pub/devedition/releases/70.0b4/linux-x86_64/en-US/firefox-70.0b4.tar.bz2
-
-  # gitahead
-  zplugin ice from"gh-r" as"program" bpick"*sh"  \
-    atclone'./GitAhead*.sh; ln -s $PWD/GitAhead/GitAhead $PWD/gitahead;' \
-    pick'./gitahead'
-  zplugin light gitahead/gitahead
-
-  # neovim + vim-plug
-  zplugin ice from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" pick"nvim" \
-    atclone'pip install neovim'
-  zplugin light neovim/neovim
-
-  zplugin ice as'program' pick'./fpp'
-  zplugin light facebook/PathPicker
-
-  zplugin ice lucid \
-    atclone'mkdir -p ~/.local/share/nvim/site/autoload; \
-    ln -s "$PWD/plug.vim" ~/.local/share/nvim/site/autoload/plug.vim'
-  zplugin light junegunn/vim-plug
-
-  # fzy
-  zplugin ice wait"1" lucid as"program" make"!PREFIX=$ZPFX install" \
-    atclone"cp contrib/fzy-* $ZPFX/bin/" \
-    pick"$ZPFX/bin/fzy*"
-  zplugin light jhawthorn/fzy
-
-  # tmux + oh-my-tmux (gh-254 branch) + tmux plugin manager
-  zplugin ice lucid as"program" atclone"sh autogen.sh; ./configure --prefix=$ZPFX" \
-    make"install" pick"$ZPFX/bin/tmux"
-  zplugin light tmux/tmux
-
-  zplugin ice lucid id-as"gpakosz/tmux" ver"gh-254" cp".tmux.conf -> $HOME/" nocompile
-  zplugin light gpakosz/.tmux
-
-  zplugin ice lucid nocompile
-  zplugin light tmux-plugins/tpm
-
-  # docker-compose
-  zplugin ice from"gh-r" as"program" mv"docker* -> docker-compose"
-  zplugin light docker/compose
+# asdf
+zplugin ice wait lucid ver'58eaad8ebdf506092faaf74ce31f328600f17811' as"completion" src'completions/asdf.bash' \
+  atclone'. $PWD/asdf.sh; \
+    asdf plugin-add nodejs; \
+    asdf plugin-add python; \
+    asdf plugin-add rust; \
+    asdf plugin-add java; \
+    asdf plugin-add gradle; \
+    export NODEJS_CHECK_SIGNATURES=no; \
+    cd $HOME; asdf install; asdf reshim; \
+    ' \
+  atpull'%atclone' \
+  atload'. $PWD/asdf.sh; \
+    export NODEJS_CHECK_SIGNATURES=no; \
+    export JAVA_HOME=$(asdf where java);'
+zplugin light asdf-vm/asdf
 
 
-  # autosuggestions
-  zplugin ice wait silent atload'export ZSH_AUTOSUGGEST_USE_ASYNC=true; _zsh_autosuggest_start'
-  zplugin light zsh-users/zsh-autosuggestions
+# ff dev edition
+zplugin ice as'program' pick'firefox/firefox' \
+  atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "$(readlink -f firefox/firefox)" firefox;' \
+  atpull'%atclone'
+zplugin snippet https://download-installer.cdn.mozilla.net/pub/devedition/releases/70.0b4/linux-x86_64/en-US/firefox-70.0b4.tar.bz2
 
-  # git diff
-  zplugin ice as"program" pick"bin/git-dsf"
-  zplugin light zdharma/zsh-diff-so-fancy
+# gitahead
+zplugin ice wait lucid from"gh-r" as"program" bpick"*sh"  pick'./GitAhead/GitAhead' \
+  atclone'./GitAhead*.sh --include-subdir;' \
+  atpull'%atclone'
+zplugin light gitahead/gitahead
 
-  # OMZ lib
-  zplugin ice wait lucid
-  zplugin snippet OMZ::lib/git.zsh
+# neovim + vim-plug
+zplugin ice wait lucid from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" pick"nvim"
+zplugin light neovim/neovim
 
-  zplugin ice lucid atinit'ZSH_CACHE_DIR="$HOME/.zcompcache"'
-  zplugin snippet OMZ::lib/history.zsh
+zplugin ice wait lucid \
+  atclone'mkdir -p ~/.local/share/nvim/site/autoload; \
+  ln -sf "$PWD/plug.vim" ~/.local/share/nvim/site/autoload/plug.vim' \
+  atpull'%atclone'
+zplugin light junegunn/vim-plug
 
-  zplugin ice wait"1" lucid # `ls` colors
-  zplugin snippet OMZ::lib/theme-and-appearance.zsh
+# fpp
+zplugin ice as'program' pick'./fpp'
+zplugin light facebook/PathPicker
 
-  zplugin ice wait lucid
-  zplugin snippet OMZ::lib/completion.zsh
+# fzy
+zplugin ice wait"1" lucid as"program" make"!PREFIX=$ZPFX install" pick"$ZPFX/bin/fzy*" \
+  atclone"cp contrib/fzy-* $ZPFX/bin/" \
+  atpull'%atclone'
+zplugin light jhawthorn/fzy
 
-  # OMZ plugin
-  zplugin ice wait lucid atload"unalias grv g"
-  zplugin snippet OMZ::plugins/git/git.plugin.zsh
+# tmux + oh-my-tmux (gh-254 branch) + tmux plugin manager
+zplugin ice lucid as"program" make"install" pick"$ZPFX/bin/tmux" \
+  atclone"sh autogen.sh; ./configure --prefix=$ZPFX" \
+  atpull'%atclone'
+zplugin light tmux/tmux
 
-  zplugin ice wait lucid as"completion"
-  zplugin snippet OMZ::plugins/docker/_docker
+zplugin ice lucid id-as"gpakosz/tmux" ver"gh-254" cp".tmux.conf -> $HOME/" nocompile
+zplugin light gpakosz/.tmux
 
-  zplugin ice wait lucid as"completion"
-  zplugin snippet OMZ::plugins/docker-compose/_docker-compose
+zplugin ice lucid nocompile
+zplugin light tmux-plugins/tpm
 
-  zplugin ice wait lucid
-  zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+# docker-compose
+zplugin ice from"gh-r" as"program" mv"docker* -> docker-compose"
+zplugin light docker/compose
 
-  # more completions
-  zplugin ice wait blockf lucid
-  zplugin light zsh-users/zsh-completions
+# font
+zplugin ice from'gh-r' bpick'FiraCode.zip' \
+  atclone'mkdir -p ~/.local/share/fonts; ln -sf $PWD ~/.local/share/fonts/FiraCode;' \
+  atpull'%atclone'
+zplugin light ryanoasis/nerd-fonts
 
-  zplugin ice wait lucid
-  zplugin light zdharma/fast-syntax-highlighting
+# autosuggestions
+zplugin ice wait silent atload'export ZSH_AUTOSUGGEST_USE_ASYNC=true; _zsh_autosuggest_start'
+zplugin light zsh-users/zsh-autosuggestions
+
+# git diff
+zplugin ice as"program" pick"bin/git-dsf"
+zplugin light zdharma/zsh-diff-so-fancy
+
+# OMZ lib
+zplugin ice wait lucid
+zplugin snippet OMZ::lib/git.zsh
+
+zplugin ice lucid atinit'ZSH_CACHE_DIR="$HOME/.zcompcache"'
+zplugin snippet OMZ::lib/history.zsh
+
+zplugin ice wait"1" lucid # `ls` colors
+zplugin snippet OMZ::lib/theme-and-appearance.zsh
+
+zplugin ice wait lucid
+zplugin snippet OMZ::lib/completion.zsh
+
+# OMZ plugin
+zplugin ice wait lucid atload"unalias grv g"
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+
+zplugin ice wait lucid as"completion"
+zplugin snippet OMZ::plugins/docker/_docker
+
+zplugin ice wait lucid as"completion"
+zplugin snippet OMZ::plugins/docker-compose/_docker-compose
+
+zplugin ice wait lucid
+zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+
+# more completions
+zplugin ice wait blockf lucid
+zplugin light zsh-users/zsh-completions
+
+zplugin ice wait lucid
+zplugin light zdharma/fast-syntax-highlighting
 
 autoload -Uz compinit
 compinit
