@@ -109,6 +109,9 @@ zplugin ice lucid ver'58eaad8ebdf506092faaf74ce31f328600f17811' as"completion" s
     export JAVA_HOME=$(asdf where java);'
 zplugin light asdf-vm/asdf
 
+# vscode
+zplugin ice wait lucid from"gh-r" as"program" bpick"*tar.gz" mv'codium -> code' sbin'code' pick'/dev/null'
+zplugin light VSCodium/vscodium
 
 # ff dev edition
 zplugin ice as'program' pick'firefox/firefox' \
