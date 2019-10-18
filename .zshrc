@@ -87,7 +87,6 @@ case `uname` in
 esac
 
 # dotfiles bare repo
-# alias cfg="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 UNSHIMMED_GIT=$(which git)
 git() {
   if [[ "$PWD" == "$HOME" ]]; then
