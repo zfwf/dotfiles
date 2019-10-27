@@ -19,6 +19,6 @@ zplugin ice lucid ver'58eaad8ebdf506092faaf74ce31f328600f17811' as"completion" s
   atpull'%atclone' \
   atload'. $PWD/asdf.sh; \
     export NODEJS_CHECK_SIGNATURES=no; \
-    export JAVA_HOME=$(asdf where java);'
+    . ~/.asdf/plugins/java/set-java-home.sh;'
 zplugin light asdf-vm/asdf
 
