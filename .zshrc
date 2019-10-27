@@ -1,7 +1,5 @@
 # command for interactive shell (load order: .zshenv, .zshrc, .zsh)
 
-# Returns whether the given command is executable or aliased.
-
 export TERM='xterm-256color' # attempt enable at least 256 color
 
 # set some history options
@@ -73,26 +71,14 @@ alias vi="$VISUAL"
 
 # alias
 alias top="glances"
-
-case `uname` in
-  Darwin) # commands for OS X go here
-    # alias
-    alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
-    ;;
-  Linux) # commands for Linux go here
-    # alias
-    alias trash=gvfs-trash
-    alias idea=intellij-idea-ultimate # from snap
-    ;;
-esac
+alias trash=gvfs-trash
 
 # dotfiles bare repo
-UNSHIMMED_GIT=$(which git)
 git() {
   if [[ "$PWD" == "$HOME" ]]; then
-    "$UNSHIMMED_GIT" --git-dir="$HOME"/.cfg/ --work-tree="$HOME" "$@"
+    command git --git-dir="$HOME"/.cfg/ --work-tree="$HOME" "$@"
   else
-    "$UNSHIMMED_GIT" "$@"
+    command git "$@"
   fi
 }
 

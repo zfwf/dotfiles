@@ -3,7 +3,7 @@
 	email = chhschou@gmail.com
 
 [core]
-  excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore_global
   editor = nvim
   pager = diff-so-fancy | less -FXRi
 

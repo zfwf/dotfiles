@@ -1,13 +1,2 @@
-tags
-# all dot files and dot dirs
-.* 
-
-# dirs we don't want in bare repo
-Desktop/
-Documents/
-Downloads/
-Pictures/
-Videos/
-cxdb/
-opt/
-snap/
+# ignores anything not explicitly tracked
+/*
