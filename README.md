@@ -15,13 +15,9 @@ sudo swupd bundle-add x11-tools
 
 ```
 
-### Mac (mac branch)
+### MacOS (see [mac branch](https://github.com/chhschou/dotfiles/tree/master))
 
-`TODO`
-
-### Fedora (fedora branch)
-
-`TODO`
+### Fedora (see [fedora branch](https://github.com/chhschou/dotfiles/tree/fedora))
 
 
 ## Install
