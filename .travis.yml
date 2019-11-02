@@ -40,7 +40,11 @@ before_script:
 
 
 script:
-    - docker exec -it clear-test bash -c "git --help"
+    - docker exec -it clear-test bash -c "git clone https://github.com/spack/spack.git"
+    - docker exec -it clear-test bash -c "./spack/bin/spack bootstrap"
+    - docker exec -it clear-test bash -c "./spack/bin/spack install automake autoconf openssl"
+    - docker exec -it clear-test bash -c "git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.4; echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc"
+    - docker exec -it clear-test bash -c "asdf plugin-add python; asdf install python 3.7.4; asdf global python 3.7.4; python -v"
 
 after_script:
     - docker container stop clear-test
