@@ -1,0 +1,46 @@
+sudo: required
+
+env:
+    - DOCKER_USER=travis
+
+services:
+    - docker
+
+# This is just here for Travis CI to report correctly
+language: go
+go:
+    - "1.12" # quote this
+
+# Not need as we are not running GO in this image, but the Docker image
+# go_import_path: github.com/clearlinux/clr-installer
+
+before_install:
+    - docker pull clearlinux/clr-installer-ci
+    - docker run --network=host --name clear-test -v $(pwd):/travis -v /dev:/dev  -v /var/tmp/test:/tmp -v /sys/fs/cgroup:/sys/fs/cgroup:ro -e container=docker --privileged --tmpfs /run --tmpfs /run/lock -dit --rm clearlinux/clr-installer-ci:latest /sbin/init
+    - docker ps
+    - docker exec -it clear-test bash -c "swupd clean" # TODO: Remove this when swupd is fixed; needed as of swupd 3.20.0
+
+# Do NOT use -l (login) for the bash shell or the default profile
+# (/usr/share/defaults/etc/profile) will reset PATH removing the
+# GOPATH/bin added to the clr-installer-ci Docker image.
+
+# Just use the latest Docker image build for now
+#install:
+#      - docker exec -it clear-test bash -c "swupd update"
+
+before_script:
+      # create a non-root user mapping the travis user (using same uid)
+    - docker exec -it clear-test bash -c "useradd -u $(id --u) $DOCKER_USER"
+      # Show the current swupd configuration
+    - docker exec -it clear-test bash -c "swupd info"
+      # Debug information
+    - docker exec -it clear-test bash -c "set;printenv"
+      # Debug information to verify restart
+    - docker exec -it clear-test bash -c "journalctl|cat"
+
+
+script:
+    - docker exec -it clear-test bash -c "git --help"
+
+after_script:
+    - docker container stop clear-test
