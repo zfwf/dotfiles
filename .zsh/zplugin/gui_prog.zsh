@@ -8,9 +8,9 @@ zplugin ice wait lucid from"gh-r" as"program" bpick"*tar.gz" mv'codium -> code' 
 zplugin light VSCodium/vscodium
 
 # ff dev edition
-zplugin ice id-as"firefox" as'program' pick'firefox/firefox' \
-  mv'firefox -> firefox.tar.bz2' \
-  atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "$(readlink -f firefox/firefox)" firefox;' \
+zplugin ice id-as"ff-dev" as'program' pick'firefox/firefox' \
+  mv'ff-dev -> firefox.tar.bz2' \
+  atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "$(readlink -f firefox/firefox)" firefox; rm *.tar.bz2;' \
   atpull'%atclone'
 zplugin snippet "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US"
 

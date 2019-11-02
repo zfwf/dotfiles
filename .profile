@@ -6,5 +6,5 @@ if [ -f  ~/.zplugin/plugins/asdf-vm---asdf/asdf.sh ]; then
 fi
 
 # other paths
-. ~/.zsh/paths.sh
+[ -f  ~/.zsh/paths.sh] && . ~/.zsh/paths.sh
 
