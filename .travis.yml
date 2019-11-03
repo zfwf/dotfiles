@@ -1,3 +1,7 @@
+os:
+  - linux
+  - osx
+
 sudo: required
 
 env:
@@ -6,19 +10,11 @@ env:
 services:
     - docker
 
-# This is just here for Travis CI to report correctly
-language: go
-go:
-    - "1.12" # quote this
-
-# Not need as we are not running GO in this image, but the Docker image
-# go_import_path: github.com/clearlinux/clr-installer
-
 before_install:
-    - docker pull clearlinux/clr-installer-ci
-    - docker run --network=host --name clear-test -v $(pwd):/travis -v /dev:/dev  -v /var/tmp/test:/tmp -v /sys/fs/cgroup:/sys/fs/cgroup:ro -e container=docker --privileged --tmpfs /run --tmpfs /run/lock -dit --rm clearlinux/clr-installer-ci:latest /sbin/init
-    - docker ps
-    - docker exec -it clear-test bash -c "swupd clean" # TODO: Remove this when swupd is fixed; needed as of swupd 3.20.0
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker pull clearlinux/clr-installer-ci; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker run --network=host --name clear-test -v $(pwd):/travis -v /dev:/dev  -v /var/tmp/test:/tmp -v /sys/fs/cgroup:/sys/fs/cgroup:ro -e container=docker --privileged --tmpfs /run --tmpfs /run/lock -dit --rm clearlinux/clr-installer-ci:latest /sbin/init; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker ps; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "swupd clean"; fi # TODO: Remove this when swupd is fixed; needed as of swupd 3.20.0
 
 # Do NOT use -l (login) for the bash shell or the default profile
 # (/usr/share/defaults/etc/profile) will reset PATH removing the
@@ -30,22 +26,22 @@ before_install:
 
 before_script:
       # create a non-root user mapping the travis user (using same uid)
-    - docker exec -it clear-test bash -c "useradd -u $(id --u) $DOCKER_USER"
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "useradd -u $(id --u) $DOCKER_USER"; fi
       # Show the current swupd configuration
-    - docker exec -it clear-test bash -c "swupd info"
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "swupd info"; fi
       # Debug information
-    - docker exec -it clear-test bash -c "set;printenv"
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "set;printenv"; fi
       # Debug information to verify restart
-    - docker exec -it clear-test bash -c "journalctl|cat"
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "journalctl|cat"; fi
 
 
 script:
-    - docker exec -it clear-test bash -c "git clone https://github.com/spack/spack.git"
-    - docker exec -it clear-test bash -c "./spack/bin/spack bootstrap"
-    - docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; ./spack/bin/spack env create -d ."
-    - docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; ./spack/bin/spack env activate -d ."
-    - docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; ./spack/bin/spack install automake autoconf openssl zsh; zsh --version"
-    - docker exec -it clear-test bash -c "cd /travis; cp -t $HOME .zshenv; zsh -i -c -- '-zplg-scheduler burst || true'"
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "git clone https://github.com/spack/spack.git"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "./spack/bin/spack bootstrap"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env create -d ."; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env activate -d ."; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack install automake autoconf openssl zsh; spack env loads -r; . /loads; zsh --version"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c ". /loads; cd /travis; cp -t $HOME .zshenv .tool-versions; zsh -i -c -- '-zplg-scheduler burst || true'"; fi
 
 after_script:
-    - docker container stop clear-test
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker container stop clear-test; fi
