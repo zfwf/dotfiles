@@ -11,10 +11,10 @@ services:
     - docker
 
 before_install:
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker pull clearlinux/clr-installer-ci; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker run --network=host --name clear-test -v $(pwd):/travis -v /dev:/dev  -v /var/tmp/test:/tmp -v /sys/fs/cgroup:/sys/fs/cgroup:ro -e container=docker --privileged --tmpfs /run --tmpfs /run/lock -dit --rm clearlinux/clr-installer-ci:latest /sbin/init; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker ps; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "swupd clean"; fi # TODO: Remove this when swupd is fixed; needed as of swupd 3.20.0
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker pull clearlinux/clr-installer-ci; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker run --network=host --name clear-test -v $(pwd):/travis -v /dev:/dev  -v /var/tmp/test:/tmp -v /sys/fs/cgroup:/sys/fs/cgroup:ro -e container=docker --privileged --tmpfs /run --tmpfs /run/lock -dit --rm clearlinux/clr-installer-ci:latest /sbin/init; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker ps; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "swupd clean"; fi # TODO: Remove this when swupd is fixed; needed as of swupd 3.20.0
 
 # Do NOT use -l (login) for the bash shell or the default profile
 # (/usr/share/defaults/etc/profile) will reset PATH removing the
@@ -26,22 +26,22 @@ before_install:
 
 before_script:
       # create a non-root user mapping the travis user (using same uid)
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "useradd -u $(id --u) $DOCKER_USER"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "useradd -u $(id --u) $DOCKER_USER"; fi
       # Show the current swupd configuration
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "swupd info"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "swupd info"; fi
       # Debug information
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "set;printenv"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "set;printenv"; fi
       # Debug information to verify restart
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "journalctl|cat"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "journalctl|cat"; fi
 
 
 script:
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "git clone https://github.com/spack/spack.git"; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c "./spack/bin/spack bootstrap"; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env create -d ."; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env activate -d ."; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack install automake autoconf openssl zsh; spack env loads -r; . /loads; zsh --version"; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker exec -it clear-test bash -c ". /loads; cd /travis; cp -t $HOME .zshenv .tool-versions; zsh -i -c -- '-zplg-scheduler burst || true'"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "git clone https://github.com/spack/spack.git"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "./spack/bin/spack bootstrap"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env create -d ."; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env activate -d ."; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack install automake autoconf openssl zsh; spack env loads -r; . /loads; zsh --version"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh;. /loads; cd /travis; cp -t $HOME .zshenv .tool-versions; zsh -i -c -- '-zplg-scheduler burst || true'"; fi
 
 after_script:
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; docker container stop clear-test; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker container stop clear-test; fi
