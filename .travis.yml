@@ -44,9 +44,8 @@ script:
     - docker exec -it clear-test bash -c "./spack/bin/spack bootstrap"
     - docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; ./spack/bin/spack env create -d ."
     - docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; ./spack/bin/spack env activate -d ."
-    - docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; ./spack/bin/spack install automake autoconf openssl"
-    - docker exec -it clear-test bash -c "git clone https://github.com/asdf-vm/asdf.git ./.asdf --branch v0.7.4;"
-    - docker exec -it clear-test bash -c ". /.asdf/asdf.sh; asdf plugin-add python; asdf install python 3.7.4; asdf global python 3.7.4; python --version"
+    - docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; ./spack/bin/spack install automake autoconf openssl zsh; zsh --version"
+    - docker exec -it clear-test bash -c "cd /travis; cp -t $HOME .zshenv; zsh -i -c -- '-zplg-scheduler burst || true'"
 
 after_script:
     - docker container stop clear-test
