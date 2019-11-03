@@ -41,7 +41,7 @@ script:
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env create -d ."; fi
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env activate -d ."; fi
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack install automake autoconf openssl zsh; spack env loads -r;. /spack/share/spack/setup-env.sh;. /loads; zsh --version"; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh;. /loads; cd /travis/chhschou/dotfiles; cp -t $HOME .zshenv .tool-versions; zsh -i -c -- '-zplg-scheduler burst || true'"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh;. /loads; cd /travis; ls -la; cd /chhschou/dotfiles; cp -t $HOME .zshenv .tool-versions; zsh -i -c -- '-zplg-scheduler burst || true'"; fi
 
 after_script:
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker container stop clear-test; fi
