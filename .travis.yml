@@ -38,6 +38,7 @@ before_script:
 
 script:
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "git clone https://github.com/spack/spack.git"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "./spack/bin/spack compiler find"; fi
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "./spack/bin/spack bootstrap"; fi
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env create -d ."; fi
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env activate -d ."; fi
