@@ -1,8 +1,8 @@
 # zplugin
 local -A ZPLGM
-ZPLGM[HOME_DIR]=~/.zplugin
+ZPLGM[HOME_DIR]=$HOME/.zplugin
 ZPLGM[BIN_DIR]=$ZPLGM[HOME_DIR]/bin
-ZPLGM[PLUGIN_SCRIPT_DIR]=~/.zsh/zplugin
+ZPLGM[PLUGIN_SCRIPT_DIR]=$HOME/.zsh/zplugin
 if [[ ! -d $ZPLGM[HOME_DIR] ]]; then
   mkdir -p $ZPLGM[HOME_DIR]
   git clone https://github.com/zdharma/zplugin.git $ZPLGM[BIN_DIR]
@@ -32,7 +32,7 @@ zplugin light zplugin/z-a-bin-gem-node
 
 # font
 zplugin ice from'gh-r' bpick'FiraCode.zip' \
-  atclone'mkdir -p ~/.local/share/fonts; ln -sf $PWD ~/.local/share/fonts/FiraCode;' \
+  atclone'mkdir -p $HOME/.local/share/fonts; ln -sf $PWD $HOME/.local/share/fonts/FiraCode;' \
   atpull'%atclone'
 zplugin light ryanoasis/nerd-fonts
 
@@ -52,4 +52,4 @@ compinit
 zplugin cdreplay -q
 
 # other paths
-[ -f ~/.zsh/paths.sh ] && . ~/.zsh/paths.sh
+[ -f $HOME/.zsh/paths.sh ] && . $HOME/.zsh/paths.sh
