@@ -5,6 +5,7 @@ ZPLGM[BIN_DIR]="$ZPLGM[HOME_DIR]/bin"
 ZPLGM[ZSCRIPT_DIR]="$HOME/.zsh"
 ZPLGM[PLUGIN_SCRIPT_DIR]="$ZPLGM[ZSCRIPT_DIR]/zplugin"
 echo "script dir $ZPLGM[PLUGIN_SCRIPT_DIR]"
+ls -la "$ZPLGM[PLUGIN_SCRIPT_DIR]"
 if [[ ! -d "$ZPLGM[HOME_DIR]" ]]; then
   mkdir -p "$ZPLGM[HOME_DIR]"
   git clone https://github.com/zdharma/zplugin.git $ZPLGM[BIN_DIR]
