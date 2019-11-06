@@ -1,6 +1,8 @@
 _create_and_link_desktop_file() {
+  local app_dir=$HOME/.local/share/applications
   echo "[Desktop Entry]\nName=$1\nExec=$2 %U\nIcon=$3\nType=Application\nStartupNotify=true" > $1.desktop
-  ln -sf "$(readlink -f $1.desktop)" ~/.local/share/applications/$1.desktop
+  mkdir -p $app_dir
+  ln -sf "$(readlink -f $1.desktop)" $app_dir/$1.desktop
 }
 
 # vscode

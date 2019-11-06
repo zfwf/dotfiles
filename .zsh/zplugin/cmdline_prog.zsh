@@ -3,8 +3,8 @@ zplugin ice wait lucid from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim
 zplugin light neovim/neovim
 
 zplugin ice wait lucid \
-  atclone'mkdir -p ~/.local/share/nvim/site/autoload; \
-  ln -sf "$PWD/plug.vim" ~/.local/share/nvim/site/autoload/plug.vim' \
+  atclone'mkdir -p $HOME/.local/share/nvim/site/autoload; \
+  ln -sf "$PWD/plug.vim" $HOME/.local/share/nvim/site/autoload/plug.vim' \
   atpull'%atclone'
 zplugin light junegunn/vim-plug
 

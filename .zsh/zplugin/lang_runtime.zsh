@@ -1,6 +1,7 @@
 # asdf (no wait, need to load immediately for integration)
 zplugin ice lucid ver'58eaad8ebdf506092faaf74ce31f328600f17811' as"completion" src'completions/asdf.bash' \
-  atclone'. $PWD/asdf.sh; \
+  atclone'echo "pwd $PWD" \
+    . $PWD/asdf.sh; \
     asdf plugin-add nodejs; \
     asdf plugin-add python; \
     asdf plugin-add rust; \
@@ -19,6 +20,6 @@ zplugin ice lucid ver'58eaad8ebdf506092faaf74ce31f328600f17811' as"completion" s
   atpull'%atclone' \
   atload'. $PWD/asdf.sh; \
     export NODEJS_CHECK_SIGNATURES=no; \
-    . ~/.asdf/plugins/java/set-java-home.sh;'
+    . $HOME/.asdf/plugins/java/set-java-home.sh;'
 zplugin light asdf-vm/asdf
 
