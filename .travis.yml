@@ -33,19 +33,17 @@ before_script:
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "set;printenv"; fi
       # Debug information to verify restart
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "journalctl|cat"; fi
-    # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "swupd bundle-add git python3-basic c-basic file"; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "swupd bundle-add git python3-basic c-basic file zsh"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "swupd bundle-add git python3-basic c-basic file"; fi
 
 
 script:
-    # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "git clone https://github.com/spack/spack.git"; fi
-    # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "./spack/bin/spack compiler find"; fi
-    # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "./spack/bin/spack bootstrap"; fi
-    # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env create -d ."; fi
-    # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env activate -d ."; fi
-    # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack install unzip zsh; spack env loads -r;. /spack/share/spack/setup-env.sh;. /loads; zsh --version"; fi
-    # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh;. /loads; cp -R /travis/. $HOME/;ls -la $HOME; ZDOTDIR=$HOME zsh -i -c -- '-zplg-scheduler burst || true'"; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "cp -r /travis/. /; ls -la //.zsh; ls -la //.zsh/zplugin; ZDOTDIR=/ zsh -i -c -- '-zplg-scheduler burst || true'"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "git clone https://github.com/spack/spack.git"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "./spack/bin/spack compiler find"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "./spack/bin/spack bootstrap"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env create -d ."; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env activate -d ."; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack install unzip zsh; spack env loads -r;. /spack/share/spack/setup-env.sh;. /loads; zsh --version"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; . /loads; cp -r /travis/. /; ZDOTDIR=/ zsh -i -c -- '-zplg-scheduler burst || true'"; fi
 
 after_script:
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker container stop clear-test; fi
