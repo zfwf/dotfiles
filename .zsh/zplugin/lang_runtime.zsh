@@ -1,7 +1,6 @@
 # asdf (no wait, need to load immediately for integration)
 zplugin ice lucid ver'58eaad8ebdf506092faaf74ce31f328600f17811' as"completion" src'completions/asdf.bash' \
-  atclone'echo "pwd $PWD" \
-    . $PWD/asdf.sh; \
+  atclone'echo ". $PWD/asdf.sh; \
     asdf plugin-add nodejs; \
     asdf plugin-add python; \
     asdf plugin-add rust; \
