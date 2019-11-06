@@ -1,0 +1,2316 @@
+{
+ "_meta": {
+  "file-type": "spack-lockfile",
+  "lockfile-version": 2
+ },
+ "roots": [
+  {
+   "hash": "vz75zam3wrvwi2k53a4nzvpaf7betvpa",
+   "spec": "zsh"
+  },
+  {
+   "hash": "x5cn5ctupiq6kuxuftj5fvfqj5bbwigt",
+   "spec": "unzip"
+  },
+  {
+   "hash": "hkpkymr3dfh5j26ngyfjhmulnjf7zamh",
+   "spec": "tmux"
+  },
+  {
+   "hash": "ltdiptz3kwqv4lzosheakzhdraqnwyl5",
+   "spec": "jq"
+  },
+  {
+   "hash": "k73tk7xz3h4cfq64ukmk7vug3fu36vhp",
+   "spec": "tig"
+  },
+  {
+   "hash": "a7j7rb4pgn26fehywstc7kd4qkd543hx",
+   "spec": "mosh"
+  },
+  {
+   "hash": "ywk6dub66zqr5j6ct7ffj2uue5yq2zos",
+   "spec": "axel"
+  }
+ ],
+ "concrete_specs": {
+  "vz75zam3wrvwi2k53a4nzvpaf7betvpa": {
+   "zsh": {
+    "version": "5.4.2",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "skip-tcsetpgrp-test": true,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "ncurses": {
+      "hash": "w2wbvhkwqohwdbzdioyqynmti7g4nhc7",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "pcre": {
+      "hash": "4z2slctu55d7woisi7ruz5ethvgkunqd",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "ryme2lltuks3tbklhcxfohpzwfdvzdz4"
+   }
+  },
+  "w2wbvhkwqohwdbzdioyqynmti7g4nhc7": {
+   "ncurses": {
+    "version": "6.1",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "symlinks": false,
+     "termlib": false,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "pkgconf": {
+      "hash": "yh7iyco7olzfehvd6nfbsz37f5isabxy",
+      "type": [
+       "build"
+      ]
+     }
+    },
+    "hash": "jn3tzyqqizrp54qmcalslxq2j3vxewbr"
+   }
+  },
+  "yh7iyco7olzfehvd6nfbsz37f5isabxy": {
+   "pkgconf": {
+    "version": "1.6.3",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "hash": "yh7iyco7olzfehvd6nfbsz37f5isabxy"
+   }
+  },
+  "4z2slctu55d7woisi7ruz5ethvgkunqd": {
+   "pcre": {
+    "version": "8.42",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "jit": false,
+     "multibyte": true,
+     "utf": true,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "hash": "4z2slctu55d7woisi7ruz5ethvgkunqd"
+   }
+  },
+  "x5cn5ctupiq6kuxuftj5fvfqj5bbwigt": {
+   "unzip": {
+    "version": "6.0",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "hash": "x5cn5ctupiq6kuxuftj5fvfqj5bbwigt"
+   }
+  },
+  "hkpkymr3dfh5j26ngyfjhmulnjf7zamh": {
+   "tmux": {
+    "version": "2.8",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "libevent": {
+      "hash": "uqiwh6i6qzjxko3jrymzkmr35lffp67j",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "ncurses": {
+      "hash": "w2wbvhkwqohwdbzdioyqynmti7g4nhc7",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "2w2cx3p6dbjesxkcajzmd76nnmbziyxr"
+   }
+  },
+  "uqiwh6i6qzjxko3jrymzkmr35lffp67j": {
+   "libevent": {
+    "version": "2.1.8",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "openssl": true,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "openssl": {
+      "hash": "mch2mnzlqjbj32q6w2cpporu4bhtdqoo",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "s46tyi6yirklbmwh4viqnqw7s4c3ci7d"
+   }
+  },
+  "mch2mnzlqjbj32q6w2cpporu4bhtdqoo": {
+   "openssl": {
+    "version": "1.1.1d",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "systemcerts": true,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "perl": {
+      "hash": "fgvvyqzaogxtbujhzhwskq5hcsb7xkuo",
+      "type": [
+       "build",
+       "test"
+      ]
+     },
+     "zlib": {
+      "hash": "wars4hl2e4snv6xcewq3tytgqax37sbi",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "dxms5gsdjsh2xg7lkcrl7z56oh7dvf73"
+   }
+  },
+  "fgvvyqzaogxtbujhzhwskq5hcsb7xkuo": {
+   "perl": {
+    "version": "5.30.0",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cpanm": true,
+     "shared": true,
+     "threads": true,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "gdbm": {
+      "hash": "b4acd4armffpmt6s4jamagzzeyyhersr",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "ykgf7si3lyohh7wuvsp2e6tesf2xkc3m"
+   }
+  },
+  "b4acd4armffpmt6s4jamagzzeyyhersr": {
+   "gdbm": {
+    "version": "1.18.1",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "readline": {
+      "hash": "gph4v6d6wnrhi7rjrbuftnfkehj5hefx",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "gftnzuqybmimtvshhop7hfx7o3eci4hz"
+   }
+  },
+  "gph4v6d6wnrhi7rjrbuftnfkehj5hefx": {
+   "readline": {
+    "version": "8.0",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "ncurses": {
+      "hash": "w2wbvhkwqohwdbzdioyqynmti7g4nhc7",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "kxnrbsqxyeh23bbftmr5xitf6lbvmujm"
+   }
+  },
+  "wars4hl2e4snv6xcewq3tytgqax37sbi": {
+   "zlib": {
+    "version": "1.2.11",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "optimize": true,
+     "pic": true,
+     "shared": true,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "hash": "wars4hl2e4snv6xcewq3tytgqax37sbi"
+   }
+  },
+  "ltdiptz3kwqv4lzosheakzhdraqnwyl5": {
+   "jq": {
+    "version": "1.5",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "bison": {
+      "hash": "xc2ft6ydzrpiu4rpqmm6oukjihp3vpu3",
+      "type": [
+       "build"
+      ]
+     },
+     "oniguruma": {
+      "hash": "h4luduxxxids6qcqfukxw5r4gqdmzer7",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "yinm3bqo2bmiqmpzrur5wlqo2hixpk54"
+   }
+  },
+  "xc2ft6ydzrpiu4rpqmm6oukjihp3vpu3": {
+   "bison": {
+    "version": "3.4.2",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "patches": [
+      "89aa362716d898edd0b5c6ae4208dc1b6992887774848a09e8021afd676f7d61"
+     ],
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "patches": [
+     "89aa362716d898edd0b5c6ae4208dc1b6992887774848a09e8021afd676f7d61"
+    ],
+    "dependencies": {
+     "diffutils": {
+      "hash": "drkcliyvn22uiujbcro4l7l77ytuzj2m",
+      "type": [
+       "build"
+      ]
+     },
+     "help2man": {
+      "hash": "s5ii4bmkqzx5o63cyfevbfsfckqnv3pc",
+      "type": [
+       "build"
+      ]
+     },
+     "m4": {
+      "hash": "agscigp3y2zhu4aalbijxbeet6upjxov",
+      "type": [
+       "build",
+       "run"
+      ]
+     },
+     "perl": {
+      "hash": "fgvvyqzaogxtbujhzhwskq5hcsb7xkuo",
+      "type": [
+       "build"
+      ]
+     }
+    },
+    "hash": "a5wm3vjsb3s6kkqfeal6vdrc3k2vjgoz"
+   }
+  },
+  "drkcliyvn22uiujbcro4l7l77ytuzj2m": {
+   "diffutils": {
+    "version": "3.7",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "libiconv": {
+      "hash": "66qpfydjymxdp3moj2p5or4reawq6buk",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "drkcliyvn22uiujbcro4l7l77ytuzj2m"
+   }
+  },
+  "66qpfydjymxdp3moj2p5or4reawq6buk": {
+   "libiconv": {
+    "version": "1.16",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "hash": "66qpfydjymxdp3moj2p5or4reawq6buk"
+   }
+  },
+  "s5ii4bmkqzx5o63cyfevbfsfckqnv3pc": {
+   "help2man": {
+    "version": "1.47.11",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "gettext": {
+      "hash": "7pkenrbr5ekc7d5nb2yth2betoujkt5u",
+      "type": [
+       "build"
+      ]
+     },
+     "perl": {
+      "hash": "fgvvyqzaogxtbujhzhwskq5hcsb7xkuo",
+      "type": [
+       "build",
+       "run"
+      ]
+     }
+    },
+    "hash": "dujlhbw5dpsczn22gtxctj53tvjyketp"
+   }
+  },
+  "7pkenrbr5ekc7d5nb2yth2betoujkt5u": {
+   "gettext": {
+    "version": "0.20.1",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "bzip2": true,
+     "curses": true,
+     "git": true,
+     "libunistring": false,
+     "libxml2": true,
+     "tar": true,
+     "xz": true,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "bzip2": {
+      "hash": "jap444mvtqpi3676a6pabhxgycvdyeqj",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "libxml2": {
+      "hash": "vedz37pat2gufyxhn5atahmteatlik25",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "ncurses": {
+      "hash": "w2wbvhkwqohwdbzdioyqynmti7g4nhc7",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "tar": {
+      "hash": "uxo3bpagdhbqi5vwkyj3ojj34qqt7u6z",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "xz": {
+      "hash": "lgkmrwwjbbhg34sf45oi7xqlpvfasmiy",
+      "type": [
+       "build",
+       "link",
+       "run"
+      ]
+     }
+    },
+    "hash": "56qqacbb5365hkzy6idqiybcryo2muu3"
+   }
+  },
+  "jap444mvtqpi3676a6pabhxgycvdyeqj": {
+   "bzip2": {
+    "version": "1.0.8",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "shared": true,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "diffutils": {
+      "hash": "drkcliyvn22uiujbcro4l7l77ytuzj2m",
+      "type": [
+       "build"
+      ]
+     }
+    },
+    "hash": "hzjdbtvu2zozi4skwktnxfn6gqvnb2ar"
+   }
+  },
+  "vedz37pat2gufyxhn5atahmteatlik25": {
+   "libxml2": {
+    "version": "2.9.9",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "python": false,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "libiconv": {
+      "hash": "66qpfydjymxdp3moj2p5or4reawq6buk",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "pkgconf": {
+      "hash": "yh7iyco7olzfehvd6nfbsz37f5isabxy",
+      "type": [
+       "build"
+      ]
+     },
+     "xz": {
+      "hash": "lgkmrwwjbbhg34sf45oi7xqlpvfasmiy",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "zlib": {
+      "hash": "wars4hl2e4snv6xcewq3tytgqax37sbi",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "eybxigadui5mxsdai7sxtwhck7czrjnc"
+   }
+  },
+  "lgkmrwwjbbhg34sf45oi7xqlpvfasmiy": {
+   "xz": {
+    "version": "5.2.4",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "hash": "lgkmrwwjbbhg34sf45oi7xqlpvfasmiy"
+   }
+  },
+  "uxo3bpagdhbqi5vwkyj3ojj34qqt7u6z": {
+   "tar": {
+    "version": "1.32",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "libiconv": {
+      "hash": "66qpfydjymxdp3moj2p5or4reawq6buk",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "uxo3bpagdhbqi5vwkyj3ojj34qqt7u6z"
+   }
+  },
+  "agscigp3y2zhu4aalbijxbeet6upjxov": {
+   "m4": {
+    "version": "1.4.18",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "patches": [
+      "3877ab548f88597ab2327a2230ee048d2d07ace1062efe81fc92e91b7f39cd00",
+      "fc9b61654a3ba1a8d6cd78ce087e7c96366c290bc8d2c299f09828d793b853c8"
+     ],
+     "sigsegv": true,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "patches": [
+     "3877ab548f88597ab2327a2230ee048d2d07ace1062efe81fc92e91b7f39cd00",
+     "fc9b61654a3ba1a8d6cd78ce087e7c96366c290bc8d2c299f09828d793b853c8"
+    ],
+    "dependencies": {
+     "libsigsegv": {
+      "hash": "jm5aadojjelwojtj4sl6peyooo3p4agw",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "agscigp3y2zhu4aalbijxbeet6upjxov"
+   }
+  },
+  "jm5aadojjelwojtj4sl6peyooo3p4agw": {
+   "libsigsegv": {
+    "version": "2.12",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "hash": "jm5aadojjelwojtj4sl6peyooo3p4agw"
+   }
+  },
+  "h4luduxxxids6qcqfukxw5r4gqdmzer7": {
+   "oniguruma": {
+    "version": "6.1.3",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "hash": "h4luduxxxids6qcqfukxw5r4gqdmzer7"
+   }
+  },
+  "k73tk7xz3h4cfq64ukmk7vug3fu36vhp": {
+   "tig": {
+    "version": "2.2.2",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "ncurses": {
+      "hash": "w2wbvhkwqohwdbzdioyqynmti7g4nhc7",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "j6yh3m4aujayq2y6yr4z5js3m3h2nld4"
+   }
+  },
+  "a7j7rb4pgn26fehywstc7kd4qkd543hx": {
+   "mosh": {
+    "version": "1.3.2",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "ncurses": {
+      "hash": "w2wbvhkwqohwdbzdioyqynmti7g4nhc7",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "openssl": {
+      "hash": "mch2mnzlqjbj32q6w2cpporu4bhtdqoo",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "perl": {
+      "hash": "fgvvyqzaogxtbujhzhwskq5hcsb7xkuo",
+      "type": [
+       "run"
+      ]
+     },
+     "pkgconf": {
+      "hash": "yh7iyco7olzfehvd6nfbsz37f5isabxy",
+      "type": [
+       "build"
+      ]
+     },
+     "protobuf": {
+      "hash": "udnqwlqrxrohhdpxpdrngd4pqybg4eix",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "zlib": {
+      "hash": "wars4hl2e4snv6xcewq3tytgqax37sbi",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "htpmrtzkt5fact4qogzsuehmmwfpf2ic"
+   }
+  },
+  "udnqwlqrxrohhdpxpdrngd4pqybg4eix": {
+   "protobuf": {
+    "version": "3.10.1",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "build_type": "RelWithDebInfo",
+     "shared": true,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "cmake": {
+      "hash": "qfndxjjonqxbtaojoui3rbwmzmssfgoy",
+      "type": [
+       "build"
+      ]
+     },
+     "zlib": {
+      "hash": "wars4hl2e4snv6xcewq3tytgqax37sbi",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "3tpt7tnx6mq2euladiguxjy6ora3kzof"
+   }
+  },
+  "qfndxjjonqxbtaojoui3rbwmzmssfgoy": {
+   "cmake": {
+    "version": "3.15.4",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "doc": false,
+     "ncurses": true,
+     "openssl": true,
+     "ownlibs": true,
+     "qt": false,
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "ncurses": {
+      "hash": "w2wbvhkwqohwdbzdioyqynmti7g4nhc7",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "openssl": {
+      "hash": "mch2mnzlqjbj32q6w2cpporu4bhtdqoo",
+      "type": [
+       "build",
+       "link"
+      ]
+     }
+    },
+    "hash": "d3z5cs5nkrud5swxomeqhgem6jqrwobm"
+   }
+  },
+  "ywk6dub66zqr5j6ct7ffj2uue5yq2zos": {
+   "axel": {
+    "version": "2.16.1",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "autoconf": {
+      "hash": "c3yifq5zny25ekc53gk76g67fujzwhwn",
+      "type": [
+       "build"
+      ]
+     },
+     "automake": {
+      "hash": "kgilbazrfoandns7vjofh7mzj2cnpzlc",
+      "type": [
+       "build"
+      ]
+     },
+     "gettext": {
+      "hash": "7pkenrbr5ekc7d5nb2yth2betoujkt5u",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "libtool": {
+      "hash": "daam6i3mvmgsght2okafyvmqif4vidge",
+      "type": [
+       "build"
+      ]
+     },
+     "m4": {
+      "hash": "agscigp3y2zhu4aalbijxbeet6upjxov",
+      "type": [
+       "build"
+      ]
+     },
+     "openssl": {
+      "hash": "mch2mnzlqjbj32q6w2cpporu4bhtdqoo",
+      "type": [
+       "build",
+       "link"
+      ]
+     },
+     "pkgconf": {
+      "hash": "yh7iyco7olzfehvd6nfbsz37f5isabxy",
+      "type": [
+       "build"
+      ]
+     }
+    },
+    "hash": "bidfyytda7vkr2i3w3hwtp774sy4fjor"
+   }
+  },
+  "c3yifq5zny25ekc53gk76g67fujzwhwn": {
+   "autoconf": {
+    "version": "2.69",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "m4": {
+      "hash": "agscigp3y2zhu4aalbijxbeet6upjxov",
+      "type": [
+       "build",
+       "run"
+      ]
+     },
+     "perl": {
+      "hash": "fgvvyqzaogxtbujhzhwskq5hcsb7xkuo",
+      "type": [
+       "build",
+       "run"
+      ]
+     }
+    },
+    "hash": "byvxfnsoz6h2njwiejwnhoc2waktkq4m"
+   }
+  },
+  "kgilbazrfoandns7vjofh7mzj2cnpzlc": {
+   "automake": {
+    "version": "1.16.1",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "autoconf": {
+      "hash": "c3yifq5zny25ekc53gk76g67fujzwhwn",
+      "type": [
+       "build"
+      ]
+     },
+     "perl": {
+      "hash": "fgvvyqzaogxtbujhzhwskq5hcsb7xkuo",
+      "type": [
+       "build",
+       "run"
+      ]
+     }
+    },
+    "hash": "zjryjagixaqj5ty2f5ng5lb3bhf65t7a"
+   }
+  },
+  "daam6i3mvmgsght2okafyvmqif4vidge": {
+   "libtool": {
+    "version": "2.4.6",
+    "arch": {
+     "platform": "linux",
+     "platform_os": "clear_linux_os31470",
+     "target": {
+      "name": "skylake",
+      "vendor": "GenuineIntel",
+      "features": [
+       "adx",
+       "aes",
+       "avx",
+       "avx2",
+       "bmi1",
+       "bmi2",
+       "clflushopt",
+       "f16c",
+       "fma",
+       "mmx",
+       "movbe",
+       "pclmulqdq",
+       "popcnt",
+       "rdrand",
+       "rdseed",
+       "sse",
+       "sse2",
+       "sse4_1",
+       "sse4_2",
+       "ssse3",
+       "xsavec",
+       "xsaveopt"
+      ],
+      "generation": 0,
+      "parents": [
+       "broadwell"
+      ]
+     }
+    },
+    "compiler": {
+     "name": "gcc",
+     "version": "9.2.1"
+    },
+    "namespace": "builtin",
+    "parameters": {
+     "cflags": [],
+     "cppflags": [],
+     "cxxflags": [],
+     "fflags": [],
+     "ldflags": [],
+     "ldlibs": []
+    },
+    "dependencies": {
+     "m4": {
+      "hash": "agscigp3y2zhu4aalbijxbeet6upjxov",
+      "type": [
+       "build"
+      ]
+     }
+    },
+    "hash": "77ztl7lmyn3gsxevglq3zbswjh6kl5wq"
+   }
+  }
+ }
+}
