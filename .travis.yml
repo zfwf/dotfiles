@@ -45,7 +45,7 @@ script:
     # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack env activate -d ."; fi
     # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh; spack install unzip zsh; spack env loads -r;. /spack/share/spack/setup-env.sh;. /loads; zsh --version"; fi
     # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c ". /spack/share/spack/setup-env.sh;. /loads; cp -R /travis/. $HOME/;ls -la $HOME; ZDOTDIR=$HOME zsh -i -c -- '-zplg-scheduler burst || true'"; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "ls -la /travis/.zsh/zplugin; cp -r /travis/. $HOME;ls -la $HOME; ZDOTDIR=$HOME zsh -i -c -- '-zplg-scheduler burst || true'"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "ls -la /travis/.zsh/zplugin; cp -r /travis/. $HOME;ls -la $HOME; ls -la $HOME/.zsh; ls -la $HOME/.zsh/zplugin; ZDOTDIR=$HOME zsh -i -c -- '-zplg-scheduler burst || true'"; fi
 
 after_script:
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker container stop clear-test; fi
