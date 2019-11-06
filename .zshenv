@@ -1,3 +1,6 @@
+# pre-init script
+[ -f  $HOME/.pre-init.sh ] && . $HOME/.pre-init.sh
+
 # zplugin
 local -A ZPLGM
 ZPLGM[HOME_DIR]=$HOME/.zplugin
