@@ -5,20 +5,13 @@
 spack:
   # add package specs to the `specs` list
   specs:
-    - unzip
-    - zsh
-    - tmux
-    - jq
-    - tig
-    - mosh
-    - axel
+  - lmod
+  - unzip
+  - zsh
+  - tmux
+  - jq
+  - tig
+  - mosh
+  - axel
   view: true
-  config: {}
-  mirrors: {}
-  modules:
-    enable: []
-  packages: {}
-  repos: []
-  upstreams: {}
-  definitions: []
   concretization: separately

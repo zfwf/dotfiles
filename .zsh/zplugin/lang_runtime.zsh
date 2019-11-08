@@ -1,6 +1,7 @@
 # asdf (no wait, need to load immediately for integration)
-zplugin ice lucid ver'58eaad8ebdf506092faaf74ce31f328600f17811' as"completion" src'completions/asdf.bash' \
-  atclone'echo ". $PWD/asdf.sh; \
+# zplugin ice lucid ver'58eaad8ebdf506092faaf74ce31f328600f17811' depth'1' \
+zplugin ice lucid depth'1' \
+  atclone'. $PWD/asdf.sh; \
     asdf plugin-add nodejs; \
     asdf plugin-add python; \
     asdf plugin-add rust; \
@@ -17,8 +18,10 @@ zplugin ice lucid ver'58eaad8ebdf506092faaf74ce31f328600f17811' as"completion" s
     asdf global sbt $(asdf list sbt); \
     ' \
   atpull'%atclone' \
+  src'completions/asdf.bash' \
   atload'. $PWD/asdf.sh; \
     export NODEJS_CHECK_SIGNATURES=no; \
     . $HOME/.asdf/plugins/java/set-java-home.sh;'
-zplugin light asdf-vm/asdf
+# zplugin light asdf-vm/asdf
+zplugin light chhschou/asdf  # dash in repo name is not working atm
 

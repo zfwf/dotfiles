@@ -19,10 +19,10 @@ zplugin ice wait"1" lucid as"program" make"!PREFIX=$ZPFX install" pick"$ZPFX/bin
 zplugin light jhawthorn/fzy
 
 # tmux + oh-my-tmux (gh-254 branch) + tmux plugin manager
-zplugin ice lucid as"program" make"install" pick"$ZPFX/bin/tmux" \
-  atclone"sh autogen.sh; ./configure --prefix=$ZPFX" \
-  atpull'%atclone'
-zplugin light tmux/tmux
+# zplugin ice lucid as"program" make"install" pick"$ZPFX/bin/tmux" \
+#   atclone"sh autogen.sh; ./configure --prefix=$ZPFX" \
+#   atpull'%atclone'
+# zplugin light tmux/tmux
 
 zplugin ice lucid id-as"gpakosz/tmux" ver"gh-254" cp".tmux.conf -> $HOME/" nocompile
 zplugin light gpakosz/.tmux
