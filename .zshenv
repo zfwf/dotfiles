@@ -11,13 +11,13 @@ if [[ ! -d $ZPLGM[HOME_DIR] ]]; then
   mkdir -p $ZPLGM[HOME_DIR]
   git clone https://github.com/zdharma/zplugin.git $ZPLGM[BIN_DIR]
   . $ZPLGM[BIN_DIR]/zplugin.zsh
-  zplugin module build
+  # zplugin module build
 else
   . $ZPLGM[BIN_DIR]/zplugin.zsh
 fi
 ZPLGM[MUTE_WARNINGS]=1
-module_path+=$ZPLGM[BIN_DIR]/zmodules/Src
-zmodload zdharma/zplugin
+# module_path+=$ZPLGM[BIN_DIR]/zmodules/Src
+# zmodload zdharma/zplugin
 
 
 # Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
