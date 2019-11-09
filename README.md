@@ -28,10 +28,10 @@ git clone --bare https://github.com/chhschou/dotfiles ~/.cfg
 # checkout `master` branch (replace `master` with branch name for other branches)
 git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout master
 
+# set zsh as login shell (optional)
+command -v zsh | sudo tee -a /etc/shells; sudo chsh -s $(command -v zsh) $USER
+
 # start zsh (wait for initialization to complete...)
 zsh
-
-# set zsh as login shell (optional)
-chsh -s $USER $(which zsh)
 
 ```
