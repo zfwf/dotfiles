@@ -3,7 +3,6 @@
 # It describes a set of packages to be installed, along with
 # configuration settings.
 spack:
-  # add package specs to the `specs` list
   specs:
   - lmod
   - unzip
@@ -13,5 +12,13 @@ spack:
   - tig
   - mosh
   - axel
+  - libffi
+  - readline
+  - unixodbc
+  - automake
+  - autoconf
+  - openssl
+  - libyaml
+  - libtool
   view: true
   concretization: separately
