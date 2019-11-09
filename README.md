@@ -3,15 +3,18 @@
 ## Prerequisites
 ### Clear Linux (master branch)
 ``` sh
-# required to build zplugin module
-sudo swupd bundle-add service-os-dev
+# install zsh, devpkg-ncurses required to build zplugin module
+sudo swupd bundle-add zsh devpkg-ncurses
 
-# required by asdf
+# required by asdf-java
 sudo swupd bundle-add jq
+
+# required by asdf-python
+sudo swupd bundle-add devpkg-bzip2 devpkg-openssl devpkg-readline devpkg-sqlite-autoconf devpkg-libffi
+
 
 # clipboard support
 sudo swupd bundle-add x11-tools
-
 
 ```
 
