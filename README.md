@@ -12,6 +12,8 @@ sudo swupd bundle-add jq
 # required by asdf-python
 sudo swupd bundle-add devpkg-bzip2 devpkg-openssl devpkg-readline devpkg-sqlite-autoconf devpkg-libffi
 
+# required for installing rpm packages
+sudo swupd bundle-add package-utils
 
 # clipboard support
 sudo swupd bundle-add x11-tools

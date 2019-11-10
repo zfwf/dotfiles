@@ -33,7 +33,7 @@ before_script:
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "set;printenv"; fi
       # Debug information to verify restart
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "journalctl|cat"; fi
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "swupd bundle-add git python3-basic c-basic file zsh devpkg-ncurses jq devpkg-bzip2 devpkg-openssl devpkg-readline devpkg-sqlite-autoconf devpkg-libffi"; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then docker exec -it clear-test bash -c "swupd bundle-add git python3-basic c-basic file zsh devpkg-ncurses jq devpkg-bzip2 devpkg-openssl devpkg-readline devpkg-sqlite-autoconf devpkg-libffi package-utils"; fi
 
 
 script:
