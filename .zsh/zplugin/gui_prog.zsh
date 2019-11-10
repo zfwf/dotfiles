@@ -22,3 +22,15 @@ zplugin ice wait lucid from"gh-r" as"program" bpick"*sh"  pick'./GitAhead/GitAhe
   atpull'%atclone'
 zplugin light gitahead/gitahead
 
+# google chrome
+zplugin ice id-as"google-chrome" as'program' pick'chrome/chrome' \
+  mv'google-chrome -> google-chrome.rpm' \
+  atclone'rm -rf chrome; mkdir temp; mv -v *.rpm temp/; cd temp; rpm2cpio *.rpm | cpio -idmv; cd -; mv -v temp/opt/google/chrome ./; rm -rf temp/; \
+  mv -v chrome/google-chrome chrome/launcher;
+  # sudo chown root:root chrome/chrome-sandbox; \
+  # sudo chmod 4755 chrome/chrome-sandbox; \
+  chmod 4755 chrome/chrome-sandbox; \
+  _create_and_link_desktop_file "Google Chrome" "env FONTCONFIG_PATH=/usr/share/defaults/fonts $(readlink -f chrome/chrome)" google-chrome;' \
+  atpull'%atclone'
+zplugin snippet "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+
