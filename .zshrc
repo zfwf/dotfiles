@@ -62,16 +62,31 @@ zle -N zle-keymap-select
 # hide legacy docker commands
 export DOCKER_HIDE_LEGACY_COMMANDS=true
 
-# use neovim as editor in general
-# export VISUAL=nvim
+# alias
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 alias vi="$VISUAL"
-
-
-# alias
 alias top="glances"
-alias trash=gvfs-trash
+alias react-devtools='npx react-devtools@^3'
+
+case `uname` in
+  Darwin)
+    alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
+    alias postgre:start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+    alias postgre:stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+    ;;
+  Linux)
+    alias trash=gvfs-trash
+    ;;
+esac
+
+spackpath() {
+  spack find -p $1 | tail -1 | cut -f 7 -d " "
+}
+
+pport() {
+  lsof -t -i tcp:$1
+}
 
 # dotfiles bare repo
 git() {
