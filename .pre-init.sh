@@ -29,3 +29,28 @@
 # # load spack env
 # . $spack_dir/share/spack/setup-env.sh
 # spack env activate -d $spack_env_base_dir 2>/dev/null
+
+if [ ! -f $HOME/.gitconfig ]; then
+  # create symlink to a gitconfig
+  case `uname` in
+    Darwin)
+      # brew path
+      PATH="/usr/local/bin":$PATH
+      # install brew if not found
+      which -s brew
+      if [[ $? != 0 ]] ; then
+        # Install Homebrew
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        brew bundle
+      fi
+      ln -sf $HOME/.gitconfig_mac $HOME/.gitconfig
+      ;;
+    Linux)
+      eval "OS_$(cat /etc/*-release | grep "^ID=")"
+      if [ "$OS_ID" = "clear-linux-os" ]; then
+        ln -sf $HOME/.gitconfig_clr $HOME/.gitconfig
+      fi
+      ;;
+  esac
+
+fi
