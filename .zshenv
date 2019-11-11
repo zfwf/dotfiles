@@ -23,6 +23,7 @@ zplugin light zplugin/z-a-bin-gem-node
 
 #  completions
 [ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/comp.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/comp.zsh
+
 case `uname` in
   Darwin)
     # command line programs

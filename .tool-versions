@@ -1,6 +1,6 @@
 nodejs 10.16.3
 rust 1.37.0
-python 3.8.0
+python 3.7.4 3.8.0
 java azul-zulu-11.0.3
-scala 2.13.0
+scala 2.12.8 2.13.0
 sbt 1.2.8
