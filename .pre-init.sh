@@ -44,11 +44,13 @@ if [ ! -f $HOME/.gitconfig ]; then
         brew bundle
       fi
       ln -sf $HOME/.gitconfig_mac $HOME/.gitconfig
+      ln -sf $HOME/.alacritty_mac.yml $HOME/.alacritty.yml
       ;;
     Linux)
       eval "OS_$(cat /etc/*-release | grep "^ID=")"
       if [ "$OS_ID" = "clear-linux-os" ]; then
         ln -sf $HOME/.gitconfig_clr $HOME/.gitconfig
+        ln -sf $HOME/.alacritty_clr.yml $HOME/.alacritty.yml
       fi
       ;;
   esac
