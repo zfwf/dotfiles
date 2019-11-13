@@ -1,5 +1,4 @@
 # asdf (no wait, need to load immediately for integration)
-# zplugin ice lucid ver'58eaad8ebdf506092faaf74ce31f328600f17811' depth'1' \
 zplugin ice lucid depth'1' \
   atclone'. $PWD/asdf.sh; \
     asdf plugin-add nodejs; \
@@ -22,6 +21,5 @@ zplugin ice lucid depth'1' \
   atload'. $PWD/asdf.sh; \
     export NODEJS_CHECK_SIGNATURES=no; \
     . $HOME/.asdf/plugins/java/set-java-home.sh;'
-# zplugin light asdf-vm/asdf
-zplugin light chhschou/asdf  # dash in repo name is not working atm
+zplugin light asdf-vm/asdf
 
