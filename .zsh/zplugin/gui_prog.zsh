@@ -6,24 +6,25 @@ _create_and_link_desktop_file() {
 }
 
 # vscode
-zplugin ice wait lucid from"gh-r" as"program" bpick"*tar.gz" mv'codium -> code' sbin'code' pick'/dev/null'
+zplugin ice lucid wait from"gh-r" bpick"*tar.gz" mv'codium -> code' as"null" sbin'code'
 zplugin light VSCodium/vscodium
 
 # ff dev edition
-zplugin ice id-as"ff-dev" pick'firefox/firefox' \
+zplugin ice lucid wait id-as"ff-dev"  \
   mv'ff-dev -> firefox.tar.bz2' \
   atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "$(readlink -f firefox/firefox)" firefox; rm *.tar.bz2;' \
+  as'null' sbin'firefox/firefox' \
   atpull'%atclone'
 zplugin snippet "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US"
 
 # gitahead
-zplugin ice wait lucid from"gh-r" as"program" bpick"*sh"  pick'./GitAhead/GitAhead' \
+zplugin ice lucid wait from"gh-r" as"program" bpick"*sh"  pick'./GitAhead/GitAhead' \
   atclone'./GitAhead*.sh --include-subdir;' \
   atpull'%atclone'
 zplugin light gitahead/gitahead
 
 # google chrome
-zplugin ice id-as"google-chrome" as'program' pick'chrome/chrome' \
+zplugin ice lucid wait id-as"google-chrome" as'program' pick'chrome/chrome' \
   mv'google-chrome -> google-chrome.rpm' \
   atclone'rm -rf chrome; mkdir temp; mv -v *.rpm temp/; cd temp; rpm2cpio *.rpm | cpio -idmv; cd -; mv -v temp/opt/google/chrome ./; rm -rf temp/; \
   mv -v chrome/google-chrome chrome/launcher;
