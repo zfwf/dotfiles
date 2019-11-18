@@ -1,0 +1,13 @@
+[user]
+	name = Chris Chou
+	email = chhschou@gmail.com
+
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = nvim
+  pager = diff-so-fancy | less -FXRi
+
+[color]
+	ui = auto
+[credential]
+	helper = ~/.zplugin/plugins/gitahead---gitahead/GitAhead/git-credential-libsecret
