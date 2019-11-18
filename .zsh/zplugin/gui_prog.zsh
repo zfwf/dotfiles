@@ -26,7 +26,7 @@ zplugin light gitahead/gitahead
 # android studio
 zplugin ice lucid wait id-as'android-studio-ide' \
   mv'android-studio-ide -> android-studio-ide.tar.gz' \
-  atclone'tar xzvf *.tar.gz; _create_and_link_desktop_file android-studio "$(readlink -f android-studio/bin/studio.sh)" AndroidStudio "Android Studio"; rm *.tar.gz' \
+  atclone'tar xzvf *.tar.gz; _create_and_link_desktop_file android-studio "$(readlink -f android-studio/bin/studio.sh)" "$(readlink -f android-studio/bin/studio.png)" "Android Studio"; rm *.tar.gz' \
   as'null' sbin'android-studio/bin/studio.sh -> android-studio'
 zplugin snippet 'https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz'
 
