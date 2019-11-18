@@ -24,8 +24,17 @@ zplugin light zplugin/z-a-bin-gem-node
 #  completions
 [ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/comp.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/comp.zsh
 
+# common command line programs
+[ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh
+
 case `uname` in
   Darwin)
+    # font
+    zplugin ice from'gh-r' bpick'FiraCode.zip' \
+      atclone'mkdir -p $HOME/Library/Fonts; ln -sf $PWD $HOME/Library/Fonts/FiraCode;' \
+      atpull'%atclone'
+    zplugin light ryanoasis/nerd-fonts
+
     # command line programs
     [ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog_mac.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog_mac.zsh
 
@@ -41,7 +50,7 @@ case `uname` in
     zplugin light ryanoasis/nerd-fonts
 
     # command line programs
-    [ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh
+    [ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog_manjaro.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog_manjaro.zsh
 
     # gui programs
     [ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/gui_prog.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/gui_prog.zsh

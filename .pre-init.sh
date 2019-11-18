@@ -48,10 +48,18 @@ if [ ! -f $HOME/.gitconfig ]; then
       ;;
     Linux)
       eval "OS_$(cat /etc/*-release | grep "^ID=")"
-      if [ "$OS_ID" = "clear-linux-os" ]; then
-        ln -sf $HOME/.gitconfig_clr $HOME/.gitconfig
-        ln -sf $HOME/.alacritty_clr.yml $HOME/.alacritty.yml
-      fi
+      case "$OS_ID" in 
+        "clear-linux-os")
+          ln -sf $HOME/.gitconfig_clr $HOME/.gitconfig
+          ln -sf $HOME/.alacritty_clr.yml $HOME/.alacritty.yml
+          ;;
+        "manjaro")
+          ln -sf $HOME/.gitconfig_manjaro $HOME/.gitconfig
+          ;;
+      esac
+
+      # show desktop icons
+      gsettings set org.gnome.desktop.background show-desktop-icons true
       ;;
   esac
 
