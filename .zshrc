@@ -88,6 +88,30 @@ pport() {
   lsof -t -i tcp:$1
 }
 
+extract-filename() {
+  echo $(basename -- $1)
+}
+
+extract-filename-wo-ext() {
+  echo ${$(extract-filename $1)%.*}
+}
+
+co() {
+  local cloned_folder=$(extract-filename-wo-ext $2)-$1-$3
+  local branch_name=$1/$3
+  command git clone $2 $cloned_folder
+  cd $cloned_folder; command git checkout -b $branch_name
+  yarn || npm i
+}
+
+cof() {
+  co 'feature' "$@"
+}
+
+cob() {
+  co 'bugfix' "$@"
+}
+
 # dotfiles bare repo
 git() {
   if [[ "$PWD" == "$HOME" ]]; then
