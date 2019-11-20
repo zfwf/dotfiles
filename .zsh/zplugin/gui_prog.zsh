@@ -21,11 +21,11 @@ zplugin light gitahead/gitahead
 
 # azure data studio
 zplugin ice lucid wait'2' id-as'ads' \
-  mv'ads -> ads.zip' \
-  atclone'unzip ads.zip -d .; install_dotapp' \
+  mv'ads -> ads.tar.gz' \
+  atclone'tar xzvf ads.tar.gz;  _create_and_link_desktop_file azuredata-studio "$(readlink -f azuredatastudio-linux-x64/azuredata-studio)" "$(readlink -f azuredatastudio-linux-x64/resources/app/resources/linux/code.png) "Azure Data Studio"; rm *.tar.gz'\' \
   atpull'%atclone' \
-  as'null' sbin'Azure Data Studio.app/Contents/MacOS/Electron -> ads'
-zplugin snippet "https://go.microsoft.com/fwlink/?linkid=2109180"
+  as'null' sbin'azuredatastudio-linux-x64/azuredata-studio -> ads'
+zplugin snippet "https://go.microsoft.com/fwlink/?linkid=2109179"
 
 # android studio
 zplugin ice lucid wait'2' id-as'android-studio-ide' \
