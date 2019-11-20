@@ -1,4 +1,9 @@
 # fpp
+# git diff
+zplugin ice lucid as"program" pick"bin/git-dsf"
+zplugin light zdharma/zsh-diff-so-fancy
+
+# fpp
 zplugin ice lucid wait as'program' pick'./fpp'
 zplugin light facebook/PathPicker
 
@@ -22,7 +27,4 @@ zplugin light gpakosz/.tmux
 zplugin ice lucid wait nocompile
 zplugin light tmux-plugins/tpm
 
-# git diff
-zplugin ice lucid as"program" pick"bin/git-dsf"
-zplugin light zdharma/zsh-diff-so-fancy
 
