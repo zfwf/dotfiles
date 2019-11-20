@@ -6,14 +6,14 @@ _create_and_link_desktop_file() {
 }
 
 # vscode
-zplugin ice lucid wait from"gh-r" bpick"*tar.gz" \
+zplugin ice lucid wait'2' from"gh-r" bpick"*tar.gz" \
   atclone'_create_and_link_desktop_file vscodium "$(readlink -f codium)" "$(readlink -f resources/app/resources/linux/code.png)"  VSCodium; rm *.tar.gz;' \
   atpull'%atclone' \
   as"null" sbin'codium -> code'
 zplugin light VSCodium/vscodium
 
 # gitahead
-zplugin ice lucid wait from"gh-r" bpick"*sh"\
+zplugin ice lucid wait'2' from"gh-r" bpick"*sh"\
   atclone'./GitAhead*.sh --include-subdir;' \
   atpull'%atclone' \
   as"null"  sbin'GitAhead/GitAhead' \
@@ -28,7 +28,7 @@ zplugin ice lucid wait'2' id-as'ads' \
 zplugin snippet "https://go.microsoft.com/fwlink/?linkid=2109180"
 
 # android studio
-zplugin ice lucid wait id-as'android-studio-ide' \
+zplugin ice lucid wait'2' id-as'android-studio-ide' \
   mv'android-studio-ide -> android-studio-ide.tar.gz' \
   atclone'tar xzvf *.tar.gz; _create_and_link_desktop_file android-studio "$(readlink -f android-studio/bin/studio.sh)" "$(readlink -f android-studio/bin/studio.png)" "Android Studio"; rm *.tar.gz' \
   atpull'%atclone' \
@@ -36,7 +36,7 @@ zplugin ice lucid wait id-as'android-studio-ide' \
 zplugin snippet 'https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz'
 
 # ff dev edition
-zplugin ice lucid wait id-as"ff-dev"  \
+zplugin ice lucid wait'2' id-as"ff-dev"  \
   mv'ff-dev -> firefox.tar.bz2' \
   atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "$(readlink -f firefox/firefox)" firefox Firefox; rm *.tar.bz2;' \
   atpull'%atclone' \
