@@ -6,7 +6,9 @@ _create_and_link_desktop_file() {
 }
 
 # vscode
-zplugin ice lucid wait from"gh-r" bpick"*tar.gz" mv'codium -> code' as"null" sbin'code'
+zplugin ice lucid wait from"gh-r" bpick"*tar.gz" mv'codium -> code' as"null" sbin'code' \
+  atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file vscodium "$(readlink -f code)"  VSCodium; rm *.tar.bz2;' \
+  atpull'%atclone'
 zplugin light VSCodium/vscodium
 
 # ff dev edition

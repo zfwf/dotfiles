@@ -1,5 +1,4 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
-let g:python3_host_prog = trim(system("echo $(asdf which python)"))
 
 " leader key
 let mapleader="\<SPACE>"
