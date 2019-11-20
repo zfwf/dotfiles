@@ -76,9 +76,9 @@ zplugin ice lucid wait'2' id-as"subl" \
 zplugin snippet "https://download.sublimetext.com/Sublime%20Text%20Build%203211.dmg"
 
 # azure data studio
-zplugin ice lucid wait'2' id-as'ads' \
-  mv'ads -> ads.zip' \
-  atclone'unzip ads.zip -d .; install_dotapp' \
+zplugin ice lucid wait'2' id-as'azure-data-studio' \
+  mv'azure-data-studio -> azure-data-studio.zip' \
+  atclone'unzip azure-data-studio.zip -d .; install_dotapp' \
   atpull'%atclone' \
   as'null' sbin'Azure Data Studio.app/Contents/MacOS/Electron -> ads'
 zplugin snippet "https://go.microsoft.com/fwlink/?linkid=2109180"

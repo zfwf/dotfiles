@@ -20,11 +20,11 @@ zplugin ice lucid wait'2' from"gh-r" bpick"*sh"\
 zplugin light gitahead/gitahead
 
 # azure data studio
-zplugin ice lucid wait'2' id-as'ads' \
-  mv'ads -> ads.tar.gz' \
-  atclone'tar xzvf ads.tar.gz;  _create_and_link_desktop_file azuredata-studio "$(readlink -f azuredatastudio-linux-x64/azuredata-studio)" "$(readlink -f azuredatastudio-linux-x64/resources/app/resources/linux/code.png) "Azure Data Studio"; rm *.tar.gz'\' \
+zplugin ice lucid wait'2' id-as'azure-data-studio' \
+  mv'azure-data-studio -> azure-data-studio.tar.gz' \
+  atclone'tar xzvf azure-data-studio.tar.gz;  _create_and_link_desktop_file azure-data-studio "$(readlink -f azuredatastudio-linux-x64/azuredata-studio)" "$(readlink -f azuredatastudio-linux-x64/resources/app/resources/linux/code.png)" "Azure Data Studio"; rm *.tar.gz' \
   atpull'%atclone' \
-  as'null' sbin'azuredatastudio-linux-x64/azuredata-studio -> ads'
+  as'null' sbin'azuredatastudio-linux-x64/azuredata-studio -> azure-data-studio'
 zplugin snippet "https://go.microsoft.com/fwlink/?linkid=2109179"
 
 # android studio
