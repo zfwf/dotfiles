@@ -1,7 +1,22 @@
 # Getting started
 
 ## Prerequisites
-### Clear Linux (master branch)
+### Manjaro Linux
+``` sh
+sudo pacman -S base-devel
+
+# install zsh
+pamac install zsh jq xclip
+
+# required by asdf-java
+pamac install jq
+
+# clipboard support
+pamac install xclip
+
+```
+
+### Clear Linux
 ``` sh
 # install zsh, devpkg-ncurses required to build zplugin module
 sudo swupd bundle-add zsh devpkg-ncurses
@@ -20,9 +35,7 @@ sudo swupd bundle-add x11-tools
 
 ```
 
-### MacOS (see [mac branch](https://github.com/chhschou/dotfiles/tree/master))
-
-### Fedora (see [fedora branch](https://github.com/chhschou/dotfiles/tree/fedora))
+### MacOS (scipt will install HomeBrew and init from ~/Brewfile)
 
 
 ## Install
