@@ -9,7 +9,7 @@ _create_and_link_desktop_file() {
 zplugin ice lucid wait'2' from"gh-r" bpick"*tar.gz" \
   atclone'_create_and_link_desktop_file vscodium "$(readlink -f codium)" "$(readlink -f resources/app/resources/linux/code.png)"  VSCodium; rm *.tar.gz;' \
   atpull'%atclone' \
-  as"null" sbin'codium -> code'
+  as"null" sbin'bin/codium -> code'
 zplugin light VSCodium/vscodium
 
 # gitahead
