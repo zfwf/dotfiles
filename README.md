@@ -35,7 +35,7 @@ sudo swupd bundle-add x11-tools
 
 ```
 
-### MacOS (scipt will install HomeBrew and init from ~/Brewfile)
+### MacOS (scipt will install HomeBrew and initialize from ~/Brewfile)
 
 
 ## Install
@@ -43,7 +43,7 @@ sudo swupd bundle-add x11-tools
 # clone to ~/.cfg as bare repo
 git clone --bare https://github.com/chhschou/dotfiles ~/.cfg
 
-# checkout `master` branch (replace `master` with branch name for other branches)
+# checkout `master` branch
 git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout master
 
 # start zsh (wait for initialization to complete...)
@@ -53,3 +53,7 @@ zsh
 command -v zsh | sudo tee -a /usr/share/defaults/etc/shells; sudo chsh -s $(command -v zsh) $USER
 
 ```
+
+# Usage
+
+Within the home folder (i.e. `$HOME`) the `git` command is mapped to work with the bare repo (alias will work). The `~/.gitignore` ignores all immediate directories under `$HOME` to avoid seeing all the files you don't care about. To track a file in git, use `git add -f`.
