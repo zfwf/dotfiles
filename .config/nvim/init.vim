@@ -41,8 +41,8 @@ Plug 'wellle/targets.vim'
 call plug#end()
 
 " enable truecolor support
-set t_8b=^[[48;2;%lu;%lu;%lum
-set t_8f=^[[38;2;%lu;%lu;%lum
+" set t_8b=^[[48;2;%lu;%lu;%lum
+" set t_8f=^[[38;2;%lu;%lu;%lum
 set termguicolors
 
 " enable colorscheme
@@ -61,7 +61,6 @@ set listchars=tab:>\ ,trail:~,extends:>,precedes:<
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
-" set cursor
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor-blinkwait1-blinkon15-blinkoff10,r-cr:hor20-Cursor/rCursor
 set mouse=a
 set inccommand=nosplit
