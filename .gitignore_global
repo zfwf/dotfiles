@@ -2,3 +2,7 @@ tags
 
 # macos
 .DS_Store
+
+# metal
+.metals/
+.bloop/

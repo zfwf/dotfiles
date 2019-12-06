@@ -1,5 +1,10 @@
 # command for interactive shell (load order: .zshenv, .zshrc, .zsh)
 
+# catalina specific
+# strip out /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin and append
+export PATH=$(echo $PATH | sed 's/\/usr\/local\/bin:\/usr\/bin:\/bin:\/usr\/sbin:\/sbin//g')
+export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
 export TERM='xterm-256color' # attempt enable at least 256 color
 
 # set some history options
@@ -101,6 +106,7 @@ co() {
   local branch_name=$1/$3
   command git clone $2 $cloned_folder
   cd $cloned_folder; command git checkout -b $branch_name
+  command git push -u origin $branch_name
   yarn || npm i
 }
 
@@ -120,4 +126,3 @@ git() {
     command git "$@"
   fi
 }
-

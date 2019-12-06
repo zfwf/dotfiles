@@ -68,3 +68,4 @@ zplugin cdreplay -q
 
 # other paths
 [ -f $ZPLGM[ZSCRIPT_DIR]/paths.sh ] && . $ZPLGM[ZSCRIPT_DIR]/paths.sh
+
