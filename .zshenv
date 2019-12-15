@@ -1,5 +1,5 @@
 # pre-init script
-[ -f  $HOME/.pre-init.sh ] && . $HOME/.pre-init.sh
+[ -f $HOME/.pre-init.sh ] && . $HOME/.pre-init.sh
 
 # zplugin
 local -A ZPLGM
