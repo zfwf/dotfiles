@@ -6,7 +6,7 @@ _create_and_link_desktop_file() {
 }
 
 # vscode
-zplugin ice lucid wait'2' from"gh-r" bpick"*tar.gz" \
+zplugin ice lucid wait'2' from"gh-r" bpick"*x64*" \
   atclone'_create_and_link_desktop_file vscodium "$(readlink -f codium)" "$(readlink -f resources/app/resources/linux/code.png)"  VSCodium' \
   atpull'%atclone' \
   as"null" sbin'bin/codium -> code'
