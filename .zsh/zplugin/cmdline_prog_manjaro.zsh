@@ -1,13 +1,3 @@
-# neovim + vim-plug
-zplugin ice lucid wait from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" pick"nvim"
-zplugin light neovim/neovim
-
-zplugin ice lucid wait \
-  atclone'mkdir -p $HOME/.local/share/nvim/site/autoload; \
-  ln -sf "$PWD/plug.vim" $HOME/.local/share/nvim/site/autoload/plug.vim' \
-  atpull'%atclone'
-zplugin light junegunn/vim-plug
-
 # docker
 zplugin ice lucid wait id-as'docker-install' as"program" \
   mv'docker-install* -> docker.tgz' \
@@ -25,7 +15,7 @@ zplugin snippet "https://download.docker.com/linux/static/stable/x86_64/docker-1
 #   atload'docker-rootless-extras/dockerd-rootless.sh --experimental'
 # zplugin snippet "https://download.docker.com/linux/static/stable/x86_64/docker-rootless-extras-19.03.4.tgz"
 
-zplugin ice lucid wait from"gh-r" as"program" mv"docker* -> docker-compose"
+zplugin ice lucid wait from"gh-r" as"null" sbin"docker* -> docker-compose"
 zplugin light docker/compose
 
 
