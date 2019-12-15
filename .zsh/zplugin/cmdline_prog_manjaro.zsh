@@ -1,9 +1,9 @@
 # docker
-zplugin ice lucid wait id-as'docker-install' as"program" \
+zplugin ice lucid wait id-as'docker-install' \
   mv'docker-install* -> docker.tgz' \
   atclone'tar xzvf *.tgz; rm *.tgz;' \
   atpull'%atclone' \
-  pick'docker/containerd' sbin'docker/dockerd' sbin'docker/docker'
+  as'null' sbin'docker/containerd; docker/dockerd; docker/docker'
 zplugin snippet "https://download.docker.com/linux/static/stable/x86_64/docker-19.03.4.tgz"
 
 # # dockerd-rootless.sh --experimental
