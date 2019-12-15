@@ -30,37 +30,42 @@
 # . $spack_dir/share/spack/setup-env.sh
 # spack env activate -d $spack_env_base_dir 2>/dev/null
 
-if [ ! -f $HOME/.gitconfig ]; then
-  # create symlink to a gitconfig
   case `uname` in
     Darwin)
       # brew path
       PATH="/usr/local/bin":$PATH
-      # install brew if not found
-      which -s brew
-      if [[ $? != 0 ]] ; then
-        # Install Homebrew
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        brew bundle
+      if [ ! -f $HOME/.gitconfig ]; then
+        # create symlink to a gitconfig
+        ln -sf $HOME/.gitconfig_mac $HOME/.gitconfig
+        ln -sf $HOME/.alacritty_mac.yml $HOME/.alacritty.yml
+
+        # install brew if not found
+        which -s brew
+        if [[ $? != 0 ]] ; then
+          # Install Homebrew
+          ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+          brew bundle
+        fi
       fi
-      ln -sf $HOME/.gitconfig_mac $HOME/.gitconfig
-      ln -sf $HOME/.alacritty_mac.yml $HOME/.alacritty.yml
+
       ;;
     Linux)
-      eval "OS_$(cat /etc/*-release | grep "^ID=")"
-      case "$OS_ID" in
-        "clear-linux-os")
-          ln -sf $HOME/.alacritty_clr.yml $HOME/.alacritty.yml
-          ;;
-        "manjaro")
-          ;;
-      esac
+      if [ ! -f $HOME/.gitconfig ]; then
+        eval "OS_$(cat /etc/*-release | grep "^ID=")"
+        case "$OS_ID" in
+          "clear-linux-os")
+            ln -sf $HOME/.alacritty_clr.yml $HOME/.alacritty.yml
+            ;;
+          "manjaro")
+            ;;
+        esac
 
-      ln -sf $HOME/.gitconfig_linux $HOME/.gitconfig
+        # create symlink to a gitconfig
+        ln -sf $HOME/.gitconfig_linux $HOME/.gitconfig
 
-      # show desktop icons
-      gsettings set org.gnome.desktop.background show-desktop-icons true
+        # show desktop icons in gnome
+        gsettings set org.gnome.desktop.background show-desktop-icons true
+      fi
       ;;
   esac
 
-fi

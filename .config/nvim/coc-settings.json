@@ -1,6 +1,7 @@
 {
   "list.source.files.defaultOptions": ["--number-select"],
   "list.source.files.excludePatterns": ["**/.git/**"],
+  "list.source.mru.ignoreGitIgnore": true,
   "list.source.mru.defaultOptions": ["--number-select"],
   "coc.source.omni.filetypes": [
     "rust",
