@@ -15,7 +15,7 @@ zplugin ice lucid from"gh-r" as'null' sbin'fd*/fd'
 zplugin light sharkdp/fd
 
 # fzf
-zplugin pack"bgn-binary" for fzf
+zplugin pack"bgn-binary+keys" for fzf
 
 # tmux + oh-my-tmux (nb use ver"gh-254" for tmux 3.0+) + tmux plugin manager
 zplugin ice lucid make as"null" sbin"tmux" \
