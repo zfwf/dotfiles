@@ -15,6 +15,7 @@
     "rust",
     "python",
     "typescript",
+    "typescriptreact",
     "json",
     "jsonc"
   ],

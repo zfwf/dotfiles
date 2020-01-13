@@ -20,6 +20,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'taohexxx/lightline-buffer'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
+Plug 'sheerun/vim-polyglot'
 " colored parentheses
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
