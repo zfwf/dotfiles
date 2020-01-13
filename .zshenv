@@ -14,6 +14,8 @@ ZPLGM[PLUGIN_SCRIPT_DIR]=$ZPLGM[ZSCRIPT_DIR]/zplugin
 
 # shim tool https://github.com/zplugin/z-a-bin-gem-node
 zplugin light zplugin/z-a-bin-gem-node
+# patch tool
+zplugin light zplugin/z-a-patch-dl
 
 # theme
 [ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/theme.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/theme.zsh
