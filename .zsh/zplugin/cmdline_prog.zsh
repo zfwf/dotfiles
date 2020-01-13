@@ -10,8 +10,12 @@ zplugin light facebook/PathPicker
 zplugin ice lucid from"gh-r" as'null' sbin'ripgrep*/rg'
 zplugin light BurntSushi/ripgrep
 
-# fzy
-zplugin pack"bgn" git for fzy
+# fd
+zplugin ice lucid from"gh-r" as'null' sbin'fd*/fd'
+zplugin light sharkdp/fd
+
+# fzf
+zplugin pack"bgn-binary" for fzf
 
 # tmux + oh-my-tmux (nb use ver"gh-254" for tmux 3.0+) + tmux plugin manager
 zplugin ice lucid make as"null" sbin"tmux" \
