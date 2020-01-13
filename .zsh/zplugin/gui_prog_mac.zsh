@@ -32,37 +32,34 @@ create_alias_in_user_applications() {
   osascript -e "$script"
 }
 
-install_dmg() {
-  remove_alias_in_user_applications *.app
-  extract_dmg $1
-  create_alias_in_user_applications *.app
-}
-
 install_dotapp() {
   remove_alias_in_user_applications *.app
   create_alias_in_user_applications *.app
 }
 
+install_dmg() {
+  extract_dmg $1
+  install_dotapp
+}
+
 
 # vscode
 zplugin ice lucid wait'2' from"gh-r" bpick"*darwin*.zip" \
-  atclone'create_alias_in_user_applications *.app' \
+  atclone'install_dotapp' \
   atpull'%atclone' \
-  as'null' sbin'VSCodium.app/Contents/Resources/app/bin/code' 
+  as'null' sbin'VSCodium.app/Contents/Resources/app/bin/code'
 zplugin light VSCodium/vscodium
 
 # gitahead
 zplugin ice lucid wait'2' from"gh-r" bpick"*dmg" \
-  atclone'extract_dmg GitAhead; \
-    create_alias_in_user_applications *.app' \
+  atclone'install_dmg GitAhead' \
   atpull'%atclone' \
   as'null' sbin'GitAhead.app/Contents/MacOS/GitAhead -> gitahead'
 zplugin light gitahead/gitahead
 
 # alacritty
 zplugin ice lucid wait'2' from"gh-r" bpick'*dmg'  \
-  atclone'extract_dmg Alacritty; \
-    create_alias_in_user_applications *.app' \
+  atclone'install_dmg Alacritty' \
   atpull'%atclone' \
   as'null' sbin'Alacritty.app/Contents/MacOS/alacritty' 
 zplugin light jwilm/alacritty
@@ -72,7 +69,7 @@ zplugin ice lucid wait'2' id-as"subl" \
   mv'subl -> subl.dmg' \
   atclone'install_dmg "Sublime*"' \
   atpull'%atclone' \
-  as'null' sbin'Sublime Text.app/Contents/MacOS/Sublime Text -> subl'
+  as'null' sbin'Sublime\ Text.app/Contents/MacOS/Sublime\ Text -> subl'
 zplugin snippet "https://download.sublimetext.com/Sublime%20Text%20Build%203211.dmg"
 
 # azure data studio
@@ -80,16 +77,15 @@ zplugin ice lucid wait'2' id-as'azure-data-studio' \
   mv'azure-data-studio -> azure-data-studio.zip' \
   atclone'unzip azure-data-studio.zip -d .; install_dotapp' \
   atpull'%atclone' \
-  as'null' sbin'Azure Data Studio.app/Contents/MacOS/Electron -> ads'
+  as'null' sbin'Azure\ Data\ Studio.app/Contents/MacOS/Electron -> ads'
 zplugin snippet "https://go.microsoft.com/fwlink/?linkid=2109180"
 
 # ff dev edition
 zplugin ice lucid wait'2' id-as'ff-dev' \
   mv'ff-dev -> ff-dev.dmg' \
-  atclone'extract_dmg "Firefox*"; \
-    create_alias_in_user_applications *.app' \
+  atclone'install_dmg "Firefox*"' \
   atpull'%atclone' \
-  as'null' sbin'Firefox Developer Edition.app/Contents/MacOS/firefox'
+  as'null' sbin'Firefox\ Developer\ Edition.app/Contents/MacOS/firefox'
 zplugin snippet "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=osx&lang=en-US"
 
 #meld
