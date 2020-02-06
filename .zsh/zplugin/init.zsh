@@ -1,13 +1,13 @@
 # install zplugin if not present, init
-if [[ ! -d $ZPLGM[HOME_DIR] ]]; then
-  mkdir -p $ZPLGM[HOME_DIR]
-  git clone https://github.com/zdharma/zplugin.git $ZPLGM[BIN_DIR]
-  . $ZPLGM[BIN_DIR]/zplugin.zsh
+if [[ ! -d $ZINIT_VAR[HOME_DIR] ]]; then
+  mkdir -p $ZINIT_VAR[HOME_DIR]
+  git clone https://github.com/zdharma/zinit.git $ZINIT_VAR[BIN_DIR]
+  . $ZINIT_VAR[BIN_DIR]/zinit.zsh
   zplugin module build
 else
-  . $ZPLGM[BIN_DIR]/zplugin.zsh
+  . $ZINIT_VAR[BIN_DIR]/zinit.zsh
 fi
-ZPLGM[MUTE_WARNINGS]=1
-module_path+=$ZPLGM[BIN_DIR]/zmodules/Src
-zmodload zdharma/zplugin
+
+# module_path+=$ZINIT_VAR[BIN_DIR]/zmodules/Src
+# zmodload zdharma/zplugin
 

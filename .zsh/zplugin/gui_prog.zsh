@@ -6,45 +6,45 @@ _create_and_link_desktop_file() {
 }
 
 # vscode
-zplugin ice lucid wait'2' from"gh-r" bpick"*x64*" \
+zinit ice lucid wait'2' from"gh-r" bpick"*x64*" \
   atclone'_create_and_link_desktop_file vscodium "$(readlink -f codium)" "$(readlink -f resources/app/resources/linux/code.png)"  VSCodium' \
   atpull'%atclone' \
   as"null" sbin'bin/codium -> code'
-zplugin light VSCodium/vscodium
+zinit light VSCodium/vscodium
 
 # gitahead
-zplugin ice lucid wait'2' from"gh-r" bpick"*sh"\
+zinit ice lucid wait'2' from"gh-r" bpick"*sh"\
   atclone'./GitAhead*.sh --include-subdir;' \
   atpull'%atclone' \
   as"null"  sbin'GitAhead/GitAhead' \
-zplugin light gitahead/gitahead
+zinit light gitahead/gitahead
 
 # azure data studio
-zplugin ice lucid wait'2' id-as'azure-data-studio' \
+zinit ice lucid wait'2' id-as'azure-data-studio' \
   mv'azure-data-studio -> azure-data-studio.tar.gz' \
   atclone'tar xzvf azure-data-studio.tar.gz;  _create_and_link_desktop_file azure-data-studio "$(readlink -f azuredatastudio-linux-x64/azuredata-studio)" "$(readlink -f azuredatastudio-linux-x64/resources/app/resources/linux/code.png)" "Azure Data Studio"; rm *.tar.gz' \
   atpull'%atclone' \
   as'null' sbin'azuredatastudio-linux-x64/azuredata-studio -> azure-data-studio'
-zplugin snippet "https://go.microsoft.com/fwlink/?linkid=2109179"
+zinit snippet "https://go.microsoft.com/fwlink/?linkid=2109179"
 
 # android studio
-zplugin ice lucid wait'2' id-as'android-studio-ide' \
+zinit ice lucid wait'2' id-as'android-studio-ide' \
   mv'android-studio-ide -> android-studio-ide.tar.gz' \
   atclone'tar xzvf *.tar.gz; _create_and_link_desktop_file android-studio "$(readlink -f android-studio/bin/studio.sh)" "$(readlink -f android-studio/bin/studio.png)" "Android Studio"; rm *.tar.gz' \
   atpull'%atclone' \
   as'null' sbin'android-studio/bin/studio.sh -> android-studio'
-zplugin snippet 'https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz'
+zinit snippet 'https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz'
 
 # ff dev edition
-zplugin ice lucid wait'2' id-as"ff-dev"  \
+zinit ice lucid wait'2' id-as"ff-dev"  \
   mv'ff-dev -> firefox.tar.bz2' \
   atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "$(readlink -f firefox/firefox)" firefox Firefox; rm *.tar.bz2;' \
   atpull'%atclone' \
   as'null' sbin'firefox/firefox'
-zplugin snippet "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US"
+zinit snippet "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US"
 
 # google chrome
-#zplugin ice lucid wait id-as"google-chrome" as'program' pick'chrome/chrome' \
+#zinit ice lucid wait id-as"google-chrome" as'program' pick'chrome/chrome' \
 #  mv'google-chrome -> google-chrome.rpm' \
 #  atclone'rm -rf chrome; mkdir temp; mv -v *.rpm temp/; cd temp; rpm2cpio *.rpm | cpio -idmv; cd -; mv -v temp/opt/google/chrome ./; rm -rf temp/; \
 #  mv -v chrome/google-chrome chrome/launcher;
@@ -53,5 +53,5 @@ zplugin snippet "https://download.mozilla.org/?product=firefox-devedition-latest
 #  chmod 4755 chrome/chrome-sandbox; \
 #  _create_and_link_desktop_file "Google Chrome" "env FONTCONFIG_PATH=/usr/share/defaults/fonts $(readlink -f chrome/chrome)" google-chrome;' \
 #  atpull'%atclone'
-#zplugin snippet "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+#zinit snippet "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
 

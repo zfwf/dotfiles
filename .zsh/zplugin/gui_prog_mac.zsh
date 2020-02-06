@@ -37,65 +37,59 @@ install_dotapp() {
   create_alias_in_user_applications *.app
 }
 
-install_dmg() {
-  extract_dmg $1
-  install_dotapp
-}
-
 
 # vscode
-zplugin ice lucid wait'2' from"gh-r" bpick"*darwin*.zip" \
+zinit ice lucid from"gh-r" bpick"*darwin*.zip" \
   atclone'install_dotapp' \
   atpull'%atclone' \
-  as'null' sbin'**/code'
-zplugin light VSCodium/vscodium
+  as'null' sbin'**/bin/code'
+zinit light VSCodium/vscodium
 
 # gitahead
-zplugin ice lucid wait'2' from"gh-r" bpick"*dmg" \
-  atclone'install_dmg GitAhead' \
+zinit ice lucid from"gh-r" bpick"*dmg" \
+  atclone'install_dotapp' \
   atpull'%atclone' \
   as'null' sbin'**/GitAhead -> gitahead'
-zplugin light gitahead/gitahead
+zinit light gitahead/gitahead
 
 # alacritty
-zplugin ice lucid wait'2' from"gh-r" bpick'*dmg'  \
-  atclone'install_dmg Alacritty' \
+zinit ice lucid from"gh-r" bpick"*dmg" \
+  atclone'install_dotapp' \
   atpull'%atclone' \
   as'null' sbin'**/alacritty'
-zplugin light jwilm/alacritty
+zinit light alacritty/alacritty
 
 # sublime text
-zplugin ice lucid wait'2' id-as"subl" \
+zinit ice lucid id-as"subl" \
   mv'subl -> subl.dmg' \
-  atclone'install_dmg "Sublime*"' \
+  atclone'install_dotapp' \
   atpull'%atclone' \
   as'null' sbin'**/Sublime\ Text -> subl'
-zplugin snippet "https://download.sublimetext.com/Sublime%20Text%20Build%203211.dmg"
+zinit snippet "https://download.sublimetext.com/Sublime%20Text%20Build%203211.dmg"
 
 # azure data studio
-zplugin ice lucid wait'2' id-as'azure-data-studio' \
+zinit ice lucid id-as'azure-data-studio' \
   mv'azure-data-studio -> azure-data-studio.zip' \
   atclone'unzip azure-data-studio.zip -d .; install_dotapp' \
   atpull'%atclone' \
   as'null' sbin'**/Electron -> ads'
-zplugin snippet "https://go.microsoft.com/fwlink/?linkid=2109180"
+zinit snippet "https://go.microsoft.com/fwlink/?linkid=2109180"
 
 # ff dev edition
-zplugin pack"bgn" for firefox-dev
+zinit pack"bgn" for firefox-dev
 
 #meld
-zplugin ice lucid wait'2' from"gh-r" \
-  atclone'install_dmg "meld*"' \
+zinit ice lucid from"gh-r" \
+  atclone'install_dotapp' \
   atpull'%atclone' \
   as'null' sbin'**/Meld -> meld'
-zplugin light yousseb/meld
+zinit light yousseb/meld
 
 
 # qview
-zplugin ice lucid wait'2' from"gh-r" bpick'*dmg' \
-  atclone'extract_dmg "qView*"; \
-    create_alias_in_user_applications *.app' \
+zinit ice lucid from"gh-r" bpick'*dmg' \
+  atclone'install_dotapp' \
   atpull'%atclone' \
   as'null' sbin'**/qView'
-zplugin light jurplel/qView
+zinit light jurplel/qView
 
