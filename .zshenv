@@ -1,73 +1,74 @@
 # pre-init script
 [ -f $HOME/.pre-init.sh ] && . $HOME/.pre-init.sh
 
-# zplugin
-local -A ZPLGM
-ZPLGM[HOME_DIR]=$HOME/.zplugin
-ZPLGM[BIN_DIR]=$ZPLGM[HOME_DIR]/bin
-ZPLGM[ZSCRIPT_DIR]=$HOME/.zsh
-ZPLGM[PLUGIN_SCRIPT_DIR]=$ZPLGM[ZSCRIPT_DIR]/zplugin
-. $ZPLGM[PLUGIN_SCRIPT_DIR]/init.zsh
+# zinit
+local -A ZINIT_VAR
+ZINIT_VAR[HOME_DIR]=$HOME/.zinit
+ZINIT_VAR[BIN_DIR]="$ZINIT_VAR[HOME_DIR]/bin"
+ZINIT_VAR[ZSCRIPT_DIR]="$HOME/.zsh"
+ZINIT_VAR[PLUGIN_SCRIPT_DIR]=$ZINIT_VAR[ZSCRIPT_DIR]/zplugin
+. $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/init.zsh
 
 
 # Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
 
-# shim tool https://github.com/zplugin/z-a-bin-gem-node
-zplugin light zplugin/z-a-bin-gem-node
+# shim tool https://github.com/zinit/z-a-bin-gem-node
+zinit light zinit-zsh/z-a-bin-gem-node
 # patch tool
-zplugin light zplugin/z-a-patch-dl
+zinit light zinit-zsh/z-a-patch-dl
+
 
 # theme
-[ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/theme.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/theme.zsh
+[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/theme.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/theme.zsh
 
 # lang/runtimes
-[ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/lang_runtime.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/lang_runtime.zsh
+[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/lang_runtime.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/lang_runtime.zsh
 
 #  completions
-[ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/comp.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/comp.zsh
+[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh
 
 # common command line programs
-[ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh
+[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh
 
 case `uname` in
   Darwin)
     # font
-    zplugin ice from'gh-r' bpick'FiraCode.zip' \
+    zinit ice from'gh-r' bpick'FiraCode.zip' \
       atclone'mkdir -p $HOME/Library/Fonts; ln -sf $PWD $HOME/Library/Fonts/FiraCode;' \
       atpull'%atclone'
-    zplugin light ryanoasis/nerd-fonts
+    zinit light ryanoasis/nerd-fonts
 
     # command line programs
-    [ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog_mac.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog_mac.zsh
+    [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog_mac.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog_mac.zsh
 
     # gui programs
-    [ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/gui_prog_mac.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/gui_prog_mac.zsh
+    [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog_mac.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog_mac.zsh
 
     ;;
   Linux)
     # font
-    zplugin ice from'gh-r' bpick'FiraCode.zip' \
+    zinit ice from'gh-r' bpick'FiraCode.zip' \
       atclone'mkdir -p $HOME/.local/share/fonts; ln -sf $PWD $HOME/.local/share/fonts/FiraCode;' \
       atpull'%atclone'
-    zplugin light ryanoasis/nerd-fonts
+    zinit light ryanoasis/nerd-fonts
 
     # command line programs
-    [ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog_manjaro.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/cmdline_prog_manjaro.zsh
+    [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog_manjaro.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog_manjaro.zsh
 
     # gui programs
-    [ -f  $ZPLGM[PLUGIN_SCRIPT_DIR]/gui_prog.zsh ] && . $ZPLGM[PLUGIN_SCRIPT_DIR]/gui_prog.zsh
+    [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh
     ;;
 esac
 
 # needs to be the last plugin
-zplugin ice wait lucid
-zplugin light zdharma/fast-syntax-highlighting
+zinit ice wait lucid
+zinit light zdharma/fast-syntax-highlighting
 
 autoload -Uz compinit
 compinit
 
-zplugin cdreplay -q
+zinit cdreplay -q
 
 # other paths
-[ -f $ZPLGM[ZSCRIPT_DIR]/paths.sh ] && . $ZPLGM[ZSCRIPT_DIR]/paths.sh
+[ -f $ZINIT_VAR[ZSCRIPT_DIR]/paths.sh ] && . $ZINIT_VAR[ZSCRIPT_DIR]/paths.sh
 

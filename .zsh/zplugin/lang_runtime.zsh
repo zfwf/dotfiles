@@ -1,5 +1,5 @@
 # asdf (no wait, need to load immediately for integration)
-zplugin ice lucid depth'1' \
+zinit ice lucid depth'1' \
   atclone'. $PWD/asdf.sh; \
     asdf plugin-add nodejs; \
     asdf plugin-add python; \
@@ -21,5 +21,5 @@ zplugin ice lucid depth'1' \
   atload'. $PWD/asdf.sh; \
     export NODEJS_CHECK_SIGNATURES=no; \
     . $HOME/.asdf/plugins/java/set-java-home.sh;'
-zplugin light asdf-vm/asdf
+zinit light asdf-vm/asdf
 

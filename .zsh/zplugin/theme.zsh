@@ -42,9 +42,9 @@ _config_powerline() {
 }
 
 # theme
-zplugin ice atinit'_config_powerline'; zplugin light romkatv/powerlevel10k
+zinit ice atinit'_config_powerline'; zinit light romkatv/powerlevel10k
 
 # ls colors
-zplugin ice wait"1" lucid
-zplugin snippet OMZ::lib/theme-and-appearance.zsh
+zinit ice wait"1" lucid
+zinit snippet OMZ::lib/theme-and-appearance.zsh
 
