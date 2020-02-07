@@ -8,6 +8,6 @@ else
   . $ZINIT_VAR[BIN_DIR]/zinit.zsh
 fi
 
-# module_path+=$ZINIT_VAR[BIN_DIR]/zmodules/Src
-# zmodload zdharma/zplugin
+module_path+=$ZINIT_VAR[BIN_DIR]/zmodules/Src
+zmodload zdharma/zplugin
 
