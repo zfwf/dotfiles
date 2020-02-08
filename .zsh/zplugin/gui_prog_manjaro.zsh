@@ -1,9 +1,3 @@
-_create_and_link_desktop_file() {
-  local app_dir=$HOME/.local/share/applications
-  echo "[Desktop Entry]\nName=$4\nExec=$2 %U\nIcon=$3\nType=Application\nStartupNotify=true" > $1.desktop
-  mkdir -p $app_dir
-  ln -sf "$(readlink -f $1.desktop)" $app_dir/$1.desktop
-}
 
 # vscode
 zinit ice lucid from"gh-r" bpick"*x64*" \
@@ -34,14 +28,6 @@ zinit ice lucid id-as'android-studio-ide' \
   atpull'%atclone' \
   as'null' sbin'**/studio.sh -> android-studio'
 zinit snippet 'https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz'
-
-# ff dev edition
-zinit ice lucid id-as"ff-dev"  \
-  mv'ff-dev -> firefox.tar.bz2' \
-  atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "$(readlink -f firefox/firefox)" firefox Firefox; rm *.tar.bz2;' \
-  atpull'%atclone' \
-  as'null' sbin'**/firefox'
-zinit snippet "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US"
 
 # google chrome
 #zinit ice lucid wait id-as"google-chrome" as'program' pick'chrome/chrome' \
