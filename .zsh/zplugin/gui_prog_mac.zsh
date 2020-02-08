@@ -76,7 +76,7 @@ zinit ice lucid id-as'azure-data-studio' \
 zinit snippet "https://go.microsoft.com/fwlink/?linkid=2109180"
 
 # ff dev edition
-zinit pack"bgn" for firefox-dev
+zinit pack"bgn" atclone+'install_dotapp' for firefox-dev
 
 #meld
 zinit ice lucid from"gh-r" \
