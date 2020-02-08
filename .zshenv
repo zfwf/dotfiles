@@ -30,6 +30,10 @@ zinit light zinit-zsh/z-a-patch-dl
 # common command line programs
 [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh
 
+# common gui programs
+[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh
+
+
 case `uname` in
   Darwin)
     # font
@@ -56,7 +60,7 @@ case `uname` in
     [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog_manjaro.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog_manjaro.zsh
 
     # gui programs
-    [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh
+    [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog_manjaro.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog_manjaro.zsh
     ;;
 esac
 

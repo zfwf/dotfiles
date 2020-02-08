@@ -10,4 +10,4 @@
 [color]
 	ui = auto
 [credential]
-	helper = /home/cchou/.zplugin/plugins/gitahead---gitahead/GitAhead/git-credential-libsecret
+	helper = /home/cchou/.zinit/plugins/gitahead---gitahead/GitAhead/git-credential-libsecret
