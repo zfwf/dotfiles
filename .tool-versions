@@ -1,7 +1,7 @@
-nodejs 10.16.3 10.18.1 12.13.0
-rust 1.37.0 nightly stable
-python 3.7.4 3.8.0 3.8.1
-java adopt-openjdk-11.0.6+10 adopt-openjdk-8u242-b08 azul-zulu-11.0.3
+nodejs 12.15.0
+rust stable
+python 3.8.1
+java adopt-openjdk-11.0.6+10 adopt-openjdk-8u242-b08
 scala 2.12.8
 sbt 1.2.8
 ruby 2.6.4
