@@ -1,3 +1,7 @@
+# github cli
+zinit ice lucid from"gh-r" bpick'*amd64.tar.gz' as'null' sbin'**/gh'
+zinit light cli/cli
+
 # docker
 zinit ice lucid wait id-as'docker-install' \
   mv'docker-install* -> docker.tgz' \
