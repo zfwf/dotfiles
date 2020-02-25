@@ -3,7 +3,7 @@
 zinit ice lucid from"gh-r" bpick"*x64*" \
   atclone'_create_and_link_desktop_file vscodium "$(readlink -f codium)" "$(readlink -f resources/app/resources/linux/code.png)"  VSCodium' \
   atpull'%atclone' \
-  as"null" sbin'**/codium -> code'
+  as"null" sbin'**/bin/codium -> code'
 zinit light VSCodium/vscodium
 
 # gitahead
