@@ -72,7 +72,6 @@ if !exists('g:vscode')
   set number relativenumber             " hybrid line number
   set ls=2                              " always show status line
   set tabstop=2 shiftwidth=2 expandtab
-  set ruler
   set incsearch                         " Start search before finish typing
   set ignorecase                        " Make searching case insensitive
   set smartcase                         " ... unless the query has capital letters.
@@ -92,14 +91,13 @@ if !exists('g:vscode')
 else
   " vim-plug (plugin only available after plug#end)
   call plug#begin('~/.config/nvim/vscode-plugged')
-
-  " `gc` comments
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-surround'
-  " auto close/surround text
-  Plug 'cohama/lexima.vim'
-  " additional text obj
-  Plug 'wellle/targets.vim'
+    " `gc` comments
+    Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-surround'
+    " auto close/surround text
+    Plug 'cohama/lexima.vim'
+    " additional text obj
+    Plug 'wellle/targets.vim'
   call plug#end()
 
   set incsearch                         " Start search before finish typing
