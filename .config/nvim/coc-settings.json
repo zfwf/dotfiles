@@ -1,4 +1,5 @@
 {
+  "list.source.files.args": ["--hidden", "--files"],
   "list.source.files.defaultOptions": ["--number-select"],
   "list.source.files.excludePatterns": ["**/.git/**"],
   "list.source.mru.ignoreGitIgnore": true,
