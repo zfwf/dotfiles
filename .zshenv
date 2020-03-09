@@ -9,7 +9,6 @@ ZINIT_VAR[ZSCRIPT_DIR]="$HOME/.zsh"
 ZINIT_VAR[PLUGIN_SCRIPT_DIR]=$ZINIT_VAR[ZSCRIPT_DIR]/zplugin
 . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/init.zsh
 
-
 # Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
 
 # shim tool https://github.com/zinit/z-a-bin-gem-node
@@ -21,11 +20,11 @@ zinit light zinit-zsh/z-a-patch-dl
 # theme
 [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/theme.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/theme.zsh
 
-# lang/runtimes
-[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/lang_runtime.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/lang_runtime.zsh
-
 #  completions
 [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh
+
+# lang/runtimes
+[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/lang_runtime.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/lang_runtime.zsh
 
 # common command line programs
 [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh

@@ -1,3 +1,7 @@
+# bash completion support
+autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit
+
 script_dir=${0:a:h}
 
 # autosuggestions
