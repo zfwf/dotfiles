@@ -318,4 +318,4 @@ set -g @tpm_plugins '          \
 '
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.zplugin/plugins/tmux-plugins---tpm/tpm'
+run '~/.zinit/plugins/tmux-plugins---tpm/tpm'
