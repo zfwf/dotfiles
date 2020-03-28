@@ -34,7 +34,6 @@ fi
 
 if [[ $P9KGT_ERROR != true ]]
 then
-  echo 'start to configure p9kgt'
 
     # Set P9KGT background color
     if [[ $P9KGT_BACKGROUND == 'light' ]]
