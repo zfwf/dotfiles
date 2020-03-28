@@ -1,7 +1,7 @@
 nodejs 12.15.0
 rust stable
-python 3.8.1
 java adopt-openjdk-11.0.6+10
 scala 2.12.8
 sbt 1.2.8
+python 3.8.1
 ruby 2.6.4
