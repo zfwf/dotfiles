@@ -107,9 +107,14 @@ co() {
   command git clone $2 $cloned_folder
   cd $cloned_folder; command git checkout -b $branch_name
   command git push -u origin $branch_name
-  [ -f ./.npmrc ] && sed -i '' -e '$s/^/#/' ./.npmrc
-  yarn || npm i
-  yarn run build || npm run build
+  [ -f ./.npmrc ] && sed -i '' -e '$s/^\/\/npm\.pkg\.github\.com/#/' ./.npmrc
+  if [ -f ./package-lock.json ]; then
+    npm ci
+    npm run build --if-present
+  elif [ -f ./yarn.lock ]; then
+    yarn
+    yarn run build --if-present
+  fi
 }
 
 cof() {
