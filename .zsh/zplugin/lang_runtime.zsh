@@ -5,7 +5,6 @@ zinit ice lucid depth'1' \
     asdf plugin-add python; \
     asdf plugin-add rust; \
     asdf plugin-add java; \
-    asdf plugin-add scala; \
     asdf plugin-add sbt; \
     export NODEJS_CHECK_SIGNATURES=no; \
     cd $HOME; asdf install; asdf reshim; \
@@ -13,7 +12,6 @@ zinit ice lucid depth'1' \
     asdf global python $(asdf list python); \
     asdf global rust $(asdf list rust); \
     asdf global java $(asdf list java); \
-    asdf global scala $(asdf list scala); \
     asdf global sbt $(asdf list sbt); \
     ' \
   atpull'%atclone' \
