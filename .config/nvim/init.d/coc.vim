@@ -9,6 +9,7 @@ let b:coc_languages = [
   \ 'coc-css',
   \ 'coc-yaml',
   \ 'coc-python',
+  \ 'coc-metals' 
   \]
 
 

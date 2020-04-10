@@ -11,18 +11,19 @@
     "json",
     "jsonc"
   ],
-  "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "rust",
     "python",
     "typescript",
     "typescriptreact",
     "json",
-    "jsonc"
+    "jsonc",
+    "scala"
   ],
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "coc.preferences.hoverTarget": "preview",
   "python.jediEnabled": false,
   "diagnostic.messageTarget": "float",
-  "coc.preferences.hoverTarget": "preview",
   "languageserver": {
     "clojure-lsp": {
       "command": "bash",

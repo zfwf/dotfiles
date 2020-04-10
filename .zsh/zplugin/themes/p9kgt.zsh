@@ -1,9 +1,5 @@
 # P9KGT
 
-# Set username to consider a default context, which by default will not be shown.
-# https://github.com/bhilburn/powerlevel9k/blob/next/segments/context/README.md
-DEFAULT_USER='chhschou'
-
 # Set P9KGT background color, either 'light' or 'dark' (this should match the GNOME Terminal's theme).
 P9KGT_BACKGROUND='dark'
 if [[ $P9KGT_BACKGROUND != 'light' ]] && [[ $P9KGT_BACKGROUND != 'dark' ]]
@@ -18,18 +14,6 @@ if [[ $P9KGT_COLORS != 'light' ]] && [[ $P9KGT_COLORS != 'dark' ]] && [[ $P9KGT_
 then
     P9KGT_ERROR=true
     echo "P9KGT error: variable 'P9KGT_COLORS' should be either 'light', 'dark' or 'bright'"
-fi
-
-# Set P9KGT fonts mode, either 'default', 'awesome-fontconfig', 'awesome-mapped-fontconfig', 'awesome-patched', 'nerdfont-complete' or 'nerdfont-fontconfig'.
-# https://github.com/bhilburn/powerlevel9k/wiki/About-Fonts
-P9KGT_FONTS='nerdfont-fontconfig'
-if [[ $P9KGT_FONTS != 'default' ]] && [[ $P9KGT_FONTS != 'awesome-fontconfig' ]] && [[ $P9KGT_FONTS != 'awesome-mapped-fontconfig' ]] &&
-    [[ $P9KGT_FONTS != 'awesome-patched' ]] && [[ $P9KGT_FONTS != 'nerdfont-complete' ]] && [[ $P9KGT_FONTS != 'nerdfont-fontconfig' ]]
-then
-    P9KGT_ERROR=true
-    echo "P9KGT error: variable 'P9KGT_FONTS' should be either 'default', 'awesome-fontconfig', 'awesome-mapped-fontconfig', 'awesome-patched', 'nerdfont-complete' or 'nerdfont-fontconfig'"
-else
-    P9K_MODE=$P9KGT_FONTS
 fi
 
 if [[ $P9KGT_ERROR != true ]]
@@ -126,13 +110,6 @@ then
     # https://github.com/bhilburn/powerlevel9k/blob/next/segments/background_jobs/README.md
     P9K_BACKGROUND_JOBS_FOREGROUND=$P9KGT_TERMINAL_BACKGROUND
     P9K_BACKGROUND_JOBS_BACKGROUND=$P9KGT_YELLOW
-
-    # Customize prompt
-    # https://github.com/bhilburn/powerlevel9k/wiki/Stylizing-Your-Prompt#adding-newline-before-each-prompt
-    POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-    # https://github.com/bhilburn/powerlevel9k/tree/next#customizing-prompt-segments
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time time)
 
     # Set 'context' segment colors
     # https://github.com/bhilburn/powerlevel9k/blob/next/segments/context/README.md
