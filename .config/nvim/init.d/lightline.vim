@@ -9,7 +9,7 @@ let g:lightline = {
       \             [ 'fugitive', 'readonly' ],
       \           ],
       \   'right': [
-      \             [ 'cocwarning', 'cocerror' ],
+      \             [ 'cocwarning', 'cocerror', 'cocstatus', 'currentfunction' ],
       \             [ 'fileformat', 'fileencoding', 'filetype', 'percent', 'lineinfo' ],
       \            ],
       \ },
