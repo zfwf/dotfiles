@@ -18,6 +18,6 @@ zinit ice lucid depth'1' \
   src'completions/asdf.bash' \
   atload'. $PWD/asdf.sh; \
     export NODEJS_CHECK_SIGNATURES=no; \
-    . $HOME/.asdf/plugins/java/set-java-home.sh;'
+    . $HOME/.asdf/plugins/java/set-java-home.zsh;'
 zinit light asdf-vm/asdf
 
