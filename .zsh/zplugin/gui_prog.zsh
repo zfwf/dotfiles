@@ -66,5 +66,5 @@ _integrate_sys() {
 
 
 # ff dev edition
-zinit pack"bgn" atclone+'_integrate_sys firefox "$(readlink -f firefox)" firefox Firefox' for firefox-dev
+zinit pack"bgn" atclone+'_integrate_sys firefox "$(readlink -f firefox-bin)" firefox Firefox' for firefox-dev
 
