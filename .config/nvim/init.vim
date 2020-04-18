@@ -1,6 +1,9 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
 
 if !exists('g:vscode')
+  " python3 support
+  let g:python3_host_prog = '~/.asdf/installs/python/3.8.1/bin/python'
+
 
   " leader key
   let mapleader="\<SPACE>"
