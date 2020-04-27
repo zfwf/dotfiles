@@ -16,6 +16,7 @@ if !exists('g:vscode')
   call plug#begin('~/.config/nvim/plugged')
 
   Plug 'takac/vim-hardtime'   " no rep
+  let g:hardtime_default_on = 1
 
   " completion, extensions
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
