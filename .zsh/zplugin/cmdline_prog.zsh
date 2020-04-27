@@ -2,21 +2,15 @@
 zinit ice lucid as"null" sbin"bin/diff-so-fancy; bin/git-dsf;"
 zinit light zdharma/zsh-diff-so-fancy
 
-# fpp
-zinit ice lucid make as'null' sbin'fpp'
-zinit light facebook/PathPicker
-
+# file navigation -------------
 # rg
 zinit ice lucid from"gh-r" as'null' sbin'ripgrep*/rg'
 zinit light BurntSushi/ripgrep
 
-# fd
-zinit ice lucid from"gh-r" as'null' sbin'fd*/fd'
-zinit light sharkdp/fd
-
 # fzf
 zinit pack"bgn-binary+keys" for fzf
 
+# -----------------------------
 # tmux + oh-my-tmux (nb use ver"gh-254" for tmux 3.0+) + tmux plugin manager
 zinit ice lucid make as"null" sbin"tmux" \
   atclone'./autogen.sh; ./configure' \
@@ -43,6 +37,7 @@ zinit ice lucid wait \
   atpull'%atclone'
 zinit light junegunn/vim-plug
 # -----------------------------
+
 
 
 
