@@ -1,5 +1,8 @@
 # command for interactive shell (load order: .zshenv, .zshrc, .zsh)
 
+# remove zsh key delay
+export KEYTIMEOUT=1
+
 # catalina specific
 # strip out /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin and append
 export PATH=$(echo $PATH | sed 's/\/usr\/local\/bin:\/usr\/bin:\/bin:\/usr\/sbin:\/sbin//g')
@@ -63,6 +66,24 @@ function zle-keymap-select zle-line-init
 
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+# load zle history widgets
+autoload -Uz up-line-or-beginning-search
+zle -N up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+# Better searching in command mode
+bindkey -M vicmd '?' history-incremental-pattern-search-backward
+bindkey -M vicmd '/' history-incremental-pattern-search-forward
+bindkey -M vicmd "^n" history-incremental-pattern-search-backward
+bindkey -M vicmd "^p" history-incremental-pattern-search-forward
+
+bindkey -M viins '^n' history-incremental-pattern-search-backward
+bindkey -M viins '^p' history-incremental-pattern-search-forward
+# Beginning search with arrow keys
+bindkey "^[OA" up-line-or-beginning-search
+bindkey "^[OB" down-line-or-beginning-search
 
 # hide legacy docker commands
 export DOCKER_HIDE_LEGACY_COMMANDS=true
