@@ -1,6 +1,5 @@
 " general keymap
 if !exists('g:vscode')
-  xnoremap p              pgvy|                 " copy back to buf after paste
   nnoremap <C-L>          :bnext<CR>|           " next buffer
   nnoremap <C-H>          :bprevious<CR>|       " previous buffer
   nnoremap <Tab><Tab>     <C-^>|                " last buffer
@@ -9,7 +8,7 @@ if !exists('g:vscode')
 
   :command! BufOnly %bd|e#|bd#|       " only the buffer being edited
   :command! BufR    :bufdo e!|        " Reload all
-else
-  xnoremap p              pgvy|                 " copy back to buf after paste
 endif
+
+xnoremap p              pgvy|                 " copy back to buf after paste
 

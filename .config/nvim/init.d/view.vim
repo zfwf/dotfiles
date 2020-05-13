@@ -1,3 +1,5 @@
+if !exists('g:vscode')
+
 " auto save view (code folds etc.) and load
 set viewoptions=cursor,folds,slash,unix
 augroup handle_view
@@ -6,3 +8,4 @@ augroup handle_view
   autocmd BufWinEnter *.* silent! loadview
 augroup END
 
+endif

@@ -11,3 +11,6 @@
 	ui = auto
 [credential]
 	helper = /home/chhschou/.zinit/plugins/gitahead---gitahead/GitAhead/git-credential-libsecret
+[push]
+	default = current
+
