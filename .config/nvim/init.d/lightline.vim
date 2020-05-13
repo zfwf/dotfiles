@@ -1,3 +1,5 @@
+if !exists('g:vscode')
+
 set hidden  " allow buffer switching without saving
 set showtabline=2  " always show tabline
 
@@ -169,3 +171,5 @@ let g:lightline_buffer_minfextlen = 3
 
 " reserve length for other component (e.g. info, close)
 let g:lightline_buffer_reservelen = 20
+
+endif

@@ -94,6 +94,7 @@ export EDITOR="$VISUAL"
 alias vi="$VISUAL"
 alias top="glances"
 alias react-devtools='npx react-devtools@^3'
+alias meta='npx meta'
 
 case `uname` in
   Darwin)
@@ -147,10 +148,11 @@ cob() {
 }
 
 # dotfiles bare repo
+CMD_GIT="$(command -v git)"
 git() {
   if [[ "$PWD" == "$HOME" ]]; then
-    command git --git-dir="$HOME"/.cfg/ --work-tree="$HOME" "$@"
+    "$CMD_GIT" --git-dir="$HOME"/.cfg/ --work-tree="$HOME" "$@"
   else
-    command git "$@"
+    "$CMD_GIT" "$@"
   fi
 }

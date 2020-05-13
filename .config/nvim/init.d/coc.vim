@@ -1,5 +1,6 @@
-" coc configs
+if !exists('g:vscode')
 
+" coc configs
 let b:coc_languages = [
   \ 'coc-rls',
   \ 'coc-java',
@@ -23,6 +24,7 @@ let b:coc_extensions = [
   \ 'coc-eslint',
   \ 'coc-prettier',
   \]
+
 
 let b:coc_sources = [
   \ 'coc-tag',
@@ -198,3 +200,5 @@ nnoremap <silent> <C-W>z :call <SID>closePreview()<cr>
 
 " coc-settings.json uses jsonc, which adds comment syntax
 autocmd FileType json syntax match Comment +\/\/.\+$+"
+
+endif

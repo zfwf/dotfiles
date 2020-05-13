@@ -1,9 +1,9 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
 
+
 if !exists('g:vscode')
   " python3 support
-  let g:python3_host_prog = '~/.asdf/installs/python/3.8.1/bin/python'
-
+  let g:python3_host_prog="~/.asdf/installs/python/3.8.2/bin/python"
 
   " leader key
   let mapleader="\<SPACE>"
@@ -111,4 +111,6 @@ else
   set magic                             " Use 'magic' patterns (extended regular expressions).
   set clipboard+=unnamedplus            " default to system clipboard
 
+  " load rest of the configs
+  runtime! init.d/*.vim
 endif
