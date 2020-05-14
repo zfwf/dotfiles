@@ -1,4 +1,3 @@
-
 # vscode
 zinit ice lucid from"gh-r" bpick"*x64*" \
   atclone'_create_and_link_desktop_file vscodium "$(readlink -f codium)" "$(readlink -f resources/app/resources/linux/code.png)"  VSCodium' \
@@ -26,6 +25,7 @@ zinit ice lucid id-as'android-studio-ide' \
   mv'android-studio-ide -> android-studio-ide.tar.gz' \
   atclone'tar xzvf *.tar.gz; _create_and_link_desktop_file android-studio "$(readlink -f android-studio/bin/studio.sh)" "$(readlink -f android-studio/bin/studio.png)" "Android Studio"; rm *.tar.gz' \
   atpull'%atclone' \
+  atload'export ANDROID_HOME=~/Android/Sdk; export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools' \
   as'null' sbin'**/studio.sh -> android-studio'
 zinit snippet 'https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz'
 
