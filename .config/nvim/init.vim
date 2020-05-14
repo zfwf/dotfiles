@@ -15,7 +15,8 @@ if !exists('g:vscode')
   " vim-plug (plugin only available after plug#end)
   call plug#begin('~/.config/nvim/plugged')
 
-  Plug 'takac/vim-hardtime'   " no rep
+  " no rep of hjkl
+  Plug 'takac/vim-hardtime'
   let g:hardtime_default_on = 1
 
   " completion, extensions
@@ -95,6 +96,10 @@ if !exists('g:vscode')
 else
   " vim-plug (plugin only available after plug#end)
   call plug#begin('~/.config/nvim/vscode-plugged')
+    " no rep of hjkl
+    Plug 'takac/vim-hardtime'
+    let g:hardtime_default_on = 1
+
     " `gc` comments
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-surround'
