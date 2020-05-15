@@ -1,13 +1,14 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
 
+" mapping delay 1000, key code delay 0
+set timeoutlen=1000 ttimeoutlen=0
+
+" leader key
+let mapleader="\<SPACE>"
 
 if !exists('g:vscode')
   " python3 support
   let g:python3_host_prog="~/.asdf/installs/python/3.8.2/bin/python"
-
-  " leader key
-  let mapleader="\<SPACE>"
-
 
   " speed up diagnostics/gitgutter
   set updatetime=100 " 100ms
@@ -103,10 +104,8 @@ else
     " `gc` comments
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-surround'
-    " auto close/surround text
-    Plug 'cohama/lexima.vim'
     " additional text obj
-    Plug 'wellle/targets.vim'
+    " Plug 'wellle/targets.vim'
   call plug#end()
 
   set incsearch                         " Start search before finish typing
