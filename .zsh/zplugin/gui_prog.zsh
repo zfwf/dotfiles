@@ -106,14 +106,12 @@ case `uname` in
       as'null' sbin'**/Electron -> ads'
     zinit snippet "https://go.microsoft.com/fwlink/?linkid=2109180"
 
-
     # meld
     zinit ice lucid wait"3" from"gh-r" \
       atclone'_install_dotapp' \
       atpull'%atclone' \
       as'null' sbin'**/Meld -> meld'
     zinit light yousseb/meld
-
 
     # qview
     zinit ice lucid wait"3" from"gh-r" bpick'*dmg' \
@@ -150,7 +148,10 @@ case `uname` in
     zinit ice lucid wait"3" id-as'azure-data-studio' \
       mv'azure-data-studio -> azure-data-studio.tar.gz' \
       atclone'tar xzvf azure-data-studio.tar.gz; \
-      _create_and_link_desktop_file azure-data-studio "$(readlink -f azuredatastudio-linux-x64/azuredata-studio)" "$(readlink -f azuredatastudio-linux-x64/resources/app/resources/linux/code.png)" "Azure Data Studio"; rm *.tar.gz' \
+      zinit_app_exec=$(readlink -f azuredatastudio-linux-x64/azuredata-studio); \
+      zinit_app_icon=$(readlink -f azuredatastudio-linux-x64/resources/app/resources/linux/code.png); \
+      _create_and_link_desktop_file azure-data-studio "$zinit_app_exec" "$zinit_app_icon" "Azure Data Studio"; \
+      rm *.tar.gz' \
       atpull'%atclone' \
       as'null' sbin'**/azuredata-studio -> azure-data-studio'
     zinit snippet "https://go.microsoft.com/fwlink/?linkid=2109179"
@@ -163,7 +164,6 @@ case `uname` in
       zinit_app_icon=$(readlink -f android-studio/bin/studio.png); \
       _create_and_link_desktop_file android-studio "$zinit_app_exec" "$zinit_app_icon" "Android Studio"' \
       atpull'%atclone' \
-      atload'export ANDROID_HOME=~/Android/Sdk; export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools' \
       as'null' sbin'**/studio.sh -> android-studio'
     zinit snippet 'https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz'
 
