@@ -15,8 +15,12 @@ zinit ice lucid depth'1' \
     asdf global sbt $(asdf list sbt); \
     ' \
   atpull'%atclone' \
-  src'completions/asdf.bash' \
   atload'. $PWD/asdf.sh; \
+    # append completions to fpath \
+    fpath=(${ASDF_DIR}/completions $fpath); \
+    # initialise completions with ZSH compinit \
+    autoload -Uz compinit; \
+    compinit; \
     export NODEJS_CHECK_SIGNATURES=no; \
     . $HOME/.asdf/plugins/java/set-java-home.zsh;'
 zinit light asdf-vm/asdf
