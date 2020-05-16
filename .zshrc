@@ -8,7 +8,7 @@ export KEYTIMEOUT=1
 export PATH=$(echo $PATH | sed 's/\/usr\/local\/bin:\/usr\/bin:\/bin:\/usr\/sbin:\/sbin//g')
 export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
-# export TERM='xterm-256color' # attempt enable at least 256 color
+export TERM='xterm-256color' # attempt enable at least 256 color
 
 # set some history options
 setopt append_history
