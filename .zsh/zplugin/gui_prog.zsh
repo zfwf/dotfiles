@@ -66,3 +66,117 @@ _integrate_sys() {
 # ff dev edition
 zinit pack"bgn" atclone+'_integrate_sys firefox "env MOZ_WAYLAND_ENABLE=1 $(readlink -f firefox-bin)" firefox Firefox' for firefox-dev
 
+
+case `uname` in
+  Darwin)
+    # vscode
+    zinit ice lucid wait"3" from"gh-r" bpick"*darwin*.zip" \
+      atclone'_install_dotapp' \
+      atpull'%atclone' \
+      as'null' sbin'**/bin/code'
+    zinit light VSCodium/vscodium
+
+    # gitahead
+    zinit ice lucid wait"3" from"gh-r" bpick"*dmg" \
+      atclone'_install_dotapp' \
+      atpull'%atclone' \
+      as'null' sbin'**/GitAhead -> gitahead'
+    zinit light gitahead/gitahead
+
+    # alacritty
+    zinit ice lucid wait"3" from"gh-r" bpick"*dmg" \
+      atclone'_install_dotapp' \
+      atpull'%atclone' \
+      as'null' sbin'**/alacritty'
+    zinit light alacritty/alacritty
+
+    # sublime text
+    zinit ice lucid wait"3" id-as"subl" \
+      mv'subl -> subl.dmg' \
+      atclone'_install_dotapp' \
+      atpull'%atclone' \
+      as'null' sbin'**/Sublime\ Text -> subl'
+    zinit snippet "https://download.sublimetext.com/Sublime%20Text%20Build%203211.dmg"
+
+    # azure data studio
+    zinit ice lucid wait"3" id-as'azure-data-studio' \
+      mv'azure-data-studio -> azure-data-studio.zip' \
+      atclone'unzip azure-data-studio.zip -d .; _install_dotapp' \
+      atpull'%atclone' \
+      as'null' sbin'**/Electron -> ads'
+    zinit snippet "https://go.microsoft.com/fwlink/?linkid=2109180"
+
+
+    # meld
+    zinit ice lucid wait"3" from"gh-r" \
+      atclone'_install_dotapp' \
+      atpull'%atclone' \
+      as'null' sbin'**/Meld -> meld'
+    zinit light yousseb/meld
+
+
+    # qview
+    zinit ice lucid wait"3" from"gh-r" bpick'*dmg' \
+      atclone'_install_dotapp' \
+      atpull'%atclone' \
+      as'null' sbin'**/qView'
+    zinit light jurplel/qView
+
+    # hyper
+    zinit ice lucid wait"3" from"gh-r" bpick'*dmg' \
+      atclone'_install_dotapp' \
+      atpull'%atclone' \
+      as'null' sbin'**/Hyper -> hyper'
+    zinit light zeit/hyper
+    ;;
+  Linux)
+    # vscode
+    zinit ice lucid wait"3" from"gh-r" bpick"*x64*" \
+      atclone'zinit_app_exec=$(readlink -f codium); \
+      zinit_app_icon=$(readlink -f resources/app/resources/linux/code.png); \
+      _create_and_link_desktop_file vscodium "$zinit_app_exec" "$zinit_app_icon" VSCodium' \
+      atpull'%atclone' \
+      as"null" sbin'**/bin/codium -> code'
+    zinit light VSCodium/vscodium
+
+    # gitahead
+    zinit ice lucid wait"3" from"gh-r" bpick"*sh"\
+      atclone'./GitAhead*.sh --include-subdir;' \
+      atpull'%atclone' \
+      as"null"  sbin'**/GitAhead -> gitahead'
+    zinit light gitahead/gitahead
+
+    # azure data studio
+    zinit ice lucid wait"3" id-as'azure-data-studio' \
+      mv'azure-data-studio -> azure-data-studio.tar.gz' \
+      atclone'tar xzvf azure-data-studio.tar.gz; \
+      _create_and_link_desktop_file azure-data-studio "$(readlink -f azuredatastudio-linux-x64/azuredata-studio)" "$(readlink -f azuredatastudio-linux-x64/resources/app/resources/linux/code.png)" "Azure Data Studio"; rm *.tar.gz' \
+      atpull'%atclone' \
+      as'null' sbin'**/azuredata-studio -> azure-data-studio'
+    zinit snippet "https://go.microsoft.com/fwlink/?linkid=2109179"
+
+    # android studio
+    zinit ice lucid wait"3" id-as'android-studio-ide' \
+      mv'android-studio-ide -> android-studio-ide.tar.gz' \
+      atclone'tar xzvf *.tar.gz; \
+      zinit_app_exec=$(readlink -f android-studio/bin/studio.sh); \
+      zinit_app_icon=$(readlink -f android-studio/bin/studio.png); \
+      _create_and_link_desktop_file android-studio "$zinit_app_exec" "$zinit_app_icon" "Android Studio"' \
+      atpull'%atclone' \
+      atload'export ANDROID_HOME=~/Android/Sdk; export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools' \
+      as'null' sbin'**/studio.sh -> android-studio'
+    zinit snippet 'https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz'
+
+    # google chrome
+    #zinit ice lucid wait id-as"google-chrome" as'program' pick'chrome/chrome' \
+    #  mv'google-chrome -> google-chrome.rpm' \
+    #  atclone'rm -rf chrome; mkdir temp; mv -v *.rpm temp/; cd temp; rpm2cpio *.rpm | cpio -idmv; cd -; mv -v temp/opt/google/chrome ./; rm -rf temp/; \
+    #  mv -v chrome/google-chrome chrome/launcher;
+    #  # sudo chown root:root chrome/chrome-sandbox; \
+    #  # sudo chmod 4755 chrome/chrome-sandbox; \
+    #  chmod 4755 chrome/chrome-sandbox; \
+    #  _create_and_link_desktop_file "Google Chrome" "env FONTCONFIG_PATH=/usr/share/defaults/fonts $(readlink -f chrome/chrome)" google-chrome;' \
+    #  atpull'%atclone'
+    #zinit snippet "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+    ;;
+  esac
