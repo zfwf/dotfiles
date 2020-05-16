@@ -20,9 +20,6 @@ zinit light zinit-zsh/z-a-patch-dl
 # lang/runtimes
 [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/lang_runtime.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/lang_runtime.zsh
 
-#  completions
-[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh
-
 # common command line programs
 [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh
 
@@ -42,6 +39,9 @@ esac
 
 # other paths
 [ -f $ZINIT_VAR[ZSCRIPT_DIR]/paths.sh ] && . $ZINIT_VAR[ZSCRIPT_DIR]/paths.sh
+
+#  completions
+[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh
 
 # common gui programs
 [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh

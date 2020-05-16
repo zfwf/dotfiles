@@ -4,7 +4,7 @@ case `uname` in
     sdk_root=$HOME/Library/Android/sdk
     ;;
   Linux)
-    sdk_root=$HOME/Android/sdk
+    sdk_root=$HOME/Android/Sdk
     ;;
 esac
 
