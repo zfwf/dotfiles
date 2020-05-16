@@ -17,7 +17,7 @@ zinit ice lucid wait'1' make as"null" sbin"tmux" \
   atpull'%atclone'
 zinit light tmux/tmux
 
-zinit ice lucid wait'1' wait id-as'gpakosz/tmux' nocompile \
+zinit ice lucid wait'1' id-as'gpakosz/tmux' nocompile \
   atclone'ln -sf $PWD/.tmux.conf $HOME/.tmux.conf' \
   atplull'%atclone'
 zinit light gpakosz/.tmux

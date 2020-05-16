@@ -38,7 +38,9 @@ if !exists('g:vscode')
   Plug 'jreybert/vimagit'
   Plug 'tpope/vim-fugitive'
 
-  " #tools:misc
+  " #tools:misc --------
+  " file manager
+  Plug 'mcchrish/nnn.vim'
   " auto save sessions
   Plug 'tpope/vim-obsession'
   " `gc` comments
@@ -48,6 +50,7 @@ if !exists('g:vscode')
   Plug 'cohama/lexima.vim'
   " additional text obj
   Plug 'wellle/targets.vim'
+  " #-------------------
   call plug#end()
 
   " enable truecolor support
