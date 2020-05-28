@@ -48,6 +48,8 @@ if !exists('g:vscode')
   Plug 'tpope/vim-surround'
   " auto close/surround text
   Plug 'cohama/lexima.vim'
+  " word motion
+  Plug 'chaoren/vim-wordmotion'
   " additional text obj
   Plug 'wellle/targets.vim'
   " #-------------------
@@ -107,6 +109,8 @@ else
     " `gc` comments
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-surround'
+    " word motion
+    Plug 'chaoren/vim-wordmotion'
     " additional text obj
     " Plug 'wellle/targets.vim'
   call plug#end()

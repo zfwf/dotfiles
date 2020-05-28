@@ -95,6 +95,7 @@ alias vi="$VISUAL"
 alias top="glances"
 alias react-devtools='npx react-devtools@^3'
 alias meta='npx meta'
+alias ls="ls --color"
 
 case `uname` in
   Darwin)
