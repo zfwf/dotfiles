@@ -64,7 +64,7 @@ _integrate_sys() {
 
 
 # ff dev edition
-zinit pack"bgn" atclone+'_integrate_sys firefox "env MOZ_WAYLAND_ENABLE=1 $(readlink -f firefox-bin)" firefox Firefox' for firefox-dev
+zinit ice lucid wait'3' pack"bgn" atclone+'_integrate_sys firefox "env GDK_BACKEND=wayland $(readlink -f firefox-bin)" firefox Firefox' for firefox-dev
 
 
 case `uname` in
@@ -166,6 +166,16 @@ case `uname` in
       atpull'%atclone' \
       as'null' sbin'**/studio.sh -> android-studio'
     zinit snippet 'https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz'
+
+    # postman
+    zinit ice lucid wait"3" id-as'postman' \
+      mv'postman -> postman.tar.gz' \
+      atclone'tar xzvf *.tar.gz; \
+      zinit_app_exec=$(readlink -f Postman/Postman); \
+      _create_and_link_desktop_file postman "$zinit_app_exec" "postman" "Postman"' \
+      atpull'%atclone' \
+      as'null' sbin'**/Postman -> postman'
+    zinit snippet 'https://dl.pstmn.io/download/latest/linux64'
 
     # google chrome
     #zinit ice lucid wait id-as"google-chrome" as'program' pick'chrome/chrome' \

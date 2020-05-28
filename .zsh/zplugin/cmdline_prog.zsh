@@ -2,6 +2,12 @@
 zinit ice lucid wait'1' as"null" sbin"bin/diff-so-fancy; bin/git-dsf;"
 zinit light zdharma/zsh-diff-so-fancy
 
+# direnv
+zinit ice lucid wait'1' from"gh-r" as"program" mv"direnv* -> direnv" \
+    atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+    pick"direnv" src="zhook.zsh" for \
+        direnv/direnv
+
 # file navigation -------------
 # rg + fzf
 zinit ice lucid wait'1' from"gh-r" as"null" for \
@@ -65,6 +71,9 @@ case `uname` in
 
     zinit ice lucid wait'1' from"gh-r" as"null" sbin"docker* -> docker-compose"
     zinit light docker/compose
+
+    # zinit ice lucid wait'1' id-as'kubectl' as"null" sbin"kubectl"
+    # zinit snippet https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
     ;;
 esac
 
