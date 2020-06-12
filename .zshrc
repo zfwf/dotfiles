@@ -128,15 +128,17 @@ co() {
   local cloned_folder=$(extract-filename-wo-ext $2)-$1-$3
   local branch_name=$1/$3
   command git clone $2 $cloned_folder
-  cd $cloned_folder; command git checkout -b $branch_name
-  command git push -u origin $branch_name
-  [ -f ./.npmrc ] && sed -i '' -e '$s/^\/\/npm\.pkg\.github\.com/#/' ./.npmrc
-  if [ -f ./package-lock.json ]; then
+  cd $cloned_folder
+  if [ -f ".meta" ]; then
+    meta git update
+    meta git checkout -b $branch_name
+    meta git push -u origin $branch_name
+    meta exec 'npm ci'
+  else
+    command git checkout -b $branch_name
+    command git push -u origin $branch_name
     npm ci
     npm run build --if-present
-  elif [ -f ./yarn.lock ]; then
-    yarn
-    yarn run build --if-present
   fi
 }
 
