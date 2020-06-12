@@ -44,7 +44,7 @@ _install_dotapp() {
 # gnome utils
 _create_and_link_desktop_file() {
   local app_dir=$HOME/.local/share/applications
-  echo "[Desktop Entry]\nName=$4\nExec=$2 %U\nIcon=$3\nType=Application\nStartupNotify=false" > $1.desktop
+  echo "[Desktop Entry]\nName=$4\nExec=$2 %U\nIcon=$3\nType=Application\nStartupNotify=false\nMimeType=$5" > $1.desktop
   mkdir -p $app_dir
   ln -sf "$(readlink -f $1.desktop)" $app_dir/$1.desktop
 }
@@ -176,6 +176,16 @@ case `uname` in
       atpull'%atclone' \
       as'null' sbin'**/Postman -> postman'
     zinit snippet 'https://dl.pstmn.io/download/latest/linux64'
+
+    # zoom
+    zinit ice lucid wait"3" id-as'zoom' \
+      mv'zoom -> zoom.tar.xz' \
+      atclone'tar xvf *.tar.xz; \
+      zinit_app_exec=$(readlink -f zoom/ZoomLauncher); \
+      _create_and_link_desktop_file zoom "env QT_SCALE_FACTOR=2 $zinit_app_exec" "Zoom" "Zoom" "x-scheme-handler/zoommtg;x-scheme-handler/zoomus;x-scheme-handler/tel;x-scheme-handler/callto;x-scheme-handler/zoomphonecall;application/x-zoom"' \
+      atpull'%atclone' \
+      as'null' sbin'**/ZoomLauncher -> zoom'
+    zinit snippet https://zoom.us/client/latest/zoom_x86_64.tar.xz
 
     # google chrome
     #zinit ice lucid wait id-as"google-chrome" as'program' pick'chrome/chrome' \

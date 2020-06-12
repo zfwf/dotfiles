@@ -1,7 +1,7 @@
 " init.vim file, Chris Chou, chhschou@gmail.com
 
 " mapping delay 1000, key code delay 0
-set timeoutlen=1000 ttimeoutlen=0
+" set timeoutlen=1000 ttimeoutlen=0
 
 " leader key
 let mapleader="\<SPACE>"
@@ -102,15 +102,11 @@ if !exists('g:vscode')
 else
   " vim-plug (plugin only available after plug#end)
   call plug#begin('~/.config/nvim/vscode-plugged')
-    " no rep of hjkl
-    Plug 'takac/vim-hardtime'
-    let g:hardtime_default_on = 1
-
     " `gc` comments
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-surround'
     " word motion
-    Plug 'chaoren/vim-wordmotion'
+    " Plug 'chaoren/vim-wordmotion'
     " additional text obj
     " Plug 'wellle/targets.vim'
   call plug#end()
