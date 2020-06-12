@@ -58,22 +58,31 @@ case `uname` in
       atclone'tar xzvf *.tgz; rm *.tgz;' \
       atpull'%atclone' \
       as'null' sbin'docker/containerd; docker/dockerd; docker/docker'
-    zinit snippet "https://download.docker.com/linux/static/stable/x86_64/docker-19.03.4.tgz"
+    zinit snippet "https://download.docker.com/linux/static/stable/x86_64/docker-19.03.9.tgz"
 
-    # # dockerd-rootless.sh --experimental
-    # zinit ice lucid wait'1' id-as'dockerd-rootless' as"program" \
-    #   mv'dockerd-rootless* -> dockerd-rootless.tgz' \
-    #   atclone'tar xzvf *.tgz; rm *.tgz;' \
-    #   atpull'%atclone' \
-    #   sbin'docker-rootless-extras/rootlesskit' sbin'docker-rootless-extras/vpnkit' \
-    #   atload'docker-rootless-extras/dockerd-rootless.sh --experimental'
-    # zinit snippet "https://download.docker.com/linux/static/stable/x86_64/docker-rootless-extras-19.03.4.tgz"
+    # rootless dockerd: run `dockerd-rootless --experimental --storage-driver vfs`
+    # other prerequisites: https://docs.docker.com/engine/security/rootless/
+    zinit ice lucid wait'1' id-as'dockerd-rootless' as"program" \
+      mv'dockerd-rootless* -> dockerd-rootless.tgz' \
+      atclone'tar xzvf *.tgz; rm *.tgz;' \
+      atpull'%atclone' as'null' \
+      sbin'docker-rootless-extras/dockerd-rootless.sh -> dockerd-rootless'  \
+      sbin'docker-rootless-extras/rootlesskit' \
+      sbin'docker-rootless-extras/vpnkit' \
+      atload'export DOCKER_HOST=unix:///run/user/1000/docker.sock'
+    zinit snippet "https://download.docker.com/linux/static/stable/x86_64/docker-rootless-extras-19.03.9.tgz"
 
+    # docker-compose
     zinit ice lucid wait'1' from"gh-r" as"null" sbin"docker* -> docker-compose"
     zinit light docker/compose
 
-    zinit ice lucid wait'1' id-as'kubectl' as"null" sbin"kubectl"
-    zinit snippet 'https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl'
+    # kubectl
+    zinit ice lucid wait'1' as"null" id-as'kubectl' sbin"kubectl"
+    zinit snippet 'https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl'
+
+    # minikube
+    zinit ice lucid wait'1' as"null" id-as'minikube' sbin'minikube'
+    zinit snippet 'https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64'
     ;;
 esac
 
