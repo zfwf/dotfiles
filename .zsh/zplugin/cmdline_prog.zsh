@@ -83,6 +83,18 @@ case `uname` in
     # minikube
     zinit ice lucid wait'1' as"null" id-as'minikube' sbin'minikube'
     zinit snippet 'https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64'
+
+    # aws-vault
+    zinit ice lucid wait'1' from'gh-r' as"null" sbin'aws-vault* -> aws-vault'
+    zinit light 99designs/aws-vault
+
+    # aws cli
+    zinit ice lucid wait'1' id-as'awscli' \
+      mv'awscli -> awscli.zip' \
+      atclone'unzip awscli.zip && rm *.zip && ./aws/install -i . ' \
+      atpull'%atclone' \
+      as"null" sbin'**/aws -> aws'
+    zinit snippet https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
     ;;
 esac
 

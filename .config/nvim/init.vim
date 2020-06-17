@@ -24,7 +24,7 @@ if !exists('g:vscode')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " #visual/info
-  Plug 'kaicataldo/material.vim'
+  Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'itchyny/lightline.vim'
   Plug 'taohexxx/lightline-buffer'
   Plug 'ryanoasis/vim-devicons'
@@ -64,9 +64,7 @@ if !exists('g:vscode')
   syntax enable
   filetype indent plugin on
   set background=dark
-  colorscheme material
-  let g:material_terminal_italics = 1
-  let g:material_theme_style = 'darker'
+  colorscheme dracula
 
 
   " show whitespace characters
