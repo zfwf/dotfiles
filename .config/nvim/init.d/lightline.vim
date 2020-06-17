@@ -5,7 +5,7 @@ set showtabline=2  " always show tabline
 
 " use lightline-buffer in lightline
 let g:lightline = {
-      \ 'colorscheme': 'material_vim',
+      \ 'colorscheme': 'dracula',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'readonly' ],
