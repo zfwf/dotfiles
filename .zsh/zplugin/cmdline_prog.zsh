@@ -46,6 +46,9 @@ zinit light junegunn/vim-plug
 
 case `uname` in
   Darwin)
+    # github cli
+    zinit ice lucid wait'1' from"gh-r" as'null' sbin'**/gh'
+    zinit light cli/cli
     ;;
   Linux)
     # github cli
