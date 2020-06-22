@@ -63,10 +63,6 @@ _integrate_sys() {
 }
 
 
-# ff dev edition
-zinit ice lucid wait'3' pack"bgn" atclone+'_integrate_sys firefox "env GDK_BACKEND=wayland $(readlink -f firefox-bin)" firefox Firefox' for firefox-dev
-
-
 case `uname` in
   Darwin)
     # vscode
@@ -129,13 +125,16 @@ case `uname` in
     ;;
   Linux)
     # vscode
-    zinit ice lucid wait"3" from"gh-r" bpick"*x64*" \
-      atclone'zinit_app_exec=$(readlink -f codium); \
-      zinit_app_icon=$(readlink -f resources/app/resources/linux/code.png); \
-      _create_and_link_desktop_file vscodium "$zinit_app_exec" "$zinit_app_icon" VSCodium' \
+    zinit ice lucid wait"3" id-as'vscode' \
+      mv'vscode -> vscode.tar.gz' \
+      atclone'tar xzvf vscode.tar.gz; \
+      zinit_app_exec=$(readlink -f VSCode-linux-x64/bin/code); \
+      zinit_app_icon=vscode; \
+      _create_and_link_desktop_file vscode "$zinit_app_exec" "$zinit_app_icon" "Visual Studio Code"; \
+      rm *.tar.gz' \
       atpull'%atclone' \
-      as"null" sbin'**/bin/codium -> code'
-    zinit light VSCodium/vscodium
+      as'null' sbin'**/bin/code'
+    zinit snippet 'https://go.microsoft.com/fwlink/?LinkID=620884'
 
     # gitahead
     zinit ice lucid wait"3" from"gh-r" bpick"*sh"\
@@ -165,7 +164,7 @@ case `uname` in
       _create_and_link_desktop_file android-studio "$zinit_app_exec" "$zinit_app_icon" "Android Studio"' \
       atpull'%atclone' \
       as'null' sbin'**/studio.sh -> android-studio'
-    zinit snippet 'https://dl.google.com/dl/android/studio/ide-zips/3.5.2.0/android-studio-ide-191.5977832-linux.tar.gz'
+    zinit snippet 'https://redirector.gvt1.com/edgedl/android/studio/ide-zips/4.0.0.16/android-studio-ide-193.6514223-linux.tar.gz'
 
     # postman
     zinit ice lucid wait"3" id-as'postman' \
@@ -186,6 +185,14 @@ case `uname` in
       atpull'%atclone' \
       as'null' sbin'**/ZoomLauncher -> zoom'
     zinit snippet https://zoom.us/client/latest/zoom_x86_64.tar.xz
+
+    # ff nightly
+    zinit ice lucid id-as"ff-nightly"  \
+      mv'ff-nightly -> firefox.tar.bz2' \
+      atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "env GDK_BACKEND=wayland $(readlink -f firefox/firefox)" firefox Firefox; rm *.tar.bz2;' \
+      atpull'%atclone' \
+      as'null' sbin'**/firefox'
+    zinit snippet "https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=linux64&lang=en-US"
 
     # google chrome
     #zinit ice lucid wait id-as"google-chrome" as'program' pick'chrome/chrome' \
