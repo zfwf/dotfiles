@@ -6,7 +6,6 @@
 _extract_dmg() {
   local dmg_name="*.dmg"
   local content="/Volumes/**/*.app"
-  local dmg_volume=$1
 
   local attached_vol=$(eval "hdiutil attach $(realpath -m $dmg_name)" | tail -n1 | cut -f 3)
   eval "cp -r $(realpath -m $content) ."
@@ -37,8 +36,8 @@ _create_alias_in_user_applications() {
 }
 
 _install_dotapp() {
-  remove_alias_in_user_applications *.app
-  create_alias_in_user_applications *.app
+  _remove_alias_in_user_applications *.app
+  _create_alias_in_user_applications *.app
 }
 
 # gnome utils
@@ -71,6 +70,14 @@ case `uname` in
       atpull'%atclone' \
       as'null' sbin'**/bin/code'
     zinit light VSCodium/vscodium
+
+    # ff-dev
+    zinit ice lucid wait"3" id-as'firefox-dev' \
+      mv'firefox-dev -> firefox.dmg' \
+      atclone'_extract_dmg; _install_dotapp' \
+      atpull'%atclone' \
+      as'null' sbin'**/firefox-bin -> firefox'
+    zinit snippet 'https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=osx&lang=en-US'
 
     # gitahead
     zinit ice lucid wait"3" from"gh-r" bpick"*dmg" \

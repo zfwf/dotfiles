@@ -95,15 +95,18 @@ alias vi="$VISUAL"
 alias top="glances"
 alias react-devtools='npx react-devtools@^3'
 alias meta='npx meta'
-alias ls="ls --color"
+alias ll='ls -la'
 
 case `uname` in
   Darwin)
     alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
     alias postgre:start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
     alias postgre:stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+    export CLICOLOR=1
+    export LSCOLORS=GxFxCxDxBxegedabagaced
     ;;
   Linux)
+    alias ls="ls --color"
     alias trash=gvfs-trash
     ;;
 esac
