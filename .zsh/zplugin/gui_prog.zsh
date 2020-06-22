@@ -65,11 +65,12 @@ _integrate_sys() {
 case `uname` in
   Darwin)
     # vscode
-    zinit ice lucid wait"3" from"gh-r" bpick"*darwin*.zip" \
-      atclone'_install_dotapp' \
+    zinit ice lucid wait"3" id-as'vscode' \
+      mv'vscode -> vscode.zip' \
+      atclone'unzip vscode.zip -d .; rm *.zip; _install_dotapp;' \
       atpull'%atclone' \
-      as'null' sbin'**/bin/code'
-    zinit light VSCodium/vscodium
+      as'null' sbin'**/Electron -> code'
+    zinit snippet 'https://go.microsoft.com/fwlink/?LinkID=620882'
 
     # ff-dev
     zinit ice lucid wait"3" id-as'firefox-dev' \
