@@ -69,16 +69,8 @@ case `uname` in
       mv'vscode -> vscode.zip' \
       atclone'unzip vscode.zip -d .; rm *.zip; _install_dotapp;' \
       atpull'%atclone' \
-      as'null' sbin'**/Electron -> code'
+      as'null' sbin'**/Resources/app/bin/code'
     zinit snippet 'https://go.microsoft.com/fwlink/?LinkID=620882'
-
-    # ff-dev
-    zinit ice lucid wait"3" id-as'firefox-dev' \
-      mv'firefox-dev -> firefox.dmg' \
-      atclone'_extract_dmg; _install_dotapp' \
-      atpull'%atclone' \
-      as'null' sbin'**/firefox-bin -> firefox'
-    zinit snippet 'https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=osx&lang=en-US'
 
     # gitahead
     zinit ice lucid wait"3" from"gh-r" bpick"*dmg" \
@@ -105,9 +97,9 @@ case `uname` in
     # azure data studio
     zinit ice lucid wait"3" id-as'azure-data-studio' \
       mv'azure-data-studio -> azure-data-studio.zip' \
-      atclone'unzip azure-data-studio.zip -d .; _install_dotapp' \
+      atclone'unzip azure-data-studio.zip -d .; rm *.zip; _install_dotapp' \
       atpull'%atclone' \
-      as'null' sbin'**/Electron -> ads'
+      as'null' sbin'**/Resources/app/bin/code -> ads'
     zinit snippet "https://go.microsoft.com/fwlink/?linkid=2109180"
 
     # meld
