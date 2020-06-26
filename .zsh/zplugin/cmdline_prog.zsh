@@ -15,7 +15,7 @@ zinit ice lucid wait'1' from"gh-r" as"null" for \
   sbin"ripgrep*/rg" BurntSushi/ripgrep
 
 # nnn
-zinit pick"misc/quitcd/quitcd.zsh" sbin make light-mode for jarun/nnn
+zinit pick"misc/quitcd/quitcd.zsh" sbin'**/nnn' make light-mode for jarun/nnn
 
 # tmux + oh-my-tmux (nb use ver"gh-254" for tmux 3.0+) + tmux plugin manager
 zinit ice lucid wait'1' make as"null" sbin"tmux" \
