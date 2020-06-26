@@ -44,17 +44,14 @@ zinit ice lucid wait'1' \
 zinit light junegunn/vim-plug
 # -----------------------------
 
+# github cli
+zinit ice lucid wait'1' from"gh-r" as'null' sbin'**/gh'
+zinit light cli/cli
+
 case `uname` in
   Darwin)
-    # github cli
-    zinit ice lucid wait'1' from"gh-r" as'null' sbin'**/gh'
-    zinit light cli/cli
     ;;
   Linux)
-    # github cli
-    zinit ice lucid wait'1' from"gh-r" bpick'*amd64.tar.gz' as'null' sbin'**/gh'
-    zinit light cli/cli
-
     # docker
     zinit ice lucid wait'1' id-as'docker-install' \
       mv'docker-install* -> docker.tgz' \
