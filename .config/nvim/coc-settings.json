@@ -4,13 +4,6 @@
   "list.source.files.excludePatterns": ["**/.git/**"],
   "list.source.mru.ignoreGitIgnore": true,
   "list.source.mru.defaultOptions": [],
-  "coc.source.omni.filetypes": [
-    "rust",
-    "typescript",
-    "python",
-    "json",
-    "jsonc"
-  ],
   "coc.preferences.formatOnSaveFiletypes": [
     "rust",
     "python",
