@@ -1,9 +1,9 @@
 {
   "list.source.files.args": ["--hidden", "--files", "-u"],
-  "list.source.files.defaultOptions": [],
   "list.source.files.excludePatterns": ["**/.git/**", "**/node_modules/**"],
   "list.source.mru.ignoreGitIgnore": false,
-  "list.source.mru.defaultOptions": [],
+  "list.source.grep.args": ["--hidden", "--smart-case", "-u"],
+  "list.source.grep.excludePatterns": ["**/.git/**", "**/node_modules/**"],
   "coc.preferences.formatOnSaveFiletypes": [
     "rust",
     "python",
