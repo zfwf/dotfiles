@@ -16,11 +16,8 @@ if !exists('g:vscode')
 
   let b:coc_extensions = [
     \ 'coc-highlight',
-    \ 'coc-emmet',
-    \ 'coc-snippets',
     \ 'coc-lists',
     \ 'coc-git',
-    \ 'coc-tabnine',
     \ 'coc-eslint',
     \ 'coc-prettier',
     \]
@@ -108,10 +105,6 @@ if !exists('g:vscode')
   " Symbol renaming.
   nmap <leader>rn <Plug>(coc-rename)
 
-  " Formatting selected code.
-  xmap <leader>f  <Plug>(coc-format-selected)
-  nmap <leader>f  <Plug>(coc-format-selected)
-
   augroup mygroup
     autocmd!
     " Setup formatexpr specified filetype(s).
@@ -165,6 +158,8 @@ if !exists('g:vscode')
   nnoremap <silent><nowait> <leader><leader>  :<C-u>CocList mru<CR>
   " files in project
   nnoremap <silent><nowait> <C-p>     :<C-u>CocList files<CR>
+  " grep in project
+  nnoremap <silent><nowait> <leader>f :<C-u>CocList grep<CR>
   " Show all diagnostics.
   nnoremap <silent><nowait> <leader>a  :<C-u>CocList diagnostics<cr>
   " Manage extensions.
@@ -181,39 +176,6 @@ if !exists('g:vscode')
   nnoremap <silent><nowait> <leader>k  :<C-u>CocPrev<CR>
   " Resume latest coc list.
   nnoremap <silent><nowait> <leader>p  :<C-u>CocListResume<CR>s
-
-  " grep by motion
-  vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
-  nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
-
-  function! s:GrepFromSelected(type)
-    let saved_unnamed_register = @@
-    if a:type ==# 'v'
-      normal! `<v`>y
-    elseif a:type ==# 'char'
-      normal! `[v`]y
-    else
-      return
-    endif
-    let word = substitute(@@, '\n$', '', 'g')
-    let word = escape(word, '| ')
-    let @@ = saved_unnamed_register
-    execute 'CocList grep '.word
-  endfunction
-
-  " grep word under cursor
-  command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList -A grep '.<q-args>
-
-  function! s:GrepArgs(...)
-    let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
-          \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
-    return join(list, "\n")
-  endfunction
-
-  " Keymapping for grep word under cursor with interactive mode
-  nnoremap <silent> <Leader>cf :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
-
-
 
   " end default config------------------------
 
