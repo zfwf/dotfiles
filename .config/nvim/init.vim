@@ -18,7 +18,7 @@ if !exists('g:vscode')
 
   " no rep of hjkl
   Plug 'takac/vim-hardtime'
-  let g:hardtime_default_on = 1
+  " let g:hardtime_default_on = 1
 
   " completion, extensions
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -49,7 +49,7 @@ if !exists('g:vscode')
   " auto close/surround text
   Plug 'cohama/lexima.vim'
   " word motion
-  Plug 'chaoren/vim-wordmotion'
+  " Plug 'chaoren/vim-wordmotion'
   " additional text obj
   Plug 'wellle/targets.vim'
   " #-------------------

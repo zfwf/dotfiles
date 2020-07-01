@@ -20,6 +20,7 @@ if !exists('g:vscode')
     \ 'coc-git',
     \ 'coc-eslint',
     \ 'coc-prettier',
+    \ 'coc-explorer'
     \]
 
   let g:coc_global_extensions = b:coc_languages + b:coc_extensions
@@ -41,15 +42,6 @@ if !exists('g:vscode')
 
   " Don't pass messages to |ins-completion-menu|.
   set shortmess+=c
-
-  " Always show the signcolumn, otherwise it would shift the text each time
-  " diagnostics appear/become resolved.
-  if has("patch-8.1.1564")
-    " Recently vim can merge signcolumn and number column into one
-    set signcolumn=number
-  else
-    set signcolumn=yes
-  endif
 
   " Use tab for trigger completion with characters ahead and navigate.
   " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -154,16 +146,16 @@ if !exists('g:vscode')
   set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
   " Mappings for CoCList
-  " mru
-  nnoremap <silent><nowait> <leader><leader>  :<C-u>CocList mru<CR>
+  " grep in project
+  nnoremap <silent><nowait> <leader><leader>  :<C-u>CocList grep<CR>
   " files in project
   nnoremap <silent><nowait> <C-p>     :<C-u>CocList files<CR>
-  " grep in project
-  nnoremap <silent><nowait> <leader>f :<C-u>CocList grep<CR>
+  " explorer
+  nnoremap <silent><nowait> <leader>e     :<C-u>CocCommand explorer<CR>
   " Show all diagnostics.
   nnoremap <silent><nowait> <leader>a  :<C-u>CocList diagnostics<cr>
   " Manage extensions.
-  nnoremap <silent><nowait> <leader>e  :<C-u>CocList extensions<cr>
+  nnoremap <silent><nowait> <leader>ex  :<C-u>CocList extensions<cr>
   " Show commands.
   nnoremap <silent><nowait> <leader>c  :<C-u>CocList commands<cr>
   " Find symbol of current document.
@@ -181,7 +173,7 @@ if !exists('g:vscode')
 
   " let g:coc_auto_open = 0 " do not open quickfix automatically
   " coc-settings.json uses jsonc, which adds comment syntax
-  autocmd FileType json syntax match Comment "+\/\/.\+$+"
+  autocmd FileType json syntax match Comment +\/\/.\+$+
 
 
 endif
