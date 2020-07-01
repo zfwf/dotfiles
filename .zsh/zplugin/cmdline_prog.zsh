@@ -18,18 +18,20 @@ zinit ice lucid wait'1' from"gh-r" as"null" for \
 # nnn
 zinit pick"misc/quitcd/quitcd.zsh" sbin'**/nnn' make light-mode for jarun/nnn
 
-# tmux + oh-my-tmux (nb use ver"gh-254" for tmux 3.0+) + tmux plugin manager
-zinit ice lucid wait'1' make as"null" sbin"tmux" \
+# tmux + oh-my-tmux + tmux plugin manager
+zinit ice lucid wait'1' ver'3.0' make as"null" sbin"tmux" \
   atclone'./autogen.sh; ./configure' \
   atpull'%atclone'
 zinit light tmux/tmux
 
 zinit ice lucid wait'1' id-as'gpakosz/tmux' nocompile \
   atclone'ln -sf $PWD/.tmux.conf $HOME/.tmux.conf' \
-  atplull'%atclone'
+  atpull'%atclone'
 zinit light gpakosz/.tmux
 
-zinit ice lucid wait'1' wait nocompile
+zinit ice lucid wait'1' wait nocompile \
+  atclone'mkdir -p ~/.tmux; ln -sf $PWD/ $HOME/.tmux/tpm' \
+  atpull'%atclone'
 zinit light tmux-plugins/tpm
 # -----------------------------
 
