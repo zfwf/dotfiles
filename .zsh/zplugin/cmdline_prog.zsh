@@ -4,9 +4,10 @@ zinit light zdharma/zsh-diff-so-fancy
 
 # direnv
 zinit ice lucid wait'1' from"gh-r" as"program" mv"direnv* -> direnv" \
-    atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
-    pick"direnv" src="zhook.zsh" for \
-        direnv/direnv
+  atclone'./direnv hook zsh > zhook.zsh' \
+  pick"direnv" src="zhook.zsh" \
+  atpull'%atclone'
+zinit light direnv/direnv
 
 # file navigation -------------
 # rg + fzf
