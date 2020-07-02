@@ -116,12 +116,6 @@ case `uname` in
       as'null' sbin'**/qView'
     zinit light jurplel/qView
 
-    # hyper
-    zinit ice lucid wait"3" from"gh-r" bpick'*dmg' \
-      atclone'_install_dotapp' \
-      atpull'%atclone' \
-      as'null' sbin'**/Hyper -> hyper'
-    zinit light zeit/hyper
     ;;
   Linux)
     # vscode

@@ -1,6 +1,9 @@
-# install zplugin if not present, init
 if [[ ! -d $ZINIT_VAR[HOME_DIR] ]]; then
   mkdir -p $ZINIT_VAR[HOME_DIR]
+fi
+
+# install zplugin if not present, init
+if [[ ! -d $ZINIT_VAR[BIN_DIR] ]]; then
   git clone https://github.com/zdharma/zinit.git $ZINIT_VAR[BIN_DIR]
   . $ZINIT_VAR[BIN_DIR]/zinit.zsh
   zplugin module build
