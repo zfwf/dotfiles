@@ -64,14 +64,6 @@ _integrate_sys() {
 
 case `uname` in
   Darwin)
-    # vscode
-    zinit ice lucid wait"3" id-as'vscode' \
-      mv'vscode -> vscode.zip' \
-      atclone'unzip vscode.zip -d .; rm *.zip; _install_dotapp;' \
-      atpull'%atclone' \
-      as'null' sbin'**/Resources/app/bin/code'
-    zinit snippet 'https://go.microsoft.com/fwlink/?LinkID=620882'
-
     # gitahead
     zinit ice lucid wait"3" from"gh-r" bpick"*dmg" \
       atclone'_install_dotapp' \
@@ -93,14 +85,6 @@ case `uname` in
       atpull'%atclone' \
       as'null' sbin'**/Sublime\ Text -> subl'
     zinit snippet "https://download.sublimetext.com/Sublime%20Text%20Build%203211.dmg"
-
-    # azure data studio
-    zinit ice lucid wait"3" id-as'azure-data-studio' \
-      mv'azure-data-studio -> azure-data-studio.zip' \
-      atclone'unzip azure-data-studio.zip -d .; rm *.zip; _install_dotapp' \
-      atpull'%atclone' \
-      as'null' sbin'**/Resources/app/bin/code -> ads'
-    zinit snippet "https://go.microsoft.com/fwlink/?linkid=2109180"
 
     # meld
     zinit ice lucid wait"3" from"gh-r" \

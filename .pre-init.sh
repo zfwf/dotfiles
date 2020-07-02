@@ -45,10 +45,7 @@
           # Install Homebrew
 	  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"    
           brew bundle
-	  if [ ! -d $HOME/.asdf ]; then
-	    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
-	  fi
-        fi
+	          fi
       fi
 
       ;;
@@ -71,4 +68,34 @@
       fi
       ;;
   esac
+
+if [ ! -d $HOME/.asdf ]; then
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
+  . ~/.asdf/asdf.sh;
+  asdf plugin-add nodejs;
+  asdf plugin-add python;
+  asdf plugin-add rust;
+  asdf plugin-add java;
+  asdf plugin-add sbt;
+  export NODEJS_CHECK_SIGNATURES=no;
+  cd $HOME; asdf install; asdf reshim;
+  asdf global nodejs $(asdf list nodejs);
+  asdf global python $(asdf list python);
+  asdf global rust $(asdf list rust);
+  asdf global java $(asdf list java);
+  asdf global sbt $(asdf list sbt);
+else
+  . ~/.asdf/asdf.sh;
+  # append completions to fpath
+  fpath=(${ASDF_DIR}/completions $fpath);
+  # initialise completions with ZSH compinit
+  autoload -Uz compinit;
+  compinit;
+  export NODEJS_CHECK_SIGNATURES=no;
+  [ -f  $HOME/.asdf/plugins/java/set-java-home.zsh ] && . $HOME/.asdf/plugins/java/set-java-home.zsh;
+fi
+
+
+
+
 
