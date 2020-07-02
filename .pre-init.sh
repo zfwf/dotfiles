@@ -43,8 +43,11 @@
         which -s brew
         if [[ $? != 0 ]] ; then
           # Install Homebrew
-          ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"    
           brew bundle
+	  if [ ! -d $HOME/.asdf ]; then
+	    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
+	  fi
         fi
       fi
 
