@@ -64,41 +64,42 @@ _integrate_sys() {
 
 case `uname` in
   Darwin)
-    # gitahead
-    zinit ice lucid wait"3" from"gh-r" bpick"*dmg" \
-      atclone'_install_dotapp' \
-      atpull'%atclone' \
-      as'null' sbin'**/GitAhead -> gitahead'
-    zinit light gitahead/gitahead
 
-    # alacritty
-    zinit ice lucid wait"3" from"gh-r" bpick"*dmg" \
-      atclone'_install_dotapp' \
-      atpull'%atclone' \
-      as'null' sbin'**/alacritty'
-    zinit light alacritty/alacritty
+    # # gitahead
+    # zinit ice lucid wait"3" from"gh-r" bpick"*dmg" \
+    #   atclone'_install_dotapp' \
+    #   atpull'%atclone' \
+    #   as'null' sbin'**/GitAhead -> gitahead'
+    # zinit light gitahead/gitahead
 
-    # sublime text
-    zinit ice lucid wait"3" id-as"subl" \
-      mv'subl -> subl.dmg' \
-      atclone'_install_dotapp' \
-      atpull'%atclone' \
-      as'null' sbin'**/Sublime\ Text -> subl'
-    zinit snippet "https://download.sublimetext.com/Sublime%20Text%20Build%203211.dmg"
+    # # alacritty
+    # zinit ice lucid wait"3" from"gh-r" bpick"*dmg" \
+    #   atclone'_install_dotapp' \
+    #   atpull'%atclone' \
+    #   as'null' sbin'**/alacritty'
+    # zinit light alacritty/alacritty 
 
-    # meld
-    zinit ice lucid wait"3" from"gh-r" \
-      atclone'_install_dotapp' \
-      atpull'%atclone' \
-      as'null' sbin'**/Meld -> meld'
-    zinit light yousseb/meld
+    # # sublime text
+    # zinit ice lucid wait"3" id-as"subl" \
+    #   mv'subl -> subl.dmg' \
+    #   atclone'_install_dotapp' \
+    #   atpull'%atclone' \
+    #   as'null' sbin'**/Sublime\ Text -> subl'
+    # zinit snippet "https://download.sublimetext.com/Sublime%20Text%20Build%203211.dmg"
 
-    # qview
-    zinit ice lucid wait"3" from"gh-r" bpick'*dmg' \
-      atclone'_install_dotapp' \
-      atpull'%atclone' \
-      as'null' sbin'**/qView'
-    zinit light jurplel/qView
+    # # meld
+    # zinit ice lucid wait"3" from"gh-r" \
+    #   atclone'_install_dotapp' \
+    #   atpull'%atclone' \
+    #   as'null' sbin'**/Meld -> meld'
+    # zinit light yousseb/meld
+
+    # # qview
+    # zinit ice lucid wait"3" from"gh-r" bpick'*dmg' \
+    #   atclone'_install_dotapp' \
+    #   atpull'%atclone' \
+    #   as'null' sbin'**/qView'
+    # zinit light jurplel/qView
 
     ;;
   Linux)
