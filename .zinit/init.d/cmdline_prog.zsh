@@ -30,7 +30,7 @@ zinit ice lucid wait'1' id-as'gpakosz/tmux' nocompile \
 zinit light gpakosz/.tmux
 
 zinit ice lucid wait'1' wait nocompile \
-  atclone'mkdir -p ~/.tmux; ln -sf $PWD/ $HOME/.tmux/tpm' \
+  atclone'mkdir -p ~/.tmux/plugins; ln -sf $PWD/ $HOME/.tmux/plugins/tpm' \
   atpull'%atclone'
 zinit light tmux-plugins/tpm
 # -----------------------------
