@@ -40,12 +40,11 @@
         ln -sf $HOME/.alacritty_mac.yml $HOME/.alacritty.yml
 
         # install brew if not found
-        which -s brew
-        if [[ $? != 0 ]] ; then
+        if [[ $(command -v brew) == "" ]] ; then
           # Install Homebrew
-	  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"    
-          brew bundle
-	          fi
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+          brew bundle --no-lock
+        fi
       fi
 
       ;;
@@ -86,11 +85,7 @@ if [ ! -d $HOME/.asdf ]; then
   asdf global sbt $(asdf list sbt);
 else
   . ~/.asdf/asdf.sh;
-  # append completions to fpath
-  fpath=(${ASDF_DIR}/completions $fpath);
-  # initialise completions with ZSH compinit
-  autoload -Uz compinit;
-  compinit;
+  # completions handled by zinit
   export NODEJS_CHECK_SIGNATURES=no;
   [ -f  $HOME/.asdf/plugins/java/set-java-home.zsh ] && . $HOME/.asdf/plugins/java/set-java-home.zsh;
 fi

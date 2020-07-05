@@ -8,6 +8,10 @@ ZINIT_VAR[BIN_DIR]="$ZINIT_VAR[HOME_DIR]/bin"
 ZINIT_VAR[PLUGIN_SCRIPT_DIR]=$ZINIT_VAR[HOME_DIR]/init.d
 . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/init.zsh
 
+# asdf completion
+zinit ice lucid blockf
+zinit light ${ASDF_DIR}/completions
+
 # Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
 
 # shim tool
