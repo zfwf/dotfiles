@@ -35,9 +35,11 @@
       # brew path
       PATH="/usr/local/bin":$PATH
       if [ ! -f $HOME/.gitconfig ]; then
-        # create symlink to a gitconfig
+
+        # create symlinks
         ln -sf $HOME/.gitconfig_mac $HOME/.gitconfig
         ln -sf $HOME/.alacritty_mac.yml $HOME/.alacritty.yml
+        ln -sf $HOME/Brewfile_mac $HOME/Brewfile
 
         # install brew if not found
         if [[ $(command -v brew) == "" ]] ; then
@@ -59,8 +61,9 @@
             ;;
         esac
 
-        # create symlink to a gitconfig
+        # create symlinks
         ln -sf $HOME/.gitconfig_linux $HOME/.gitconfig
+        ln -sf $HOME/Brewfile_linux $HOME/Brewfile
 
         # show desktop icons in gnome
         gsettings set org.gnome.desktop.background show-desktop-icons true
