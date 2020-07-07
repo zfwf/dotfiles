@@ -15,8 +15,6 @@ zinit ice lucid wait'1' from"gh-r" as"null" for \
   sbin"fzf" junegunn/fzf-bin \
   sbin"ripgrep*/rg" BurntSushi/ripgrep
 
-# nnn
-zinit pick"misc/quitcd/quitcd.zsh" sbin'**/nnn' make light-mode for jarun/nnn
 
 # tmux + oh-my-tmux + tmux plugin manager
 zinit ice lucid wait'1' ver'3.0' make as"null" sbin"tmux" \
@@ -47,14 +45,18 @@ zinit ice lucid wait'1' \
 zinit light junegunn/vim-plug
 # -----------------------------
 
-# github cli
-zinit ice lucid wait'1' from"gh-r" as'null' sbin'**/gh'
-zinit light cli/cli
 
 case `uname` in
   Darwin)
     ;;
   Linux)
+    # github cli
+    zinit ice lucid wait'1' from"gh-r" as'null' sbin'**/gh'
+    zinit light cli/cli
+
+    # nnn
+    zinit pick"misc/quitcd/quitcd.zsh" sbin'**/nnn' make light-mode for jarun/nnn
+
     # docker
     zinit ice lucid wait'1' id-as'docker-install' \
       mv'docker-install* -> docker.tgz' \
