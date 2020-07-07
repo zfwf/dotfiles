@@ -1,13 +1,9 @@
 {
-  "list.source.files.defaultOptions": ["--ignore-case", "--auto-preview"],
+  "list.source.files.defaultOptions": ["--ignore-case"],
   "list.source.files.args": ["--hidden", "--files"],
   "list.source.files.excludePatterns": ["**/.git/**", "**/node_modules/**"],
   "list.source.mru.ignoreGitIgnore": false,
-  "list.source.grep.defaultOptions": [
-    "--interactive",
-    "--ignore-case",
-    "--auto-preview"
-  ],
+  "list.source.grep.defaultOptions": ["--interactive", "--ignore-case"],
   "list.source.grep.args": ["--hidden"],
   "list.source.grep.excludePatterns": ["**/.git/**", "**/node_modules/**"],
   "coc.preferences.formatOnSaveFiletypes": [
