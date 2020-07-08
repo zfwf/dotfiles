@@ -77,20 +77,17 @@ if [ ! -d $HOME/.asdf ]; then
   asdf plugin-add nodejs;
   asdf plugin-add python;
   asdf plugin-add rust;
-  asdf plugin-add java;
   asdf plugin-add sbt;
   export NODEJS_CHECK_SIGNATURES=no;
   cd $HOME; asdf install; asdf reshim;
   asdf global nodejs $(asdf list nodejs);
   asdf global python $(asdf list python);
   asdf global rust $(asdf list rust);
-  asdf global java $(asdf list java);
   asdf global sbt $(asdf list sbt);
 else
   . ~/.asdf/asdf.sh;
   # completions handled by zinit
   export NODEJS_CHECK_SIGNATURES=no;
-  [ -f  $HOME/.asdf/plugins/java/set-java-home.zsh ] && . $HOME/.asdf/plugins/java/set-java-home.zsh;
 fi
 
 
