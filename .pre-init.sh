@@ -16,7 +16,7 @@ case `uname` in
     ;;
   Linux)
     # brew path
-    test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+    test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
     if [ ! -f $HOME/.gitconfig ]; then
       # create symlinks
       ln -sf $HOME/.gitconfig_linux $HOME/.gitconfig
@@ -41,7 +41,7 @@ esac
 if [[ $(command -v brew) == "" ]] ; then
   # Install Homebrew
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+  test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
   brew bundle --no-lock
 fi
 
