@@ -1,9 +1,12 @@
-# android
 case `uname` in
   Darwin)
+    # java
+    export JAVA_HOME=$(/usr/libexec/java_home)
+    # android
     sdk_root=$HOME/Library/Android/sdk
     ;;
   Linux)
+    # android
     sdk_root=$HOME/Android/Sdk
     ;;
 esac
