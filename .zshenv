@@ -41,7 +41,7 @@ esac
 [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/font.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/font.zsh
 
 # other paths
-[ -f $ZINIT_VAR[ZSCRIPT_DIR]/paths.sh ] && . $ZINIT_VAR[ZSCRIPT_DIR]/paths.sh
+[ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/paths.sh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/paths.sh
 
 #  completions
 [ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh

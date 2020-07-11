@@ -15,6 +15,8 @@ zinit ice lucid wait'1' from"gh-r" as"null" for \
   sbin"fzf" junegunn/fzf-bin \
   sbin"ripgrep*/rg" BurntSushi/ripgrep
 
+# nnn
+zinit pick"misc/quitcd/quitcd.zsh" sbin'**/nnn' make light-mode for jarun/nnn
 
 # tmux + oh-my-tmux + tmux plugin manager
 zinit ice lucid wait'1' ver'3.0' make as"null" sbin"tmux" \
@@ -34,7 +36,7 @@ zinit light tmux-plugins/tpm
 # -----------------------------
 
 
- # neovim + vim-plug ---------
+# neovim + vim-plug ---------
 zinit ice lucid wait'1' from"gh-r" as"null" sbin"nvim*/bin/nvim"
 zinit light neovim/neovim
 
@@ -45,18 +47,45 @@ zinit ice lucid wait'1' \
 zinit light junegunn/vim-plug
 # -----------------------------
 
+# github cli
+zinit ice lucid wait'1' from"gh-r" as'null' sbin'**/gh'
+zinit light cli/cli
+
+# httpie
+zinit ice lucid wait'1' \
+  atclone'python3 -m pip install --user -r requirements-dev.txt; python3 -m pip install --user -e .' \
+  atpull'%atclone' \
+  as"null" sbin'~/Library/Python/**/bin/http -> http'
+zinit light jakubroztocil/httpie
 
 case `uname` in
   Darwin)
+    # kubectl
+    zinit ice lucid wait'1' as"null" id-as'kubectl' sbin"kubectl" \
+      atclone'chmod +x ./kubectl; ./kubectl completion zsh > zsh_completion' src'zsh_completion' \
+      atpull'%atclone'
+    zinit snippet 'https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/darwin/amd64/kubectl'
+
+    # minikube
+    zinit ice lucid wait'1' as"null" id-as'minikube' sbin'minikube' \
+      atclone'chmod +x ./minikube; ./minikube completion zsh > zsh_completion' src'zsh_completion' \
+      atpull'%atclone'
+    zinit snippet 'https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64'
+
+    # aws-vault
+    zinit ice lucid wait'1' from'gh-r' as"null" sbin'aws-vault* -> aws-vault'
+    zinit light 99designs/aws-vault
+
+    # aws cli
+    zinit ice lucid wait'1' \
+      atclone'python3 -m pip install --user -r requirements.txt; python3 -m pip install --user -e .' \
+      src'bin/aws_zsh_completer.sh' \
+      atpull'%atclone' \
+      as"null" sbin'~/Library/Python/**/bin/aws -> aws'
+    zinit light aws/aws-cli
+
     ;;
   Linux)
-    # github cli
-    zinit ice lucid wait'1' from"gh-r" as'null' sbin'**/gh'
-    zinit light cli/cli
-
-    # nnn
-    zinit pick"misc/quitcd/quitcd.zsh" sbin'**/nnn' make light-mode for jarun/nnn
-
     # docker
     zinit ice lucid wait'1' id-as'docker-install' \
       mv'docker-install* -> docker.tgz' \
