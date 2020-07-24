@@ -12,8 +12,7 @@ zinit light direnv/direnv
 # file navigation -------------
 # rg + fzf
 zinit ice lucid wait'1' from"gh-r" as"null" for \
-  sbin"fzf" junegunn/fzf-bin \
-  sbin"ripgrep*/rg" BurntSushi/ripgrep
+  sbin"fzf" junegunn/fzf-bin 
 
 # nnn
 zinit pick"misc/quitcd/quitcd.zsh" sbin'**/nnn' make light-mode for jarun/nnn
