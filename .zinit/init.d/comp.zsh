@@ -11,3 +11,4 @@ zinit light zsh-users/zsh-autosuggestions
 #  completions
 zinit ice wait'1' lucid atload"unalias grv g"
 zinit snippet OMZP::git
+
