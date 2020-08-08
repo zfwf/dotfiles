@@ -16,10 +16,6 @@ if !exists('g:vscode')
   " vim-plug (plugin only available after plug#end)
   call plug#begin('~/.config/nvim/plugged')
 
-  " no rep of hjkl
-  Plug 'takac/vim-hardtime'
-  " let g:hardtime_default_on = 1
-
   " completion, extensions
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -35,20 +31,22 @@ if !exists('g:vscode')
   let g:rainbow_active = 1
 
   " #tools:VCS
-  Plug 'jreybert/vimagit'
+  Plug 'lambdalisue/gina.vim'
+  " Plug 'jreybert/vimagit'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
 
   " #tools:misc --------
   " file manager
-  Plug 'mcchrish/nnn.vim'
-  " auto save sessions
-  Plug 'tpope/vim-obsession'
+  " Plug 'mcchrish/nnn.vim'
   " `gc` comments
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   " auto close/surround text
   Plug 'cohama/lexima.vim'
   " word motion
+  Plug 'easymotion/vim-easymotion'
+  map <Leader>e <Plug>(easymotion-prefix)
   " Plug 'chaoren/vim-wordmotion'
   " additional text obj
   Plug 'wellle/targets.vim'

@@ -7,8 +7,10 @@
   "list.source.grep.args": ["--hidden", "--smart-case"],
   "list.source.grep.excludePatterns": ["**/.git/**", "**/node_modules/**"],
   "coc.preferences.formatOnSaveFiletypes": [
+    "liquid",
     "rust",
     "python",
+    "javascript",
     "typescript",
     "typescriptreact",
     "xhtml",
