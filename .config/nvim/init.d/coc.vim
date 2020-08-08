@@ -10,7 +10,8 @@ if !exists('g:vscode')
     \ 'coc-css',
     \ 'coc-yaml',
     \ 'coc-python',
-    \ 'coc-metals'
+    \ 'coc-metals',
+    \ 'coc-sh'
     \]
 
 
@@ -20,6 +21,7 @@ if !exists('g:vscode')
     \ 'coc-git',
     \ 'coc-eslint',
     \ 'coc-prettier',
+    \ 'coc-tailwindcss',
     \ 'coc-explorer'
     \]
 
@@ -38,7 +40,7 @@ if !exists('g:vscode')
 
   " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
   " delays and poor user experience.
-  set updatetime=300
+  set updatetime=100
 
   " Don't pass messages to |ins-completion-menu|.
   set shortmess+=c
@@ -140,34 +142,23 @@ if !exists('g:vscode')
   " Add `:OR` command for organize imports of the current buffer.
   command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
-  " Add (Neo)Vim's native statusline support.
-  " NOTE: Please see `:h coc-status` for integrations with external plugins that
-  " provide custom statusline: lightline.vim, vim-airline.
-  set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
   " Mappings for CoCList
   " grep in project
-  nnoremap <silent><nowait> <leader><leader>  :<C-u>CocList grep<CR>
+  nnoremap <silent><nowait> <leader><leader>    :<C-u>CocList grep<CR>
   " files in project
-  nnoremap <silent><nowait> <C-p>     :<C-u>CocList files<CR>
+  nnoremap <silent><nowait> <C-p>               :<C-u>CocList files<CR>
   " explorer
-  nnoremap <silent><nowait> <leader>e     :<C-u>CocCommand explorer<CR>
-  " Show all diagnostics.
-  nnoremap <silent><nowait> <leader>a  :<C-u>CocList diagnostics<cr>
-  " Manage extensions.
-  nnoremap <silent><nowait> <leader>ex  :<C-u>CocList extensions<cr>
-  " Show commands.
-  nnoremap <silent><nowait> <leader>c  :<C-u>CocList commands<cr>
-  " Find symbol of current document.
-  nnoremap <silent><nowait> <leader>o  :<C-u>CocList outline<cr>
-  " Search workspace symbols.
-  nnoremap <silent><nowait> <leader>s  :<C-u>CocList -I symbols<cr>
+  nnoremap <silent><nowait> <leader>f           :<C-u>CocCommand explorer<CR>
+  " Show all errors.
+  nnoremap <silent><nowait> <leader>d           :<C-u>CocList diagnostics<CR>
   " Do default action for next item.
-  nnoremap <silent><nowait> <leader>j  :<C-u>CocNext<CR>
+  nnoremap <silent><nowait> <leader>j           :<C-u>CocNext<CR>
   " Do default action for previous item.
-  nnoremap <silent><nowait> <leader>k  :<C-u>CocPrev<CR>
+  nnoremap <silent><nowait> <leader>k           :<C-u>CocPrev<CR>
   " Resume latest coc list.
-  nnoremap <silent><nowait> <leader>p  :<C-u>CocListResume<CR>s
+  nnoremap <silent><nowait> <leader>p           :<C-u>CocListResume<CR>
+
+
 
   " end default config------------------------
 
