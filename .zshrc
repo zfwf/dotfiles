@@ -111,9 +111,10 @@ case `uname` in
     ;;
 esac
 
-spackpath() {
-  spack find -p $1 | tail -1 | cut -f 7 -d " "
+sendsigterm() {
+  kill -15 $1
 }
+
 
 pport() {
   lsof -t -i tcp:$1

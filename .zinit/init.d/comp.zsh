@@ -9,6 +9,10 @@ zinit ice wait'1' silent atload'export ZSH_AUTOSUGGEST_USE_ASYNC=true; _zsh_auto
 zinit light zsh-users/zsh-autosuggestions
 
 #  completions
+zinit ice wait'1' lucid
+zinit snippet OMZ::lib/completion.zsh
+
+# OMZ git plugin
 zinit ice wait'1' lucid atload"unalias grv g"
 zinit snippet OMZP::git
 
