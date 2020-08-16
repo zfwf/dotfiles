@@ -39,6 +39,8 @@ if !exists('g:vscode')
   " #tools:misc --------
   " file manager
   " Plug 'mcchrish/nnn.vim'
+  " fold
+  Plug 'pseewald/vim-anyfold'
   " `gc` comments
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
