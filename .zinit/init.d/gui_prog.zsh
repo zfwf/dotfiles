@@ -165,13 +165,13 @@ case `uname` in
       as'null' sbin'**/ZoomLauncher -> zoom'
     zinit snippet https://zoom.us/client/latest/zoom_x86_64.tar.xz
 
-    # ff nightly
-    zinit ice lucid id-as"ff-nightly"  \
-      mv'ff-nightly -> firefox.tar.bz2' \
+    # ff dev
+    zinit ice lucid id-as"ff-dev"  \
+      mv'ff-dev -> firefox.tar.bz2' \
       atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "env GDK_BACKEND=wayland $(readlink -f firefox/firefox)" firefox Firefox; rm *.tar.bz2;' \
       atpull'%atclone' \
       as'null' sbin'**/firefox'
-    zinit snippet "https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=linux64&lang=en-US"
+    zinit snippet "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US"
 
     # google chrome
     #zinit ice lucid wait id-as"google-chrome" as'program' pick'chrome/chrome' \
