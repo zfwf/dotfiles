@@ -21,6 +21,7 @@ if !exists('g:vscode')
     \ 'coc-git',
     \ 'coc-eslint',
     \ 'coc-prettier',
+    \ 'coc-stylelintplus',
     \ 'coc-tailwindcss',
     \ 'coc-explorer'
     \]
@@ -149,6 +150,8 @@ if !exists('g:vscode')
   nnoremap <silent><nowait> <C-p>               :<C-u>CocList files<CR>
   " explorer
   nnoremap <silent><nowait> <leader>f           :<C-u>CocCommand explorer<CR>
+  " buffers
+  nnoremap <silent><nowait> <leader>b           :<C-u>CocList buffers<CR>
   " Show all errors.
   nnoremap <silent><nowait> <leader>d           :<C-u>CocList diagnostics<CR>
   " Do default action for next item.
