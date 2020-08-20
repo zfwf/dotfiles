@@ -22,5 +22,9 @@
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "coc.preferences.hoverTarget": "preview",
   "python.jediEnabled": false,
-  "diagnostic.messageTarget": "float"
+  "diagnostic.messageTarget": "float",
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
+  "wxss.validate": false
 }
