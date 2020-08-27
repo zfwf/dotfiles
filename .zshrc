@@ -92,10 +92,11 @@ export DOCKER_HIDE_LEGACY_COMMANDS=true
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 alias vi="$VISUAL"
-alias top="glances"
+alias top="bottom"
 alias react-devtools='npx react-devtools@^3'
 alias meta='npx meta'
 alias ll='ls -la'
+alias cat='bat'
 
 case `uname` in
   Darwin)
@@ -106,7 +107,7 @@ case `uname` in
     export LSCOLORS=GxFxCxDxBxegedabagaced
     ;;
   Linux)
-    alias ls="ls --color"
+    alias ls="exa --color"
     alias trash=gvfs-trash
     ;;
 esac
@@ -180,3 +181,6 @@ git() {
     "$CMD_GIT" "$@"
   fi
 }
+
+# starship prompt
+eval "$(starship init zsh)"

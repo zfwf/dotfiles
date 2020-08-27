@@ -3,7 +3,7 @@ zinit ice lucid wait'1' as"null" sbin"bin/diff-so-fancy; bin/git-dsf;"
 zinit light zdharma/zsh-diff-so-fancy
 
 # direnv
-zinit ice lucid wait'1' from"gh-r" as"program" mv"direnv* -> direnv" \
+zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
   atclone'./direnv hook zsh > zhook.zsh' \
   pick"direnv" src="zhook.zsh" \
   atpull'%atclone'
