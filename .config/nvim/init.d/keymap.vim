@@ -13,5 +13,5 @@ if !exists('g:vscode')
 
 endif
 
-xnoremap p              pgvy|                 " copy back to buf after paste
-
+inoremap jk             <esc>|            " map jk to escape
+xnoremap p              pgvy|             " copy back to buf after paste

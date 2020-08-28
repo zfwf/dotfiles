@@ -6,7 +6,8 @@ zinit light zdharma/zsh-diff-so-fancy
 zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
   atclone'./direnv hook zsh > zhook.zsh' \
   pick"direnv" src="zhook.zsh" \
-  atpull'%atclone'
+  atpull'%atclone' \
+  atload'export DIRENV_LOG_FORMAT=""'
 zinit light direnv/direnv
 
 # file navigation -------------
@@ -18,7 +19,7 @@ zinit ice lucid wait'1' from"gh-r" as"null" for \
 zinit pick"misc/quitcd/quitcd.zsh" sbin'**/nnn' make light-mode for jarun/nnn
 
 # tmux + oh-my-tmux + tmux plugin manager
-zinit ice lucid wait'1' ver'3.0' make as"null" sbin"tmux" \
+zinit ice lucid wait'1' ver'3.1b' make as"null" sbin"tmux" \
   atclone'./autogen.sh; ./configure' \
   atpull'%atclone'
 zinit light tmux/tmux

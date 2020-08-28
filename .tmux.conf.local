@@ -309,9 +309,9 @@ set -g default-terminal "tmux-256color"
 set -ga terminal-overrides ",*256col*:Tc"
 
 # enable restore nvim sessions (require tpope/vim-obsession)
-set -g @resurrect-strategy-nvim 'session'
+#set -g @resurrect-strategy-nvim 'session'
 # cotinuum save session interval 15 min
-set -g @continuum-save-interval '15'
+#set -g @continuum-save-interval '15'
 # enable tmux-continuum
 set -g @continuum-restore 'on'
 
