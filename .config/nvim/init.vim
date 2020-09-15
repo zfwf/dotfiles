@@ -50,6 +50,8 @@ if !exists('g:vscode')
   Plug 'easymotion/vim-easymotion'
   map <Leader>e <Plug>(easymotion-prefix)
   " Plug 'chaoren/vim-wordmotion'
+  " sessions
+  Plug 'tpope/vim-obsession'
   " additional text obj
   Plug 'wellle/targets.vim'
   " #-------------------
