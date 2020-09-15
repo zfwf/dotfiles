@@ -308,22 +308,24 @@ set -g visual-bell off
 set -g default-terminal "tmux-256color"
 set -ga terminal-overrides ",*256col*:Tc"
 
-# enable restore nvim sessions (require tpope/vim-obsession)
-#set -g @resurrect-strategy-nvim 'session'
-# cotinuum save session interval 15 min
-#set -g @continuum-save-interval '15'
-# enable tmux-continuum
-set -g @continuum-restore 'on'
-
 # List of plugins
 set -g @tpm_plugins '          \
   tmux-plugins/tpm             \
+  tmux-plugins/tmux-yank       \
+  jbnicolai/tmux-fpp           \
   tmux-plugins/tmux-sensible   \
   tmux-plugins/tmux-resurrect  \
   tmux-plugins/tmux-continuum  \
-  tmux-plugins/tmux-yank       \
-  jbnicolai/tmux-fpp           \
 '
+
+# enable restore nvim sessions (require tpope/vim-obsession)
+#set -g @resurrect-strategy-nvim 'session'
+# cotinuum save session interval 15 min
+set -g @continuum-save-interval '15'
+# enable tmux-continuum
+set -g @continuum-restore 'on'
+set -g status-right 'Continuum status: #{continuum_status}'
+run-shell ~/.tmux/plugins/tmux-continuum/continuum.tmux
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'

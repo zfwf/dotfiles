@@ -17,6 +17,7 @@
     "html",
     "json",
     "jsonc",
+    "css",
     "scala"
   ],
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
