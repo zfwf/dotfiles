@@ -1,7 +1,5 @@
 # command for interactive shell (load order: .zshenv, .zshrc, .zsh)
 
-# remove zsh key delay
-export KEYTIMEOUT=1
 
 # catalina specific
 # strip out /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin and append
@@ -52,6 +50,8 @@ esac
 
 # zle config
 bindkey -v # vi mode, bind alt/opt to escape for easy transition to insert mode 
+# 10ms for keybinding to work
+export KEYTIMEOUT=10
 function zle-keymap-select zle-line-init
 {
        # change cursor shape in xterm
@@ -72,6 +72,9 @@ autoload -Uz up-line-or-beginning-search
 zle -N up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N down-line-or-beginning-search
+
+# use jk to go to cmd from ins
+bindkey -M viins 'jk' vi-cmd-mode
 
 # Better searching in command mode
 bindkey -M vicmd '?' history-incremental-pattern-search-backward

@@ -21,7 +21,7 @@ if !exists('g:vscode')
     \ 'coc-git',
     \ 'coc-eslint',
     \ 'coc-prettier',
-    \ 'coc-stylelintplus',
+    \ 'coc-stylelint',
     \ 'coc-tailwindcss',
     \ 'coc-explorer'
     \]
