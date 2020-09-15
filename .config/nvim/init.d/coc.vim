@@ -17,13 +17,17 @@ if !exists('g:vscode')
 
   let b:coc_extensions = [
     \ 'coc-highlight',
+    \ 'coc-emmet',
     \ 'coc-lists',
     \ 'coc-git',
     \ 'coc-eslint',
     \ 'coc-prettier',
     \ 'coc-stylelint',
     \ 'coc-tailwindcss',
-    \ 'coc-explorer'
+    \ 'coc-explorer',
+    \ 'coc-calc',
+    \ 'coc-inline-jest',
+    \ 'coc-import-cost'
     \]
 
   let g:coc_global_extensions = b:coc_languages + b:coc_extensions
@@ -41,10 +45,19 @@ if !exists('g:vscode')
 
   " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
   " delays and poor user experience.
-  set updatetime=100
+  set updatetime=300
 
   " Don't pass messages to |ins-completion-menu|.
   set shortmess+=c
+
+  " Always show the signcolumn, otherwise it would shift the text each time
+  " diagnostics appear/become resolved.
+  if has("patch-8.1.1564")
+    " Recently vim can merge signcolumn and number column into one
+    set signcolumn=number
+  else
+    set signcolumn=yes
+  endif
 
   " Use tab for trigger completion with characters ahead and navigate.
   " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -61,16 +74,16 @@ if !exists('g:vscode')
   endfunction
 
   " Use <c-space> to trigger completion.
-  inoremap <silent><expr> <c-space> coc#refresh()
-
-  " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-  " position. Coc only does snippet and additional edit on confirm.
-  " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-  if exists('*complete_info')
-    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+  if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
   else
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    inoremap <silent><expr> <c-@> coc#refresh()
   endif
+
+  " Make <CR> auto-select the first completion item and notify coc.nvim to
+  " format on enter, <cr> could be remapped by other vim plugin
+  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
   " Use `[g` and `]g` to navigate diagnostics
   " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -89,8 +102,10 @@ if !exists('g:vscode')
   function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
       execute 'h '.expand('<cword>')
-    else
+    elseif (coc#rpc#ready())
       call CocActionAsync('doHover')
+    else
+      execute '!' . &keywordprg . " " . expand('<cword>')
     endif
   endfunction
 
@@ -100,10 +115,14 @@ if !exists('g:vscode')
   " Symbol renaming.
   nmap <leader>rn <Plug>(coc-rename)
 
+  " Formatting selected code.
+  xmap <leader>f  <Plug>(coc-format-selected)
+  nmap <leader>f  <Plug>(coc-format-selected)
+
   augroup mygroup
     autocmd!
     " Setup formatexpr specified filetype(s).
-    autocmd FileType typescript,json setl formatexpr=CocActionAsync('formatSelected')
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
     " Update signature help on jump placeholder.
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   augroup end
@@ -129,19 +148,40 @@ if !exists('g:vscode')
   xmap ac <Plug>(coc-classobj-a)
   omap ac <Plug>(coc-classobj-a)
 
+  " Remap <C-f> and <C-b> for scroll float windows/popups.
+  " Note coc#float#scroll works on neovim >= 0.4.3 or vim >= 8.2.0750
+  nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+
+  " NeoVim-only mapping for visual mode scroll
+  " Useful on signatureHelp after jump placeholder of snippet expansion
+  if has('nvim')
+    vnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#nvim_scroll(1, 1) : "\<C-f>"
+    vnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#nvim_scroll(0, 1) : "\<C-b>"
+  endif
+
   " Use CTRL-S for selections ranges.
-  " Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
+  " Requires 'textDocument/selectionRange' support of language server.
   nmap <silent> <C-s> <Plug>(coc-range-select)
   xmap <silent> <C-s> <Plug>(coc-range-select)
 
   " Add `:Format` command to format current buffer.
-  command! -nargs=0 Format :call CocActionAsync('format')
+  command! -nargs=0 Format :call CocAction('format')
 
   " Add `:Fold` command to fold current buffer.
-  command! -nargs=? Fold :call     CocActionAsync('fold', <f-arg>)
+  command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
   " Add `:OR` command for organize imports of the current buffer.
-  command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+  command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+  " Add (Neo)Vim's native statusline support.
+  " NOTE: Please see `:h coc-status` for integrations with external plugins that
+  " provide custom statusline: lightline.vim, vim-airline.
+  set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+  " end default config------------------------
 
   " Mappings for CoCList
   " grep in project
@@ -162,8 +202,6 @@ if !exists('g:vscode')
   nnoremap <silent><nowait> <leader>p           :<C-u>CocListResume<CR>
 
 
-
-  " end default config------------------------
 
   " let g:coc_auto_open = 0 " do not open quickfix automatically
   " coc-settings.json uses jsonc, which adds comment syntax

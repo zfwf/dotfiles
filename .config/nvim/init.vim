@@ -32,7 +32,6 @@ if !exists('g:vscode')
 
   " #tools:VCS
   Plug 'lambdalisue/gina.vim'
-  " Plug 'jreybert/vimagit'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
 
