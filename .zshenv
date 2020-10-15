@@ -2,7 +2,7 @@
 [ -f $HOME/.pre-init.sh ] && . $HOME/.pre-init.sh
 
 # zinit
-local -A ZINIT_VAR
+declare -A ZINIT_VAR
 ZINIT_VAR[HOME_DIR]=$HOME/.zinit
 ZINIT_VAR[BIN_DIR]="$ZINIT_VAR[HOME_DIR]/bin"
 ZINIT_VAR[PLUGIN_SCRIPT_DIR]=$ZINIT_VAR[HOME_DIR]/init.d
@@ -35,20 +35,19 @@ case `uname` in
 esac
 
 # theme
-[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/theme.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/theme.zsh
+[ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/theme.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/theme.zsh
 
 # font
-[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/font.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/font.zsh
+[ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/font.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/font.zsh
 
 # other paths
 [ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/paths.sh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/paths.sh
 
 #  completions
-[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh
+[ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh
 
 # common gui programs
-[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh
-
+[ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh
 
 # needs to be the last plugin
 zinit ice wait lucid

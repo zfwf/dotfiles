@@ -58,6 +58,10 @@ zinit ice lucid wait'1' \
   as"null" sbin'~/Library/Python/**/bin/http -> http'
 zinit light jakubroztocil/httpie
 
+zinit ice lucid wait'1' from'gh-r' as"null" sbin'exercism'
+zinit light exercism/cli
+
+
 case `uname` in
   Darwin)
     # kubectl
