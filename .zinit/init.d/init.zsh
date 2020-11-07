@@ -12,5 +12,5 @@ else
 fi
 
 module_path+=$ZINIT_VAR[BIN_DIR]/zmodules/Src
-zmodload zdharma/zplugin
+# zmodload zdharma/zplugin
 

@@ -186,4 +186,4 @@ git() {
 }
 
 # starship prompt
-eval "$(starship init zsh)"
+eval "$(starship init zsh)" > /dev/null 2>&1
