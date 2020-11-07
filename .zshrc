@@ -110,7 +110,7 @@ case `uname` in
     export LSCOLORS=GxFxCxDxBxegedabagaced
     ;;
   Linux)
-    alias ls="exa --color"
+    alias ls="exa --color always"
     alias trash=gvfs-trash
     ;;
 esac
