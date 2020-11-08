@@ -44,7 +44,7 @@ sudo swupd bundle-add x11-tools
 git clone --bare https://github.com/chhschou/dotfiles ~/.cfg
 
 # checkout `master` branch
-git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout master
+git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout main
 
 # start zsh (wait for initialization to complete...)
 zsh
