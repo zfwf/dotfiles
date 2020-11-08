@@ -62,8 +62,3 @@ else
   # completions handled by zinit
   export NODEJS_CHECK_SIGNATURES=no;
 fi
-
-
-
-
-
