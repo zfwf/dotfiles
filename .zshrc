@@ -10,8 +10,10 @@ zinit light ${ASDF_DIR}/completions
 # Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
 
 # shim tool
+zinit ice ver"e927f333926c312e826e70c8a063d0b82f2c7f06"
 zinit light zinit-zsh/z-a-bin-gem-node
 # patch tool
+zinit ice ver"b6091500f9edb7e3e9de755c93c6e0a587227355"
 zinit light zinit-zsh/z-a-patch-dl
 
 
