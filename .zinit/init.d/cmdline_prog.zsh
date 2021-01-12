@@ -62,6 +62,10 @@ zinit ice lucid wait'1' from'gh-r' as"null" sbin'exercism'
 zinit light exercism/cli
 
 
+# https://hawkins.gitbook.io/consoleme/quick-start/local-development
+#zinit ice lucid wait'1'
+#zinit light netflix/consoleme
+
 case `uname` in
   Darwin)
     # kubectl

@@ -13,3 +13,5 @@
 	helper = osxkeychain
 [push]
 	default = current
+[url "git@github.com:"]
+	insteadOf = https://github.com/

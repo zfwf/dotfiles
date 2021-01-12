@@ -151,8 +151,9 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 alias vi="$VISUAL"
 alias top="bottom"
+alias npx='npm_config_yes=true npx'
 alias react-devtools='npx react-devtools@^3'
-alias meta='npx meta'
+# alias meta='npx meta'
 alias ll='ls -la'
 alias cat='bat'
 
