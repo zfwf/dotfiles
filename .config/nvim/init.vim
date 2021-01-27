@@ -24,14 +24,13 @@ if !exists('g:vscode')
   Plug 'itchyny/lightline.vim'
   Plug 'taohexxx/lightline-buffer'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'airblade/vim-gitgutter'
+  "Plug 'airblade/vim-gitgutter'
   Plug 'sheerun/vim-polyglot'
   " colored parentheses
   Plug 'luochen1990/rainbow'
   let g:rainbow_active = 1
 
   " #tools:VCS
-  Plug 'lambdalisue/gina.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
 
@@ -44,7 +43,8 @@ if !exists('g:vscode')
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   " auto close/surround text
-  Plug 'cohama/lexima.vim'
+  Plug 'jiangmiao/auto-pairs'
+  "Plug 'cohama/lexima.vim'
   " word motion
   Plug 'easymotion/vim-easymotion'
   map <Leader>e <Plug>(easymotion-prefix)
