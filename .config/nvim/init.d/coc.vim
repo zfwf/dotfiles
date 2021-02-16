@@ -27,7 +27,8 @@ if !exists('g:vscode')
     \ 'coc-explorer',
     \ 'coc-calc',
     \ 'coc-inline-jest',
-    \ 'coc-import-cost'
+    \ 'coc-import-cost',
+    \ 'coc-marketplace'
     \]
 
   let g:coc_global_extensions = b:coc_languages + b:coc_extensions
