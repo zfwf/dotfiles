@@ -61,6 +61,9 @@ zinit light jakubroztocil/httpie
 zinit ice lucid wait'1' from'gh-r' as"null" sbin'exercism'
 zinit light exercism/cli
 
+zinit ice lucid wait'1' from'gh-r' as"null" sbin'**/dprint'
+zinit light dprint/dprint
+
 
 # https://hawkins.gitbook.io/consoleme/quick-start/local-development
 #zinit ice lucid wait'1'
