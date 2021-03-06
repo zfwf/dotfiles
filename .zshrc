@@ -234,10 +234,16 @@ cob() {
 # dotfiles bare repo
 CMD_GIT="$(command -v git)"
 git() {
+  local CMD_GIT_EXTRA_ARGS=()
+  if [[ "$1" == "push" && "$@" != *"--help"* ]]; then
+    CMD_GIT_EXTRA_ARGS=(-u)
+  fi
+
   if [[ "$PWD" == "$HOME" ]]; then
-    "$CMD_GIT" --git-dir="$HOME"/.cfg/ --work-tree="$HOME" "$@"
+    CMD_GIT_ARGS=(--git-dir="$HOME"/.cfg/ --work-tree="$HOME")
+    "$CMD_GIT" "${CMD_GIT_ARGS[@]}" "$@" "${CMD_GIT_EXTRA_ARGS[@]}"
   else
-    "$CMD_GIT" "$@"
+    "$CMD_GIT" "$@" "${CMD_GIT_EXTRA_ARGS[@]}"
   fi
 }
 
