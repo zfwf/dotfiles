@@ -16,7 +16,6 @@ if !exists('g:vscode')
 
 
   let b:coc_extensions = [
-    \ 'coc-highlight',
     \ 'coc-emmet',
     \ 'coc-lists',
     \ 'coc-git',
@@ -184,7 +183,7 @@ if !exists('g:vscode')
 
   " grep from selected
   vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
-  nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+  " nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 
   function! s:GrepFromSelected(type)
     let saved_unnamed_register = @@
@@ -211,7 +210,7 @@ if !exists('g:vscode')
   endfunction
 
   " Keymapping for grep word under cursor with interactive mode
-  nnoremap <silent> <Leader>cf :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
+  " nnoremap <silent> <Leader>cf :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
   " end default config------------------------
 
@@ -234,7 +233,7 @@ if !exists('g:vscode')
   nnoremap <silent><nowait> <leader>p           :<C-u>CocListResume<CR>
 
   " re-Keymapping for grep word under cursor
-  nnoremap <silent> <Leader>gw :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
+  nnoremap <silent> <Leader>g :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
 
   " let g:coc_auto_open = 0 " do not open quickfix automatically

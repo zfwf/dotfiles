@@ -25,7 +25,8 @@ if !exists('g:vscode')
   Plug 'taohexxx/lightline-buffer'
   Plug 'ryanoasis/vim-devicons'
   "Plug 'airblade/vim-gitgutter'
-  Plug 'sheerun/vim-polyglot'
+  "Plug 'sheerun/vim-polyglot'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " colored parentheses
   Plug 'luochen1990/rainbow'
   let g:rainbow_active = 1
