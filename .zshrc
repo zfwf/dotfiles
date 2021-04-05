@@ -110,20 +110,20 @@ esac
 bindkey -v # vi mode, bind alt/opt to escape for easy transition to insert mode 
 # 10ms for keybinding to work
 export KEYTIMEOUT=10
-function zle-keymap-select zle-line-init
-{
-       # change cursor shape in xterm
-       case $KEYMAP in
-               vicmd)      echo -e -n "\x1b[\x32 q";;  # block cursor
-               viins|main) echo -e -n "\x1b[\x35 q";;  # blinking line cursor
-       esac
+# function zle-keymap-select zle-line-init
+# {
+#        # change cursor shape in xterm
+#        case $KEYMAP in
+#                vicmd)      echo -e -n "\e[1 q";;  # block cursor
+#                viins|main) echo -e -n "\e[5 q";;  # blinking line cursor
+#        esac
 
-       zle reset-prompt
-       zle -R
-}
+#        zle reset-prompt
+#        zle -R
+# }
 
-zle -N zle-line-init
-zle -N zle-keymap-select
+# zle -N zle-line-init
+# zle -N zle-keymap-select
 
 # load zle history widgets
 autoload -Uz up-line-or-beginning-search

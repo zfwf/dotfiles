@@ -108,7 +108,7 @@ else
     " word motion
     " Plug 'chaoren/vim-wordmotion'
     " additional text obj
-    " Plug 'wellle/targets.vim'
+    Plug 'wellle/targets.vim'
   call plug#end()
 
   set incsearch                         " Start search before finish typing
