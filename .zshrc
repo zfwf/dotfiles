@@ -1,5 +1,8 @@
 # command for interactive shell (load order: .zshenv, .zshrc, .zsh)
 
+# run orbiter
+. ~/init.zsh
+
 # load zinit
 . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/init.zsh
 
