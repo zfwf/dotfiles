@@ -159,17 +159,17 @@ alias react-devtools='npx react-devtools@^3'
 # alias meta='npx meta'
 alias ll='ls -la'
 alias cat='bat'
+alias ls="exa --icons --color always"
 
 case `uname` in
   Darwin)
-    alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
-    alias postgre:start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-    alias postgre:stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-    export CLICOLOR=1
-    export LSCOLORS=GxFxCxDxBxegedabagaced
+    # alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
+    # alias postgre:start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+    # alias postgre:stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+    # export CLICOLOR=1
+    # export LSCOLORS=GxFxCxDxBxegedabagaced
     ;;
   Linux)
-    alias ls="exa --color always"
     alias trash=gvfs-trash
     ;;
 esac

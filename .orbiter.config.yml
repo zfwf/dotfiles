@@ -1,6 +1,6 @@
 - id: ff-dev
   resource: https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US
-  extract: "tar xvf *.tar.* --directory ../"
+  extract: "tar xvf *.tar.*"
   exec: "**/firefox/firefox"
   install: "./GitAhead*.sh --include-subdir"
   launcher:
@@ -20,5 +20,13 @@
   resource:
     repo: neovim/neovim
     binary_pattern: "*.tar.gz"
-  extract: "tar xvf *.tar.* --directory ../"
+  extract: "tar xvf *.tar.*"
   exec: "nvim*/bin/nvim"
+
+- id: exa
+  resource:
+    repo: ogham/exa
+    binary_pattern: "exa-macos-x86_64-v0.10.0.zip"
+  extract: "unzip *.zip"
+  exec: "**/exa"
+
