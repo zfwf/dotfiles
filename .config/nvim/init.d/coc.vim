@@ -27,6 +27,7 @@ if !exists('g:vscode')
     \ 'coc-calc',
     \ 'coc-inline-jest',
     \ 'coc-import-cost',
+    \ 'coc-deno',
     \ 'coc-marketplace'
     \]
 
