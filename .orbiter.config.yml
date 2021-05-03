@@ -2,7 +2,6 @@
   resource: https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US
   extract: "tar xvf *.tar.*"
   exec: "**/firefox/firefox"
-  install: "./GitAhead*.sh --include-subdir"
   launcher:
     name: firefox
     exec: "env GDK_BACKEND=wayland $(readlink -f firefox/firefox)"
@@ -19,14 +18,20 @@
 - id: neovim
   resource:
     repo: neovim/neovim
-    binary_pattern: "*.tar.gz"
+    is_release: true
   extract: "tar xvf *.tar.*"
-  exec: "nvim*/bin/nvim"
+  exec: "**/bin/nvim"
 
 - id: exa
   resource:
     repo: ogham/exa
-    binary_pattern: "exa-macos-x86_64-v0.10.0.zip"
+    is_release: true
   extract: "unzip *.zip"
   exec: "**/exa"
 
+- id: zellij
+  resource:
+    repo: zellij-org/zellij
+    is_release: true
+  extract: "tar xvf *.tar.*"
+  exec: "**/zellij"

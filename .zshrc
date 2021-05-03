@@ -1,6 +1,24 @@
 # command for interactive shell (load order: .zshenv, .zshrc, .zsh)
 
-# run orbiter
+get_path_stripper() {
+  local stripper="s/$(echo $1 | sed 's/\//\\\//g')//g"
+
+  echo $stripper
+}
+
+strip_then_prepend() {
+  local stripped=$(echo $1 | sed $2)
+
+  echo "$3:$stripped"
+}
+
+strip_then_append() {
+  local stripped=$(echo $1 | sed $2)
+
+  echo "$stripped:$3"
+}
+
+# init orbiter
 . ~/init.zsh
 
 # load zinit
@@ -60,9 +78,11 @@ zinit cdreplay -q
 
 
 # catalina specific
-# strip out /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin and append
-export PATH=$(echo $PATH | sed 's/\/usr\/local\/bin:\/usr\/bin:\/bin:\/usr\/sbin:\/sbin//g')
-export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+local system_usr_bin_dir_paths='/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+export PATH=$(strip_then_append "$PATH" \
+  $(get_path_stripper $system_usr_bin_dir_paths) \
+  $system_usr_bin_dir_paths)
+
 
 export TERM='xterm-256color' # attempt enable at least 256 color
 

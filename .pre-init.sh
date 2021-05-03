@@ -46,6 +46,7 @@ if [[ $(command -v brew) == "" ]] ; then
 fi
 
 
+# install asdf if not found
 if [ ! -d $HOME/.asdf ]; then
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
   . ~/.asdf/asdf.sh;
