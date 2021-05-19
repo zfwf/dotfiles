@@ -9,7 +9,7 @@ if !exists('g:vscode')
     \ 'coc-html',
     \ 'coc-css',
     \ 'coc-yaml',
-    \ 'coc-python',
+    \ 'coc-pyright',
     \ 'coc-metals',
     \ 'coc-sh'
     \]
