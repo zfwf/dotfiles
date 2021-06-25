@@ -37,7 +37,8 @@ if !exists('g:vscode')
 
   " #tools:misc --------
   " file manager
-  " Plug 'mcchrish/nnn.vim'
+  "Plug 'kyazdani42/nvim-web-devicons' " for file icons
+  "Plug 'kyazdani42/nvim-tree.lua'"
   " fold
   Plug 'pseewald/vim-anyfold'
   " `gc` comments
