@@ -1,55 +1,47 @@
 # git diff
-zinit ice lucid wait'1' as"null" sbin"bin/diff-so-fancy; bin/git-dsf;"
-zinit light zdharma/zsh-diff-so-fancy
-
-# direnv
-zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
-  atclone'./direnv hook zsh > zhook.zsh' \
-  pick"direnv" src="zhook.zsh" \
-  atpull'%atclone' \
-  atload'export DIRENV_LOG_FORMAT=""'
-zinit light direnv/direnv
+# zinit ice lucid wait'1' as"null" sbin"bin/diff-so-fancy; bin/git-dsf;"
+# zinit light zdharma/zsh-diff-so-fancy
 
 # file navigation -------------
 # rg + fzf
-zinit ice lucid wait'1' from"gh-r" as"null" for \
-  sbin"fzf" junegunn/fzf-bin 
+# zinit ice lucid wait'1' from"gh-r" as"null" for \
+#   sbin"fzf" junegunn/fzf-bin 
 
 # nnn
 zinit pick"misc/quitcd/quitcd.zsh" sbin'**/nnn' make light-mode for jarun/nnn
 
 # tmux + oh-my-tmux + tmux plugin manager
-zinit ice lucid wait'1' ver'3.1b' make as"null" sbin"tmux" \
-  atclone'./autogen.sh; ./configure' \
-  atpull'%atclone'
-zinit light tmux/tmux
+# zinit ice lucid wait'1' ver'3.1b' make as"null" sbin"tmux" \
+#   atclone'./autogen.sh; ./configure' \
+#   atpull'%atclone'
+# zinit light tmux/tmux
 
-zinit ice lucid wait'1' id-as'gpakosz/tmux' nocompile \
-  atclone'ln -sf $PWD/.tmux.conf $HOME/.tmux.conf' \
-  atpull'%atclone'
-zinit light gpakosz/.tmux
+# zinit ice lucid wait'1' id-as'gpakosz/tmux' nocompile \
+#   atclone'ln -sf $PWD/.tmux.conf $HOME/.tmux.conf' \
+#   atpull'%atclone'
+# zinit light gpakosz/.tmux
 
-zinit ice lucid wait'1' wait nocompile \
-  atclone'mkdir -p ~/.tmux/plugins; ln -sf $PWD/ $HOME/.tmux/plugins/tpm' \
-  atpull'%atclone'
-zinit light tmux-plugins/tpm
+# zinit ice lucid wait'1' wait nocompile \
+#   atclone'mkdir -p ~/.tmux/plugins; ln -sf $PWD/ $HOME/.tmux/plugins/tpm' \
+#   atpull'%atclone'
+# zinit light tmux-plugins/tpm
 # -----------------------------
 
 
 # neovim + vim-plug ---------
-zinit ice lucid wait'1' from"gh-r" as"null" sbin"nvim*/bin/nvim"
-zinit light neovim/neovim
+# zinit ice lucid wait'1' from"gh-r" as"null" sbin"nvim*/bin/nvim"
+# zinit light neovim/neovim
 
-zinit ice lucid wait'1' \
-  atclone'mkdir -p ~/.local/share/nvim/site/autoload; \
-  ln -sf "$PWD/plug.vim" ~/.local/share/nvim/site/autoload/plug.vim' \
-  atpull'%atclone'
-zinit light junegunn/vim-plug
+# zinit ice lucid wait'1' \
+#   atclone'mkdir -p ~/.local/share/nvim/site/autoload; \
+#   ln -sf "$PWD/plug.vim" ~/.local/share/nvim/site/autoload/plug.vim' \
+#   atpull'%atclone'
+# zinit light junegunn/vim-plug
 # -----------------------------
 
 # github cli
-zinit ice lucid wait'1' from"gh-r" as'null' sbin'**/gh'
-zinit light cli/cli
+# zinit ice lucid wait'1' from"gh-r" as'null' sbin'**/gh'
+# zinit light cli/cli
 
 # httpie
 zinit ice lucid wait'1' \
@@ -58,11 +50,11 @@ zinit ice lucid wait'1' \
   as"null" sbin'~/Library/Python/**/bin/http -> http'
 zinit light jakubroztocil/httpie
 
-zinit ice lucid wait'1' from'gh-r' as"null" sbin'exercism'
-zinit light exercism/cli
+# zinit ice lucid wait'1' from'gh-r' as"null" sbin'exercism'
+# zinit light exercism/cli
 
-zinit ice lucid wait'1' from'gh-r' as"null" sbin'**/dprint'
-zinit light dprint/dprint
+# zinit ice lucid wait'1' from'gh-r' as"null" sbin'**/dprint'
+# zinit light dprint/dprint
 
 
 # https://hawkins.gitbook.io/consoleme/quick-start/local-development
