@@ -103,75 +103,75 @@ case `uname` in
 
     ;;
   Linux)
-    # vscode
-    zinit ice lucid wait"3" id-as'vscode' \
-      mv'vscode -> vscode.tar.gz' \
-      atclone'tar xzvf vscode.tar.gz; \
-      zinit_app_exec=$(readlink -f VSCode-linux-x64/bin/code); \
-      zinit_app_icon=vscode; \
-      _create_and_link_desktop_file vscode "$zinit_app_exec" "$zinit_app_icon" "Visual Studio Code"; \
-      rm *.tar.gz' \
-      atpull'%atclone' \
-      as'null' sbin'**/bin/code'
-    zinit snippet 'https://go.microsoft.com/fwlink/?LinkID=620884'
+    # # vscode
+    # zinit ice lucid wait"3" id-as'vscode' \
+    #   mv'vscode -> vscode.tar.gz' \
+    #   atclone'tar xzvf vscode.tar.gz; \
+    #   zinit_app_exec=$(readlink -f VSCode-linux-x64/bin/code); \
+    #   zinit_app_icon=vscode; \
+    #   _create_and_link_desktop_file vscode "$zinit_app_exec" "$zinit_app_icon" "Visual Studio Code"; \
+    #   rm *.tar.gz' \
+    #   atpull'%atclone' \
+    #   as'null' sbin'**/bin/code'
+    # zinit snippet 'https://go.microsoft.com/fwlink/?LinkID=620884'
 
-    # gitahead
-    zinit ice lucid wait"3" from"gh-r" bpick"*sh"\
-      atclone'./GitAhead*.sh --include-subdir;' \
-      atpull'%atclone' \
-      as"null"  sbin'**/GitAhead -> gitahead'
-    zinit light gitahead/gitahead
+    # # gitahead
+    # zinit ice lucid wait"3" from"gh-r" bpick"*sh"\
+    #   atclone'./GitAhead*.sh --include-subdir;' \
+    #   atpull'%atclone' \
+    #   as"null"  sbin'**/GitAhead -> gitahead'
+    # zinit light gitahead/gitahead
 
-    # azure data studio
-    zinit ice lucid wait"3" id-as'azure-data-studio' \
-      mv'azure-data-studio -> azure-data-studio.tar.gz' \
-      atclone'tar xzvf azure-data-studio.tar.gz; \
-      zinit_app_exec=$(readlink -f azuredatastudio-linux-x64/azuredata-studio); \
-      zinit_app_icon=$(readlink -f azuredatastudio-linux-x64/resources/app/resources/linux/code.png); \
-      _create_and_link_desktop_file azure-data-studio "$zinit_app_exec" "$zinit_app_icon" "Azure Data Studio"; \
-      rm *.tar.gz' \
-      atpull'%atclone' \
-      as'null' sbin'**/azuredata-studio -> azure-data-studio'
-    zinit snippet "https://go.microsoft.com/fwlink/?linkid=2109179"
+    # # azure data studio
+    # zinit ice lucid wait"3" id-as'azure-data-studio' \
+    #   mv'azure-data-studio -> azure-data-studio.tar.gz' \
+    #   atclone'tar xzvf azure-data-studio.tar.gz; \
+    #   zinit_app_exec=$(readlink -f azuredatastudio-linux-x64/azuredata-studio); \
+    #   zinit_app_icon=$(readlink -f azuredatastudio-linux-x64/resources/app/resources/linux/code.png); \
+    #   _create_and_link_desktop_file azure-data-studio "$zinit_app_exec" "$zinit_app_icon" "Azure Data Studio"; \
+    #   rm *.tar.gz' \
+    #   atpull'%atclone' \
+    #   as'null' sbin'**/azuredata-studio -> azure-data-studio'
+    # zinit snippet "https://go.microsoft.com/fwlink/?linkid=2109179"
 
-    # android studio
-    zinit ice lucid wait"3" id-as'android-studio-ide' \
-      mv'android-studio-ide -> android-studio-ide.tar.gz' \
-      atclone'tar xzvf *.tar.gz; \
-      zinit_app_exec=$(readlink -f android-studio/bin/studio.sh); \
-      zinit_app_icon=$(readlink -f android-studio/bin/studio.png); \
-      _create_and_link_desktop_file android-studio "$zinit_app_exec" "$zinit_app_icon" "Android Studio"' \
-      atpull'%atclone' \
-      as'null' sbin'**/studio.sh -> android-studio'
-    zinit snippet 'https://redirector.gvt1.com/edgedl/android/studio/ide-zips/4.0.0.16/android-studio-ide-193.6514223-linux.tar.gz'
+    # # android studio
+    # zinit ice lucid wait"3" id-as'android-studio-ide' \
+    #   mv'android-studio-ide -> android-studio-ide.tar.gz' \
+    #   atclone'tar xzvf *.tar.gz; \
+    #   zinit_app_exec=$(readlink -f android-studio/bin/studio.sh); \
+    #   zinit_app_icon=$(readlink -f android-studio/bin/studio.png); \
+    #   _create_and_link_desktop_file android-studio "$zinit_app_exec" "$zinit_app_icon" "Android Studio"' \
+    #   atpull'%atclone' \
+    #   as'null' sbin'**/studio.sh -> android-studio'
+    # zinit snippet 'https://redirector.gvt1.com/edgedl/android/studio/ide-zips/4.0.0.16/android-studio-ide-193.6514223-linux.tar.gz'
 
-    # postman
-    zinit ice lucid wait"3" id-as'postman' \
-      mv'postman -> postman.tar.gz' \
-      atclone'tar xzvf *.tar.gz; \
-      zinit_app_exec=$(readlink -f Postman/Postman); \
-      _create_and_link_desktop_file postman "$zinit_app_exec" "postman" "Postman"' \
-      atpull'%atclone' \
-      as'null' sbin'**/Postman -> postman'
-    zinit snippet 'https://dl.pstmn.io/download/latest/linux64'
+    # # postman
+    # zinit ice lucid wait"3" id-as'postman' \
+    #   mv'postman -> postman.tar.gz' \
+    #   atclone'tar xzvf *.tar.gz; \
+    #   zinit_app_exec=$(readlink -f Postman/Postman); \
+    #   _create_and_link_desktop_file postman "$zinit_app_exec" "postman" "Postman"' \
+    #   atpull'%atclone' \
+    #   as'null' sbin'**/Postman -> postman'
+    # zinit snippet 'https://dl.pstmn.io/download/latest/linux64'
 
-    # zoom
-    zinit ice lucid wait"3" id-as'zoom' \
-      mv'zoom -> zoom.tar.xz' \
-      atclone'tar xvf *.tar.xz; \
-      zinit_app_exec=$(readlink -f zoom/ZoomLauncher); \
-      _create_and_link_desktop_file zoom "env QT_SCALE_FACTOR=2 $zinit_app_exec" "Zoom" "Zoom" "x-scheme-handler/zoommtg;x-scheme-handler/zoomus;x-scheme-handler/tel;x-scheme-handler/callto;x-scheme-handler/zoomphonecall;application/x-zoom"' \
-      atpull'%atclone' \
-      as'null' sbin'**/ZoomLauncher -> zoom'
-    zinit snippet https://zoom.us/client/latest/zoom_x86_64.tar.xz
+    # # zoom
+    # zinit ice lucid wait"3" id-as'zoom' \
+    #   mv'zoom -> zoom.tar.xz' \
+    #   atclone'tar xvf *.tar.xz; \
+    #   zinit_app_exec=$(readlink -f zoom/ZoomLauncher); \
+    #   _create_and_link_desktop_file zoom "env QT_SCALE_FACTOR=2 $zinit_app_exec" "Zoom" "Zoom" "x-scheme-handler/zoommtg;x-scheme-handler/zoomus;x-scheme-handler/tel;x-scheme-handler/callto;x-scheme-handler/zoomphonecall;application/x-zoom"' \
+    #   atpull'%atclone' \
+    #   as'null' sbin'**/ZoomLauncher -> zoom'
+    # zinit snippet https://zoom.us/client/latest/zoom_x86_64.tar.xz
 
-    # ff dev
-    zinit ice lucid id-as"ff-dev"  \
-      mv'ff-dev -> firefox.tar.bz2' \
-      atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "env GDK_BACKEND=wayland $(readlink -f firefox/firefox)" firefox Firefox; rm *.tar.bz2;' \
-      atpull'%atclone' \
-      as'null' sbin'**/firefox'
-    zinit snippet "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US"
+    # # ff dev
+    # zinit ice lucid id-as"ff-dev"  \
+    #   mv'ff-dev -> firefox.tar.bz2' \
+    #   atclone'tar jxf *.tar.bz2; _create_and_link_desktop_file firefox "env GDK_BACKEND=wayland $(readlink -f firefox/firefox)" firefox Firefox; rm *.tar.bz2;' \
+    #   atpull'%atclone' \
+    #   as'null' sbin'**/firefox'
+    # zinit snippet "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US"
 
     # google chrome
     #zinit ice lucid wait id-as"google-chrome" as'program' pick'chrome/chrome' \

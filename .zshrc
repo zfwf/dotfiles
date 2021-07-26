@@ -65,7 +65,7 @@ esac
 [ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh
 
 # common gui programs
-[ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh
+# [ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh
 
 # needs to be the last plugin
 zinit ice wait lucid

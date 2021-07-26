@@ -8,42 +8,41 @@ case `uname` in
 
       # create symlinks
       ln -sf $HOME/.gitconfig_mac $HOME/.gitconfig
-      ln -sf $HOME/.alacritty_mac.yml $HOME/.alacritty.yml
+      ln -sf $HOME/.config/alacritty/alacritty_mac.yml $HOME/.config/alacritty/alacritty.yml
       ln -sf $HOME/Brewfile_mac $HOME/Brewfile
 
     fi
 
+    # install brew if not found
+    if [[ $(command -v brew) == "" ]] ; then
+      # Install Homebrew
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+      brew bundle --no-lock
+    fi
+
     ;;
   Linux)
-    # brew path
-    test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
     if [ ! -f $HOME/.gitconfig ]; then
       # create symlinks
       ln -sf $HOME/.gitconfig_linux $HOME/.gitconfig
+      ln -sf $HOME/.config/alacritty/alacritty_linux.yml $HOME/.config/alacritty/alacritty.yml
 
       eval "OS_$(cat /etc/*-release | grep "^ID=")"
       case "$OS_ID" in
         "clear-linux-os")
-          ln -sf $HOME/.alacritty_clr.yml $HOME/.alacritty.yml
           ;;
         "manjaro")
-          ln -sf $HOME/Brewfile_manjaro $HOME/Brewfile
           ;;
       esac
 
       # show desktop icons in gnome
-      gsettings set org.gnome.desktop.background show-desktop-icons true
+      if [[ $(command -v gsettings) ]] ; then
+        gsettings set org.gnome.desktop.background show-desktop-icons true
+      fi
     fi
     ;;
 esac
 
-# install brew if not found
-if [[ $(command -v brew) == "" ]] ; then
-  # Install Homebrew
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-  brew bundle --no-lock
-fi
 
 
 # install asdf if not found
@@ -63,3 +62,4 @@ else
   # completions handled by zinit
   export NODEJS_CHECK_SIGNATURES=no;
 fi
+
