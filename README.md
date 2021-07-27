@@ -37,6 +37,25 @@ sudo swupd bundle-add x11-tools
 
 ### MacOS (scipt will install HomeBrew and initialize from ~/Brewfile)
 
+### Windows (Windows Terminal, WSL2) 
+```
+# set wsl default version
+wsl --set-default-version 2
+
+# check wsl distro versions
+wsl --list --verbose
+
+# convert to wsl version 2
+wsl --set-version <distro name> 2
+
+# essentials
+wsl sudo apt-get install build-essential curl git zsh pkg-config libssl-dev libncurses-dev
+
+# install fonts (from inside font folder)
+.\FontReg.exe /copy
+
+
+```
 
 ## Install
 ``` sh
