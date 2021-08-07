@@ -18,70 +18,22 @@ strip_then_append() {
   echo "$stripped:$3"
 }
 
-# init orbiter
-. ~/init.zsh
-
-# load zinit
-. $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/init.zsh
-
-# asdf completion
-zinit ice lucid blockf
-zinit light ${ASDF_DIR}/completions
-
-# Order of execution of related Ice-mods: atinit -> atpull! -> make'!!' -> mv -> cp -> make! -> atclone/atpull -> make -> (plugin script loading) -> src -> multisrc -> atload.
-
-# shim tool
-zinit ice ver"e927f333926c312e826e70c8a063d0b82f2c7f06"
-zinit light zinit-zsh/z-a-bin-gem-node
-# patch tool
-zinit ice ver"b6091500f9edb7e3e9de755c93c6e0a587227355"
-zinit light zinit-zsh/z-a-patch-dl
-
-
-# lang/runtimes
-[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/lang_runtime.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/lang_runtime.zsh
-
-# common command line programs
-[ -f  $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/cmdline_prog.zsh
+# load orbiter
+. ./orbiter_init.zsh
 
 # misc configs
 case `uname` in
   Darwin)
+    # catalina specific
+    local system_usr_bin_dir_paths='/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    export PATH=$(strip_then_append "$PATH" \
+      $(get_path_stripper $system_usr_bin_dir_paths) \
+      $system_usr_bin_dir_paths)
     ;;
+
   Linux)
     ;;
 esac
-
-# theme
-[ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/theme.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/theme.zsh
-
-# font
-[ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/font.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/font.zsh
-
-# other paths
-[ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/paths.sh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/paths.sh
-
-#  completions
-[ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/comp.zsh
-
-# common gui programs
-# [ -f $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh ] && . $ZINIT_VAR[PLUGIN_SCRIPT_DIR]/gui_prog.zsh
-
-# needs to be the last plugin
-zinit ice wait lucid
-zinit light zdharma/fast-syntax-highlighting
-
-autoload -Uz compinit
-compinit
-
-zinit cdreplay -q
-
-
-# catalina specific
-local system_usr_bin_dir_paths='/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
-export PATH=$(strip_then_append "$PATH" \
-  $(get_path_stripper $system_usr_bin_dir_paths) \
-  $system_usr_bin_dir_paths)
 
 
 export TERM='xterm-256color' # attempt enable at least 256 color
@@ -170,24 +122,10 @@ bindkey "^[OB" down-line-or-beginning-search
 export DOCKER_HIDE_LEGACY_COMMANDS=true
 
 # alias
-export VISUAL=nvim
-export EDITOR="$VISUAL"
-alias vi="$VISUAL"
-alias top="bottom"
 alias npx='npm_config_yes=true npx'
-alias react-devtools='npx react-devtools@^3'
-# alias meta='npx meta'
-alias ll='ls -la'
-alias cat='bat'
-alias ls="exa --icons --color always"
 
 case `uname` in
   Darwin)
-    # alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
-    # alias postgre:start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-    # alias postgre:stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-    # export CLICOLOR=1
-    # export LSCOLORS=GxFxCxDxBxegedabagaced
     ;;
   Linux)
     alias trash=gvfs-trash
@@ -272,5 +210,3 @@ git() {
 
 # starship prompt
 eval "$(starship init zsh)" > /dev/null 2>&1
-
-export PATH="$HOME/.poetry/bin:$PATH"
