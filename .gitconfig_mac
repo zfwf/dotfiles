@@ -3,15 +3,44 @@
 	email = chhschou@gmail.com
 
 [core]
-  excludesfile = ~/.gitignore_global
-  editor = nvim
-  pager = diff-so-fancy | less -FXRi
+	excludesfile = ~/.gitignore_global
+	editor = nvim
+
+[pager]
+	diff = delta1
+	log = delta
+	reflog = delta
+	show = delta
+
+[interactive]
+	diffFilter = delta --color-only --features=interactive
+
+[delta]
+	features = decorations
+
+[delta "interactive"]
+	keep-plus-minus-markers = false
+
+[delta "decorations"]
+	commit-decoration-style = blue ol
+	commit-style = raw
+	file-style = omit
+	hunk-header-decoration-style = blue box
+	hunk-header-file-style = red
+	hunk-header-line-number-style = "#067a00"
+	hunk-header-style = file line-number syntax
 
 [color]
 	ui = auto
-[credential]
-	helper = osxkeychain
+
 [push]
 	default = current
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+
+[credential]
+	helper = osxkeychain
+
+[foobaz]
+	diff = delta1
+[pull]
+	rebase = false
+
