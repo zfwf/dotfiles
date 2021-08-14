@@ -8,21 +8,18 @@
     repo: tmux-plugins/tpm
   install: "mkdir -p ~/.tmux/plugins; ln -sf $PWD/ $HOME/.tmux/plugins/tpm"
 
-- id: ff-dev
-  resource: https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US
-  exec: "**/firefox/firefox"
-  launcher:
-    name: firefox
-    exec: "env GDK_BACKEND=wayland $(readlink -f firefox/firefox)"
-    icon: firefox
-    menu_name: Firefox
-
 - id: tmux
   resource:
     repo: tmux/tmux
     ver: "3.2a"
   install: "./autogen.sh; ./configure; make;"
   exec: "**/tmux"
+
+- id: nushell
+  resource:
+    repo: nushell/nushell
+    is_release: true
+  exec: "**/nu"
 
 - id: neovim
   resource:
@@ -36,13 +33,13 @@
     repo: junegunn/vim-plug
   install: "mkdir -p ~/.local/share/nvim/site/autoload;  ln -sf \"$PWD/plug.vim\" ~/.local/share/nvim/site/autoload/plug.vim"
 
-# - id: starship
-#   resource:
-#     repo: starship/starship
-#     is_release: true
-#   exec: "**/starship"
-#   install: "**/starship init zsh > init-starship.zsh"
-#   src: "init-starship.zsh"
+- id: starship
+  resource:
+    repo: starship/starship
+    is_release: true
+  exec: "**/starship"
+  install: "**/starship init zsh > init-starship.zsh"
+  src: "init-starship.zsh"
 
 - id: ripgrep
   resource:
@@ -57,6 +54,7 @@
   exec: "**/zoxide"
   install: "**/zoxide init zsh > init-zoxide.zsh"
   src: "init-zoxide.zsh"
+  load: "alias cd=z"
 
 - id: fd
   resource:

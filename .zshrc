@@ -19,7 +19,7 @@ strip_then_append() {
 }
 
 # load orbiter
-. ./orbiter_init.zsh
+. ~/orbiter_init.zsh
 
 # misc configs
 case `uname` in
