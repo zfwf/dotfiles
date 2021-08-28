@@ -35,6 +35,12 @@ case `uname` in
     ;;
 esac
 
+# add .local/bin
+export PATH=$(strip_then_append "$PATH" \
+  $(get_path_stripper "$HOME/.local/bin") \
+  "$HOME/.local/bin")
+
+
 
 export TERM='xterm-256color' # attempt enable at least 256 color
 

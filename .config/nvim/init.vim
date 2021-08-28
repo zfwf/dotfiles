@@ -7,9 +7,6 @@
 let mapleader="\<SPACE>"
 
 if !exists('g:vscode')
-  " python3 support
-  let g:python3_host_prog="~/.asdf/installs/python/3.8.2/bin/python"
-
   " speed up diagnostics/gitgutter
   set updatetime=100 " 100ms
 
@@ -24,8 +21,6 @@ if !exists('g:vscode')
   Plug 'itchyny/lightline.vim'
   Plug 'taohexxx/lightline-buffer'
   Plug 'ryanoasis/vim-devicons'
-  "Plug 'airblade/vim-gitgutter'
-  "Plug 'sheerun/vim-polyglot'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " colored parentheses
   Plug 'luochen1990/rainbow'
@@ -58,9 +53,6 @@ if !exists('g:vscode')
   " #-------------------
   call plug#end()
 
-  " enable truecolor support
-  " set t_8b=^[[48;2;%lu;%lu;%lum
-  " set t_8f=^[[38;2;%lu;%lu;%lum
   set termguicolors
 
   " enable colorscheme
