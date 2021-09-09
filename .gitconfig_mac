@@ -7,7 +7,7 @@
 	editor = nvim
 
 [pager]
-	diff = delta1
+	diff = delta
 	log = delta
 	reflog = delta
 	show = delta
@@ -16,7 +16,9 @@
 	diffFilter = delta --color-only --features=interactive
 
 [delta]
-	features = decorations
+	line-numbers = true
+	features = decorations navigate
+
 
 [delta "interactive"]
 	keep-plus-minus-markers = false
@@ -39,8 +41,6 @@
 [credential]
 	helper = osxkeychain
 
-[foobaz]
-	diff = delta1
 [pull]
 	rebase = false
 

@@ -126,6 +126,12 @@
   load: export DIRENV_LOG_FORMAT=""
   exec: "**/direnv"
 
+- id: lazygit
+  resource:
+    repo: jesseduffield/lazygit
+    is_release: true
+  exec: "**/lazygit"
+
 - id: gh
   resource:
     repo: cli/cli
