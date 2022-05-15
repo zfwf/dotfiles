@@ -14,8 +14,33 @@ set timeoutlen=1000 ttimeoutlen=0
 set visualbell
 set noerrorbells
 
-set surround
+""" Map leader to space ---------------------
+let mapleader=" "
 
-" vim-commentary mappings
-nnoremap gcc :action CommentByLineComment<cr>
-vnoremap gc :<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action CommentByLineComment<CR>
+""" Plugins  --------------------------------
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set easymotion
+set textobj-entire
+set ReplaceWithRegister
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set nu
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+""" Mappings --------------------------------
+inoremap jk               <Esc>
+xnoremap p                pgvy|             " copy back to buf after paste
+nnoremap <leader>bb       :action CloseAllEditorsButActive<CR>
