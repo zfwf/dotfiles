@@ -10,7 +10,11 @@
 [color]
 	ui = auto
 [credential]
-	helper = /home/chhschou/.zinit/plugins/gitahead---gitahead/GitAhead/git-credential-libsecret
+	helper = /usr/local/share/gcm-core/git-credential-manager-core
+	credentialStore = gpg
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+
 [push]
 	default = current
 
