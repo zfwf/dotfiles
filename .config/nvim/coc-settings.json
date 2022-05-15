@@ -6,6 +6,8 @@
   "list.source.grep.defaultOptions": ["--interactive"],
   "list.source.grep.args": ["--hidden", "--smart-case"],
   "list.source.grep.excludePatterns": ["**/.git/**", "**/node_modules/**"],
+  "list.nextKeymap": "<C-n>",
+  "list.previousKeymap": "<C-p>",
   "coc.preferences.formatOnSaveFiletypes": [
     "graphql",
     "liquid",

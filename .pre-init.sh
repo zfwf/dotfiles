@@ -61,5 +61,7 @@ else
   . ~/.asdf/asdf.sh;
   # completions handled by zinit
   export NODEJS_CHECK_SIGNATURES=no;
+  # integrate with java
+  [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && . ~/.asdf/plugins/java/set-java-home.zsh
 fi
 

@@ -43,6 +43,7 @@ export PATH=$(strip_then_append "$PATH" \
 
 
 export TERM='xterm-256color' # attempt enable at least 256 color
+export GPG_TTY=$TTY
 
 # set some history options
 setopt append_history
