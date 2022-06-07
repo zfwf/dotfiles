@@ -7,3 +7,5 @@ cargo-fuzz
 cargo-generate
 cargo-release
 
+sccache
+

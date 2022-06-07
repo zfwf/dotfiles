@@ -14,7 +14,7 @@ case `uname` in
     fi
 
     # install brew if not found
-    if [[ $(command -v brew) == "" ]] ; then
+    if [[ $(command -v brew) == "" && ! -d /opt/homebrew ]] ; then
       # Install Homebrew
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
       brew bundle --no-lock

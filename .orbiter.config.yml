@@ -1,20 +1,3 @@
-- id: oh-my-tmux
-  resource:
-    repo: gpakosz/.tmux
-  install: "ln -sf $PWD/.tmux.conf $HOME/.tmux.conf"
-
-- id: tpm
-  resource:
-    repo: tmux-plugins/tpm
-  install: "mkdir -p ~/.tmux/plugins; ln -sf $PWD/ $HOME/.tmux/plugins/tpm"
-
-- id: tmux
-  resource:
-    repo: tmux/tmux
-    ver: "3.2a"
-  install: "./autogen.sh; ./configure; make;"
-  exec: "**/tmux"
-
 - id: nushell
   resource:
     repo: nushell/nushell
@@ -95,7 +78,7 @@
     repo: ogham/exa
     is_release: true
   exec: "**/exa"
-  load: "alias ls=\"exa --icons --color always\"; alias ll='ls -la'"
+  load: "alias ls=\"exa --icons --color always\"; alias ll='ls -la'; alias tree='exa --tree --long'"
 
 - id: bat
   resource:
@@ -126,12 +109,6 @@
   load: export DIRENV_LOG_FORMAT=""
   exec: "**/direnv"
 
-- id: lazygit
-  resource:
-    repo: jesseduffield/lazygit
-    is_release: true
-  exec: "**/lazygit"
-
 - id: gh
   resource:
     repo: cli/cli
@@ -156,46 +133,30 @@
     is_release: true
   exec: "**/fzf"
 
-- id: aws-vault
-  resource:
-    repo: 99designs/aws-vault
-    is_release: true
-  exec: "**/aws-vault"
+# - id: kubectl
+#   init: "curl -L -s https://dl.k8s.io/release/stable.txt"
+#   resource:
+#     macos: https://storage.googleapis.com/kubernetes-release/release/{init}/bin/darwin/amd64/kubectl
+#     linux: https://storage.googleapis.com/kubernetes-release/release/{init}/bin/linux/amd64/kubectl
+#   install: "chmod +x ./kubectl; ./kubectl completion zsh > zsh_completion.zsh"
+#   src: zsh_completion.zsh
+#   exec: kubectl
 
-
-- id: kubectl
-  init: "curl -L -s https://dl.k8s.io/release/stable.txt"
-  resource:
-    macos: https://storage.googleapis.com/kubernetes-release/release/{init}/bin/darwin/amd64/kubectl
-    linux: https://storage.googleapis.com/kubernetes-release/release/{init}/bin/linux/amd64/kubectl
-  install: "chmod +x ./kubectl; ./kubectl completion zsh > zsh_completion.zsh"
-  src: zsh_completion.zsh
-  exec: kubectl
-
-- id: minikube
-  resource:
-    macos: https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64
-    linux: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-  install: "chmod +x ./minikube; ./minikube completion zsh > zsh_completion.zsh"
-  src: zsh_completion.zsh
-  exec: minikube
+# - id: minikube
+#   resource:
+#     macos: https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64
+#     linux: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+#   install: "chmod +x ./minikube; ./minikube completion zsh > zsh_completion.zsh"
+#   src: zsh_completion.zsh
+#   exec: minikube
 
 - id: zsh-autosuggestions
   resource:
     repo: zsh-users/zsh-autosuggestions
   src: zsh-autosuggestions.zsh
 
-- id: ohmyzsh
-  resource:
-    repo: ohmyzsh/ohmyzsh
-  src:
-    - lib/completion.zsh
-    - lib/git.zsh
-    - plugins/git/git.plugin.zsh
-  load: "unalias grv g"
-
 - id: fast-syntax-highlighting
   resource:
-    repo: zdharma/fast-syntax-highlighting
-  src: fast-syntax-highlighting.plugin.zsh
+    repo: z-shell/F-Sy-H
+  src: f-sy-h.plugin.zsh 
 

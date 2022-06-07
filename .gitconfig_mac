@@ -5,6 +5,8 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nvim
+	compression = 0
+	compression = 9
 
 [pager]
 	diff = delta
@@ -17,7 +19,7 @@
 
 [delta]
 	line-numbers = true
-	features = decorations navigate
+	features = decorations
 
 
 [delta "interactive"]
@@ -27,10 +29,14 @@
 	commit-decoration-style = blue ol
 	commit-style = raw
 	file-style = omit
-	hunk-header-decoration-style = blue box
+	hunk-header-decoration-style = blue
 	hunk-header-file-style = red
 	hunk-header-line-number-style = "#067a00"
 	hunk-header-style = file line-number syntax
+	hunk-header-decoration-style = blue
+	hunk-header-decoration-style = blue
+	hunk-header-decoration-style = blue
+	hunk-header-decoration-style = blue
 
 [color]
 	ui = auto
@@ -42,5 +48,7 @@
 	helper = osxkeychain
 
 [pull]
-	rebase = false
+	rebase = true
 
+[includeIf "gitdir:~/Documents/"]
+	path = $HOME/Documents/.gitconfig
