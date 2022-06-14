@@ -231,7 +231,7 @@ alias gsta='git stash'
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # source vendor scripts
-for f (~/.vendor/**/*.zsh) . $f
+[ -d  ~/.vendor ] && for f (~/.vendor/**/*.zsh) . $f
 
 # starship prompt
 eval "$(starship init zsh)" > /dev/null 2>&1

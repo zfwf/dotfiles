@@ -63,5 +63,11 @@ else
   export NODEJS_CHECK_SIGNATURES=no;
   # integrate with java
   [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && . ~/.asdf/plugins/java/set-java-home.zsh
+
+  if [[ $(command -v sccache) != "" ]] ; then
+    # enable sccache
+    export RUSTC_WRAPPER="$(command -v sccache)"
+  fi
+
 fi
 
