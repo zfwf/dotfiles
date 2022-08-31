@@ -29,5 +29,6 @@
   "scss.validate": false,
   "less.validate": false,
   "wxss.validate": false,
-  "explorer.quitOnOpen": true
+  "explorer.quitOnOpen": true,
+  "java.jdt.ls.vmargs": "javaageng:$(pwd)/lombok.jar -Xbootclasspath/p:$(pwd)/lombok.jar"
 }

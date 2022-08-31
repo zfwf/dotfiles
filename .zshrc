@@ -226,6 +226,7 @@ alias gc='git commit -v'
 alias gcam='git commit -avm'
 alias gcan!='git commit -v -a --no-edit --amend'
 alias gsta='git stash'
+alias gchp='git cherry-pick'
 
 # case -insensitive tab completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'

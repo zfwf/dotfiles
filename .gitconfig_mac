@@ -1,6 +1,6 @@
 [user]
 	name = Chris Chou
-	email = chhschou@gmail.com
+	email = chhschou@hotmail.com
 
 [core]
 	excludesfile = ~/.gitignore_global
@@ -51,4 +51,4 @@
 	rebase = true
 
 [includeIf "gitdir:~/Documents/"]
-	path = $HOME/Documents/.gitconfig
+	path = ~/Documents/.gitconfig

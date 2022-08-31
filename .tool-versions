@@ -4,3 +4,4 @@ python system
 ruby 2.6.6
 sbt 1.4.6
 java openjdk-11
+bun 0.1.4

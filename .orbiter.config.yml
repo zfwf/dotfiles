@@ -9,12 +9,11 @@
     repo: neovim/neovim
     is_release: true
   exec: "**/bin/nvim"
-  load: "export VISUAL=nvim; export EDITOR=\"$VISUAL\"; alias vi=\"$VISUAL\""
 
 - id: vim-plug
-  resource:
-    repo: junegunn/vim-plug
-  install: "mkdir -p ~/.local/share/nvim/site/autoload;  ln -sf \"$PWD/plug.vim\" ~/.local/share/nvim/site/autoload/plug.vim"
+  resource: https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh
+  install: "./install.sh -y"
+  load: "export VISUAL=lvim; export EDITOR=\"$VISUAL\"; alias vi=\"$VISUAL\""
 
 - id: starship
   resource:
