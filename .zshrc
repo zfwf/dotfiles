@@ -105,10 +105,6 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # load zle history widgets
-autoload -Uz up-line-or-beginning-search
-zle -N up-line-or-beginning-search
-autoload -Uz down-line-or-beginning-search
-zle -N down-line-or-beginning-search
 
 # use jk to go to cmd from ins
 bindkey -M viins 'jk' vi-cmd-mode
@@ -121,23 +117,18 @@ bindkey -M vicmd "^p" history-incremental-pattern-search-forward
 
 bindkey -M viins '^n' history-incremental-pattern-search-backward
 bindkey -M viins '^p' history-incremental-pattern-search-forward
-# Beginning search with arrow keys
-bindkey "^[OA" up-line-or-beginning-search
-bindkey "^[OB" down-line-or-beginning-search
+
+# Beginning search with up keys
+autoload -Uz up-line-or-beginning-search
+zle -N up-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+# Beginning search with down keys
+autoload -Uz down-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
 
 # hide legacy docker commands
 export DOCKER_HIDE_LEGACY_COMMANDS=true
-
-# alias
-alias npx='npm_config_yes=true npx'
-
-case `uname` in
-  Darwin)
-    ;;
-  Linux)
-    alias trash=gvfs-trash
-    ;;
-esac
 
 sendsigterm() {
   kill -15 $1
@@ -148,56 +139,6 @@ pport() {
   lsof -t -i tcp:$1
 }
 
-extract-filename() {
-  echo $(basename -- $1)
-}
-
-extract-filename-wo-ext() {
-  echo ${$(extract-filename $1)%.*}
-}
-
-co() {
-  if [ -z "$4" ]; then
-    local cloned_folder=$(extract-filename-wo-ext $2)-$1-$3
-    local branch_name=$1/$3
-  else
-    local cloned_folder=$(extract-filename-wo-ext $2)-$4-$1-$3
-    local branch_name=$4/$1/$3
-  fi
-  command git clone $2 $cloned_folder
-  cd $cloned_folder
-  if [ -f ".meta" ]; then
-    meta git update
-    if [ ! -z "$4" ]; then
-      meta git checkout master
-      meta git update
-    fi
-    meta git checkout -b $branch_name
-    meta exec "git push -u origin $branch_name"
-    meta exec 'npm ci'
-  else
-    command git checkout -b $branch_name
-    command git push -u origin $branch_name
-    npm ci
-    npm run build --if-present
-  fi
-}
-
-cof-beta() {
-  co 'feature' "$@" 'beta'
-}
-
-cof() {
-  co 'feature' "$@"
-}
-
-cob-beta() {
-  co 'bugfix' "$@" 'beta'
-}
-
-cob() {
-  co 'bugfix' "$@"
-}
 
 # dotfiles bare repo
 CMD_GIT="$(command -v git)"
@@ -214,6 +155,19 @@ git() {
     "$CMD_GIT" "$@" "${CMD_GIT_EXTRA_ARGS[@]}"
   fi
 }
+
+# alias
+alias npx='npm_config_yes=true npx'
+
+case `uname` in
+  Darwin)
+    ;;
+  Linux)
+    alias trash=gvfs-trash
+    ;;
+esac
+
+
 
 # git aliases
 alias gst='git status'
@@ -236,3 +190,5 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # starship prompt
 eval "$(starship init zsh)" > /dev/null 2>&1
+
+source /Users/824363/.docker/init-zsh.sh || true # Added by Docker Desktop

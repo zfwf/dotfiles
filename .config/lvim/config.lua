@@ -8,6 +8,21 @@ an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
+-- general (vim)
+vim.opt.relativenumber = true
+-- vim.opt.list = true
+-- vim.opt.listchars = { tab = '> ', trail = '~', extends = '>', precedes = '<' }
+vim.cmd [[highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen]]
+vim.cmd [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
+-- vim.opt.guicursor = {
+--   ['n-v-c'] = 'block-Cursor/lCursor-blinkon0',
+--   ['i-ci'] = 'ver25-Cursor/lCursor-blinkwait1-blinkon15-blinkoff10',
+--   ['r-cr'] = 'hor20-Cursor/rCursor'
+-- }
+vim.opt.gdefault = true
+vim.opt.magic = true
+
+
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true

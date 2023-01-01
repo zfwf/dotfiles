@@ -1,6 +1,6 @@
 nodejs 14.19.3
 rust stable
-python system
+python 3.10.7
 ruby 2.6.6
 sbt 1.4.6
 java openjdk-11

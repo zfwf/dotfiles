@@ -11,3 +11,5 @@ if [ -f ~/.profile ]; then
 	. ~/.profile
 fi
 
+
+source /Users/824363/.docker/init-bash.sh || true # Added by Docker Desktop
