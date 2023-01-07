@@ -190,5 +190,3 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # starship prompt
 eval "$(starship init zsh)" > /dev/null 2>&1
-
-source /Users/824363/.docker/init-zsh.sh || true # Added by Docker Desktop

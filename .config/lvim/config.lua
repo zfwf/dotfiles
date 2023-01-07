@@ -201,7 +201,7 @@ vim.cmd [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
 --   ['r-cr'] = 'hor20-Cursor/rCursor'
 -- }
 vim.opt.gdefault = true
-vim.opt.magic = true 
+vim.opt.magic = true
 
 
 -- Additional Plugins
@@ -212,7 +212,7 @@ lvim.plugins = {
     config = function()
       require("better_escape").setup()
     end,
-  }, 
+  },
   -- dracula theme
   { "Mofiqul/dracula.nvim" },
   -- better quickfix window
@@ -303,3 +303,10 @@ lvim.plugins = {
 }
 
 lvim.builtin.treesitter.rainbow.enable = true
+lvim.builtin.which_key.mappings["b"]["p"] = { "<cmd>bprevious<cr>", "Previous" }
+lvim.builtin.which_key.mappings["b"]["b"] = { "<cmd>mark a|silent! %bdelete|edit#|bdelete#<cr>", "Close other" }
+lvim.builtin.which_key.mappings["b"]["#"] = { "<cmd>:b#<cr>", "Last" }
+lvim.builtin.which_key.mappings["b"]["d"] = { "<cmd>:bd<cr>", "Delete" }
+
+-- commit current selected on enter
+lvim.builtin.cmp.confirm_opts.select = true
