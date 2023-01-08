@@ -1,7 +1,4 @@
-nodejs 14.19.3
+nodejs lts
 rust stable
 python 3.10.7
-ruby 2.6.6
-sbt 1.4.6
-java openjdk-11
-bun 0.1.4
+lua 5.4.4
