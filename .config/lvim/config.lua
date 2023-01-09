@@ -210,7 +210,17 @@ lvim.plugins = {
   {
     "max397574/better-escape.nvim",
     config = function()
-      require("better_escape").setup()
+      require("better_escape").setup {
+        mapping = { "jk" }, -- a table with mappings to use
+        timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
+        clear_empty_lines = false, -- clear line after escaping if there is only whitespace
+        keys = "<Esc>", -- keys used for escaping, if it is a function will use the result everytime
+        -- example(recommended)
+        -- keys = function()
+        --   return vim.api.nvim_win_get_cursor(0)[2] > 1 and '<esc>l' or '<esc>'
+        -- end,
+      }
+
     end,
   },
   -- dracula theme
@@ -303,10 +313,16 @@ lvim.plugins = {
 }
 
 lvim.builtin.treesitter.rainbow.enable = true
+
+-- buffer
 lvim.builtin.which_key.mappings["b"]["p"] = { "<cmd>bprevious<cr>", "Previous" }
 lvim.builtin.which_key.mappings["b"]["b"] = { "<cmd>mark a|silent! %bdelete|edit#|bdelete#<cr>", "Close other" }
-lvim.builtin.which_key.mappings["b"]["#"] = { "<cmd>:b#<cr>", "Last" }
 lvim.builtin.which_key.mappings["b"]["d"] = { "<cmd>:bd<cr>", "Delete" }
+vim.cmd [[noremap <tab><tab> :b#<cr>]] -- last buffer
+
+
+-- LSP
+vim.keymap.set('n', '<f2>', vim.lsp.buf.rename)
 
 -- commit current selected on enter
 lvim.builtin.cmp.confirm_opts.select = true

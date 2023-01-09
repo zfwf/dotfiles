@@ -35,7 +35,9 @@ if [ ! -f $HOME/.os-init ]; then
           "ubuntu")
             ;& # fall through
           "debian")
-            sudo apt install libssl-dev build-essential pkg-config
+            sudo apt install libssl-dev build-essential pkg-config unzip
+            # git credential management
+            sudo apt install pass gpg
             ;;
         esac
 

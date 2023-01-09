@@ -1,4 +1,4 @@
-nodejs lts
+nodejs lts-gallium
 rust stable
 python 3.10.7
 lua 5.4.4

@@ -59,6 +59,10 @@ wsl sudo apt-get install build-essential curl git zsh pkg-config libssl-dev libn
 
 ## Install
 ``` sh
+# setup git credential 
+gpg --batch --passphrase '' --quick-gen-key <USER_ID> default default  # (<USER_ID> to your own user id)
+pass init <gpg-key>  # <gpg-key> is the key id in output from last command
+
 # clone to ~/.cfg as bare repo
 git clone --bare https://github.com/chhschou/dotfiles ~/.cfg
 

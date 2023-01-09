@@ -7,7 +7,11 @@
   editor = nvim
 
 [credential]
-	helper = cache --timeout 31536000
+	helper = /usr/local/share/gcm-core/git-credential-manager-core
+	credentialStore = gpg
+	helper = 
+	helper = /usr/local/bin/git-credential-manager
+	
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 
@@ -39,4 +43,5 @@
 	hunk-header-file-style = red
 	hunk-header-line-number-style = "#067a00"
 	hunk-header-style = file line-number syntax
+	hunk-header-decoration-style = blue
 	hunk-header-decoration-style = blue
