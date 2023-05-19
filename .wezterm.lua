@@ -10,25 +10,24 @@ wezterm.on("update-right-status", function(window, pane)
   end
 
   window:set_right_status(wezterm.format({
-    {Text=bat .. "   "..date},
+    { Text = bat .. "   " .. date },
   }));
 end)
 
 return {
-  leader = { key="a", mods="CTRL" },
+  leader = { key = "a", mods = "CTRL" },
   keys = {
     -- just LEADER won't work
-    {key="x", mods="LEADER|SHIFT",
-     action=wezterm.action{CloseCurrentPane={confirm=true}}},
-    {key="%", mods="LEADER|SHIFT",
-     action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
-    {key="\"", mods="LEADER|SHIFT",
-     action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
+    { key = "x", mods = "LEADER|SHIFT",
+      action = wezterm.action { CloseCurrentPane = { confirm = true } } },
+    { key = "%", mods = "LEADER|SHIFT",
+      action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" } } },
+    { key = "\"", mods = "LEADER|SHIFT",
+      action = wezterm.action { SplitVertical = { domain = "CurrentPaneDomain" } } },
   },
   font = wezterm.font("CaskaydiaCove Nerd Font"),
   font_size = 18.0,
   color_scheme = "Dracula",
   use_ime = true,
-  use_dead_keys = false,
   scrollback_lines = 99999,
 }

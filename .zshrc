@@ -181,6 +181,7 @@ alias gcam='git commit -avm'
 alias gcan!='git commit -v -a --no-edit --amend'
 alias gsta='git stash'
 alias gchp='git cherry-pick'
+alias gpf='git push --force-with-lease'
 
 # case -insensitive tab completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -190,3 +191,4 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # starship prompt
 eval "$(starship init zsh)" > /dev/null 2>&1
+
