@@ -168,5 +168,5 @@
 - id: fast-syntax-highlighting
   resource:
     repo: z-shell/F-Sy-H
-  src: "*.plugin.zsh"
+  src: "F-Sy-H.plugin.zsh"
 
