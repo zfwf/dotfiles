@@ -53,19 +53,20 @@ if [ ! -f $HOME/.os-init ]; then
   touch $HOME/.os-init
 fi
 
-
-# asdf
-if [ ! -d $HOME/.asdf ]; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-  . ~/.asdf/asdf.sh;
-  asdf plugin-add nodejs;
-  asdf plugin-add python;
-  asdf plugin-add rust;
-  cd $HOME; asdf install; asdf reshim;
-else
-  . ~/.asdf/asdf.sh;
-  # integrate with java
-  [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && . ~/.asdf/plugins/java/set-java-home.zsh
+if [ "$(uname)" == *"Linux"* ] || [ "$(uname)" == *"Darwin"* ]; then
+  # asdf
+  if [ ! -d $HOME/.asdf ]; then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+    . ~/.asdf/asdf.sh;
+    asdf plugin-add nodejs;
+    asdf plugin-add python;
+    asdf plugin-add rust;
+    cd $HOME; asdf install; asdf reshim;
+  else
+    . ~/.asdf/asdf.sh;
+    # integrate with java
+    [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && . ~/.asdf/plugins/java/set-java-home.zsh
+  fi
 fi
 
 if [[ $(command -v sccache) != "" ]] ; then
