@@ -1,5 +1,4 @@
 
-# folder based branch development
 extract-filename() {
   echo $(basename -- $1)
 }

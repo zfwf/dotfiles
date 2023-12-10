@@ -1,13 +1,13 @@
 [user]
 	name = Chris Chou
-	email = chhschou@hotmail.com
+	email = zf8wf8@petalmail.com
 
 [core]
+	autocrlf = input
 	excludesfile = ~/.gitignore_global
 	editor = nvim
 	compression = 0
 	compression = 9
-	autocrlf = input
 
 [pager]
 	diff = delta

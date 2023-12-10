@@ -19,7 +19,23 @@ strip_then_append() {
 }
 
 # load orbiter
-. ~/orbiter_init.zsh
+if ( type orbiter > /dev/null ); then
+  # create script in ${HOME}/.cache
+  eval "$(orbiter init zsh)" > /dev/null 2>&1
+
+  local orbiter_bin_path="$ORBITER_CONST[BIN_DIR]"
+  local orbiter_dashboard_bin_path="$ORBITER_CONST[DASHBOARD_BIN_DIR]"
+  local stripper=$(get_path_stripper $orbiter_dashboard_bin_path)
+
+  export PATH=$(strip_then_prepend "$PATH" \
+    "$(get_path_stripper $orbiter_dashboard_bin_path)" \
+    "$orbiter_dashboard_bin_path")
+  export PATH=$(strip_then_prepend "$PATH" \
+    "$(get_path_stripper $orbiter_bin_path)" \
+    "$orbiter_bin_path")
+
+fi
+
 
 # misc configs
 case `uname` in
@@ -184,7 +200,9 @@ alias gchp='git cherry-pick'
 alias gpf='git push --force-with-lease'
 
 # case -insensitive tab completion
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+autoload -U compinit
+compinit
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
 # source vendor scripts
 [ -d  ~/.vendor ] && for f (~/.vendor/**/*.zsh) . $f

@@ -18,12 +18,12 @@ function compile_then_source () {
   # ${var@Q} gives value of var quoted in a format that can be reused as input
   [[ $BASH_VERSION ]] && { eval builtin "$method" "$file" "${args@Q}"; return $?; }
 
-  if [[ ! $file.zwc -nt $file ]]; then
+  if [[ ! $file.zwc -nt $file ]] && [[ ${file:h} != /etc* ]] && [[ ${file:h} != *"Program Files"* ]]; then
     # Use canonical pathname for zrecompile's happiness
-    if [[ -r $file && -w ${file:h} ]]; then zcompile "${file:P}"; fi
+    if [[ -r $file ]] && [[ -w ${file:h} ]]; then zcompile "${file:q:P}"; fi
   fi
 
-  eval builtin "$method" "$file" "${(q)args[@]}"
+  eval builtin "$method" "${file:q}" "${(q)args[@]}"
 }
 
 function main () {

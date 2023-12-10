@@ -1,8 +1,10 @@
 # Getting started
 
 ## Prerequisites
+
 ### Manjaro Linux
-``` sh
+
+```sh
 sudo pacman -S base-devel
 
 # install zsh
@@ -17,7 +19,8 @@ pamac install xclip
 ```
 
 ### Clear Linux
-``` sh
+
+```sh
 # install zsh, devpkg-ncurses required to build zplugin module
 sudo swupd bundle-add zsh devpkg-ncurses
 
@@ -37,7 +40,21 @@ sudo swupd bundle-add x11-tools
 
 ### MacOS (scipt will install HomeBrew and initialize from ~/Brewfile)
 
-### Windows (Windows Terminal, WSL2) 
+### Windows (Windows Terminal, WSL2)
+
+#### Git Bash/Zsh
+
+Zsh might report `ERROR: this script is obsolete, please see git-completion.zsh` please see https://stackoverflow.com/a/69396005
+
+```sh
+    # modified ln28 in C:\Program Files\Git\etc\profile.d\git-prompt.sh
+    [ "${SHELL}" = "/usr/bin/bash" ] && . "$COMPLETION_PATH/git-completion.bash"
+    [ "${SHELL}" = "/usr/bin/zsh" ] && . "$COMPLETION_PATH/git-completion.zsh"
+
+```
+
+#### WSL2
+
 ```
 # set wsl default version
 wsl --set-default-version 2
@@ -58,8 +75,9 @@ wsl sudo apt-get install build-essential curl git zsh pkg-config libssl-dev libn
 ```
 
 ## Install
-``` sh
-# setup git credential 
+
+```sh
+# setup git credential
 gpg --batch --passphrase '' --quick-gen-key <USER_ID> default default  # (<USER_ID> to your own user id)
 pass init <gpg-key>  # <gpg-key> is the key id in output from last command
 

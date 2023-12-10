@@ -47,26 +47,30 @@ if [ ! -f $HOME/.os-init ]; then
         fi
       fi
       ;;
+    MSYS* | MINGW*)
+      if [ ! -f $HOME/.gitconfig ]; then
+        # create symlinks
+        ln -sf $HOME/.gitconfig_win $HOME/.gitconfig
+      fi
+      ;;
   esac
 
   # os init complete
   touch $HOME/.os-init
 fi
 
-if [ "$(uname)" == *"Linux"* ] || [ "$(uname)" == *"Darwin"* ]; then
-  # asdf
-  if [ ! -d $HOME/.asdf ]; then
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-    . ~/.asdf/asdf.sh;
-    asdf plugin-add nodejs;
-    asdf plugin-add python;
-    asdf plugin-add rust;
-    cd $HOME; asdf install; asdf reshim;
-  else
-    . ~/.asdf/asdf.sh;
-    # integrate with java
-    [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && . ~/.asdf/plugins/java/set-java-home.zsh
-  fi
+# asdf
+if [ ! -d $HOME/.asdf ]; then
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+  . ~/.asdf/asdf.sh;
+  asdf plugin-add nodejs;
+  asdf plugin-add python;
+  asdf plugin-add rust;
+  cd $HOME; asdf install; asdf reshim;
+else
+  . ~/.asdf/asdf.sh;
+  # integrate with java
+  [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && . ~/.asdf/plugins/java/set-java-home.zsh
 fi
 
 if [[ $(command -v sccache) != "" ]] ; then

@@ -6,3 +6,7 @@ tags
 # metal
 .metals/
 .bloop/
+
+
+# zsh
+*.zwc
