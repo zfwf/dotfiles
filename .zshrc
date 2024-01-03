@@ -18,25 +18,6 @@ strip_then_append() {
   echo "$stripped:$3"
 }
 
-# load orbiter
-if ( type orbiter > /dev/null ); then
-  # create script in ${HOME}/.cache
-  eval "$(orbiter init zsh)" > /dev/null 2>&1
-
-  local orbiter_bin_path="$ORBITER_CONST[BIN_DIR]"
-  local orbiter_dashboard_bin_path="$ORBITER_CONST[DASHBOARD_BIN_DIR]"
-  local stripper=$(get_path_stripper $orbiter_dashboard_bin_path)
-
-  export PATH=$(strip_then_prepend "$PATH" \
-    "$(get_path_stripper $orbiter_dashboard_bin_path)" \
-    "$orbiter_dashboard_bin_path")
-  export PATH=$(strip_then_prepend "$PATH" \
-    "$(get_path_stripper $orbiter_bin_path)" \
-    "$orbiter_bin_path")
-
-fi
-
-
 # misc configs
 case `uname` in
   Darwin)
@@ -56,8 +37,10 @@ export PATH=$(strip_then_append "$PATH" \
   $(get_path_stripper "$HOME/.local/bin") \
   "$HOME/.local/bin")
 
+# load orbiter
+. ~/orbiter_init.zsh
 
-
+# setup terminal
 export TERM='xterm-256color' # attempt enable at least 256 color
 export GPG_TTY=$TTY
 
@@ -194,7 +177,8 @@ alias gp='git push'
 alias grb='git rebase'
 alias gc='git commit -v'
 alias gcam='git commit -avm'
-alias gcan!='git commit -v -a --no-edit --amend'
+alias gcn!='git commit -v --no-edit --amend'
+alias gcan!='gcn! -a'
 alias gsta='git stash'
 alias gchp='git cherry-pick'
 alias gpf='git push --force-with-lease'
@@ -210,3 +194,5 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 # starship prompt
 eval "$(starship init zsh)" > /dev/null 2>&1
 
+
+source /Users/824363/.docker/init-zsh.sh || true # Added by Docker Desktop

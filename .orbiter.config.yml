@@ -9,19 +9,17 @@
     repo: neovim/neovim
     from_release: true
   exec: "**/bin/nvim"
-
-- id: vim-plug
-  resource: https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh
-  install: "./install.sh -y"
-  load: "export VISUAL=lvim; export EDITOR=\"$VISUAL\"; alias vi=\"$VISUAL\""
+  load: 'export VISUAL=nvim; export EDITOR="$VISUAL"; alias vi="$VISUAL"'
 
 - id: starship
   resource:
     repo: starship/starship
     from_release: true
   exec: "**/starship"
-  install: "**/starship init zsh > init-starship.zsh"
-  src: "init-starship.zsh"
+  install:
+    zsh: "**/starship init zsh > init-starship.zsh"
+  src:
+    zsh: "init-starship.zsh"
 
 - id: ripgrep
   resource:
@@ -34,8 +32,10 @@
     repo: ajeetdsouza/zoxide
     from_release: true
   exec: "**/zoxide"
-  install: "**/zoxide init zsh > init-zoxide.zsh"
-  src: "init-zoxide.zsh"
+  install:
+    zsh: "**/zoxide init zsh > init-zoxide.zsh"
+  src:
+    zsh: "init-zoxide.zsh"
   load: "alias cd=z"
 
 - id: fd
@@ -77,7 +77,7 @@
     repo: ogham/exa
     from_release: true
   exec: "**/exa"
-  load: "alias ls=\"exa --icons --color always\"; alias ll='ls -la'; alias tree='exa --tree --long'"
+  load: 'alias ls="exa --icons --color always"; alias ll=''ls -la''; alias tree=''exa --tree --long'''
 
 - id: bat
   resource:
@@ -103,8 +103,10 @@
   resource:
     repo: direnv/direnv
     from_release: true
-  install: "mv direnv* direnv; chmod +x ./direnv; ./direnv hook zsh > zhook.zsh"
-  src: zhook.zsh
+  install:
+    zsh: "mv direnv* direnv; chmod +x ./direnv; ./direnv hook zsh > zhook.zsh"
+  src:
+    zsh: zhook.zsh
   load: export DIRENV_LOG_FORMAT=""
   exec: "**/direnv"
 
@@ -137,11 +139,9 @@
     repo: equalsraf/win32yank
     from_release: true
     binary_pattern: "x64"
-  exec: 
+  exec:
     run: "**/win32yank.exe"
     use_symlink: true
-    
-
 
 # - id: kubectl
 #   init: "curl -L -s https://dl.k8s.io/release/stable.txt"
@@ -163,10 +163,11 @@
 - id: zsh-autosuggestions
   resource:
     repo: zsh-users/zsh-autosuggestions
-  src: zsh-autosuggestions.zsh
+  src:
+    zsh: zsh-autosuggestions.zsh
 
 - id: fast-syntax-highlighting
   resource:
     repo: z-shell/F-Sy-H
-  src: "F-Sy-H.plugin.zsh"
-
+  src:
+    zsh: "F-Sy-H.plugin.zsh"
