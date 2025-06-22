@@ -126,7 +126,7 @@ function git() {
     $updatedArgs = $args
     
     # if current directory is home directory, set git config to use $HOME\.cfg as git directory
-    if ((Get-Location).Path -eq $HOME) {
+    if ($PWD.Path -eq $HOME) {
         $gitDir = "$HOME\.cfg"
         $workTree = $HOME
         # add --git-dir and --work-tree to the args
@@ -134,7 +134,7 @@ function git() {
     }
 
     if (($updatedArgs -contains "push") -and ($updatedArgs -notcontains "--help")) {
-        $updatedArgs = $args + @("-u")
+        $updatedArgs = $updatedArgs + @("-u")
     }
     
     & git.exe @updatedArgs
