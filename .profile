@@ -4,6 +4,3 @@
 
 # other paths
 [ -f  $HOME/.zinit/paths.sh ] && . $HOME/.zinit/paths.sh
-
-
-export PATH="$HOME/.poetry/bin:$PATH"

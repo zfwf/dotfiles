@@ -1,6 +1,14 @@
 # source from $HOME/.zshenv for zsh and $HOME/.profile for bash
 
-if [ ! -f $HOME/.os-init ]; then
+installBrew() {
+  if [[ $(command -v brew) == "" && ! -d /opt/homebrew ]] ; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew bundle --no-lock
+  fi
+}
+
+if [ ! -f $HOME/.sh-init ]; then
+  # install os specific pkg managers
   case `uname` in
     Darwin)
       if [ ! -f $HOME/.gitconfig ]; then
@@ -10,10 +18,7 @@ if [ ! -f $HOME/.os-init ]; then
       fi
 
       # brew
-      if [[ $(command -v brew) == "" && ! -d /opt/homebrew ]] ; then
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        brew bundle --no-lock
-      fi
+      installBrew
 
       # add brew path
       PATH="/usr/local/bin":$PATH
@@ -46,36 +51,60 @@ if [ ! -f $HOME/.os-init ]; then
           gsettings set org.gnome.desktop.background show-desktop-icons true
         fi
       fi
+
+      # brew
+      installBrew
+
       ;;
     MSYS* | MINGW*)
+      # WSL2
       if [ ! -f $HOME/.gitconfig ]; then
         # create symlinks
         ln -sf $HOME/.gitconfig_win $HOME/.gitconfig
       fi
+
+      # brew
+      installBrew
+
       ;;
   esac
 
   # os init complete
-  touch $HOME/.os-init
+  touch $HOME/.sh-init
 fi
 
-# asdf
-if [ ! -d $HOME/.asdf ]; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-  . ~/.asdf/asdf.sh;
-  asdf plugin-add nodejs;
-  asdf plugin-add python;
-  asdf plugin-add rust;
-  cd $HOME; asdf install; asdf reshim;
-else
-  . ~/.asdf/asdf.sh;
-  # integrate with java
-  [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && . ~/.asdf/plugins/java/set-java-home.zsh
-fi
+# echo "path: $PATH"
 
-if [[ $(command -v sccache) != "" ]] ; then
-  # enable sccache
-  export RUSTC_WRAPPER="$(command -v sccache)"
-fi
+case `uname` in
+  Darwin)
+    ;&  # fall-through
+  Linux)
+    if [ ! -d $HOME/.vfox ]; then
+      # get the latest version of vfox from github releases, without using jq
+      local tag_name=$(curl -s https://api.github.com/repos/version-fox/vfox/releases/latest | grep -o '"tag_name": "[^"]*' | grep -o '[^"]*$')
+      # remove the leading 'v' if it exists
+      vfox_version=${tag_name#v}
+      local vfox_installer=$HOME/vfox.zip
+      # download the vfox binary
+      curl -L "https://github.com/version-fox/vfox/releases/download/v${vfox_version}/vfox_${vfox_version}_windows_x86_64.zip" -o "$vfox_installer"
+      # extract the vfox binary
+      unzip -o "$vfox_installer" -d "$HOME/.vfox"
+      # remove the installer
+      rm "$vfox_installer"
+    fi
 
+    # add vfox to path using glob pattern
+    export PATH="$HOME/.vfox/$(ls -d $HOME/.vfox/*/ | grep -v '/$' | head -n 1):$PATH"
 
+    # sccache
+    if [[ $(command -v sccache) != "" ]]; then
+      export RUSTC_WRAPPER="$(command -v sccache)"
+    fi
+
+    ;;
+
+  MSYS* | MINGW*)
+    # WSL2
+
+    ;;
+esac

@@ -184,8 +184,6 @@ alias gchp='git cherry-pick'
 alias gpf='git push --force-with-lease'
 
 # case -insensitive tab completion
-autoload -U compinit
-compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
 # source vendor scripts
