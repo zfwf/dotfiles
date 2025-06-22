@@ -102,7 +102,6 @@ Set-PSReadLineKeyHandler -Key Escape -ViMode Insert -ScriptBlock {
 # jk esc in vi mode end
 
 # set vi mode indicator
-Write-Host -NoNewLine "`e[5 q" # default to blinking line
 function OnViModeChange {
     if ($args[0] -eq 'Command') {
         # Set the cursor to a blinking block.
