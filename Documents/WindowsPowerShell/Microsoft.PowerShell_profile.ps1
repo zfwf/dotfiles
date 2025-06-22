@@ -50,7 +50,7 @@ if (-not (Test-Path $vfoxDir)) {
 }
 
 # add vfox to the PATH environment variable
-if (-not $env:PATH.Contains($vfoxDir)) {
+if (-not (Get-Command "vfox.exe" -ErrorAction SilentlyContinue)) {
     # get path to vfox.exe
     $vfoxes = Get-ChildItem -Recurse $vfoxDir -Include vfox.exe -ErrorAction SilentlyContinue -Force 
     # get first vfox.exe found
@@ -58,7 +58,14 @@ if (-not $env:PATH.Contains($vfoxDir)) {
         # get the directory of the first vfox.exe found
         $vfoxHome = $vfoxes[0].DirectoryName
         $env:PATH += ";$vfoxHome"
+
+        # source vfox autocompletion script
+        $vfoxCompletionScript = "$vfoxHome\completions\powershell_autocomplete.ps1"
+        if (Test-Path $vfoxCompletionScript) {
+            . $vfoxCompletionScript
+        }
     }
+
 }
 
 # enable vi mode
