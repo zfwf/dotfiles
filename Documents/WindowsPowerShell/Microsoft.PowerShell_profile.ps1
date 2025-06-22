@@ -94,6 +94,20 @@ Set-PSReadLineKeyHandler -Key Escape -ViMode Insert -ScriptBlock {
 }
 # jk esc in vi mode end
 
+# set vi mode indicator
+Write-Host -NoNewLine "`e[5 q" # default to blinking line
+function OnViModeChange {
+    if ($args[0] -eq 'Command') {
+        # Set the cursor to a blinking block.
+        Write-Host -NoNewLine "`e[1 q"
+    }
+    else {
+        # Set the cursor to a blinking line.
+        Write-Host -NoNewLine "`e[5 q"
+    }
+}
+Set-PSReadLineOption -ViModeIndicator Script -ViModeChangeHandler $Function:OnViModeChange
+
 
 # override git so when using git in home directory, set --git-dir as $HOME/.cfg and --work-tree as $HOME
 function git() {
