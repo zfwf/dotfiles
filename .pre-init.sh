@@ -8,6 +8,7 @@ installBrew() {
 }
 
 if [ ! -f $HOME/.sh-init ]; then
+  export PATH="/usr/bin:/bin:$PATH"
   # install os specific pkg managers
   case `uname` in
     Darwin)
@@ -80,6 +81,7 @@ fi
 # echo "path: $PATH"
 
 vfox_dir="$HOME/.version-fox"
+export PATH="/usr/bin:/bin:$PATH"
 case `uname` in
   Darwin)
     ;&  # fall-through

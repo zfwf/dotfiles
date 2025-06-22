@@ -5,7 +5,6 @@
 [core]
 	autocrlf = input
 	excludesfile = ~/.gitignore_global
-	editor = nvim
 	compression = 0
 	compression = 9
 
