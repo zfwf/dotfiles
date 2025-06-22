@@ -1,0 +1,25 @@
+[user]
+	name = Chris Chou
+	email = zf8wf8@petalmail.com
+
+[core]
+	autocrlf = input
+	excludesfile = ~/.gitignore_global
+	compression = 0
+	compression = 9
+
+[color]
+	ui = auto
+
+[push]
+	default = current
+
+[pull]
+	rebase = true
+
+[credential]
+	store = manager
+	helper = "/mnt/c/Users/chhsc/scoop/shims/git-credential-manager.exe"
+
+[includeIf "gitdir:~/Documents/"]
+	path = ~/Documents/.gitconfig

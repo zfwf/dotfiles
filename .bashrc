@@ -13,26 +13,6 @@ if [ -f ~/.profile ]; then
 	. ~/.profile
 fi
 
-# load orbiter
-if ( type orbiter > /dev/null ); then
-  # create script in ${HOME}/.cache
-  eval "$(orbiter init bash)" > /dev/null 2>&1
-
-  local orbiter_bin_path="$ORBITER_CONST[BIN_DIR]"
-  local orbiter_dashboard_bin_path="$ORBITER_CONST[DASHBOARD_BIN_DIR]"
-  local stripper=$(get_path_stripper $orbiter_dashboard_bin_path)
-
-  export PATH=$(strip_then_prepend "$PATH" \
-    "$(get_path_stripper $orbiter_dashboard_bin_path)" \
-    "$orbiter_dashboard_bin_path")
-  export PATH=$(strip_then_prepend "$PATH" \
-    "$(get_path_stripper $orbiter_bin_path)" \
-    "$orbiter_bin_path")
-
-fi
-
-
-
 export TERM='xterm-256color' # attempt enable at least 256 color
 export GPG_TTY=$TTY
 
@@ -88,4 +68,7 @@ alias gchp='git cherry-pick'
 alias gpf='git push --force-with-lease'
 
 
-eval "$(starship init bash)" > /dev/null 2>&1
+# starship prompt
+if command -v starship > /dev/null 2>&1; then
+  eval "$(starship init bash)" > /dev/null 2>&1
+fi

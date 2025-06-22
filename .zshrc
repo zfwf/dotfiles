@@ -37,9 +37,6 @@ export PATH=$(strip_then_append "$PATH" \
   $(get_path_stripper "$HOME/.local/bin") \
   "$HOME/.local/bin")
 
-# load orbiter
-. ~/orbiter_init.zsh
-
 # setup terminal
 export TERM='xterm-256color' # attempt enable at least 256 color
 export GPG_TTY=$TTY
@@ -190,7 +187,6 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 [ -d  ~/.vendor ] && for f (~/.vendor/**/*.zsh) . $f
 
 # starship prompt
-eval "$(starship init zsh)" > /dev/null 2>&1
-
-
-source /Users/824363/.docker/init-zsh.sh || true # Added by Docker Desktop
+if command -v starship > /dev/null 2>&1; then
+  eval "$(starship init zsh)" > /dev/null 2>&1
+fi

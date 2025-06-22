@@ -14,10 +14,10 @@ if [ ! -f $HOME/.sh-init ]; then
       if [ ! -f $HOME/.gitconfig ]; then
         # symlinks
         ln -sf $HOME/.gitconfig_mac $HOME/.gitconfig
-        ln -sf $HOME/Brewfile_mac $HOME/Brewfile
       fi
 
       # brew
+      ln -sf $HOME/Brewfile_mac $HOME/Brewfile
       installBrew
 
       # add brew path
@@ -26,7 +26,13 @@ if [ ! -f $HOME/.sh-init ]; then
     Linux)
       if [ ! -f $HOME/.gitconfig ]; then
         # create symlinks
-        ln -sf $HOME/.gitconfig_linux $HOME/.gitconfig
+        if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+          # WSL2
+          ln -sf $HOME/.gitconfig_wsl $HOME/.gitconfig
+        else
+          # native linux
+          ln -sf $HOME/.gitconfig_linux $HOME/.gitconfig
+        fi
 
         eval "OS_$(cat /etc/*-release | grep "^ID=")"
         case "$OS_ID" in
@@ -53,18 +59,16 @@ if [ ! -f $HOME/.sh-init ]; then
       fi
 
       # brew
+      ln -sf $HOME/Brewfile_linux $HOME/Brewfile
       installBrew
 
       ;;
     MSYS* | MINGW*)
-      # WSL2
+      # Git for Windows/Cygwin
       if [ ! -f $HOME/.gitconfig ]; then
         # create symlinks
         ln -sf $HOME/.gitconfig_win $HOME/.gitconfig
       fi
-
-      # brew
-      installBrew
 
       ;;
   esac
@@ -75,26 +79,27 @@ fi
 
 # echo "path: $PATH"
 
+vfox_dir="$HOME/.version-fox"
 case `uname` in
   Darwin)
     ;&  # fall-through
   Linux)
-    if [ ! -d $HOME/.vfox ]; then
+    if [ ! -d "$vfox_dir" ]; then
       # get the latest version of vfox from github releases, without using jq
-      local tag_name=$(curl -s https://api.github.com/repos/version-fox/vfox/releases/latest | grep -o '"tag_name": "[^"]*' | grep -o '[^"]*$')
+      tag_name=$(curl -s https://api.github.com/repos/version-fox/vfox/releases/latest | grep -o '"tag_name": "[^"]*' | grep -o '[^"]*$')
       # remove the leading 'v' if it exists
       vfox_version=${tag_name#v}
-      local vfox_installer=$HOME/vfox.zip
+      vfox_installer="$HOME/vfox.zip"
       # download the vfox binary
       curl -L "https://github.com/version-fox/vfox/releases/download/v${vfox_version}/vfox_${vfox_version}_windows_x86_64.zip" -o "$vfox_installer"
       # extract the vfox binary
-      unzip -o "$vfox_installer" -d "$HOME/.vfox"
+      unzip -o "$vfox_installer" -d "$vfox_dir"
       # remove the installer
       rm "$vfox_installer"
     fi
 
-    # add vfox to path using glob pattern
-    export PATH="$HOME/.vfox/$(ls -d $HOME/.vfox/*/ | grep -v '/$' | head -n 1):$PATH"
+    # add vfox to path
+    export PATH="$vfox_dir/$(ls -d $vfox_dir/*/ | grep -v '/$' | head -n 1):$PATH"
 
     # sccache
     if [[ $(command -v sccache) != "" ]]; then
@@ -104,7 +109,6 @@ case `uname` in
     ;;
 
   MSYS* | MINGW*)
-    # WSL2
-
+    # Git for Windows/Cygwin
     ;;
 esac

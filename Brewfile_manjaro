@@ -1,8 +1,0 @@
-tap "homebrew/bundle"
-tap "homebrew/core"
-tap "homebrew/services"
-brew "httpie"
-brew "jq"
-brew "ssh-copy-id"
-brew "z"
-brew "zsh"
