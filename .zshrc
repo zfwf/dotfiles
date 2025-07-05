@@ -157,8 +157,13 @@ alias npx='npm_config_yes=true npx'
 
 case `uname` in
   Darwin)
+    if [[ $(command -v vfox) ]] ; then
+      eval "$(vfox activate zsh)"
+    fi
     ;;
   Linux)
+    # brew 
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     alias trash=gvfs-trash
     ;;
 esac
@@ -184,7 +189,35 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 # source vendor scripts
 [ -d  ~/.vendor ] && for f (~/.vendor/**/*.zsh) . $f
 
+# vfox
+if [[ $(command -v vfox) ]] ; then
+  eval "$(vfox activate zsh)"
+fi
+
 # starship prompt
 if command -v starship > /dev/null 2>&1; then
   eval "$(starship init zsh)" > /dev/null 2>&1
 fi
+
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+### End of Zinit's installer chunk

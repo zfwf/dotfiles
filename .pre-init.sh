@@ -3,7 +3,6 @@
 installBrew() {
   if [[ $(command -v brew) == "" && ! -d /opt/homebrew ]] ; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew bundle --no-lock
   fi
 }
 
@@ -20,6 +19,7 @@ if [ ! -f $HOME/.sh-init ]; then
       # brew
       ln -sf $HOME/Brewfile_mac $HOME/Brewfile
       installBrew
+      brew bundle
 
       # add brew path
       PATH="/usr/local/bin":$PATH
@@ -62,6 +62,7 @@ if [ ! -f $HOME/.sh-init ]; then
       # brew
       ln -sf $HOME/Brewfile_linux $HOME/Brewfile
       installBrew
+      brew bundle
 
       ;;
     MSYS* | MINGW*)
@@ -77,40 +78,3 @@ if [ ! -f $HOME/.sh-init ]; then
   # os init complete
   touch $HOME/.sh-init
 fi
-
-# echo "path: $PATH"
-
-vfox_dir="$HOME/.version-fox"
-export PATH="/usr/bin:/bin:$PATH"
-case `uname` in
-  Darwin)
-    ;&  # fall-through
-  Linux)
-    if [ ! -d "$vfox_dir" ]; then
-      # get the latest version of vfox from github releases, without using jq
-      tag_name=$(curl -s https://api.github.com/repos/version-fox/vfox/releases/latest | grep -o '"tag_name": "[^"]*' | grep -o '[^"]*$')
-      # remove the leading 'v' if it exists
-      vfox_version=${tag_name#v}
-      vfox_installer="$HOME/vfox.zip"
-      # download the vfox binary
-      curl -L "https://github.com/version-fox/vfox/releases/download/v${vfox_version}/vfox_${vfox_version}_windows_x86_64.zip" -o "$vfox_installer"
-      # extract the vfox binary
-      unzip -o "$vfox_installer" -d "$vfox_dir"
-      # remove the installer
-      rm "$vfox_installer"
-    fi
-
-    # add vfox to path
-    export PATH="$vfox_dir/$(ls -d $vfox_dir/*/ | grep -v '/$' | head -n 1):$PATH"
-
-    # sccache
-    if [[ $(command -v sccache) != "" ]]; then
-      export RUSTC_WRAPPER="$(command -v sccache)"
-    fi
-
-    ;;
-
-  MSYS* | MINGW*)
-    # Git for Windows/Cygwin
-    ;;
-esac
