@@ -15,6 +15,7 @@ if (-not (Test-Path $initFile)) {
         Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
         scoop bucket add extras 
         scoop bucket add nerd-fonts
+        scoop install vfox
     }
 
     if (-not (Test-Path "$HOME/Documents/PowerShell")) {
@@ -26,46 +27,6 @@ if (-not (Test-Path $initFile)) {
 
     # finish init
     New-Item -Path $initFile -ItemType File -Force | Out-Null
-}
-
-# initialize vfox once
-$vfoxDir = "$HOME\.version-fox"
-if (-not (Test-Path $vfoxDir)) {
-    # install vfox
-    if (Get-Command "vfox.exe" -ErrorAction SilentlyContinue) {
-        # get latest version of vfox from github releases
-        $latestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/version-fox/vfox/releases/latest"
-        # derive the `tag_name` from the latest release, remove leading 'v'
-        $fileVersion = $latestRelease.tag_name.TrimStart('v')
-        # download the vfox installer zip file, using the tagName variable
-        $vfoxInstallerUrl = "https://github.com/version-fox/vfox/releases/download/v${fileVersion}/vfox_${fileVersion}_windows_x86_64.zip"
-        $vfoxInstallerPath = "$HOME\Downloads\vfox_installer.zip"
-        Invoke-WebRequest -Uri $vfoxInstallerUrl -OutFile $vfoxInstallerPath
-        # extract the zip file to the vfox directory
-        New-Item -Path $vfoxDir -ItemType Directory -Force | Out-Null
-        Expand-Archive -Path $vfoxInstallerPath -DestinationPath $vfoxDir -Force
-        # remove the installer zip file
-        Remove-Item -Path $vfoxInstallerPath -Force
-    }
-}
-
-# add vfox to the PATH environment variable
-if (-not (Get-Command "vfox.exe" -ErrorAction SilentlyContinue)) {
-    # get path to vfox.exe
-    $vfoxes = Get-ChildItem -Recurse $vfoxDir -Include vfox.exe -ErrorAction SilentlyContinue -Force 
-    # get first vfox.exe found
-    if ($vfoxes.Count -gt 0) {
-        # get the directory of the first vfox.exe found
-        $vfoxHome = $vfoxes[0].DirectoryName
-        $env:PATH += ";$vfoxHome"
-
-        # source vfox autocompletion script
-        $vfoxCompletionScript = "$vfoxHome\completions\powershell_autocomplete.ps1"
-        if (Test-Path $vfoxCompletionScript) {
-            . $vfoxCompletionScript
-        }
-    }
-
 }
 
 # enable vi mode

@@ -163,8 +163,6 @@ case `uname` in
     ;;
 esac
 
-
-
 # git aliases
 alias gst='git status'
 alias gco='git checkout'
