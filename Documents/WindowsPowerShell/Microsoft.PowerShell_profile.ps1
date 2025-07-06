@@ -100,6 +100,9 @@ function git() {
     & git.exe @updatedArgs
 }
 
+# vfox
+if (-not (Test-Path -Path $PROFILE)) { New-Item -Type File -Path $PROFILE -Force }; Add-Content -Path $PROFILE -Value 'Invoke-Expression "$(vfox activate pwsh)"'
+
 # starship
 if (Get-Command "starship.exe" -ErrorAction SilentlyContinue) { 
     $ENV:STARSHIP_CONFIG = "$HOME\.config\starship.toml"
