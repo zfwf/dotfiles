@@ -8,27 +8,10 @@
   "list.source.grep.excludePatterns": ["**/.git/**", "**/node_modules/**"],
   "list.nextKeymap": "<C-n>",
   "list.previousKeymap": "<C-p>",
-  "coc.preferences.formatOnSaveFiletypes": [
-    "graphql",
-    "liquid",
-    "rust",
-    "python",
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "xhtml",
-    "html",
-    "json",
-    "json5",
-    "jsonc",
-    "css",
-    "scala"
-  ],
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "css.validate": false,
   "scss.validate": false,
   "less.validate": false,
-  "wxss.validate": false,
   "explorer.quitOnOpen": true,
   "java.jdt.ls.vmargs": "javaageng:$(pwd)/lombok.jar -Xbootclasspath/p:$(pwd)/lombok.jar"
 }

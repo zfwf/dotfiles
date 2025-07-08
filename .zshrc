@@ -192,7 +192,11 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 # vfox
 if [[ $(command -v vfox) ]] ; then
   eval "$(vfox activate zsh)"
+  export PATH="$HOME/.version-fox/shims:$PATH" # vscode/IDEs need shims in PATH
 fi
+
+# rustup
+[ -f  "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # starship prompt
 if command -v starship > /dev/null 2>&1; then

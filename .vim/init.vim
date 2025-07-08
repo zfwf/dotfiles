@@ -1,4 +1,4 @@
-" init.vim file, Chris Chou, chhschou@gmail.com
+" init.vim file, Chris Chou, zf8wf8@petalmail.com
 
 " mapping delay 1000, key code delay 0
 " set timeoutlen=1000 ttimeoutlen=0
@@ -11,7 +11,7 @@ if !exists('g:vscode')
   set updatetime=100 " 100ms
 
   " vim-plug (plugin only available after plug#end)
-  call plug#begin('~/.config/nvim/plugged')
+  call plug#begin()
 
   " completion, extensions
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -21,7 +21,7 @@ if !exists('g:vscode')
   Plug 'itchyny/lightline.vim'
   Plug 'taohexxx/lightline-buffer'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' } " tree-sitter
   " colored parentheses
   Plug 'luochen1990/rainbow'
   let g:rainbow_active = 1
@@ -31,9 +31,6 @@ if !exists('g:vscode')
   Plug 'tpope/vim-rhubarb'
 
   " #tools:misc --------
-  " file manager
-  "Plug 'kyazdani42/nvim-web-devicons' " for file icons
-  "Plug 'kyazdani42/nvim-tree.lua'"
   " fold
   Plug 'pseewald/vim-anyfold'
   " `gc` comments
@@ -71,7 +68,6 @@ if !exists('g:vscode')
 
   set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor-blinkwait1-blinkon15-blinkoff10,r-cr:hor20-Cursor/rCursor
   set mouse=a
-  set inccommand=nosplit
   set showcmd                           " show cmd used (bottom right)
   set number relativenumber             " hybrid line number
   set ls=2                              " always show status line
@@ -94,7 +90,7 @@ if !exists('g:vscode')
   runtime! init.d/*.vim
 else
   " vim-plug (plugin only available after plug#end)
-  call plug#begin('~/.config/nvim/vscode-plugged')
+  call plug#begin()
     " `gc` comments
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-surround'

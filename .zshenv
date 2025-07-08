@@ -4,3 +4,4 @@ alias      .='builtin .      "$HOME/compile-source-file" .      "$#" "$@"'
 
 # pre-init script
 [ -f $HOME/.pre-init.sh ] && . $HOME/.pre-init.sh
+. "$HOME/.cargo/env"

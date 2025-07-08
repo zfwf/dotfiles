@@ -4,3 +4,4 @@
 
 # other paths
 [ -f  $HOME/.zinit/paths.sh ] && . $HOME/.zinit/paths.sh
+. "$HOME/.cargo/env"
