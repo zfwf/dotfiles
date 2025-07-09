@@ -157,13 +157,8 @@ alias npx='npm_config_yes=true npx'
 
 case `uname` in
   Darwin)
-    if [[ $(command -v vfox) ]] ; then
-      eval "$(vfox activate zsh)"
-    fi
     ;;
   Linux)
-    # brew 
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     alias trash=gvfs-trash
     ;;
 esac
@@ -187,21 +182,21 @@ alias gpf='git push --force-with-lease'
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
 # source vendor scripts
-[ -d  ~/.vendor ] && for f (~/.vendor/**/*.zsh) . $f
+[[ -d  ~/.vendor ]] && for f (~/.vendor/**/*.zsh) . $f
 
-# vfox
-if [[ $(command -v vfox) ]] ; then
-  eval "$(vfox activate zsh)"
-  export PATH="$HOME/.version-fox/shims:$PATH" # vscode/IDEs need shims in PATH
+<<<<<<< HEAD
+# starship prompt
+if command -v mise > /dev/null 2>&1; then
+  eval "$(mise init zsh)" > /dev/null 2>&1
 fi
 
-# rustup
-[ -f  "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+=======
+# mise prompt
+[[ -x "$(command -v mise)" ]] && eval "$(mise activate zsh)" > /dev/null 2>&1
+>>>>>>> 5c678d9 (feat: replace vfox with mise)
 
 # starship prompt
-if command -v starship > /dev/null 2>&1; then
-  eval "$(starship init zsh)" > /dev/null 2>&1
-fi
+[[ -x "$(command -v starship)" ]] && eval "$(starship init zsh)" > /dev/null 2>&1
 
 
 ### Added by Zinit's installer
@@ -221,6 +216,11 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
+
+# AUTOSUGGESTIONS, TRIGGER PRECMD HOOK UPON LOAD
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+zinit ice wait="2" lucid atload="_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
 
 zinit light zdharma-continuum/fast-syntax-highlighting
 

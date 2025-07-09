@@ -1,11 +1,14 @@
+# envs
+brew "mise"
+
+# tools
 brew "jq"
 brew "z"
 brew "unzip"
+brew "eza"
 
 
 # prompt
 brew "starship"
 
-# editor
-brew "evil-helix"
 

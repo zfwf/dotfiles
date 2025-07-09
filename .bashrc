@@ -72,4 +72,5 @@ alias gpf='git push --force-with-lease'
 if command -v starship > /dev/null 2>&1; then
   eval "$(starship init bash)" > /dev/null 2>&1
 fi
-. "$HOME/.cargo/env"
+. "/home/cchou/.version-fox/cache/rust/v-1.88.0/rust-1.88.0/cargo/env"
+. "/home/cchou/.version-fox/cache/rust/v-1.87.0/rust-1.87.0/cargo/env"

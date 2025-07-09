@@ -1,2 +1,12 @@
+# env
+brew "mise"
+
+# libs
 brew "openssl"
 brew "pkg-config"
+brew "jq"
+brew "z"
+brew "eza"
+
+# prompt
+brew "starship"

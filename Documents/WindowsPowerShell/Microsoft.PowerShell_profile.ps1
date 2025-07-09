@@ -15,7 +15,7 @@ if (-not (Test-Path $initFile)) {
         Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
         scoop bucket add extras 
         scoop bucket add nerd-fonts
-        scoop install vfox
+        scoop install mise
     }
 
     if (-not (Test-Path "$HOME/Documents/PowerShell")) {
@@ -100,8 +100,11 @@ function git() {
     & git.exe @updatedArgs
 }
 
-# vfox
-if (-not (Test-Path -Path $PROFILE)) { New-Item -Type File -Path $PROFILE -Force }; Add-Content -Path $PROFILE -Value 'Invoke-Expression "$(vfox activate pwsh)"'
+# mise
+$shimPath = "$env:USERPROFILE\AppData\Local\mise\shims"
+$currentPath = [Environment]::GetEnvironmentVariable('Path', 'User')
+$newPath = $currentPath + ";" + $shimPath
+[Environment]::SetEnvironmentVariable('Path', $newPath, 'User')
 
 # starship
 if (Get-Command "starship.exe" -ErrorAction SilentlyContinue) { 
