@@ -1,3 +1,6 @@
+shopt -s globstar # enable recursive globbing
+shopt -s nullglob # enable nullglob to avoid errors with empty globs
+
 # Use global profile when available
 if [ -f /usr/share/defaults/etc/profile ]; then
 	. /usr/share/defaults/etc/profile
@@ -13,8 +16,8 @@ if [ -f ~/.profile ]; then
 	. ~/.profile
 fi
 
-export TERM='xterm-256color' # attempt enable at least 256 color
-export GPG_TTY=$TTY
+# source inits
+[[ -d ~/.config/sh/init-interactive.d ]] && for f in ~/.config/sh/init-interactive.d/**/*.sh; do . $f; done
 
 # set some history options
 shopt -s histappend
@@ -28,49 +31,15 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 # hide user in shell prompt
 export DEFAULT_USER="$USER"
 
-
 # set vi mode
 set -o vi
 bind '"jk":vi-movement-mode'
 
+# source vendor scripts
+[[ -d ~/.vendor ]] && for f in ~/.vendor/**/*.sh; do . $f; done
 
-# dotfiles bare repo
-CMD_GIT="$(command -v git)"
-git() {
-  local CMD_GIT_EXTRA_ARGS=()
-  if [[ "$1" == "push" && "$@" != *"--help"* ]]; then
-    CMD_GIT_EXTRA_ARGS=(-u)
-  fi
-
-  if [[ "$PWD" == "$HOME" ]]; then
-    CMD_GIT_ARGS=(--git-dir="$HOME"/.cfg/ --work-tree="$HOME")
-    "$CMD_GIT" "${CMD_GIT_ARGS[@]}" "$@" "${CMD_GIT_EXTRA_ARGS[@]}"
-  else
-    "$CMD_GIT" "$@" "${CMD_GIT_EXTRA_ARGS[@]}"
-  fi
-}
-
-# alias
-alias npx='npm_config_yes=true npx'
-
-# git aliases
-alias gst='git status'
-alias gco='git checkout'
-alias ga='git add'
-alias gl='git pull'
-alias gp='git push'
-alias grb='git rebase'
-alias gc='git commit -v'
-alias gcam='git commit -avm'
-alias gcan!='git commit -v -a --no-edit --amend'
-alias gsta='git stash'
-alias gchp='git cherry-pick'
-alias gpf='git push --force-with-lease'
-
+# mise
+[[ -x "$(command -v mise)" ]] && eval "$(mise activate bash)" > /dev/null 2>&1
 
 # starship prompt
-if command -v starship > /dev/null 2>&1; then
-  eval "$(starship init bash)" > /dev/null 2>&1
-fi
-. "/home/cchou/.version-fox/cache/rust/v-1.88.0/rust-1.88.0/cargo/env"
-. "/home/cchou/.version-fox/cache/rust/v-1.87.0/rust-1.87.0/cargo/env"
+[[ -x "$(command -v starship)" ]] && eval "$(starship init bash)" > /dev/null 2>&1

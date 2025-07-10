@@ -1,22 +1,7 @@
 # command for interactive shell (load order: .zshenv, .zshrc, .zsh)
 
-get_path_stripper() {
-  local stripper="s/$(echo $1 | sed 's/\//\\\//g')//g"
-
-  echo $stripper
-}
-
-strip_then_prepend() {
-  local stripped=$(echo $1 | sed $2)
-
-  echo "$3:$stripped"
-}
-
-strip_then_append() {
-  local stripped=$(echo $1 | sed $2)
-
-  echo "$stripped:$3"
-}
+# source inits
+[[ -d ~/.config/sh/init-interactive.d ]] && for f (~/.config/sh/init-interactive.d/**/*.sh) . $f
 
 # misc configs
 case `uname` in
@@ -37,9 +22,6 @@ export PATH=$(strip_then_append "$PATH" \
   $(get_path_stripper "$HOME/.local/bin") \
   "$HOME/.local/bin")
 
-# setup terminal
-export TERM='xterm-256color' # attempt enable at least 256 color
-export GPG_TTY=$TTY
 
 # set some history options
 setopt append_history
@@ -123,77 +105,14 @@ autoload -Uz down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
-# hide legacy docker commands
-export DOCKER_HIDE_LEGACY_COMMANDS=true
-
-sendsigterm() {
-  kill -15 $1
-}
-
-
-pport() {
-  lsof -t -i tcp:$1
-}
-
-
-# dotfiles bare repo
-CMD_GIT="$(command -v git)"
-git() {
-  local CMD_GIT_EXTRA_ARGS=()
-  if [[ "$1" == "push" && "$@" != *"--help"* ]]; then
-    CMD_GIT_EXTRA_ARGS=(-u)
-  fi
-
-  if [[ "$PWD" == "$HOME" ]]; then
-    CMD_GIT_ARGS=(--git-dir="$HOME"/.cfg/ --work-tree="$HOME")
-    "$CMD_GIT" "${CMD_GIT_ARGS[@]}" "$@" "${CMD_GIT_EXTRA_ARGS[@]}"
-  else
-    "$CMD_GIT" "$@" "${CMD_GIT_EXTRA_ARGS[@]}"
-  fi
-}
-
-# alias
-alias npx='npm_config_yes=true npx'
-
-case `uname` in
-  Darwin)
-    ;;
-  Linux)
-    alias trash=gvfs-trash
-    ;;
-esac
-
-# git aliases
-alias gst='git status'
-alias gco='git checkout'
-alias ga='git add'
-alias gl='git pull'
-alias gp='git push'
-alias grb='git rebase'
-alias gc='git commit -v'
-alias gcam='git commit -avm'
-alias gcn!='git commit -v --no-edit --amend'
-alias gcan!='gcn! -a'
-alias gsta='git stash'
-alias gchp='git cherry-pick'
-alias gpf='git push --force-with-lease'
-
 # case -insensitive tab completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
 # source vendor scripts
-[[ -d  ~/.vendor ]] && for f (~/.vendor/**/*.zsh) . $f
+[[ -d  ~/.vendor ]] && for f (~/.vendor/**/*.sh(.N)) . $f
 
-<<<<<<< HEAD
-# starship prompt
-if command -v mise > /dev/null 2>&1; then
-  eval "$(mise init zsh)" > /dev/null 2>&1
-fi
-
-=======
-# mise prompt
+# mise
 [[ -x "$(command -v mise)" ]] && eval "$(mise activate zsh)" > /dev/null 2>&1
->>>>>>> 5c678d9 (feat: replace vfox with mise)
 
 # starship prompt
 [[ -x "$(command -v starship)" ]] && eval "$(starship init zsh)" > /dev/null 2>&1
