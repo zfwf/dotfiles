@@ -11,7 +11,7 @@ case `uname` in
     ;;
   Linux)
     # brew 
-    [[ -d "$HOME/linuxbrew" ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" > /dev/null 2>&1
+    [[ -d "/home/linuxbrew" ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" > /dev/null 2>&1
     ;;
 esac
 

@@ -1,3 +1,4 @@
 [tools]
+bun = "latest"
 node = "lts"
 rust = "1.88.0"
