@@ -38,8 +38,6 @@ bind '"jk":vi-movement-mode'
 # source vendor scripts
 [[ -d ~/.vendor ]] && for f in ~/.vendor/**/*.sh; do . $f; done
 
-# mise
-[[ -x "$(command -v mise)" ]] && eval "$(mise activate bash)" > /dev/null 2>&1
 
 # starship prompt
 [[ -x "$(command -v starship)" ]] && eval "$(starship init bash)" > /dev/null 2>&1

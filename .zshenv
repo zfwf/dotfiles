@@ -8,12 +8,22 @@ alias      .='builtin .      "$HOME/compile-source-file" .      "$#" "$@"'
 # non-interactive init
 case `uname` in
   Darwin)
+    # mise
+    [[ -x "$(command -v mise)" ]] && eval "$(mise activate zsh --shims)" > /dev/null 2>&1
+
     ;;
   Linux)
     # brew 
-    [[ -d "/home/linuxbrew" ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" > /dev/null 2>&1
+    [[ -d "$HOME/linuxbrew" ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" > /dev/null 2>&1
+
+    # mise
+    [[ -x "$(command -v mise)" ]] && eval "$(mise activate zsh --shims)" > /dev/null 2>&1
+
+    ;;
+  MINGW64_NT-*)
+    # mise
+    [[ -x "$(command -v mise)" ]] && eval "$(mise activate zsh --shims)" > /dev/null 2>&1
+
     ;;
 esac
 
-# mise
-[[ -x "$(command -v mise)" ]] && eval "$(mise activate --shims)" > /dev/null 2>&1

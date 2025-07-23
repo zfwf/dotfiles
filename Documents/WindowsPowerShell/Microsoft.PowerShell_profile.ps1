@@ -25,6 +25,14 @@ if (-not (Test-Path $initFile)) {
         mklink "%USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" "%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
     }
 
+    # mise shims
+    if (Get-Command "mise" -ErrorAction SilentlyContinue) {
+        $shimPath = "$env:USERPROFILE\AppData\Local\mise\shims"
+        $currentPath = [Environment]::GetEnvironmentVariable('Path', 'User')
+        $newPath = $currentPath + ";" + $shimPath
+        [Environment]::SetEnvironmentVariable('Path', $newPath, 'User')
+    }
+
     # finish init
     New-Item -Path $initFile -ItemType File -Force | Out-Null
 }
@@ -100,11 +108,6 @@ function git() {
     & git.exe @updatedArgs
 }
 
-# mise
-$shimPath = "$env:USERPROFILE\AppData\Local\mise\shims"
-$currentPath = [Environment]::GetEnvironmentVariable('Path', 'User')
-$newPath = $currentPath + ";" + $shimPath
-[Environment]::SetEnvironmentVariable('Path', $newPath, 'User')
 
 # starship
 if (Get-Command "starship.exe" -ErrorAction SilentlyContinue) { 
