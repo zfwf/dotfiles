@@ -10,8 +10,8 @@ case `uname` in
 
     ;;
   Linux)
-    # brew 
-    [[ -d "$HOME/linuxbrew" ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" > /dev/null 2>&1
+    # brew
+    [[ -d "/home/linuxbrew/.linuxbrew/bin" ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" > /dev/null 2>&1
 
     # mise
     [[ -x "$(command -v mise)" ]] && eval "$(mise activate bash --shims)" > /dev/null 2>&1

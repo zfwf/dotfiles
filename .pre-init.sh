@@ -62,6 +62,8 @@ if [ ! -f $HOME/.sh-init ]; then
       # brew
       ln -sf $HOME/Brewfile_linux $HOME/Brewfile
       installBrew
+      # source brew command
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 
       brew bundle
 
       ;;
