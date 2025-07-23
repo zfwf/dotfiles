@@ -1,14 +1,13 @@
-# envs
-brew "mise"
 
 # tools
 brew "jq"
 brew "z"
 brew "unzip"
 brew "eza"
-
+brew "uv"
 
 # prompt
 brew "starship"
 
-
+# envs
+brew "mise"

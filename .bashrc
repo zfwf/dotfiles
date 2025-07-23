@@ -1,21 +1,6 @@
 shopt -s globstar # enable recursive globbing
 shopt -s nullglob # enable nullglob to avoid errors with empty globs
 
-# Use global profile when available
-if [ -f /usr/share/defaults/etc/profile ]; then
-	. /usr/share/defaults/etc/profile
-fi
-
-# allow admin overrides
-if [ -f /etc/profile ]; then
-	. /etc/profile
-fi
-
-# allow user overrides
-if [ -f ~/.profile ]; then
-	. ~/.profile
-fi
-
 # source inits
 [[ -d ~/.config/sh/init-interactive.d ]] && for f in ~/.config/sh/init-interactive.d/**/*.sh; do . $f; done
 
