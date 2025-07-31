@@ -26,4 +26,3 @@ case `uname` in
 
     ;;
 esac
-

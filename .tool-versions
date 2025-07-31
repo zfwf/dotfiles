@@ -1,4 +1,4 @@
-nodejs lts-fermium
+nodejs lts
 rust stable
 python 3.10.7
 lua 5.4.4

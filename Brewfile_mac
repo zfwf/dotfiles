@@ -1,12 +1,19 @@
+
 # env
 brew "mise"
 
 # libs
 brew "openssl"
 brew "pkg-config"
+
+# tool
 brew "jq"
 brew "z"
 brew "eza"
+brew "docker"
+brew "git-credential-manager"
+brew "bitwarden"
+brew "visual-studio-code"
 
 # prompt
 brew "starship"

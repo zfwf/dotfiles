@@ -45,10 +45,14 @@
 	default = current
 
 [credential]
-	helper = osxkeychain
+	helper = /usr/local/share/gcm-core/git-credential-manager
 
 [pull]
 	rebase = true
 
 [includeIf "gitdir:~/Documents/"]
 	path = ~/Documents/.gitconfig
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[init]
+	templatedir = /Users/chris.chou/dev/devtools/git-templates

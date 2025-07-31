@@ -1,26 +1,20 @@
 # command for interactive shell (load order: .zshenv, .zshrc, .zsh)
 
+# init completion
+autoload -Uz compinit && compinit
+
 # source inits
 [[ -d ~/.config/sh/init-interactive.d ]] && for f (~/.config/sh/init-interactive.d/**/*.sh) . $f
 
 # misc configs
 case `uname` in
   Darwin)
-    # catalina specific
-    local system_usr_bin_dir_paths='/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
-    export PATH=$(strip_then_append "$PATH" \
-      $(get_path_stripper $system_usr_bin_dir_paths) \
-      $system_usr_bin_dir_paths)
     ;;
 
   Linux)
     ;;
 esac
 
-# add .local/bin
-export PATH=$(strip_then_append "$PATH" \
-  $(get_path_stripper "$HOME/.local/bin") \
-  "$HOME/.local/bin")
 
 
 # set some history options
@@ -108,8 +102,8 @@ bindkey "^[[B" down-line-or-beginning-search
 # case -insensitive tab completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
-# source vendor scripts
-[[ -d  ~/.vendor ]] && for f (~/.vendor/**/*.sh(.N)) . $f
+# source vendors scripts
+[[ -d  ~/.vendors ]] && for f (~/.vendors/**/*.sh(.N)) . $f
 
 # mise
 [[ -x "$(command -v mise)" ]] && eval "$(mise activate zsh)" > /dev/null 2>&1
@@ -144,3 +138,8 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 ### End of Zinit's installer chunk
+
+
+
+# prepend $HOME/.local/bin
+export PATH="$HOME/.local/bin:$PATH"

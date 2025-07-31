@@ -19,10 +19,9 @@ if [ ! -f $HOME/.sh-init ]; then
       # brew
       ln -sf $HOME/Brewfile_mac $HOME/Brewfile
       installBrew
+      echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
       brew bundle
 
-      # add brew path
-      PATH="/usr/local/bin":$PATH
       ;;
     Linux)
       if [ ! -f $HOME/.gitconfig ]; then
