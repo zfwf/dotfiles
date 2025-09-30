@@ -1,13 +1,16 @@
+# env
+brew "x-cmd"
 
 # tools
 brew "jq"
 brew "z"
 brew "unzip"
 brew "eza"
+cask "git-credential-manager"
+cask "visual-studio-code"
+cask "zed"
 brew "uv"
+brew "git-delta"
 
 # prompt
 brew "starship"
-
-# envs
-brew "mise"

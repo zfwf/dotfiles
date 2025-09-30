@@ -56,6 +56,7 @@ if !exists('g:vscode')
   syntax enable
   filetype indent plugin on
   set background=dark
+  let g:dracula_colorterm = 0 "for mac terminal not to have a green background
   colorscheme dracula
 
 

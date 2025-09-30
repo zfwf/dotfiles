@@ -143,3 +143,5 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 
 # prepend $HOME/.local/bin
 export PATH="$HOME/.local/bin:$PATH"
+
+# [ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.

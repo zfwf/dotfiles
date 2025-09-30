@@ -1,6 +1,7 @@
 [tools]
 bun = "latest"
 node = "lts"
+python = "3.13.7"
 rust = "1.88.0"
 
 [settings]
