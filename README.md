@@ -82,7 +82,7 @@ gpg --batch --passphrase '' --quick-gen-key <USER_ID> default default  # (<USER_
 pass init <gpg-key>  # <gpg-key> is the key id in output from last command
 
 # clone to ~/.cfg as bare repo
-git clone --bare https://github.com/chhschou/dotfiles ~/.cfg
+git clone --bare https://github.com/zfwf/dotfiles ~/.cfg
 
 # checkout `master` branch
 git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout main

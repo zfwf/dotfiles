@@ -1,0 +1,27 @@
+[user]
+	name = Chris Chou
+	email = zf8wf8@petalmail.com
+
+[core]
+	autocrlf = input
+	excludesfile = $HOME/.gitignore_global
+	compression = 0
+	compression = 9
+
+[color]
+	ui = auto
+
+[push]
+	default = current
+
+[pull]
+	rebase = true
+
+[credential]
+	store = manager
+	helper = manager
+
+[includeIf "gitdir:$HOME/Documents/"]
+	path = $HOME/Documents/.gitconfig
+[credential "helperselector"]
+	selected = manager
