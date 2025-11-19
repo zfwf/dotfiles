@@ -27,5 +27,4 @@ bind '"jk":vi-movement-mode'
 # starship prompt
 [[ -x "$(command -v starship)" ]] && eval "$(starship init bash)" > /dev/null 2>&1
 
-[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
 

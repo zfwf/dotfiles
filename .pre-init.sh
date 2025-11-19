@@ -1,11 +1,5 @@
 # source from $HOME/.zshenv for zsh and $HOME/.profile for bash
 
-installBrew() {
-  if [[ $(command -v brew) == "" && ! -d /opt/homebrew ]] ; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  fi
-}
-
 if [ ! -f $HOME/.sh-init ]; then
   export PATH="/usr/bin:/bin:$PATH"
   # install os specific pkg managers
@@ -18,9 +12,7 @@ if [ ! -f $HOME/.sh-init ]; then
 
       # brew
       ln -sf $HOME/Brewfile_mac $HOME/Brewfile
-      installBrew
-      echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
-      brew bundle
+      x brew bundle
 
       ;;
     Linux)
@@ -37,18 +29,18 @@ if [ ! -f $HOME/.sh-init ]; then
         eval "OS_$(cat /etc/*-release | grep "^ID=")"
         case "$OS_ID" in
           "clear-linux-os")
-            sudo swupd bundle-add devpkg-bzip2 devpkg-openssl devpkg-readline devpkg-sqlite-autoconf devpkg-libffi x11-tools package-utils
+            x swupd bundle-add devpkg-bzip2 devpkg-openssl devpkg-readline devpkg-sqlite-autoconf devpkg-libffi x11-tools package-utils
             ;;
           "manjaro")
             # xclip for clipboard support
-            sudo pacman -S base-devel xclip
+            x pacman -S base-devel xclip
             ;;
           "ubuntu")
             ;& # fall through
           "debian")
-            sudo apt install libssl-dev build-essential pkg-config unzip
+            x apt install libssl-dev build-essential pkg-config unzip
             # git credential management
-            sudo apt install pass gpg
+            x apt install pass gpg
             ;;
         esac
 
@@ -60,10 +52,7 @@ if [ ! -f $HOME/.sh-init ]; then
 
       # brew
       ln -sf $HOME/Brewfile_linux $HOME/Brewfile
-      installBrew
-      # source brew command
-      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 
-      brew bundle
+      x brew bundle
 
       ;;
     MSYS* | MINGW*)

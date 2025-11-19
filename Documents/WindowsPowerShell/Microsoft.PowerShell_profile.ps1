@@ -10,24 +10,25 @@ if (-not (Test-Path $initFile)) {
     # vi mode
     Install-Module -Name PSReadLine -Scope CurrentUser -AllowClobber -Force
 
-    # install scoop
-    if (-not (Test-Path "$HOME\scoop")) {
-        Write-Host "Installing Scoop..."
-        Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-		scoop install git
-        scoop bucket add extras 
-		scoop install extras/git-credential-manager
-
-		scoop install starship
-
-        scoop bucket add nerd-fonts
-		scoop install nerd-fonts/CascadiaCode-NF
-    }
-
 	# install x-cmd
-	if (-not (Test-Path "$HOME\.x-cmd.root")) {
-		Write-Host "Installing x-cmd..."
-		[System.Text.Encoding]::GetEncoding("utf-8").GetString($(Invoke-WebRequest -Uri "https://get.x-cmd.com/x-cmd.ps1").RawContentStream.ToArray()) | Invoke-Expression
+	if (Test-Path "$HOME\.x-cmd.root") {
+        x scoop bucket add extras 
+		x scoop install extras/git-credential-manager
+
+		# lang version manager
+		x scoop install nvs # nodejs
+		x scoop install rustup # rust
+		x scoop install uv # python
+
+		# tools
+		x scoop install make 
+
+		# starship prompt
+		x scoop install starship
+
+		# nerd font
+        x scoop bucket add nerd-fonts
+		x scoop install nerd-fonts/CascadiaCode-NF
 	}
 
 	# setup git config
