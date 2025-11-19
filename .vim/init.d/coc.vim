@@ -22,7 +22,6 @@ if !exists('g:vscode')
     \ 'coc-prettier',
     \ 'coc-stylelint',
     \ 'coc-tailwindcss',
-    \ 'coc-explorer',
     \ 'coc-calc',
     \ 'coc-inline-jest',
     \ 'coc-import-cost',
