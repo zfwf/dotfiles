@@ -2,56 +2,7 @@
 
 ## Prerequisites
 
-### Manjaro Linux
-
-```sh
-sudo pacman -S base-devel
-
-# install zsh
-pamac install zsh jq xclip
-
-# required by asdf-java
-pamac install jq
-
-# clipboard support
-pamac install xclip
-
-```
-
-### Clear Linux
-
-```sh
-# install zsh, devpkg-ncurses required to build zplugin module
-sudo swupd bundle-add zsh devpkg-ncurses
-
-# required by asdf-java
-sudo swupd bundle-add jq
-
-# required by asdf-python
-sudo swupd bundle-add devpkg-bzip2 devpkg-openssl devpkg-readline devpkg-sqlite-autoconf devpkg-libffi
-
-# required for installing rpm packages
-sudo swupd bundle-add package-utils
-
-# clipboard support
-sudo swupd bundle-add x11-tools
-
-```
-
-### MacOS (scipt will install HomeBrew and initialize from ~/Brewfile)
-
-### Windows (Windows Terminal, WSL2)
-
-#### Git Bash/Zsh
-
 Zsh might report `ERROR: this script is obsolete, please see git-completion.zsh` please see https://stackoverflow.com/a/69396005
-
-```sh
-    # modified ln28 in C:\Program Files\Git\etc\profile.d\git-prompt.sh
-    [ "${SHELL}" = "/usr/bin/bash" ] && . "$COMPLETION_PATH/git-completion.bash"
-    [ "${SHELL}" = "/usr/bin/zsh" ] && . "$COMPLETION_PATH/git-completion.zsh"
-
-```
 
 #### WSL2
 
@@ -77,9 +28,9 @@ wsl sudo apt-get install build-essential curl git zsh pkg-config libssl-dev libn
 ## Install
 
 ```sh
-# setup git credential
-gpg --batch --passphrase '' --quick-gen-key <USER_ID> default default  # (<USER_ID> to your own user id)
-pass init <gpg-key>  # <gpg-key> is the key id in output from last command
+# install x-cmd
+eval "$(curl https://get.x-cmd.com)"
+x install git # install git if required
 
 # clone to ~/.cfg as bare repo
 git clone --bare https://github.com/zfwf/dotfiles ~/.cfg
