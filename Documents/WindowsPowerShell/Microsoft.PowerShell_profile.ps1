@@ -1,52 +1,5 @@
-function mklink {
-	# enable permission (or win developer mode)
-    cmd /c mklink $args 
-}
-
-
-# initialize once
-$initFile = "$HOME\.pwsh-init"
-if (-not (Test-Path $initFile)) {
-    # vi mode
-    Install-Module -Name PSReadLine -Scope CurrentUser -AllowClobber -Force
-
-	# install x-cmd
-	if (Test-Path "$HOME\.x-cmd.root") {
-        x scoop bucket add extras 
-		x scoop install extras/git-credential-manager
-
-		# lang version manager
-		x scoop install nvs # nodejs
-		x scoop install rustup # rust
-		x scoop install uv # python
-
-		# tools
-		x scoop install make 
-
-		# starship prompt
-		x scoop install starship
-
-		# nerd font
-        x scoop bucket add nerd-fonts
-		x scoop install nerd-fonts/CascadiaCode-NF
-	}
-
-	# setup git config
-	if (-not (Test-Path "$HOME/.gitconfig")) {
-        mklink "%USERPROFILE%\.gitconfig" "%USERPROFILE%\.gitconfig_win"
-	}
-
-    # setup profile for PS5+
-    if (-not (Test-Path "$HOME/Documents/PowerShell")) {
-        # create Documents\PowerShell directory
-        New-Item -Path "$HOME\Documents\PowerShell" -ItemType Directory -Force | Out-Null
-        # create a symlink to the PowerShell profile
-        mklink "%USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" "%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
-    }
-
-    # finish init
-    New-Item -Path $initFile -ItemType File -Force | Out-Null
-}
+# x-cmd
+if (Test-Path "$HOME\.x-cmd.root\local\data\pwsh\_index.ps1") { Set-ExecutionPolicy Bypass -Scope Process; . "$HOME\.x-cmd.root\local\data\pwsh\_index.ps1" };  # boot up x-cmd.
 
 # enable vi mode
 Set-PSReadLineOption -EditMode Vi
@@ -103,7 +56,7 @@ function git() {
     )
 
     $updatedArgs = $args
-    
+
     # if current directory is home directory, set git config to use $HOME\.cfg as git directory
     if ($PWD.Path -eq $HOME) {
         $gitDir = "$HOME\.cfg"
@@ -115,15 +68,12 @@ function git() {
     if (($updatedArgs -contains "push") -and ($updatedArgs -notcontains "--help")) {
         $updatedArgs = $updatedArgs + @("-u")
     }
-    
+
     & git.exe @updatedArgs
 }
 
-# x-cmd
-if (Test-Path "$HOME\.x-cmd.root\local\data\pwsh\_index.ps1") { Set-ExecutionPolicy Bypass -Scope Process; . "$HOME\.x-cmd.root\local\data\pwsh\_index.ps1" };  # boot up x-cmd.
-
 # starship
-if (Get-Command "starship.exe" -ErrorAction SilentlyContinue) { 
+if (Get-Command "starship.exe" -ErrorAction SilentlyContinue) {
     $ENV:STARSHIP_CONFIG = "$HOME\.config\starship.toml"
     Invoke-Expression (&starship init powershell)
 }

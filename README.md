@@ -1,8 +1,8 @@
-# Getting started
+# Dotfiles
+
+A set of artifacts for system customization
 
 ## Prerequisites
-
-Zsh might report `ERROR: this script is obsolete, please see git-completion.zsh` please see https://stackoverflow.com/a/69396005
 
 #### WSL2
 
@@ -27,23 +27,32 @@ wsl sudo apt-get install build-essential curl git zsh pkg-config libssl-dev libn
 
 ## Install
 
+### Windows
+
+```pwsh
+[System.Text.Encoding]::GetEncoding("utf-8").GetString($(Invoke-WebRequest -Uri "https://raw.githubusercontent.com/zfwf/dotfiles/refs/heads/main/install/init.ps1").RawContentStream.ToArray()) | Invoke-Expression
+```
+
+#### Git Bash in Windows Terminal
+
+Paste below in Windows Terminal settings.json > profiles > list
+
+```json
+            {
+                "commandline": "%USERPROFILE%\\scoop\\apps\\git\\current\\bin\\bash.exe --login -i",
+                "guid": "{ec8fd78a-8825-4fb0-a81b-2f8596b94d90}",
+                "icon": "%USERPROFILE%\\scoop\\apps\\git\\current\\mingw64\\share\\git\\git-for-windows.ico",
+                "name": "Git Bash",
+                "startingDirectory": "%USERPROFILE%"
+            }
+```
+
+
+
+### POSIX
+
 ```sh
-# install x-cmd
-eval "$(curl https://get.x-cmd.com)"
-x install git # install git if required
-
-# clone to ~/.cfg as bare repo
-git clone --bare https://github.com/zfwf/dotfiles ~/.cfg
-
-# checkout `master` branch
-git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout main
-
-# start zsh (wait for initialization to complete...)
-zsh
-
-# set zsh as login shell (optional)
-command -v zsh | sudo tee -a /usr/share/defaults/etc/shells; sudo chsh -s $(command -v zsh) $USER
-
+eval "$(curl https://raw.githubusercontent.com/zfwf/dotfiles/refs/heads/main/install/init.sh)"
 ```
 
 # Usage

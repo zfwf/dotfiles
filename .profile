@@ -1,6 +1,4 @@
 # $HOME/.profile: executed by Bourne-compatible login shells.
-# pre-init script
-[ -f  $HOME/.pre-init.sh ] && . $HOME/.pre-init.sh
 
 # non-interactive init
 case `uname` in
@@ -14,7 +12,7 @@ case `uname` in
 	[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
 
     ;;
-  MINGW64_NT-*)
+  MSYS* | MINGW*)
     # x-cmd
 	[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
 

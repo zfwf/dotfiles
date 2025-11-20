@@ -13,7 +13,7 @@
   "buffer_font_family": "CaskaydiaCove Nerd Font",
   "theme": {
     "mode": "system",
-    "light": "Dracula Light (Alucard",
-    "dark": "Dracula"
+    "light": "Ayu Mirage",
+    "dark": "Ayu Dark"
   }
 }

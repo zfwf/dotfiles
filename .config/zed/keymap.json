@@ -13,9 +13,9 @@
     }
   },
   {
-    "context": "Editor && vim_mode == insert",
+    "context": "vim_mode == insert",
     "bindings": {
-      "j k": "vim::NormalBefore"
+      "j k": "vim::NormalBefore" // In insert mode, make jk escape to normal mode.
     }
   }
 ]
