@@ -4,4 +4,4 @@
 git clone --bare https://github.com/zfwf/dotfiles $HOME/.cfg
 
 # checkout `main` branch
-git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout -f main
+git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout -f origin main
