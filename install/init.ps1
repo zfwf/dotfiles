@@ -32,7 +32,7 @@ x scoop bucket add nerd-fonts
 x scoop install nerd-fonts/CascadiaCode-NF
 
 # update path for scoop shims
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path","User")
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","User") + ";" + [System.Environment]::GetEnvironmentVariable("Path","Machine")
 
 # setup dotfiles
 [System.Text.Encoding]::GetEncoding("utf-8").GetString($(Invoke-WebRequest -Uri "https://raw.githubusercontent.com/zfwf/dotfiles/refs/heads/main/install/setup-dotfiles.sh").RawContentStream.ToArray()) | Invoke-Expression
