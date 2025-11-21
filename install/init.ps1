@@ -39,23 +39,23 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","User") + ";" + 
 
 # setup git config
 if (-not (Test-Path "$HOME/.gitconfig")) {
-    mklink "%USERPROFILE%\.gitconfig" "%USERPROFILE%\.gitconfig_win"
+    mklink "$env:USERPROFILE\.gitconfig" "$env:USERPROFILE\.gitconfig_win"
 }
 
 # setup profile for PS5+
-if (-not (Test-Path "$HOME/Documents/PowerShell")) {
+if (-not (Test-Path "$env:USERPROFILE/Documents/PowerShell")) {
     # create Documents\PowerShell directory
-    New-Item -Path "$HOME\Documents\PowerShell" -ItemType Directory -Force | Out-Null
+    New-Item -Path "$env:USERPROFILE/Documents/PowerShell" -ItemType Directory -Force | Out-Null
     # create a symlink to the PowerShell profile
-    mklink "%USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" "%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
-    mklink "%APPDATA%\zed\settings.json" "%USERPROFILE%\.config\zed\settings.json"
+    mklink "$env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+    mklink "$env:APPDATA\zed\settings.json" "$env:USERPROFILE\.config\zed\settings.json"
 }
 
 # setup profile for zed
-if (-not (Test-Path "%APPDATA%/zed")) {
+if (-not (Test-Path "$env:APPDATA/zed")) {
     # create zed config directory
-    New-Item -Path "%APPDATA%/zed" -ItemType Directory -Force | Out-Null
+    New-Item -Path "$env:APPDATA/zed" -ItemType Directory -Force | Out-Null
     # create a symlink to the PowerShell profile
-    mklink "%APPDATA%\zed\settings.json" "%USERPROFILE%\.config\zed\settings.json"
-    mklink "%APPDATA%\zed\keymap.json" "%USERPROFILE%\.config\zed\keymap.json"
+    mklink "$env:APPDATA\zed\settings.json" "$env:USERPROFILE\.config\zed\settings.json"
+    mklink "$env:APPDATA\zed\keymap.json" "$env:USERPROFILE\.config\zed\keymap.json"
 }
