@@ -11,18 +11,30 @@ Install-Module -Name PSReadLine -Scope CurrentUser -AllowClobber -Force
 # install x-cmd
 [System.Text.Encoding]::GetEncoding("utf-8").GetString($(Invoke-WebRequest -Uri "https://get.x-cmd.com/x-cmd.ps1").RawContentStream.ToArray()) | Invoke-Expression
 
+# install scoop (`x scoop` is just a wrapper over scoop)
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+
+# scoop buckets
+x scoop bucket add extras
+
 # git
 x scoop install git
-x scoop bucket add extras
 x scoop install extras/git-credential-manager
 
+# bitwarden
+scoop install extras/bitwarden
+scoop install main/bitwarden-cli
+
 # lang version manager
-x scoop install nvs # nodejs
+x scoop install fnm # nodejs
 x scoop install rustup # rust
 x scoop install uv # python
 
 # tools
 x scoop install make
+x scoop install extras/vscode
+x scoop install extras/paint.net
 
 # starship prompt
 x scoop install starship
