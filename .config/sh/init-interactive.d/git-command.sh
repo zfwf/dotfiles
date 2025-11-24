@@ -1,5 +1,5 @@
 # dotfiles bare repo
-CMD_GIT="$(command -v git)"
+CMD_GIT="$(which git)"
 git() {
   local CMD_GIT_EXTRA_ARGS=()
   if [[ "$1" == "push" && "$@" != *"--help"* ]]; then
