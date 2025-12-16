@@ -21,7 +21,6 @@
 	line-numbers = true
 	features = decorations
 
-
 [delta "interactive"]
 	keep-plus-minus-markers = false
 
@@ -45,8 +44,6 @@
 	default = current
 
 [credential]
-	helper = /usr/local/share/gcm-core/git-credential-manager
-	helper = 
 	helper = /usr/local/bin/git-credential-manager
 
 [pull]
@@ -54,9 +51,3 @@
 
 [includeIf "gitdir:~/Documents/"]
 	path = ~/Documents/.gitconfig
-
-[credential "https://dev.azure.com"]
-	useHttpPath = true
-
-[init]
-	templatedir = /Users/chris.chou/dev/devtools/git-templates

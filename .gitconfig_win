@@ -3,7 +3,7 @@
 	email = zf8wf8@petalmail.com
 
 [core]
-	autocrlf = input
+	autocrlf = false
 	excludesfile = $HOME/.gitignore_global
 	compression = 0
 	compression = 9

@@ -1,5 +1,6 @@
 # command for interactive shell (load order: .zshenv, .zshrc, .zsh)
 
+
 # init completion
 autoload -Uz compinit && compinit
 
@@ -143,5 +144,3 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 
 # prepend $HOME/.local/bin
 export PATH="$HOME/.local/bin:$PATH"
-
-# [ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
